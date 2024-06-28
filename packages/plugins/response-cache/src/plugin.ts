@@ -68,9 +68,7 @@ export type UseResponseCacheParameter<PluginContext extends Record<string, any> 
    */
   ttl?: number;
   /**
-   * Overwrite the ttl for query operations whose execution result contains a specific object type.
-   * Useful if the occurrence of a object time in the execution result should reduce or increase the TTL of the query operation.
-   * The TTL per type is always favored over the global TTL.
+   * @deprecated Use `ttlPerSchemaCoordinate` instead.
    */
   ttlPerType?: Record<string, number>;
   /**
@@ -308,7 +306,7 @@ export function useResponseCache<PluginContext extends Record<string, any> = {}>
   session,
   enabled,
   ignoredTypes = [],
-  ttlPerType = {},
+  ttlPerType,
   ttlPerSchemaCoordinate = {},
   scopePerSchemaCoordinate = {},
   idFields = ['id'],
@@ -329,6 +327,12 @@ export function useResponseCache<PluginContext extends Record<string, any> = {}>
 
   // never cache Introspections
   ttlPerSchemaCoordinate = { 'Query.__schema': 0, ...ttlPerSchemaCoordinate };
+  if (ttlPerType) {
+    for (const [typeName, ttl] of Object.entries(ttlPerType)) {
+      ttlPerSchemaCoordinate[typeName] = ttl;
+    }
+  }
+
   const documentMetadataOptions = {
     queries: { invalidateViaMutation, ttlPerSchemaCoordinate },
     mutations: { invalidateViaMutation }, // remove ttlPerSchemaCoordinate for mutations to skip TTL calculation
@@ -366,7 +370,7 @@ export function useResponseCache<PluginContext extends Record<string, any> = {}>
             ) as unknown as CacheControlDirective[] | undefined;
             cacheControlAnnotations?.forEach(cacheControl => {
               if (cacheControl.maxAge != null) {
-                ttlPerType[type.name] = cacheControl.maxAge * 1000;
+                ttlPerSchemaCoordinate[type.name] = cacheControl.maxAge * 1000;
               }
               if (cacheControl.scope) {
                 scopePerSchemaCoordinate[type.name] = cacheControl.scope;
@@ -461,8 +465,8 @@ export function useResponseCache<PluginContext extends Record<string, any> = {}>
         }
 
         types.add(entity.typename);
-        if (entity.typename in ttlPerType) {
-          const maybeTtl = ttlPerType[entity.typename] as unknown;
+        if (entity.typename in ttlPerSchemaCoordinate) {
+          const maybeTtl = ttlPerSchemaCoordinate[entity.typename] as unknown;
           currentTtl = calculateTtl(maybeTtl, currentTtl);
         }
         if (entity.id != null) {
@@ -473,8 +477,8 @@ export function useResponseCache<PluginContext extends Record<string, any> = {}>
           if (fieldData == null || (Array.isArray(fieldData) && fieldData.length === 0)) {
             const inferredTypes = typePerSchemaCoordinateMap.get(`${entity.typename}.${fieldName}`);
             inferredTypes?.forEach(inferredType => {
-              if (inferredType in ttlPerType) {
-                const maybeTtl = ttlPerType[inferredType] as unknown;
+              if (inferredType in ttlPerSchemaCoordinate) {
+                const maybeTtl = ttlPerSchemaCoordinate[inferredType] as unknown;
                 currentTtl = calculateTtl(maybeTtl, currentTtl);
               }
               identifier.set(inferredType, { typename: inferredType });
