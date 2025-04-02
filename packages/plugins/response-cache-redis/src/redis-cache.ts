@@ -1,8 +1,11 @@
-import Redis from 'ioredis';
-import type { Cache } from '@envelop/response-cache';
-import { handleMaybePromise } from '@whatwg-node/promise-helpers';
+import Redis from "ioredis";
+import type { Cache } from "@envelop/response-cache";
+import { handleMaybePromise } from "@whatwg-node/promise-helpers";
 
-export type BuildRedisEntityId = (typename: string, id: number | string) => string;
+export type BuildRedisEntityId = (
+  typename: string,
+  id: number | string
+) => string;
 export type BuildRedisOperationResultCacheKey = (responseId: string) => string;
 
 export type RedisCacheParameter = {
@@ -26,30 +29,34 @@ export type RedisCacheParameter = {
 export const createRedisCache = (params: RedisCacheParameter): Cache => {
   const store = params.redis;
 
-  const buildRedisEntityId = params?.buildRedisEntityId ?? defaultBuildRedisEntityId;
+  const buildRedisEntityId =
+    params?.buildRedisEntityId ?? defaultBuildRedisEntityId;
   const buildRedisOperationResultCacheKey =
-    params?.buildRedisOperationResultCacheKey ?? defaultBuildRedisOperationResultCacheKey;
+    params?.buildRedisOperationResultCacheKey ??
+    defaultBuildRedisOperationResultCacheKey;
 
-  async function buildEntityInvalidationsKeys(entity: string): Promise<string[]> {
+  async function buildEntityInvalidationsKeys(
+    entity: string
+  ): Promise<string[]> {
     const keysToInvalidate: string[] = [entity];
 
     // find the responseIds for the entity
     const responseIds = await store.smembers(entity);
     // and add each response to be invalidated since they contained the entity data
-    responseIds.forEach(responseId => {
+    responseIds.forEach((responseId) => {
       keysToInvalidate.push(responseId);
       keysToInvalidate.push(buildRedisOperationResultCacheKey(responseId));
     });
 
     // if invalidating an entity like Comment, then also invalidate Comment:1, Comment:2, etc
-    if (!entity.includes(':')) {
+    if (!entity.includes(":")) {
       const entityKeys = await store.keys(`${entity}:*`);
       for (const entityKey of entityKeys) {
         // and invalidate any responses in each of those entity keys
         const entityResponseIds = await store.smembers(entityKey);
         // if invalidating an entity check for associated operations containing that entity
         // and invalidate each response since they contained the entity data
-        entityResponseIds.forEach(responseId => {
+        entityResponseIds.forEach((responseId) => {
           keysToInvalidate.push(responseId);
           keysToInvalidate.push(buildRedisOperationResultCacheKey(responseId));
         });
@@ -70,7 +77,7 @@ export const createRedisCache = (params: RedisCacheParameter): Cache => {
         pipeline.set(responseId, JSON.stringify(result));
       } else {
         // set the ttl in milliseconds
-        pipeline.set(responseId, JSON.stringify(result), 'PX', ttl);
+        pipeline.set(responseId, JSON.stringify(result), "EX", ttl);
       }
 
       const responseKey = buildRedisOperationResultCacheKey(responseId);
@@ -95,7 +102,7 @@ export const createRedisCache = (params: RedisCacheParameter): Cache => {
     get(responseId) {
       return handleMaybePromise(
         () => store.get(responseId),
-        (result: any) => (result ? JSON.parse(result) : undefined),
+        (result: any) => (result ? JSON.parse(result) : undefined)
       );
     },
     async invalidate(entitiesToRemove) {
@@ -104,8 +111,8 @@ export const createRedisCache = (params: RedisCacheParameter): Cache => {
       for (const { typename, id } of entitiesToRemove) {
         invalidationKeys.push(
           await buildEntityInvalidationsKeys(
-            id != null ? buildRedisEntityId(typename, id) : typename,
-          ),
+            id != null ? buildRedisEntityId(typename, id) : typename
+          )
         );
       }
 
@@ -117,6 +124,7 @@ export const createRedisCache = (params: RedisCacheParameter): Cache => {
   };
 };
 
-export const defaultBuildRedisEntityId: BuildRedisEntityId = (typename, id) => `${typename}:${id}`;
+export const defaultBuildRedisEntityId: BuildRedisEntityId = (typename, id) =>
+  `${typename}:${id}`;
 export const defaultBuildRedisOperationResultCacheKey: BuildRedisOperationResultCacheKey =
-  responseId => `operations:${responseId}`;
+  (responseId) => `operations:${responseId}`;
