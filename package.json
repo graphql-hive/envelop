@@ -3,7 +3,7 @@
   "author": "Dotan Simha <dotansimha@gmail.com>",
   "license": "MIT",
   "private": true,
-  "packageManager": "pnpm@10.7.0",
+  "packageManager": "pnpm@10.7.1",
   "engines": {
     "node": ">=18.0.0",
     "pnpm": ">=10.2.1"
@@ -36,7 +36,7 @@
     "@types/benchmark": "2.1.5",
     "@types/jest": "29.5.14",
     "@types/k6": "1.0.2",
-    "@types/node": "22.13.14",
+    "@types/node": "22.14.0",
     "@typescript-eslint/eslint-plugin": "8.28.0",
     "@typescript-eslint/parser": "8.28.0",
     "bob-the-bundler": "7.0.1",
@@ -59,11 +59,11 @@
     "prettier-plugin-pkg": "0.18.1",
     "prettier-plugin-sh": "0.16.0",
     "rimraf": "6.0.1",
-    "ts-jest": "29.3.0",
+    "ts-jest": "29.3.1",
     "ts-node": "10.9.2",
     "typescript": "5.8.2",
     "wait-on": "8.0.3",
-    "wrangler": "4.6.0"
+    "wrangler": "4.7.1"
   },
   "lint-staged": {
     "packages/**/src/**/*.{ts,tsx}": [
@@ -81,7 +81,7 @@
       "braces": "3.0.3",
       "cross-spawn": "7.0.6",
       "micromatch": "4.0.8",
-      "dompurify": "3.2.4",
+      "dompurify": "3.2.5",
       "webpack": "5.98.0",
       "axios": "1.8.4",
       "undici": "5.29.0",
