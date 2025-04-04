@@ -23,7 +23,7 @@
     "@theguild/tailwind-config": "0.6.3",
     "@types/node": "22.14.0",
     "@types/react": "18.3.20",
-    "sharp": "0.33.5"
+    "sharp": "0.34.0"
   },
   "browserslist": {
     "production": [
