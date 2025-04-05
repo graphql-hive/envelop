@@ -62,7 +62,7 @@
     "@sentry/types": "^8.22.0",
     "graphql": "16.8.1",
     "sentry-testkit": "6.1.0",
-    "typescript": "5.8.2"
+    "typescript": "5.8.3"
   },
   "publishConfig": {
     "directory": "dist",
