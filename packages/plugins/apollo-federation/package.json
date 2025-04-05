@@ -60,7 +60,7 @@
     "@envelop/core": "workspace:^",
     "graphql": "16.8.1",
     "graphql-tag": "2.12.6",
-    "typescript": "5.8.2"
+    "typescript": "5.8.3"
   },
   "publishConfig": {
     "directory": "dist",

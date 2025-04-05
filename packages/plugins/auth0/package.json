@@ -58,7 +58,7 @@
   "devDependencies": {
     "@envelop/core": "workspace:^",
     "@types/jsonwebtoken": "9.0.9",
-    "typescript": "5.8.2"
+    "typescript": "5.8.3"
   },
   "publishConfig": {
     "directory": "dist",

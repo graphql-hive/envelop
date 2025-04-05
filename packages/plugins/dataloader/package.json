@@ -59,7 +59,7 @@
     "dataloader": "2.2.3",
     "graphql": "16.8.1",
     "reflect-metadata": "0.2.2",
-    "typescript": "5.8.2"
+    "typescript": "5.8.3"
   },
   "publishConfig": {
     "directory": "dist",
