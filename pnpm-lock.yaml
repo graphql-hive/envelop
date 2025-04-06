@@ -129,11 +129,11 @@ importers:
         specifier: 3.5.3
         version: 3.5.3
       prettier-plugin-pkg:
-        specifier: 0.18.1
-        version: 0.18.1(prettier@3.5.3)
+        specifier: 0.19.0
+        version: 0.19.0(prettier@3.5.3)
       prettier-plugin-sh:
-        specifier: 0.16.0
-        version: 0.16.0(prettier@3.5.3)
+        specifier: 0.16.1
+        version: 0.16.1(prettier@3.5.3)
       rimraf:
         specifier: 6.0.1
         version: 6.0.1
@@ -151,7 +151,7 @@ importers:
         version: 8.0.3
       wrangler:
         specifier: 4.7.2
-        version: 4.7.2(@cloudflare/workers-types@4.20250405.0)
+        version: 4.7.2(@cloudflare/workers-types@4.20250406.0)
 
   benchmark:
     dependencies:
@@ -261,8 +261,8 @@ importers:
         version: 0.7.3
     devDependencies:
       '@cloudflare/workers-types':
-        specifier: 4.20250405.0
-        version: 4.20250405.0
+        specifier: 4.20250406.0
+        version: 4.20250406.0
       '@types/node':
         specifier: 22.14.0
         version: 22.14.0
@@ -2773,8 +2773,8 @@ packages:
   '@cloudflare/workers-types@4.20250404.0':
     resolution: {integrity: sha512-XB8LNS9spWcxU56Tt/RPl0S06oyXfZCSDVKBbzjHYZtgN5kZP4UtTR01t16HUfo330EtJOo8cdo/PbiBAwRNIg==}
 
-  '@cloudflare/workers-types@4.20250405.0':
-    resolution: {integrity: sha512-rE7LQirsEorBir5hymXpi0D+G01lZ65GZTKBjmkbWLNHRQyyG964wqlMzxFuFTndKttLTlJjZyZHHg5scBi4Kg==}
+  '@cloudflare/workers-types@4.20250406.0':
+    resolution: {integrity: sha512-E42GP9oZFNOoykucfN9H9qaG3IeID6VMHc2zGjVuDYT2G55uESe56tstuGFYYwjMm36QeNob+ZryyiE92idFYA==}
 
   '@colors/colors@1.6.0':
     resolution: {integrity: sha512-Ir+AOibqzrIsL6ajt3Rz3LskB7OiMVHqltZmspbW/TJuTVuyOMirVqAkjfY6JISiLHgyNqicAC8AyHHGzNd/dA==}
@@ -9601,14 +9601,20 @@ packages:
     peerDependencies:
       prettier: ^3.0.3
 
+  prettier-plugin-pkg@0.19.0:
+    resolution: {integrity: sha512-wlBvVhAZQ+iOH8/4gWc1SxJbf5++xwKmnFkqHYUsmoQIg6hgdyL1055Z9FOWa6cumqL/QwqdOzY9aH4McdjKyw==}
+    engines: {node: ^14.18.0 || >=16.0.0}
+    peerDependencies:
+      prettier: ^3.0.3
+
   prettier-plugin-sh@0.14.0:
     resolution: {integrity: sha512-hfXulj5+zEl/ulrO5kMuuTPKmXvOg0bnLHY1hKFNN/N+/903iZbNp8NyZBTsgI8dtkSgFfAEIQq0IQTyP1ZVFQ==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       prettier: ^3.0.3
 
-  prettier-plugin-sh@0.16.0:
-    resolution: {integrity: sha512-QaVH0X56IUy9niNczUQ0TxqVezcGzACz9XObbyxyAZ6NU/VCKnR9RUAcETyzCiPgcHKq/tjerCsqxn5nL3yo/w==}
+  prettier-plugin-sh@0.16.1:
+    resolution: {integrity: sha512-6V7VKG5nyQ/nuXGyhr0+rKJ/1BejRk3fccYKWabatl0MEMqxA/0GGZrOHoqPUIfjzwegmAbOLeVGG0K+oBAJSg==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       prettier: ^3.0.3
@@ -12982,7 +12988,7 @@ snapshots:
 
   '@cloudflare/workers-types@4.20250404.0': {}
 
-  '@cloudflare/workers-types@4.20250405.0': {}
+  '@cloudflare/workers-types@4.20250406.0': {}
 
   '@colors/colors@1.6.0': {}
 
@@ -13996,7 +14002,7 @@ snapshots:
 
   '@miniflare/shared-test-environment@2.14.4':
     dependencies:
-      '@cloudflare/workers-types': 4.20250405.0
+      '@cloudflare/workers-types': 4.20250406.0
       '@miniflare/cache': 2.14.4
       '@miniflare/core': 2.14.4
       '@miniflare/d1': 2.14.4
@@ -21489,13 +21495,17 @@ snapshots:
     dependencies:
       prettier: 3.5.3
 
+  prettier-plugin-pkg@0.19.0(prettier@3.5.3):
+    dependencies:
+      prettier: 3.5.3
+
   prettier-plugin-sh@0.14.0(prettier@3.5.3):
     dependencies:
       mvdan-sh: 0.10.1
       prettier: 3.5.3
       sh-syntax: 0.4.2
 
-  prettier-plugin-sh@0.16.0(prettier@3.5.3):
+  prettier-plugin-sh@0.16.1(prettier@3.5.3):
     dependencies:
       mvdan-sh: 0.10.1
       prettier: 3.5.3
@@ -23585,7 +23595,7 @@ snapshots:
     dependencies:
       regexparam: 2.0.2
 
-  wrangler@4.7.2(@cloudflare/workers-types@4.20250405.0):
+  wrangler@4.7.2(@cloudflare/workers-types@4.20250406.0):
     dependencies:
       '@cloudflare/kv-asset-handler': 0.4.0
       '@cloudflare/unenv-preset': 2.3.1(unenv@2.0.0-rc.15)(workerd@1.20250404.0)
@@ -23596,7 +23606,7 @@ snapshots:
       unenv: 2.0.0-rc.15
       workerd: 1.20250404.0
     optionalDependencies:
-      '@cloudflare/workers-types': 4.20250405.0
+      '@cloudflare/workers-types': 4.20250406.0
       fsevents: 2.3.3
       sharp: 0.33.5
     transitivePeerDependencies:
