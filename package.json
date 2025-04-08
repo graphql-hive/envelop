@@ -77,6 +77,7 @@
     "overrides": {
       "esbuild": "^0.25.0",
       "graphql": "16.8.1",
+      "estree-util-value-to-estree": "3.3.3",
       "estree-util-build-jsx": "3.0.1",
       "braces": "3.0.3",
       "cross-spawn": "7.0.6",
