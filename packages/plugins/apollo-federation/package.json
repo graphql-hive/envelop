@@ -55,7 +55,7 @@
     "tslib": "^2.5.0"
   },
   "devDependencies": {
-    "@apollo/gateway": "2.10.0",
+    "@apollo/gateway": "2.10.1",
     "@apollo/subgraph": "2.10.0",
     "@envelop/core": "workspace:^",
     "graphql": "16.8.1",
