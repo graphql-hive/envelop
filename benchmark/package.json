@@ -14,7 +14,7 @@
     "@envelop/validation-cache": "workspace:^",
     "@graphql-tools/schema": "10.0.23",
     "faker": "5.5.3",
-    "fastify": "5.2.2",
+    "fastify": "5.3.0",
     "graphql": "16.10.0"
   }
 }
