@@ -11,12 +11,12 @@
   "dependencies": {
     "@envelop/core": "workspace:^",
     "@graphql-tools/schema": "10.0.23",
-    "fastify": "5.2.2",
+    "fastify": "5.3.0",
     "graphql": "16.8.1",
     "graphql-helix": "1.13.0"
   },
   "devDependencies": {
-    "@types/node": "22.14.0",
+    "@types/node": "22.14.1",
     "ts-node": "10.9.2",
     "typescript": "5.8.3"
   }
