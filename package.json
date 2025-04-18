@@ -43,7 +43,7 @@
     "caniuse-lite": "^1.0.30001692",
     "chalk": "5.4.1",
     "cross-env": "7.0.3",
-    "eslint": "9.24.0",
+    "eslint": "9.25.0",
     "eslint-config-prettier": "10.1.2",
     "eslint-config-standard": "17.1.0",
     "eslint-plugin-import": "2.31.0",
@@ -83,7 +83,7 @@
       "cross-spawn": "7.0.6",
       "micromatch": "4.0.8",
       "dompurify": "3.2.5",
-      "webpack": "5.99.5",
+      "webpack": "5.99.6",
       "axios": "1.8.4",
       "undici": "5.29.0",
       "cookie": "1.0.2"
