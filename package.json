@@ -3,7 +3,7 @@
   "author": "Dotan Simha <dotansimha@gmail.com>",
   "license": "MIT",
   "private": true,
-  "packageManager": "pnpm@10.8.0",
+  "packageManager": "pnpm@10.8.1",
   "engines": {
     "node": ">=18.0.0",
     "pnpm": ">=10.2.1"
@@ -59,11 +59,11 @@
     "prettier-plugin-pkg": "0.19.0",
     "prettier-plugin-sh": "0.17.2",
     "rimraf": "6.0.1",
-    "ts-jest": "29.3.1",
+    "ts-jest": "29.3.2",
     "ts-node": "10.9.2",
     "typescript": "5.8.3",
     "wait-on": "8.0.3",
-    "wrangler": "4.10.0"
+    "wrangler": "4.12.0"
   },
   "lint-staged": {
     "packages/**/src/**/*.{ts,tsx}": [
