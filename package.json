@@ -36,19 +36,19 @@
     "@types/benchmark": "2.1.5",
     "@types/jest": "29.5.14",
     "@types/k6": "1.0.2",
-    "@types/node": "22.14.1",
+    "@types/node": "22.15.2",
     "@typescript-eslint/eslint-plugin": "8.29.1",
     "@typescript-eslint/parser": "8.29.1",
     "bob-the-bundler": "7.0.1",
     "caniuse-lite": "^1.0.30001692",
     "chalk": "5.4.1",
     "cross-env": "7.0.3",
-    "eslint": "9.25.0",
+    "eslint": "9.25.1",
     "eslint-config-prettier": "10.1.2",
     "eslint-config-standard": "17.1.0",
     "eslint-plugin-import": "2.31.0",
     "eslint-plugin-n": "17.17.0",
-    "eslint-plugin-package-json": "^0.29.0",
+    "eslint-plugin-package-json": "^0.31.0",
     "eslint-plugin-promise": "7.2.1",
     "eslint-plugin-unicorn": "58.0.0",
     "globby": "14.1.0",
@@ -63,7 +63,7 @@
     "ts-node": "10.9.2",
     "typescript": "5.8.3",
     "wait-on": "8.0.3",
-    "wrangler": "4.12.0"
+    "wrangler": "4.13.2"
   },
   "lint-staged": {
     "packages/**/src/**/*.{ts,tsx}": [
@@ -83,8 +83,8 @@
       "cross-spawn": "7.0.6",
       "micromatch": "4.0.8",
       "dompurify": "3.2.5",
-      "webpack": "5.99.6",
-      "axios": "1.8.4",
+      "webpack": "5.99.7",
+      "axios": "1.9.0",
       "undici": "5.29.0",
       "cookie": "1.0.2"
     },
