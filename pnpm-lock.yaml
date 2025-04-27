@@ -152,7 +152,7 @@ importers:
         version: 8.0.3
       wrangler:
         specifier: 4.13.2
-        version: 4.13.2(@cloudflare/workers-types@4.20250426.0)
+        version: 4.13.2(@cloudflare/workers-types@4.20250427.0)
 
   benchmark:
     dependencies:
@@ -262,8 +262,8 @@ importers:
         version: 0.7.3
     devDependencies:
       '@cloudflare/workers-types':
-        specifier: 4.20250426.0
-        version: 4.20250426.0
+        specifier: 4.20250427.0
+        version: 4.20250427.0
       '@types/node':
         specifier: 22.15.2
         version: 22.15.2
@@ -1505,7 +1505,7 @@ importers:
     dependencies:
       '@cloudflare/workers-types':
         specifier: ^4.20231121.0
-        version: 4.20250426.0
+        version: 4.20250427.0
       graphql:
         specifier: 16.8.1
         version: 16.8.1
@@ -1584,8 +1584,8 @@ importers:
         specifier: 16.8.1
         version: 16.8.1
       sentry-testkit:
-        specifier: 6.1.0
-        version: 6.1.0
+        specifier: 6.2.0
+        version: 6.2.0
       typescript:
         specifier: 5.8.3
         version: 5.8.3
@@ -2771,8 +2771,8 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@cloudflare/workers-types@4.20250426.0':
-    resolution: {integrity: sha512-HFoi66mqOTxznMe09/RDlDS2Bwe6C2LUJP07auJuFZL0H6g3lYGRKf5shvKfB/vhAPwAMh5M9Wzb9Mh2AWzpoA==}
+  '@cloudflare/workers-types@4.20250427.0':
+    resolution: {integrity: sha512-5RLld1Bf5W2EE06bnE5qdicx1AtfF3LT+YD93cR32yKDNridHeBriWO8/pMZG7JmURdHEwyXyIV4gtdPzDPNdw==}
 
   '@colors/colors@1.6.0':
     resolution: {integrity: sha512-Ir+AOibqzrIsL6ajt3Rz3LskB7OiMVHqltZmspbW/TJuTVuyOMirVqAkjfY6JISiLHgyNqicAC8AyHHGzNd/dA==}
@@ -10162,8 +10162,8 @@ packages:
     resolution: {integrity: sha512-uaW0WwXKpL9blXE2o0bRhoL2EGXIrZxQ2ZQ4mgcfoBxdFmQold+qWsD2jLrfZ0trjKL6vOw0j//eAwcALFjKSw==}
     engines: {node: '>= 18'}
 
-  sentry-testkit@6.1.0:
-    resolution: {integrity: sha512-mW1aOvJQFy42QSKev91rF0e+JlkP51oqficRNEwdC1efI/uYSyfpRL7pJATmHMsMMAb1ZFa5tMpyJg1dWPqE+Q==}
+  sentry-testkit@6.2.0:
+    resolution: {integrity: sha512-dCVG+s/sTt9ltiJJ8NKv0JhBUNkLeVczk3sp7eGHLD5rXU3xbC5m4Tn51xWH3P/GWEJloXALSYJSCKq0eQmWBw==}
 
   serialize-javascript@6.0.2:
     resolution: {integrity: sha512-Saa1xPByTTq2gdeFZYLLo+RFE35NHZkAbqZeWNd3BpzppeVisAqpDjcp8dyf6uIvEqJRd46jemmyA4iFIeVk8g==}
@@ -13001,7 +13001,7 @@ snapshots:
   '@cloudflare/workerd-windows-64@1.20250424.0':
     optional: true
 
-  '@cloudflare/workers-types@4.20250426.0': {}
+  '@cloudflare/workers-types@4.20250427.0': {}
 
   '@colors/colors@1.6.0': {}
 
@@ -14012,7 +14012,7 @@ snapshots:
 
   '@miniflare/shared-test-environment@2.14.4':
     dependencies:
-      '@cloudflare/workers-types': 4.20250426.0
+      '@cloudflare/workers-types': 4.20250427.0
       '@miniflare/cache': 2.14.4
       '@miniflare/core': 2.14.4
       '@miniflare/d1': 2.14.4
@@ -22264,7 +22264,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  sentry-testkit@6.1.0:
+  sentry-testkit@6.2.0:
     dependencies:
       body-parser: 1.20.3
       express: 4.21.2
@@ -23626,7 +23626,7 @@ snapshots:
     dependencies:
       regexparam: 2.0.2
 
-  wrangler@4.13.2(@cloudflare/workers-types@4.20250426.0):
+  wrangler@4.13.2(@cloudflare/workers-types@4.20250427.0):
     dependencies:
       '@cloudflare/kv-asset-handler': 0.4.0
       '@cloudflare/unenv-preset': 2.3.1(unenv@2.0.0-rc.15)(workerd@1.20250424.0)
@@ -23637,7 +23637,7 @@ snapshots:
       unenv: 2.0.0-rc.15
       workerd: 1.20250424.0
     optionalDependencies:
-      '@cloudflare/workers-types': 4.20250426.0
+      '@cloudflare/workers-types': 4.20250427.0
       fsevents: 2.3.3
       sharp: 0.33.5
     transitivePeerDependencies:
