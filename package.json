@@ -36,7 +36,7 @@
     "@types/benchmark": "2.1.5",
     "@types/jest": "29.5.14",
     "@types/k6": "1.0.2",
-    "@types/node": "22.15.19",
+    "@types/node": "22.15.21",
     "@typescript-eslint/eslint-plugin": "8.32.1",
     "@typescript-eslint/parser": "8.32.1",
     "bob-the-bundler": "7.0.1",
@@ -63,7 +63,7 @@
     "ts-node": "10.9.2",
     "typescript": "5.8.3",
     "wait-on": "8.0.3",
-    "wrangler": "4.15.2"
+    "wrangler": "4.16.0"
   },
   "lint-staged": {
     "packages/**/src/**/*.{ts,tsx}": [
@@ -83,7 +83,7 @@
       "cross-spawn": "7.0.6",
       "micromatch": "4.0.8",
       "dompurify": "3.2.6",
-      "webpack": "5.99.8",
+      "webpack": "5.99.9",
       "axios": "1.9.0",
       "undici": "5.29.0",
       "cookie": "1.0.2"
