@@ -151,8 +151,8 @@ importers:
         specifier: 8.0.3
         version: 8.0.3
       wrangler:
-        specifier: 4.16.0
-        version: 4.16.0(@cloudflare/workers-types@4.20250522.0)
+        specifier: 4.16.1
+        version: 4.16.1(@cloudflare/workers-types@4.20250524.0)
 
   benchmark:
     dependencies:
@@ -228,8 +228,8 @@ importers:
         version: 1.13.0(graphql@16.8.1)
     devDependencies:
       '@azure/functions':
-        specifier: 4.7.0
-        version: 4.7.0
+        specifier: 4.7.2
+        version: 4.7.2
       '@types/node':
         specifier: 22.15.21
         version: 22.15.21
@@ -262,8 +262,8 @@ importers:
         version: 0.7.3
     devDependencies:
       '@cloudflare/workers-types':
-        specifier: 4.20250522.0
-        version: 4.20250522.0
+        specifier: 4.20250524.0
+        version: 4.20250524.0
       '@types/node':
         specifier: 22.15.21
         version: 22.15.21
@@ -327,8 +327,8 @@ importers:
         version: 1.13.0(graphql@16.8.1)
     devDependencies:
       '@azure/functions':
-        specifier: 4.7.0
-        version: 4.7.0
+        specifier: 4.7.2
+        version: 4.7.2
       '@types/node':
         specifier: 22.15.21
         version: 22.15.21
@@ -1505,7 +1505,7 @@ importers:
     dependencies:
       '@cloudflare/workers-types':
         specifier: ^4.20231121.0
-        version: 4.20250522.0
+        version: 4.20250524.0
       graphql:
         specifier: 16.8.1
         version: 16.8.1
@@ -2045,8 +2045,8 @@ packages:
       aws-crt:
         optional: true
 
-  '@azure/functions@4.7.0':
-    resolution: {integrity: sha512-y1caGX6LYrA7msAckQVb/quFOhWHSPiGzWfIML17t0ee2ydpinJTBF+Sti+URfLAH63dtmXJR4meraZkhhK9tw==}
+  '@azure/functions@4.7.2':
+    resolution: {integrity: sha512-5ps8yz4gn6oZSzeQbpUreWHFYl/YS03F1Sk/pz7YJphfctRcHuLF5tcrdm9AyRiYzja4Bkd63bju+g/E27opPQ==}
     engines: {node: '>=18.0'}
 
   '@babel/code-frame@7.27.1':
@@ -2771,8 +2771,8 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@cloudflare/workers-types@4.20250522.0':
-    resolution: {integrity: sha512-9RIffHobc35JWeddzBguGgPa4wLDr5x5F94+0/qy7LiV6pTBQ/M5qGEN9VA16IDT3EUpYI0WKh6VpcmeVEtVtw==}
+  '@cloudflare/workers-types@4.20250524.0':
+    resolution: {integrity: sha512-Tc/N/5nn3Jq+w7s+QPEgiyBZ0F0ebH9XWQ6YiUZTue79E7nybYDGh4lBCr2y4bC+RYiOP8KZPYWr811Hd3Oh2A==}
 
   '@colors/colors@1.6.0':
     resolution: {integrity: sha512-Ir+AOibqzrIsL6ajt3Rz3LskB7OiMVHqltZmspbW/TJuTVuyOMirVqAkjfY6JISiLHgyNqicAC8AyHHGzNd/dA==}
@@ -11206,8 +11206,8 @@ packages:
     resolution: {integrity: sha512-WBHP1hk8pLP7ahAw13fugDWcO0SUAOiCD6DHT/bfLWoCIA/PL9u7GKdudT2nGZ8EGR1APbGCAI6ZzKG1+X+PnQ==}
     engines: {node: '>=12'}
 
-  wrangler@4.16.0:
-    resolution: {integrity: sha512-zQojiBJKAWRVG4WdUgTP5/i9N5UcwOixhWljnBrcKxJd+kpqUXVV/L03ytO+0cnr5IhgYUs7qhjd8EWU6UwPfg==}
+  wrangler@4.16.1:
+    resolution: {integrity: sha512-YiLdWXcaQva2K/bqokpsZbySPmoT8TJFyJPsQPZumnkgimM9+/g/yoXArByA+pf+xU8jhw7ybQ8X1yBGXv731g==}
     engines: {node: '>=18.0.0'}
     hasBin: true
     peerDependencies:
@@ -12014,7 +12014,7 @@ snapshots:
       '@smithy/types': 4.3.0
       tslib: 2.8.1
 
-  '@azure/functions@4.7.0':
+  '@azure/functions@4.7.2':
     dependencies:
       cookie: 1.0.2
       long: 4.0.0
@@ -12978,7 +12978,7 @@ snapshots:
   '@cloudflare/workerd-windows-64@1.20250508.0':
     optional: true
 
-  '@cloudflare/workers-types@4.20250522.0': {}
+  '@cloudflare/workers-types@4.20250524.0': {}
 
   '@colors/colors@1.6.0': {}
 
@@ -14001,7 +14001,7 @@ snapshots:
 
   '@miniflare/shared-test-environment@2.14.4':
     dependencies:
-      '@cloudflare/workers-types': 4.20250522.0
+      '@cloudflare/workers-types': 4.20250524.0
       '@miniflare/cache': 2.14.4
       '@miniflare/core': 2.14.4
       '@miniflare/d1': 2.14.4
@@ -23568,7 +23568,7 @@ snapshots:
     dependencies:
       regexparam: 2.0.2
 
-  wrangler@4.16.0(@cloudflare/workers-types@4.20250522.0):
+  wrangler@4.16.1(@cloudflare/workers-types@4.20250524.0):
     dependencies:
       '@cloudflare/kv-asset-handler': 0.4.0
       '@cloudflare/unenv-preset': 2.3.2(unenv@2.0.0-rc.17)(workerd@1.20250508.0)
@@ -23579,7 +23579,7 @@ snapshots:
       unenv: 2.0.0-rc.17
       workerd: 1.20250508.0
     optionalDependencies:
-      '@cloudflare/workers-types': 4.20250522.0
+      '@cloudflare/workers-types': 4.20250524.0
       fsevents: 2.3.3
       sharp: 0.33.5
     transitivePeerDependencies:
