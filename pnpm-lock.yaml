@@ -720,8 +720,8 @@ importers:
   packages/plugins/apollo-datasources:
     dependencies:
       '@apollo/utils.keyvaluecache':
-        specifier: ^3.1.0
-        version: 3.1.0
+        specifier: ^4.0.0
+        version: 4.0.0
       tslib:
         specifier: ^2.5.0
         version: 2.8.1
@@ -746,8 +746,8 @@ importers:
   packages/plugins/apollo-federation:
     dependencies:
       '@apollo/utils.keyvaluecache':
-        specifier: ^3.1.0
-        version: 3.1.0
+        specifier: ^4.0.0
+        version: 4.0.0
       tslib:
         specifier: ^2.5.0
         version: 2.8.1
@@ -1847,6 +1847,10 @@ packages:
   '@apollo/utils.keyvaluecache@3.1.0':
     resolution: {integrity: sha512-MM/DKIqpQQbuNG1gNPAlGc45THdWkroTmN8o/J09merFwf/LlZ7+lAfcHFDXIYIknwKmUjJrOMS3OxYbjrz2hA==}
     engines: {node: '>=16.14'}
+
+  '@apollo/utils.keyvaluecache@4.0.0':
+    resolution: {integrity: sha512-mKw1myRUkQsGPNB+9bglAuhviodJ2L2MRYLTafCMw5BIo7nbvCPNCkLnIHjZ1NOzH7SnMAr5c9LmXiqsgYqLZw==}
+    engines: {node: '>=20'}
 
   '@apollo/utils.logger@1.0.1':
     resolution: {integrity: sha512-XdlzoY7fYNK4OIcvMD2G94RoFZbzTQaNP0jozmqqMudmaGo2I/2Jx71xlDJ801mWA/mbYRihyaw6KJii7k5RVA==}
@@ -11590,6 +11594,11 @@ snapshots:
     dependencies:
       '@apollo/utils.logger': 3.0.0
       lru-cache: 10.4.3
+
+  '@apollo/utils.keyvaluecache@4.0.0':
+    dependencies:
+      '@apollo/utils.logger': 3.0.0
+      lru-cache: 11.1.0
 
   '@apollo/utils.logger@1.0.1': {}
 
