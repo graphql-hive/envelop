@@ -24,7 +24,7 @@
     "ts:check": "tsc --noEmit"
   },
   "devDependencies": {
-    "@babel/core": "7.27.3",
+    "@babel/core": "7.27.4",
     "@babel/plugin-proposal-decorators": "7.27.1",
     "@babel/plugin-transform-class-properties": "7.27.1",
     "@babel/preset-env": "7.27.2",
@@ -36,19 +36,19 @@
     "@types/benchmark": "2.1.5",
     "@types/jest": "29.5.14",
     "@types/k6": "1.0.2",
-    "@types/node": "22.15.24",
+    "@types/node": "22.15.29",
     "@typescript-eslint/eslint-plugin": "8.33.0",
     "@typescript-eslint/parser": "8.33.0",
     "bob-the-bundler": "7.0.1",
     "caniuse-lite": "^1.0.30001692",
     "chalk": "5.4.1",
     "cross-env": "7.0.3",
-    "eslint": "9.27.0",
+    "eslint": "9.28.0",
     "eslint-config-prettier": "10.1.5",
     "eslint-config-standard": "17.1.0",
     "eslint-plugin-import": "2.31.0",
     "eslint-plugin-n": "17.18.0",
-    "eslint-plugin-package-json": "^0.31.0",
+    "eslint-plugin-package-json": "^0.33.0",
     "eslint-plugin-promise": "7.2.1",
     "eslint-plugin-unicorn": "59.0.1",
     "globby": "14.1.0",
@@ -63,7 +63,7 @@
     "ts-node": "10.9.2",
     "typescript": "5.8.3",
     "wait-on": "8.0.3",
-    "wrangler": "4.17.0"
+    "wrangler": "4.18.0"
   },
   "lint-staged": {
     "packages/**/src/**/*.{ts,tsx}": [
