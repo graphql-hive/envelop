@@ -2,7 +2,9 @@
 '@envelop/core': minor
 ---
 
-## New plugin utility to ease data sharing between hooks.
+Added new `withState` plugin utility for easy data sharing between hooks.
+
+## New plugin utility to ease data sharing between hooks
 
 Sometimes, plugins can grow in complexity and need to share data between its hooks.
 
