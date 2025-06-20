@@ -1,5 +1,14 @@
 # @envelop/apollo-tracing
 
+## 8.0.0
+
+### Patch Changes
+
+- Updated dependencies
+  [[`3ebaa3b`](https://github.com/graphql-hive/envelop/commit/3ebaa3b75b34f9a61aa517166f538796b383bfad)]:
+  - @envelop/core@5.3.0
+  - @envelop/on-resolve@6.0.0
+
 ## 7.1.3
 
 ### Patch Changes
