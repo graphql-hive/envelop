@@ -1,6 +1,6 @@
 {
   "name": "@envelop/sentry",
-  "version": "13.1.3",
+  "version": "14.0.0",
   "type": "module",
   "repository": {
     "type": "git",
