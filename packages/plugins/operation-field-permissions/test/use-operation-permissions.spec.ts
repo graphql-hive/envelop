@@ -224,4 +224,25 @@ describe('useOperationPermissions', () => {
     const [error] = result.errors!;
     expect(error.nodes).toBeDefined();
   });
+  it('allows introspection with permissions', async () => {
+    const kit = createTestkit(
+      [
+        useOperationFieldPermissions({
+          getPermissions: () => new Set(['Query.__schema', 'Query.__type', 'Query.__typename']),
+        }),
+      ],
+      schema,
+    );
+
+    const result = await kit.execute(
+      getIntrospectionQuery({
+        specifiedByUrl: true,
+        directiveIsRepeatable: true,
+        schemaDescription: true,
+        inputValueDeprecation: true,
+      }),
+    );
+    assertSingleExecutionValue(result);
+    expect(result.errors).toBeUndefined();
+  });
 });
