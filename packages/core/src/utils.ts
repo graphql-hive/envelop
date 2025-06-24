@@ -109,23 +109,31 @@ export function finalAsyncIterator<TInput>(
   source: AsyncIterable<TInput>,
   onFinal: () => void,
 ): AsyncGenerator<TInput> {
-  const iterator = source[Symbol.asyncIterator]();
+  let iterator: AsyncIterator<TInput>;
+  function ensureIterator() {
+    if (!iterator) {
+      iterator = source[Symbol.asyncIterator]();
+    }
+    return iterator;
+  }
   let isDone = false;
-  const stream: AsyncGenerator<TInput> = {
+  return {
     [Symbol.asyncIterator]() {
-      return stream;
+      return this;
     },
     next() {
-      return iterator.next().then(result => {
-        if (result.done && isDone === false) {
-          isDone = true;
-          onFinal();
-        }
-        return result;
-      });
+      return ensureIterator()
+        .next()
+        .then(result => {
+          if (result.done && isDone === false) {
+            isDone = true;
+            onFinal();
+          }
+          return result;
+        });
     },
     return() {
-      const promise = iterator.return?.();
+      const promise = ensureIterator().return?.();
       if (isDone === false) {
         isDone = true;
         onFinal();
@@ -133,7 +141,7 @@ export function finalAsyncIterator<TInput>(
       return promise || fakePromise({ done: true, value: undefined });
     },
     throw(error: unknown) {
-      const promise = iterator.throw?.();
+      const promise = ensureIterator().throw?.();
       if (promise) {
         return promise;
       }
@@ -141,32 +149,43 @@ export function finalAsyncIterator<TInput>(
       // usually throw is not called anyways
       throw error;
     },
-  };
-
-  return stream;
+    [Symbol.asyncDispose || Symbol.for('Symbol.asyncDispose')]() {
+      // This is a no-op, but we need to implement it to ensure that the AsyncGenerator
+      // is properly cleaned up when the subscription is disposed.
+      return fakePromise();
+    },
+  } as AsyncGenerator<TInput>;
 }
 
 export function errorAsyncIterator<TInput>(
   source: AsyncIterable<TInput>,
   onError: (err: unknown) => void,
 ): AsyncGenerator<TInput> {
-  const iterator = source[Symbol.asyncIterator]();
-  const stream: AsyncGenerator<TInput> = {
+  let iterator: AsyncIterator<TInput>;
+  function ensureIterator() {
+    if (!iterator) {
+      iterator = source[Symbol.asyncIterator]();
+    }
+    return iterator;
+  }
+  return {
     [Symbol.asyncIterator]() {
-      return stream;
+      return this;
     },
     next() {
-      return iterator.next().catch(error => {
-        onError(error);
-        return { done: true, value: undefined };
-      });
+      return ensureIterator()
+        .next()
+        .catch(error => {
+          onError(error);
+          return { done: true, value: undefined };
+        });
     },
     return() {
-      const promise = iterator.return?.();
+      const promise = ensureIterator().return?.();
       return promise || fakePromise({ done: true, value: undefined });
     },
     throw(error: unknown) {
-      const promise = iterator.throw?.();
+      const promise = ensureIterator().throw?.();
       if (promise) {
         return promise;
       }
@@ -174,9 +193,12 @@ export function errorAsyncIterator<TInput>(
       // usually throw is not called anyways
       throw error;
     },
-  };
-
-  return stream;
+    [Symbol.asyncDispose || Symbol.for('Symbol.asyncDispose')]() {
+      // This is a no-op, but we need to implement it to ensure that the AsyncGenerator
+      // is properly cleaned up when the subscription is disposed.
+      return fakePromise();
+    },
+  } as AsyncGenerator<TInput>;
 }
 
 export { mapMaybePromise, isPromise } from '@whatwg-node/promise-helpers';

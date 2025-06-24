@@ -57,10 +57,10 @@ describe('StatsD plugin', () => {
     assertSingleExecutionValue(result);
 
     expect(result.errors?.length).toBe(1);
-    expect(client.histogram).not.toBeCalled();
-    expect(client.increment).toBeCalledTimes(2);
-    expect(client.increment).toBeCalledWith(createMetricName('errorCount'), undefined);
-    expect(client.increment).toBeCalledWith(createMetricName('operationCount'), undefined);
+    expect(client.histogram).not.toHaveBeenCalled();
+    expect(client.increment).toHaveBeenCalledTimes(2);
+    expect(client.increment).toHaveBeenCalledWith(createMetricName('errorCount'), undefined);
+    expect(client.increment).toHaveBeenCalledWith(createMetricName('operationCount'), undefined);
   });
 
   test('increase error_count and count on validate error', async () => {
@@ -69,10 +69,12 @@ describe('StatsD plugin', () => {
     assertSingleExecutionValue(result);
 
     expect(result.errors?.length).toBe(1);
-    expect(client.histogram).not.toBeCalled();
-    expect(client.increment).toBeCalledTimes(2);
-    expect(client.increment).toBeCalledWith(createMetricName('errorCount'), { operation: 'test' });
-    expect(client.increment).toBeCalledWith(createMetricName('operationCount'), {
+    expect(client.histogram).not.toHaveBeenCalled();
+    expect(client.increment).toHaveBeenCalledTimes(2);
+    expect(client.increment).toHaveBeenCalledWith(createMetricName('errorCount'), {
+      operation: 'test',
+    });
+    expect(client.increment).toHaveBeenCalledWith(createMetricName('operationCount'), {
       operation: 'test',
     });
   });
@@ -83,10 +85,12 @@ describe('StatsD plugin', () => {
     assertSingleExecutionValue(result);
 
     expect(result.errors?.length).toBe(1);
-    expect(client.histogram).not.toBeCalled();
-    expect(client.increment).toBeCalledTimes(2);
-    expect(client.increment).toBeCalledWith(createMetricName('errorCount'), { operation: 'test' });
-    expect(client.increment).toBeCalledWith(createMetricName('operationCount'), {
+    expect(client.histogram).not.toHaveBeenCalled();
+    expect(client.increment).toHaveBeenCalledTimes(2);
+    expect(client.increment).toHaveBeenCalledWith(createMetricName('errorCount'), {
+      operation: 'test',
+    });
+    expect(client.increment).toHaveBeenCalledWith(createMetricName('operationCount'), {
       operation: 'test',
     });
   });
@@ -97,12 +101,12 @@ describe('StatsD plugin', () => {
     assertSingleExecutionValue(result);
 
     expect(result.errors).toBeUndefined();
-    expect(client.increment).toBeCalledTimes(1);
-    expect(client.increment).toBeCalledWith(createMetricName('operationCount'), {
+    expect(client.increment).toHaveBeenCalledTimes(1);
+    expect(client.increment).toHaveBeenCalledWith(createMetricName('operationCount'), {
       operation: 'test',
     });
-    expect(client.histogram).toBeCalledTimes(1);
-    expect(client.histogram).toBeCalledWith(createMetricName('latency'), expect.any(Number), {
+    expect(client.histogram).toHaveBeenCalledTimes(1);
+    expect(client.histogram).toHaveBeenCalledWith(createMetricName('latency'), expect.any(Number), {
       operation: 'test',
     });
   });
@@ -114,12 +118,12 @@ describe('StatsD plugin', () => {
     assertSingleExecutionValue(result);
 
     expect(result.errors).toBeUndefined();
-    expect(client.increment).toBeCalledTimes(1);
-    expect(client.increment).toBeCalledWith(createMetricName('operationCount', prefix), {
+    expect(client.increment).toHaveBeenCalledTimes(1);
+    expect(client.increment).toHaveBeenCalledWith(createMetricName('operationCount', prefix), {
       operation: 'test',
     });
-    expect(client.histogram).toBeCalledTimes(1);
-    expect(client.histogram).toBeCalledWith(
+    expect(client.histogram).toHaveBeenCalledTimes(1);
+    expect(client.histogram).toHaveBeenCalledWith(
       createMetricName('latency', prefix),
       expect.any(Number),
       {
@@ -134,12 +138,12 @@ describe('StatsD plugin', () => {
     assertSingleExecutionValue(result);
 
     expect(result.errors).toBeUndefined();
-    expect(client.increment).toBeCalledTimes(1);
-    expect(client.increment).toBeCalledWith(createMetricName('operationCount'), {
+    expect(client.increment).toHaveBeenCalledTimes(1);
+    expect(client.increment).toHaveBeenCalledWith(createMetricName('operationCount'), {
       operation: 'IntrospectionQuery',
     });
-    expect(client.histogram).toBeCalledTimes(1);
-    expect(client.histogram).toBeCalledWith(createMetricName('latency'), expect.any(Number), {
+    expect(client.histogram).toHaveBeenCalledTimes(1);
+    expect(client.histogram).toHaveBeenCalledWith(createMetricName('latency'), expect.any(Number), {
       operation: 'IntrospectionQuery',
     });
   });
@@ -150,7 +154,7 @@ describe('StatsD plugin', () => {
     assertSingleExecutionValue(result);
 
     expect(result.errors).toBeUndefined();
-    expect(client.increment).not.toBeCalled();
-    expect(client.histogram).not.toBeCalled();
+    expect(client.increment).not.toHaveBeenCalled();
+    expect(client.histogram).not.toHaveBeenCalled();
   });
 });

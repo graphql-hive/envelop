@@ -32,7 +32,7 @@ describe('Test the testkit', () => {
     assertSingleExecutionValue(result);
     expect(result.data!.foo).toBeDefined();
     expect(result.data!.bar).not.toBeDefined();
-    expect(neverCalled.onParse).not.toBeCalled();
+    expect(neverCalled.onParse).not.toHaveBeenCalled();
   });
 
   it('Should replace validate function', async () => {
@@ -46,7 +46,7 @@ describe('Test the testkit', () => {
     expect(result.data).not.toBeDefined();
     expect(result.errors!.length).toBe(1);
     expect(result.errors![0].message).toBe('test');
-    expect(neverCalled.onValidate).not.toBeCalled();
+    expect(neverCalled.onValidate).not.toHaveBeenCalled();
   });
 
   it('Should replace execute function', async () => {
@@ -60,7 +60,7 @@ describe('Test the testkit', () => {
     expect(result.data!.boop).toBeDefined();
     expect(result.data!.bar).not.toBeDefined();
     expect(result.data!.foo).not.toBeDefined();
-    expect(neverCalled.onExecute).not.toBeCalled();
+    expect(neverCalled.onExecute).not.toHaveBeenCalled();
   });
 
   it('Should replace contextFactory function', async () => {
@@ -72,7 +72,7 @@ describe('Test the testkit', () => {
     const result = await testkit.execute('query test { fromContext }');
     assertSingleExecutionValue(result);
     expect(result.data!.fromContext).toBe('mockedValue');
-    expect(neverCalled.onContextBuilding).not.toBeCalled();
+    expect(neverCalled.onContextBuilding).not.toHaveBeenCalled();
   });
 
   it('Should allow to override plugins', async () => {
@@ -84,8 +84,8 @@ describe('Test the testkit', () => {
     testkit.modifyPlugins(plugins => [addedPlugin]);
     const result = await testkit.execute('query test { foo }');
     assertSingleExecutionValue(result);
-    expect(addedPlugin.onParse).toBeCalled();
-    expect(addedPlugin.onValidate).toBeCalled();
+    expect(addedPlugin.onParse).toHaveBeenCalled();
+    expect(addedPlugin.onValidate).toHaveBeenCalled();
     expect(result.data).toBeDefined();
   });
 
@@ -100,8 +100,8 @@ describe('Test the testkit', () => {
     const testkit = createTestkit([plugin1, false && plugin2], createSchema());
     const result = await testkit.execute('query test { foo }');
     assertSingleExecutionValue(result);
-    expect(plugin1.onParse).toBeCalled();
-    expect(plugin2.onValidate).not.toBeCalled();
+    expect(plugin1.onParse).toHaveBeenCalled();
+    expect(plugin2.onValidate).not.toHaveBeenCalled();
     expect(result.data).toBeDefined();
   });
 });

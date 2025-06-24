@@ -134,7 +134,7 @@ describe('useErrorHandler', () => {
 
     expect(mockHandler).toHaveBeenCalledWith(
       expect.objectContaining({
-        errors: expect.objectContaining([testError]),
+        errors: expect.arrayContaining([testError]),
         phase: 'execution',
       }),
     );
