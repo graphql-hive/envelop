@@ -8,6 +8,7 @@ import {
 } from '@envelop/testing';
 import { OnExecuteDoneHookResult, OnSubscribeResultResult } from '@envelop/types';
 import { makeExecutableSchema } from '@graphql-tools/schema';
+import { fakePromise } from '@whatwg-node/promise-helpers';
 import { query, schema } from './common.js';
 
 type Deferred<T = void> = {
@@ -324,6 +325,11 @@ describe('execute', () => {
       async throw() {
         throw new Error('Noop.');
       },
+      [Symbol.asyncDispose]() {
+        // This is a no-op, but we need to implement it to ensure that the AsyncGenerator
+        // is properly cleaned up when the subscription is disposed.
+        return fakePromise();
+      },
     });
 
     const teskit = createTestkit(
@@ -380,24 +386,30 @@ describe('execute', () => {
       const delayNextDeferred = createDeferred();
       let isReturnCalled = false;
 
-      const streamExecuteFn = (): AsyncGenerator => ({
-        [Symbol.asyncIterator]() {
-          return this;
-        },
-        async next() {
-          return delayNextDeferred.promise.then(() => ({
-            value: { data: { alphabet: 'a' } },
-            done: false,
-          }));
-        },
-        async return() {
-          isReturnCalled = true;
-          return { done: true, value: undefined };
-        },
-        async throw() {
-          throw new Error('Noop.');
-        },
-      });
+      const streamExecuteFn = () =>
+        ({
+          [Symbol.asyncIterator]() {
+            return this;
+          },
+          async next() {
+            return delayNextDeferred.promise.then(() => ({
+              value: { data: { alphabet: 'a' } },
+              done: false,
+            }));
+          },
+          async return() {
+            isReturnCalled = true;
+            return { done: true, value: undefined };
+          },
+          async throw() {
+            throw new Error('Noop.');
+          },
+          [Symbol.asyncDispose]() {
+            // This is a no-op, but we need to implement it to ensure that the AsyncGenerator
+            // is properly cleaned up when the subscription is disposed.
+            return fakePromise();
+          },
+        }) as AsyncGenerator;
 
       const teskit = createTestkit(
         [
@@ -462,7 +474,7 @@ describe('execute', () => {
     expect.assertions(2);
     let isReturnCalled = false;
     const values = ['a', 'b', 'c', 'd'];
-    const source: AsyncGenerator = {
+    const source = {
       [Symbol.asyncIterator]() {
         return this;
       },
@@ -480,7 +492,12 @@ describe('execute', () => {
       async throw() {
         throw new Error('Noop.');
       },
-    };
+      [Symbol.asyncDispose]() {
+        // This is a no-op, but we need to implement it to ensure that the AsyncGenerator
+        // is properly cleaned up when the subscription is disposed.
+        return fakePromise();
+      },
+    } as AsyncGenerator;
 
     const schema = makeExecutableSchema({
       typeDefs: /* GraphQL */ `
@@ -575,7 +592,7 @@ it.each([
     const delayNextDeferred = createDeferred();
     let isReturnCalled = false;
 
-    const source: AsyncGenerator = {
+    const source = {
       [Symbol.asyncIterator]() {
         return this;
       },
@@ -592,7 +609,12 @@ it.each([
       async throw() {
         throw new Error('Noop.');
       },
-    };
+      [Symbol.asyncDispose]() {
+        // This is a no-op, but we need to implement it to ensure that the AsyncGenerator
+        // is properly cleaned up when the subscription is disposed.
+        return fakePromise();
+      },
+    } as AsyncGenerator;
 
     const schema = makeExecutableSchema({
       typeDefs: /* GraphQL */ `
