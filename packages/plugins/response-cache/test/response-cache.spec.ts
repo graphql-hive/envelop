@@ -3978,7 +3978,6 @@ describe('useResponseCache', () => {
     `;
 
     await testInstance.execute(query);
-    // console.log(
     await waitForResult(
       testInstance.execute(/* GraphQL */ `
         mutation {
@@ -3993,9 +3992,8 @@ describe('useResponseCache', () => {
           }
         }
       `),
-    ),
-      // );
-      await testInstance.execute(query);
+    );
+    await testInstance.execute(query);
     expect(spy).toHaveBeenCalledTimes(2);
   });
 
