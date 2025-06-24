@@ -25,8 +25,8 @@ describe('useOnResolve', () => {
 
     await testkit.execute('{ test: value1, test1: value2 }');
 
-    expect(onResolveFn).toBeCalledTimes(2);
-    expect(onResolveDoneFn).toBeCalledTimes(2);
+    expect(onResolveFn).toHaveBeenCalledTimes(2);
+    expect(onResolveDoneFn).toHaveBeenCalledTimes(2);
 
     let i = 0;
     for (const field of ['value1', 'value2']) {
@@ -55,8 +55,8 @@ describe('useOnResolve', () => {
 
     await testkit.execute('{ __schema{ ... on __Schema{ queryType { name } } } }');
 
-    expect(onResolveFn).toBeCalledTimes(2);
-    expect(onResolveDoneFn).toBeCalledTimes(2);
+    expect(onResolveFn).toHaveBeenCalledTimes(2);
+    expect(onResolveDoneFn).toHaveBeenCalledTimes(2);
 
     let i = 0;
     for (const field of ['queryType', 'name']) {
@@ -81,8 +81,8 @@ describe('useOnResolve', () => {
 
     await testkit.execute('{ __schema{ ... on __Schema{ queryType { name } } } }');
 
-    expect(onResolveFn).toBeCalledTimes(0);
-    expect(onResolveDoneFn).toBeCalledTimes(0);
+    expect(onResolveFn).toHaveBeenCalledTimes(0);
+    expect(onResolveDoneFn).toHaveBeenCalledTimes(0);
   });
 
   it('should replace the result using the after hook', async () => {
@@ -122,7 +122,7 @@ describe('useOnResolve', () => {
 
     const result = await testkit.execute('{ value1 }');
     // Expect two calls, not four.
-    expect(afterResolve).toBeCalledTimes(2);
+    expect(afterResolve).toHaveBeenCalledTimes(2);
 
     assertSingleExecutionValue(result);
     expect(result.data?.value1).toBe('value2');
