@@ -60,7 +60,7 @@
     "@types/common-tags": "1.8.4",
     "common-tags": "1.8.2",
     "graphql": "16.8.1",
-    "jest-diff": "30.0.3",
+    "jest-diff": "30.0.4",
     "oneline": "2.0.0",
     "typescript": "5.8.3"
   },
