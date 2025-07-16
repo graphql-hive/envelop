@@ -63,7 +63,7 @@
     "ts-node": "10.9.2",
     "typescript": "5.8.3",
     "wait-on": "8.0.3",
-    "wrangler": "4.24.3"
+    "wrangler": "4.24.4"
   },
   "lint-staged": {
     "packages/**/src/**/*.{ts,tsx}": [
