@@ -17,8 +17,8 @@
     "worktop": "0.7.3"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "4.20250718.0",
-    "@types/node": "22.16.4",
+    "@cloudflare/workers-types": "4.20250719.0",
+    "@types/node": "22.16.5",
     "ts-node": "10.9.2",
     "typescript": "5.8.3"
   }
