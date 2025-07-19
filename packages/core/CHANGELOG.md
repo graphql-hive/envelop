@@ -1,5 +1,14 @@
 # @envelop/core
 
+## 5.3.1
+
+### Patch Changes
+
+- [#2611](https://github.com/graphql-hive/envelop/pull/2611)
+  [`8dd5bda`](https://github.com/graphql-hive/envelop/commit/8dd5bda4cd23e9bb32ed0513d76fab3800452ef9)
+  Thanks [@EmrysMyrddin](https://github.com/EmrysMyrddin)! - Add a `withState` override to ease the
+  typing of plugins whith the same state for all scopes.
+
 ## 5.3.0
 
 ### Minor Changes
@@ -44,7 +53,6 @@
 
   The `state` payload field will be available in all relevant hooks, making it easy to access shared
   data. It also forces the developer to choose the scope for the data:
-
   - `forOperation` for a data scoped to GraphQL operation (Envelop, Yoga and Hive Gateway)
   - `forRequest` for a data scoped to HTTP request (Yoga and Hive Gateway)
   - `forSubgraphExecution` for a data scoped to the subgraph execution (Hive Gateway)
@@ -74,7 +82,6 @@
 - [#2486](https://github.com/n1ru4l/envelop/pull/2486)
   [`914f9ed`](https://github.com/n1ru4l/envelop/commit/914f9ed3b753f771d938b4beb8fd31753b48771e)
   Thanks [@EmrysMyrddin](https://github.com/EmrysMyrddin)! - dependencies updates:
-
   - Added dependency
     [`@envelop/instrumentation@workspace:^` ↗︎](https://www.npmjs.com/package/@envelop/instrumentation/v/workspace:^)
     (to `dependencies`)
@@ -98,7 +105,6 @@
 - [#2484](https://github.com/n1ru4l/envelop/pull/2484)
   [`26137e7`](https://github.com/n1ru4l/envelop/commit/26137e7c3d0ff349af90724867c715f3b3809a7d)
   Thanks [@renovate](https://github.com/apps/renovate)! - dependencies updates:
-
   - Updated dependency
     [`@whatwg-node/promise-helpers@^1.2.4` ↗︎](https://www.npmjs.com/package/@whatwg-node/promise-helpers/v/1.2.4)
     (from `^1.2.1`, in `dependencies`)
@@ -117,7 +123,6 @@
 - [#2473](https://github.com/n1ru4l/envelop/pull/2473)
   [`90dd1a6`](https://github.com/n1ru4l/envelop/commit/90dd1a665e027ec309df4411f04a310806ee8f15)
   Thanks [@renovate](https://github.com/apps/renovate)! - dependencies updates:
-
   - Updated dependency
     [`@whatwg-node/promise-helpers@^1.2.1` ↗︎](https://www.npmjs.com/package/@whatwg-node/promise-helpers/v/1.2.1)
     (from `^1.0.0`, in `dependencies`)
@@ -363,7 +368,6 @@
 - [#1725](https://github.com/n1ru4l/envelop/pull/1725)
   [`c1eb2c09`](https://github.com/n1ru4l/envelop/commit/c1eb2c09ac535b076a5c13430c3892d98f7ef957)
   Thanks [@n1ru4l](https://github.com/n1ru4l)! - dependencies updates:
-
   - Updated dependency [`tslib@^2.5.0` ↗︎](https://www.npmjs.com/package/tslib/v/2.5.0) (from
     `2.5.0`, in `dependencies`)
 
@@ -378,7 +382,6 @@
 - [#1706](https://github.com/n1ru4l/envelop/pull/1706)
   [`270249cf`](https://github.com/n1ru4l/envelop/commit/270249cfb7650f8ad64f0167bb45a99475a03b04)
   Thanks [@renovate](https://github.com/apps/renovate)! - dependencies updates:
-
   - Updated dependency [`tslib@2.5.0` ↗︎](https://www.npmjs.com/package/tslib/v/2.5.0) (from
     `2.4.0`, in `dependencies`)
 
