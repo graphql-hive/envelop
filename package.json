@@ -84,7 +84,7 @@
       "micromatch": "4.0.8",
       "dompurify": "3.2.6",
       "webpack": "5.100.2",
-      "axios": "1.10.0",
+      "axios": "1.11.0",
       "undici": "5.29.0",
       "cookie": "1.0.2"
     },
