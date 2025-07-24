@@ -152,7 +152,7 @@ importers:
         version: 8.0.4
       wrangler:
         specifier: 4.25.1
-        version: 4.25.1(@cloudflare/workers-types@4.20250723.0)
+        version: 4.25.1(@cloudflare/workers-types@4.20250724.0)
 
   benchmark:
     dependencies:
@@ -262,8 +262,8 @@ importers:
         version: 0.7.3
     devDependencies:
       '@cloudflare/workers-types':
-        specifier: 4.20250723.0
-        version: 4.20250723.0
+        specifier: 4.20250724.0
+        version: 4.20250724.0
       '@types/node':
         specifier: 22.16.5
         version: 22.16.5
@@ -2790,8 +2790,8 @@ packages:
   '@cloudflare/workers-types@4.20250719.0':
     resolution: {integrity: sha512-tSc2FM2QPWA8ZmDniQXz+4qVKuf8zrwVwqlkXxxGBsQHxTpcukuMibYcYWxwonzbzK7YzSug+iena2F8gGOuOw==}
 
-  '@cloudflare/workers-types@4.20250723.0':
-    resolution: {integrity: sha512-4k0w5IKAP2pnEGJjxv4hjSwftCVEAbZ+EFmJGWhLaCfByaiPpWbiOJiWMUk8xf/Zp7atZkyRbH8+yRFz5hZHDg==}
+  '@cloudflare/workers-types@4.20250724.0':
+    resolution: {integrity: sha512-TRuz+kMArBpW3lR7xoPR7Ek+/ymvukE5JC7RITlaRyHbs6vWPfwpH9TWQ1dfztYFmSQl5ZiAbLcK8UDRjgiW7g==}
 
   '@colors/colors@1.6.0':
     resolution: {integrity: sha512-Ir+AOibqzrIsL6ajt3Rz3LskB7OiMVHqltZmspbW/TJuTVuyOMirVqAkjfY6JISiLHgyNqicAC8AyHHGzNd/dA==}
@@ -13332,7 +13332,7 @@ snapshots:
 
   '@cloudflare/workers-types@4.20250719.0': {}
 
-  '@cloudflare/workers-types@4.20250723.0': {}
+  '@cloudflare/workers-types@4.20250724.0': {}
 
   '@colors/colors@1.6.0': {}
 
@@ -14459,7 +14459,7 @@ snapshots:
 
   '@miniflare/shared-test-environment@2.14.4':
     dependencies:
-      '@cloudflare/workers-types': 4.20250723.0
+      '@cloudflare/workers-types': 4.20250724.0
       '@miniflare/cache': 2.14.4
       '@miniflare/core': 2.14.4
       '@miniflare/d1': 2.14.4
@@ -24267,7 +24267,7 @@ snapshots:
     dependencies:
       regexparam: 2.0.2
 
-  wrangler@4.25.1(@cloudflare/workers-types@4.20250723.0):
+  wrangler@4.25.1(@cloudflare/workers-types@4.20250724.0):
     dependencies:
       '@cloudflare/kv-asset-handler': 0.4.0
       '@cloudflare/unenv-preset': 2.3.3(unenv@2.0.0-rc.17)(workerd@1.20250712.0)
@@ -24278,7 +24278,7 @@ snapshots:
       unenv: 2.0.0-rc.17
       workerd: 1.20250712.0
     optionalDependencies:
-      '@cloudflare/workers-types': 4.20250723.0
+      '@cloudflare/workers-types': 4.20250724.0
       fsevents: 2.3.3
     transitivePeerDependencies:
       - bufferutil
