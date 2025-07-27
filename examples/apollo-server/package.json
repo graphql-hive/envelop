@@ -9,8 +9,8 @@
     "start": "ts-node index.ts"
   },
   "dependencies": {
-    "@apollo/server": "^4.3.2",
-    "@apollo/server-gateway-interface": "^1.1.1",
+    "@apollo/server": "^5.0.0",
+    "@apollo/server-gateway-interface": "^2.0.0",
     "@envelop/core": "workspace:^",
     "@graphql-tools/schema": "10.0.25",
     "graphql": "16.10.0"
