@@ -87,7 +87,7 @@
       "axios": "1.11.0",
       "undici": "5.29.0",
       "cookie": "1.0.2",
-      "@eslint/plugin-kit": "0.3.3"
+      "@eslint/plugin-kit": "0.3.4"
     },
     "patchedDependencies": {
       "@ianvs/prettier-plugin-sort-imports": "patches/@ianvs__prettier-plugin-sort-imports.patch",
