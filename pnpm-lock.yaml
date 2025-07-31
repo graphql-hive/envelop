@@ -107,8 +107,8 @@ importers:
         specifier: 17.21.3
         version: 17.21.3(eslint@9.32.0(jiti@1.21.7))(typescript@5.8.3)
       eslint-plugin-package-json:
-        specifier: ^0.47.0
-        version: 0.47.0(@types/estree@1.0.8)(eslint@9.32.0(jiti@1.21.7))(jsonc-eslint-parser@2.4.0)
+        specifier: ^0.48.0
+        version: 0.48.0(@types/estree@1.0.8)(eslint@9.32.0(jiti@1.21.7))(jsonc-eslint-parser@2.4.0)
       eslint-plugin-promise:
         specifier: 7.2.1
         version: 7.2.1(eslint@9.32.0(jiti@1.21.7))
@@ -153,7 +153,7 @@ importers:
         version: 8.0.4
       wrangler:
         specifier: 4.26.1
-        version: 4.26.1(@cloudflare/workers-types@4.20250730.0)
+        version: 4.26.1(@cloudflare/workers-types@4.20250731.0)
 
   benchmark:
     dependencies:
@@ -263,8 +263,8 @@ importers:
         version: 0.7.3
     devDependencies:
       '@cloudflare/workers-types':
-        specifier: 4.20250730.0
-        version: 4.20250730.0
+        specifier: 4.20250731.0
+        version: 4.20250731.0
       '@types/node':
         specifier: 22.17.0
         version: 22.17.0
@@ -2791,8 +2791,8 @@ packages:
   '@cloudflare/workers-types@4.20250726.0':
     resolution: {integrity: sha512-NtM1yVBKJFX4LgSoZkVU0EDhWWvSb1vt6REO+uMYZRgx1HAfQz9GDN6bBB0B+fm2ZIxzt6FzlDbmrXpGJ2M/4Q==}
 
-  '@cloudflare/workers-types@4.20250730.0':
-    resolution: {integrity: sha512-hn0KhTnHxmkpNiHn6IGo9ffOqYqmJvrMApE2OT1b+2rp1AYCvFxMf7Xzgfb+1liylmpeyHQjKODhfXrxxIPXsg==}
+  '@cloudflare/workers-types@4.20250731.0':
+    resolution: {integrity: sha512-J8tz6dQ0gZKzDKNLl3LW7Uvj7rRllKw5UD61fBDf8IGizH9CKznjrdvqRQHB9Qb8yopqjylcx2lxiC3angF4Pw==}
 
   '@colors/colors@1.6.0':
     resolution: {integrity: sha512-Ir+AOibqzrIsL6ajt3Rz3LskB7OiMVHqltZmspbW/TJuTVuyOMirVqAkjfY6JISiLHgyNqicAC8AyHHGzNd/dA==}
@@ -6993,8 +6993,8 @@ packages:
     peerDependencies:
       eslint: '>=8.23.0'
 
-  eslint-plugin-package-json@0.47.0:
-    resolution: {integrity: sha512-851T5tgcJ28CzwDoDczeLyOIaje90dwFjdsiDy117fwOzauVaKeeDTWZo6xrp6TOtWlzSGOPiJE8EAJPK/XaWw==}
+  eslint-plugin-package-json@0.48.0:
+    resolution: {integrity: sha512-M8Dx4GDhpe9oRvWr84nsrCK+tfLIE5RI+GcyM0wm9KUghmp5mYGL+BO0kzA686dPuEwVTbmfEAazY7tt3hMQtA==}
     engines: {node: ^=20.19.0 || >=22.12.0}
     peerDependencies:
       eslint: '>=8.0.0'
@@ -9536,8 +9536,8 @@ packages:
   package-json-from-dist@1.0.1:
     resolution: {integrity: sha512-UEZIS3/by4OC8vL3P2dTXRETpebLI2NiI5vIrjaD/5UtrkFX/tNbwjTSRAGC/+7CAo2pIcBaRgWmcBBHcsaCIw==}
 
-  package-json-validator@0.23.0:
-    resolution: {integrity: sha512-HJokcABTkX8Calu86WCG0EknqWwf+doB7Xk3/EnXoO5/mjHC8H+D66UDZBjHtyZ1MIo0lrdSasbdOCHlr80n6Q==}
+  package-json-validator@0.24.1:
+    resolution: {integrity: sha512-MTtImbS7Cn170JdSe/p2vxtNPtICZhs5P5npHOiDwEspD0F0FrI8krZ1N3t3tHGpMeZrMGSa5sdNH17hJHDwXQ==}
     engines: {node: ^20.19.0 || >=22.12.0}
     hasBin: true
 
@@ -13254,7 +13254,7 @@ snapshots:
 
   '@cloudflare/workers-types@4.20250726.0': {}
 
-  '@cloudflare/workers-types@4.20250730.0': {}
+  '@cloudflare/workers-types@4.20250731.0': {}
 
   '@colors/colors@1.6.0': {}
 
@@ -14313,7 +14313,7 @@ snapshots:
 
   '@miniflare/shared-test-environment@2.14.4':
     dependencies:
-      '@cloudflare/workers-types': 4.20250730.0
+      '@cloudflare/workers-types': 4.20250731.0
       '@miniflare/cache': 2.14.4
       '@miniflare/core': 2.14.4
       '@miniflare/d1': 2.14.4
@@ -18041,7 +18041,7 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
-  eslint-plugin-package-json@0.47.0(@types/estree@1.0.8)(eslint@9.32.0(jiti@1.21.7))(jsonc-eslint-parser@2.4.0):
+  eslint-plugin-package-json@0.48.0(@types/estree@1.0.8)(eslint@9.32.0(jiti@1.21.7))(jsonc-eslint-parser@2.4.0):
     dependencies:
       '@altano/repository-tools': 2.0.1
       change-case: 5.4.4
@@ -18050,7 +18050,7 @@ snapshots:
       eslint: 9.32.0(jiti@1.21.7)
       eslint-fix-utils: 0.4.0(@types/estree@1.0.8)(eslint@9.32.0(jiti@1.21.7))
       jsonc-eslint-parser: 2.4.0
-      package-json-validator: 0.23.0
+      package-json-validator: 0.24.1
       semver: 7.7.2
       sort-object-keys: 1.1.3
       sort-package-json: 3.4.0
@@ -21653,7 +21653,7 @@ snapshots:
 
   package-json-from-dist@1.0.1: {}
 
-  package-json-validator@0.23.0:
+  package-json-validator@0.24.1:
     dependencies:
       semver: 7.7.2
       validate-npm-package-license: 3.0.4
@@ -24045,7 +24045,7 @@ snapshots:
     dependencies:
       regexparam: 2.0.2
 
-  wrangler@4.26.1(@cloudflare/workers-types@4.20250730.0):
+  wrangler@4.26.1(@cloudflare/workers-types@4.20250731.0):
     dependencies:
       '@cloudflare/kv-asset-handler': 0.4.0
       '@cloudflare/unenv-preset': 2.5.0(unenv@2.0.0-rc.19)(workerd@1.20250726.0)
@@ -24056,7 +24056,7 @@ snapshots:
       unenv: 2.0.0-rc.19
       workerd: 1.20250726.0
     optionalDependencies:
-      '@cloudflare/workers-types': 4.20250730.0
+      '@cloudflare/workers-types': 4.20250731.0
       fsevents: 2.3.3
     transitivePeerDependencies:
       - bufferutil
