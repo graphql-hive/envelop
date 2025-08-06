@@ -367,10 +367,10 @@ Then, with that instance of the Redis Cache setup, provide it to the `useRespons
 options, and you're done. Here's an example:
 
 ```ts
+import Redis from 'ioredis'
 import { envelop } from '@envelop/core'
 import { useResponseCache } from '@envelop/response-cache'
 import { createRedisCache } from '@envelop/response-cache-redis'
-import Redis from 'ioredis'
 
 const redis = new Redis({
   host: 'my-redis-db.example.com',

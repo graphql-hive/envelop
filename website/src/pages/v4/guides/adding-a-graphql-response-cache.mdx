@@ -376,10 +376,10 @@ options, and you're done. Here's an example:
 
 ```ts
 import * as GraphQLJS from 'graphql'
+import Redis from 'ioredis'
 import { envelop, useEngine } from '@envelop/core'
 import { useResponseCache } from '@envelop/response-cache'
 import { createRedisCache } from '@envelop/response-cache-redis'
-import Redis from 'ioredis'
 
 const redis = new Redis({
   host: 'my-redis-db.example.com',
