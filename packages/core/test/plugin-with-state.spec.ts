@@ -77,7 +77,35 @@ describe('pluginWithState', () => {
     );
   });
 
-  describe('instruments', () => {
+  it('should allow to have getters and setters', () => {
+    const called = { getter: false, setter: false };
+    const plugin = withState<{ value: string; instrumentation?: never }>(() => ({
+      get value() {
+        called.getter = true;
+        return 'test';
+      },
+      set value(value) {
+        called.setter = true;
+        expect(value).toBe('value');
+      },
+    }));
+
+    plugin.value = 'value';
+    expect(plugin.value).toBe('test');
+    expect(called).toEqual({ getter: true, setter: true });
+  });
+
+  it('should allow to have not enumerable', () => {
+    const plugin = {};
+    Object.defineProperty(plugin, 'hidden', { value: 'test' });
+
+    const pluginWithState = withState(() => plugin);
+    // @ts-expect-error
+    expect(pluginWithState['hidden']).toBe('test');
+    expect(Object.keys(plugin)).toEqual([]);
+  });
+
+  describe('instrumentation', () => {
     const plugin = withState(() => ({ instrumentation: { hook: (...args: any[]): any => args } }));
 
     it('should add request state', () => {

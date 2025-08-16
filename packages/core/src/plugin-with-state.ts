@@ -62,9 +62,16 @@ export function withState<
 
   function addStateGetters(src: any) {
     const result: any = {};
-    for (const [hookName, hook] of Object.entries(src) as any) {
+    // Use the property descriptors to keep potential getters and setters, or not enumerable props
+    const properties = Object.entries(Object.getOwnPropertyDescriptors(src));
+    for (const [hookName, descriptor] of properties) {
+      const hook = descriptor.value;
       if (typeof hook !== 'function') {
-        result[hookName] = hook;
+        descriptor.get &&= () => src[hookName];
+        descriptor.set &&= value => {
+          src[hookName] = value;
+        };
+        Object.defineProperty(result, hookName, descriptor);
       } else {
         result[hookName] = {
           [hook.name](payload: any, ...args: any[]) {
@@ -88,11 +95,11 @@ export function withState<
     return result;
   }
 
-  const { instrumentation, ...hooks } = pluginFactory(getState as any);
+  const plugin = pluginFactory(getState as any);
 
-  const pluginWithState = addStateGetters(hooks);
-  if (instrumentation) {
-    pluginWithState.instrumentation = addStateGetters(instrumentation);
+  const pluginWithState = addStateGetters(plugin);
+  if (plugin.instrumentation) {
+    pluginWithState.instrumentation = addStateGetters(plugin.instrumentation);
   }
 
   return pluginWithState as P;
