@@ -149,12 +149,11 @@ In order to use the Redis cache, you need to:
 - Create an instance of the Redis Cache and set to the `useResponseCache` plugin options
 
 ```ts
-import { parse, validate, execute, subscribe } from 'graphql'
+import { execute, parse, subscribe, validate } from 'graphql'
+import Redis from 'ioredis'
 import { envelop } from '@envelop/core'
 import { useResponseCache } from '@envelop/response-cache'
 import { createRedisCache } from '@envelop/response-cache-redis'
-
-import Redis from 'ioredis'
 
 const redis = new Redis({
   host: 'my-redis-db.example.com',
