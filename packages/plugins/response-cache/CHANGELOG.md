@@ -1,5 +1,18 @@
 # @envelop/response-cache
 
+## 8.0.1
+
+### Patch Changes
+
+- [#2611](https://github.com/graphql-hive/envelop/pull/2611)
+  [`8dd5bda`](https://github.com/graphql-hive/envelop/commit/8dd5bda4cd23e9bb32ed0513d76fab3800452ef9)
+  Thanks [@EmrysMyrddin](https://github.com/EmrysMyrddin)! - Add a `withState` override to ease the
+  typing of plugins whith the same state for all scopes.
+
+- Updated dependencies
+  [[`8dd5bda`](https://github.com/graphql-hive/envelop/commit/8dd5bda4cd23e9bb32ed0513d76fab3800452ef9)]:
+  - @envelop/core@5.3.1
+
 ## 8.0.0
 
 ### Patch Changes
@@ -24,7 +37,6 @@
 - [#2484](https://github.com/n1ru4l/envelop/pull/2484)
   [`26137e7`](https://github.com/n1ru4l/envelop/commit/26137e7c3d0ff349af90724867c715f3b3809a7d)
   Thanks [@renovate](https://github.com/apps/renovate)! - dependencies updates:
-
   - Added dependency
     [`@whatwg-node/promise-helpers@^1.2.4` ↗︎](https://www.npmjs.com/package/@whatwg-node/promise-helpers/v/1.2.4)
     (to `dependencies`)
@@ -235,7 +247,6 @@
 - [#1927](https://github.com/n1ru4l/envelop/pull/1927)
   [`e3c90116`](https://github.com/n1ru4l/envelop/commit/e3c9011640b73aaede4e5e472a5d45aab947165c)
   Thanks [@renovate](https://github.com/apps/renovate)! - dependencies updates:
-
   - Updated dependency
     [`@envelop/core@^4.0.2` ↗︎](https://www.npmjs.com/package/@envelop/core/v/4.0.2) (from
     `^4.0.1`, in `peerDependencies`)
@@ -292,7 +303,6 @@
 - [#1896](https://github.com/n1ru4l/envelop/pull/1896)
   [`834e1e39`](https://github.com/n1ru4l/envelop/commit/834e1e396c5f4b055fce52e61927a99cde6f7a6c)
   Thanks [@EmrysMyrddin](https://github.com/EmrysMyrddin)! - dependencies updates:
-
   - Updated dependency
     [`@graphql-tools/utils@^10.0.3` ↗︎](https://www.npmjs.com/package/@graphql-tools/utils/v/10.0.3)
     (from `^10.0.0`, in `dependencies`)
@@ -314,7 +324,6 @@
 - [#1879](https://github.com/n1ru4l/envelop/pull/1879)
   [`d3ecee35`](https://github.com/n1ru4l/envelop/commit/d3ecee350883eabd99fd9fe4fa58c72a616cc6b5)
   Thanks [@renovate](https://github.com/apps/renovate)! - dependencies updates:
-
   - Updated dependency [`lru-cache@^10.0.0` ↗︎](https://www.npmjs.com/package/lru-cache/v/10.0.0)
     (from `^9.1.1`, in `dependencies`)
 
@@ -353,14 +362,12 @@
 - [#1767](https://github.com/n1ru4l/envelop/pull/1767)
   [`0b127cc4`](https://github.com/n1ru4l/envelop/commit/0b127cc40f2e6a003a05cbeb0b6f004a08ada9d2)
   Thanks [@n1ru4l](https://github.com/n1ru4l)! - dependencies updates:
-
   - Updated dependency [`lru-cache@^9.1.1` ↗︎](https://www.npmjs.com/package/lru-cache/v/9.1.1)
     (from `^6.0.0`, in `dependencies`)
 
 - [#1776](https://github.com/n1ru4l/envelop/pull/1776)
   [`332f1f22`](https://github.com/n1ru4l/envelop/commit/332f1f221f655421a850adb834afe549d50b4fac)
   Thanks [@ardatan](https://github.com/ardatan)! - dependencies updates:
-
   - Updated dependency
     [`@graphql-tools/utils@^10.0.0` ↗︎](https://www.npmjs.com/package/@graphql-tools/utils/v/10.0.0)
     (from `^8.8.0`, in `dependencies`)
@@ -382,7 +389,6 @@
 - [#1735](https://github.com/n1ru4l/envelop/pull/1735)
   [`972c087f`](https://github.com/n1ru4l/envelop/commit/972c087fb3a47076588121cc6079278276654377)
   Thanks [@renovate](https://github.com/apps/renovate)! - dependencies updates:
-
   - Updated dependency
     [`@whatwg-node/fetch@^0.8.0` ↗︎](https://www.npmjs.com/package/@whatwg-node/fetch/v/0.8.0)
     (from `^0.6.5`, in `dependencies`)
@@ -394,7 +400,6 @@
 - [#1725](https://github.com/n1ru4l/envelop/pull/1725)
   [`c1eb2c09`](https://github.com/n1ru4l/envelop/commit/c1eb2c09ac535b076a5c13430c3892d98f7ef957)
   Thanks [@n1ru4l](https://github.com/n1ru4l)! - dependencies updates:
-
   - Updated dependency [`tslib@^2.5.0` ↗︎](https://www.npmjs.com/package/tslib/v/2.5.0) (from
     `^2.4.0`, in `dependencies`)
 
@@ -421,7 +426,6 @@
 - [#1623](https://github.com/n1ru4l/envelop/pull/1623)
   [`d50fa6f0`](https://github.com/n1ru4l/envelop/commit/d50fa6f0b71e9ceb13b492e3a0961a6e9d75824f)
   Thanks [@ardatan](https://github.com/ardatan)! - dependencies updates:
-
   - Added dependency
     [`@whatwg-node/fetch@^0.6.5` ↗︎](https://www.npmjs.com/package/@whatwg-node/fetch/v/0.6.5) (to
     `dependencies`)
@@ -796,7 +800,6 @@
 ### Minor Changes
 
 - 075fc77: Expose metadata by setting the `includeExtensionMetadata` option.
-
   - `extension.responseCache.hit` - Whether the result was served form the cache or not
   - `extension.responseCache.invalidatedEntities` - Entities that got invalidated by a mutation
     operation
