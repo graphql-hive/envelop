@@ -16,14 +16,14 @@
   "dependencies": {
     "@envelop/core": "workspace:^",
     "@graphql-tools/schema": "10.0.25",
-    "firebase-admin": "13.4.0",
+    "firebase-admin": "13.5.0",
     "firebase-functions": "6.4.0",
     "graphql": "16.8.1",
     "graphql-helix": "1.13.0"
   },
   "devDependencies": {
     "@azure/functions": "4.7.2",
-    "@types/node": "22.17.0",
+    "@types/node": "22.18.1",
     "ts-node": "10.9.2",
     "typescript": "5.9.2"
   }
