@@ -387,6 +387,11 @@ describe('useResponseCache', () => {
     expect(result?.extensions?.responseCache).toEqual({
       invalidatedEntities: [{ id: '1', typename: 'User' }],
     });
+    expect(result.data).toEqual({
+      updateUser: {
+        id: '1',
+      },
+    });
 
     result = await testInstance.execute(query);
     assertSingleExecutionValue(result);

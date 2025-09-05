@@ -25,11 +25,11 @@ In order to use the Redis cache, you need to:
 - Create an instance of the Redis Cache and set to the `useResponseCache` plugin options
 
 ```ts
-import { parse, validate, specifiedRules, execute, subscribe } from 'graphql'
+import { execute, parse, specifiedRules, subscribe, validate } from 'graphql'
+import Redis from 'ioredis'
 import { envelop, useEngine } from '@envelop/core'
 import { useResponseCache } from '@envelop/response-cache'
 import { createRedisCache } from '@envelop/response-cache-redis'
-import Redis from 'ioredis'
 
 /**
  * For additional Redis options to create the ioredis client
