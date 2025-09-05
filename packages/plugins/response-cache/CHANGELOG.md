@@ -1,5 +1,15 @@
 # @envelop/response-cache
 
+## 8.0.2
+
+### Patch Changes
+
+- [#2262](https://github.com/graphql-hive/envelop/pull/2262)
+  [`2525301`](https://github.com/graphql-hive/envelop/commit/25253013bb5a717d362c2aad1bfd8ca5e88d15b0)
+  Thanks [@renovate](https://github.com/apps/renovate)! - dependencies updates:
+  - Updated dependency [`lru-cache@^11.0.0` ↗︎](https://www.npmjs.com/package/lru-cache/v/11.0.0)
+    (from `^10.0.0`, in `dependencies`)
+
 ## 8.0.1
 
 ### Patch Changes
