@@ -487,9 +487,14 @@ export function useResponseCache<PluginContext extends Record<string, any> = {}>
         result: ExecutionResult,
         setResult: (newResult: ExecutionResult) => void,
       ): void {
-        result = { ...result };
+        let changed = false;
         if (result.data) {
-          result.data = removeMetadataFieldsFromResult(result.data, onEntity);
+          result = { ...result };
+          result.data = removeMetadataFieldsFromResult(
+            result.data as Record<string, unknown>,
+            onEntity,
+          );
+          changed = true;
         }
 
         const cacheInstance = cacheFactory(onExecuteParams.args.contextValue);
@@ -500,13 +505,18 @@ export function useResponseCache<PluginContext extends Record<string, any> = {}>
           );
           return;
         }
-        cacheInstance.invalidate(identifier.values());
-        if (includeExtensionMetadata) {
-          setResult(
-            resultWithMetadata(result, {
-              invalidatedEntities: Array.from(identifier.values()),
-            }),
-          );
+        if (identifier.size > 0) {
+          cacheInstance.invalidate(identifier.values());
+          if (includeExtensionMetadata) {
+            return setResult(
+              resultWithMetadata(result, {
+                invalidatedEntities: Array.from(identifier.values()),
+              }),
+            );
+          }
+        }
+        if (changed) {
+          setResult(result);
         }
       }
 
