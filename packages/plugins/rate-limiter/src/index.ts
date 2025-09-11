@@ -1,5 +1,5 @@
 import { GraphQLResolveInfo, responsePathAsArray } from 'graphql';
-import { minimatch } from 'minimatch';
+import picomatch from 'picomatch';
 import type { Plugin } from '@envelop/core';
 import { useOnResolve } from '@envelop/on-resolve';
 import { createGraphQLError, getDirectiveExtensions } from '@graphql-tools/utils';
@@ -84,6 +84,15 @@ export interface ConfigByField extends RateLimitDirectiveArgs {
   identifyFn?: IdentifyFn;
 }
 
+type FieldMatchers = {
+  [key: string]: {
+    [key: string]: {
+      type: picomatch.Matcher;
+      field: picomatch.Matcher;
+    };
+  };
+};
+
 export const defaultInterpolateMessageFn: MessageInterpolator = (message, identifier) =>
   interpolateByArgs(message, { id: identifier });
 
@@ -98,6 +107,27 @@ export const useRateLimiter = (options: RateLimiterPluginOptions): Plugin<RateLi
   });
 
   const interpolateMessage = options.interpolateMessage || defaultInterpolateMessageFn;
+
+  const fieldMatchers: FieldMatchers = {};
+  if (options.configByField) {
+    for (const { type, field } of options.configByField) {
+      const typeMatchers = fieldMatchers[type] ?? (fieldMatchers[type] = {});
+      if (typeMatchers[field]) {
+        throw new Error(
+          `Config error: duplicated field entry in 'configByField' for '${type}.${field}'`,
+        );
+      }
+      typeMatchers[field] = { type: picomatch(type), field: picomatch(field) };
+    }
+  }
+
+  const configByField = options.configByField?.map(config => ({
+    ...config,
+    isMatch: {
+      type: picomatch(config.type),
+      field: picomatch(config.field),
+    },
+  }));
 
   return {
     onPluginInit({ addPlugin }) {
@@ -115,9 +145,9 @@ export const useRateLimiter = (options: RateLimiterPluginOptions): Plugin<RateLi
             let fieldIdentity = false;
 
             if (!rateLimitDef) {
-              const foundConfig = options.configByField?.find(
-                ({ type, field }) =>
-                  minimatch(info.parentType.name, type) && minimatch(info.fieldName, field),
+              const foundConfig = configByField?.find(
+                ({ isMatch }) =>
+                  isMatch.type(info.parentType.name) && isMatch.field(info.fieldName),
               );
               if (foundConfig) {
                 rateLimitDef = foundConfig;
