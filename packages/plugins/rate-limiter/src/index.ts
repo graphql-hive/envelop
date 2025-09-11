@@ -1,7 +1,12 @@
-import { GraphQLResolveInfo, responsePathAsArray } from 'graphql';
+import {
+  defaultFieldResolver,
+  GraphQLResolveInfo,
+  GraphQLSchema,
+  isObjectType,
+  responsePathAsArray,
+} from 'graphql';
 import picomatch from 'picomatch';
 import type { Plugin } from '@envelop/core';
-import { useOnResolve } from '@envelop/on-resolve';
 import { createGraphQLError, getDirectiveExtensions } from '@graphql-tools/utils';
 import { handleMaybePromise } from '@whatwg-node/promise-helpers';
 import { getGraphQLRateLimiter } from './get-graphql-rate-limiter.js';
@@ -84,15 +89,6 @@ export interface ConfigByField extends RateLimitDirectiveArgs {
   identifyFn?: IdentifyFn;
 }
 
-type FieldMatchers = {
-  [key: string]: {
-    [key: string]: {
-      type: picomatch.Matcher;
-      field: picomatch.Matcher;
-    };
-  };
-};
-
 export const defaultInterpolateMessageFn: MessageInterpolator = (message, identifier) =>
   interpolateByArgs(message, { id: identifier });
 
@@ -108,19 +104,6 @@ export const useRateLimiter = (options: RateLimiterPluginOptions): Plugin<RateLi
 
   const interpolateMessage = options.interpolateMessage || defaultInterpolateMessageFn;
 
-  const fieldMatchers: FieldMatchers = {};
-  if (options.configByField) {
-    for (const { type, field } of options.configByField) {
-      const typeMatchers = fieldMatchers[type] ?? (fieldMatchers[type] = {});
-      if (typeMatchers[field]) {
-        throw new Error(
-          `Config error: duplicated field entry in 'configByField' for '${type}.${field}'`,
-        );
-      }
-      typeMatchers[field] = { type: picomatch(type), field: picomatch(field) };
-    }
-  }
-
   const configByField = options.configByField?.map(config => ({
     ...config,
     isMatch: {
@@ -129,104 +112,105 @@ export const useRateLimiter = (options: RateLimiterPluginOptions): Plugin<RateLi
     },
   }));
 
+  const directiveName = options.rateLimitDirectiveName ?? 'rateLimit';
+
   return {
-    onPluginInit({ addPlugin }) {
-      addPlugin(
-        useOnResolve(({ root, args, context, info }) => {
-          const field = info.parentType.getFields()[info.fieldName];
-          if (field) {
-            const directives = getDirectiveExtensions<{
-              rateLimit?: RateLimitDirectiveArgs;
-            }>(field);
-            const rateLimitDefs = directives?.rateLimit;
+    onSchemaChange({ schema: _schema }) {
+      if (!_schema) {
+        return;
+      }
+      const schema = _schema as GraphQLSchema;
 
-            let rateLimitDef = rateLimitDefs?.[0];
-            let identifyFn = options.identifyFn;
-            let fieldIdentity = false;
+      for (const type of Object.values(schema.getTypeMap())) {
+        if (!isObjectType(type)) {
+          continue;
+        }
 
-            if (!rateLimitDef) {
-              const foundConfig = configByField?.find(
-                ({ isMatch }) =>
-                  isMatch.type(info.parentType.name) && isMatch.field(info.fieldName),
-              );
-              if (foundConfig) {
-                rateLimitDef = foundConfig;
-                if (foundConfig.identifyFn) {
-                  identifyFn = foundConfig.identifyFn;
-                  fieldIdentity = true;
-                }
-              }
+        for (const field of Object.values(type.getFields())) {
+          const fieldConfig = configByField?.find(
+            ({ isMatch }) => isMatch.type(type.name) && isMatch.field(field.name),
+          );
+
+          const rateLimitDirective = getDirectiveExtensions(field, schema)[
+            directiveName
+          ]?.[0] as RateLimitDirectiveArgs;
+
+          if (rateLimitDirective && fieldConfig) {
+            throw new Error(
+              `Config error: field '${type.name}.${field.name}' has both a configuration and a directive`,
+            );
+          }
+
+          const rateLimitConfig = { ...(rateLimitDirective ?? fieldConfig) };
+
+          if (rateLimitConfig) {
+            rateLimitConfig.max = rateLimitConfig.max && Number(rateLimitConfig.max);
+
+            if (fieldConfig?.identifyFn) {
+              rateLimitConfig.identityArgs = [
+                'identifier',
+                ...(rateLimitConfig.identityArgs ?? []),
+              ];
             }
 
-            if (rateLimitDef) {
-              const message = rateLimitDef.message;
-              const max = rateLimitDef.max && Number(rateLimitDef.max);
-              const window = rateLimitDef.window;
-              const identifier = identifyFn(context);
+            const originalResolver = field.resolve ?? defaultFieldResolver;
+            field.resolve = (parent, args, context, info) => {
+              const resolverRateLimitConfig = { ...rateLimitConfig };
+              const executionArgs = { parent, args, context, info };
+              const identifier = (fieldConfig?.identifyFn ?? options.identifyFn)(context);
+
+              if (fieldConfig?.identifyFn) {
+                executionArgs.args = { identifier, ...args };
+              }
+
+              if (resolverRateLimitConfig.message && identifier) {
+                const messageArgs = { root: parent, args, context, info };
+                resolverRateLimitConfig.message = interpolateMessage(
+                  resolverRateLimitConfig.message,
+                  identifier,
+                  messageArgs,
+                );
+              }
 
               return handleMaybePromise(
-                () =>
-                  rateLimiterFn(
-                    {
-                      parent: root,
-                      args: fieldIdentity ? { ...args, identifier } : args,
+                () => rateLimiterFn(executionArgs, resolverRateLimitConfig),
+                rateLimitError => {
+                  if (!rateLimitError) {
+                    return originalResolver(parent, args, context, info);
+                  }
+
+                  if (options.onRateLimitError) {
+                    options.onRateLimitError({
+                      error: rateLimitError,
+                      identifier,
                       context,
                       info,
-                    },
-                    {
-                      max,
-                      window,
-                      identityArgs: fieldIdentity
-                        ? ['identifier', ...(rateLimitDef.identityArgs || [])]
-                        : rateLimitDef.identityArgs,
-                      arrayLengthField: rateLimitDef.arrayLengthField,
-                      uncountRejected: rateLimitDef.uncountRejected,
-                      readOnly: rateLimitDef.readOnly,
-                      message:
-                        message && identifier
-                          ? interpolateMessage(message, identifier, {
-                              root,
-                              args,
-                              context,
-                              info,
-                            })
-                          : undefined,
-                    },
-                  ),
-                errorMessage => {
-                  if (errorMessage) {
-                    if (options.onRateLimitError) {
-                      options.onRateLimitError({
-                        error: errorMessage,
-                        identifier,
-                        context,
-                        info,
-                      });
-                    }
-
-                    if (options.transformError) {
-                      throw options.transformError(errorMessage);
-                    }
-
-                    throw createGraphQLError(errorMessage, {
-                      extensions: {
-                        http: {
-                          statusCode: 429,
-                          headers: {
-                            'Retry-After': window,
-                          },
-                        },
-                      },
-                      path: responsePathAsArray(info.path),
-                      nodes: info.fieldNodes,
                     });
                   }
+
+                  if (options.transformError) {
+                    throw options.transformError(rateLimitError);
+                  }
+
+                  const errorOptions: Parameters<typeof createGraphQLError>[1] = {
+                    extensions: { http: { statusCode: 429 } },
+                    path: responsePathAsArray(info.path),
+                    nodes: info.fieldNodes,
+                  };
+
+                  if (resolverRateLimitConfig.window) {
+                    errorOptions.extensions.http.headers = {
+                      'Retry-After': resolverRateLimitConfig.window,
+                    };
+                  }
+
+                  throw createGraphQLError(rateLimitError, errorOptions);
                 },
               );
-            }
+            };
           }
-        }),
-      );
+        }
+      }
     },
     onContextBuilding({ extendContext }) {
       extendContext({
