@@ -127,9 +127,15 @@ export const useRateLimiter = (options: RateLimiterPluginOptions): Plugin<RateLi
         }
 
         for (const field of Object.values(type.getFields())) {
-          const fieldConfig = configByField?.find(
+          const fieldConfigs = configByField?.filter(
             ({ isMatch }) => isMatch.type(type.name) && isMatch.field(field.name),
           );
+          if (fieldConfigs && fieldConfigs.length > 1) {
+            throw new Error(
+              `Config error: field '${type.name}.${field.name}' has multiple matching configuration`,
+            );
+          }
+          const fieldConfig = fieldConfigs?.[0];
 
           const rateLimitDirective = getDirectiveExtensions(field, schema)[
             directiveName
