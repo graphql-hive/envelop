@@ -29,7 +29,50 @@ describe('Rate-Limiter', () => {
         },
       },
     });
-
+    it('should allow to use a custom directive name', async () => {
+      const testInstance = createTestkit(
+        [
+          useRateLimiter({
+            identifyFn,
+            rateLimitDirectiveName: 'customDirective',
+          }),
+        ],
+        makeExecutableSchema({
+          typeDefs: `
+            directive @customDirective(
+              max: Int
+              window: String
+              message: String
+              identityArgs: [String]
+              arrayLengthField: String
+              readOnly: Boolean
+              uncountRejected: Boolean
+            ) on FIELD_DEFINITION
+    
+            type Query {
+              limited: String @customDirective(
+                max: 1,
+                window: "0.1s",
+                message: "too many calls"
+              ),
+              unlimited: String
+            }
+          `,
+          resolvers: {
+            Query: {
+              limited: (root, args, context) => 'limited',
+              unlimited: (root, args, context) => 'unlimited',
+            },
+          },
+        }),
+      );
+      await testInstance.execute(`query { limited }`);
+      const result = await testInstance.execute(`query { limited }`);
+      assertSingleExecutionValue(result);
+      expect(result.errors!.length).toBe(1);
+      expect(result.errors![0].message).toBe('too many calls');
+      expect(result.errors![0].path).toEqual(['limited']);
+    });
     it('Should allow unlimited calls', async () => {
       const testInstance = createTestkit(
         [
@@ -349,5 +392,60 @@ describe('Rate-Limiter', () => {
       expect(result.data?.bar).toBe('BAR');
       expect(result.errors?.[0]?.message).toBe(`Rate limit of "Query.foo" exceeded for "MYUSER"`);
     });
+    it('should throw an error if multiple configuration matches the same field', () => {
+      const schema = makeExecutableSchema({
+        typeDefs: /* GraphQL */ `
+          type Query {
+            foo: String
+          }
+        `,
+        resolvers: {
+          Query: {
+            foo: () => 'bar',
+          },
+        },
+      });
+      expect(() =>
+        createTestkit(
+          [
+            useRateLimiter({
+              identifyFn: (ctx: any) => ctx.userId,
+              configByField: [
+                { type: 'Query', field: 'foo' },
+                { type: 'Query', field: 'foo' },
+              ],
+            }),
+          ],
+          schema,
+        ),
+      ).toThrow(`Config error: field 'Query.foo' has multiple matching configuration`);
+    });
+  });
+  it('should throw an error if a configuration matches a field with a directive', () => {
+    const schema = makeExecutableSchema({
+      typeDefs: /* GraphQL */ `
+        ${DIRECTIVE_SDL}
+
+        type Query {
+          foo: String @rateLimit
+        }
+      `,
+      resolvers: {
+        Query: {
+          foo: () => 'bar',
+        },
+      },
+    });
+    expect(() =>
+      createTestkit(
+        [
+          useRateLimiter({
+            identifyFn: (ctx: any) => ctx.userId,
+            configByField: [{ type: 'Query', field: 'foo' }],
+          }),
+        ],
+        schema,
+      ),
+    ).toThrow(`Config error: field 'Query.foo' has both a configuration and a directive`);
   });
 });
