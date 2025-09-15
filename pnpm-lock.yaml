@@ -14,7 +14,7 @@ overrides:
   micromatch: 4.0.8
   dompurify: 3.2.6
   webpack: 5.101.3
-  axios: 1.12.0
+  axios: 1.12.2
   undici: 5.29.0
   cookie: 1.0.2
   '@eslint/plugin-kit': 0.3.5
@@ -5956,8 +5956,8 @@ packages:
     resolution: {integrity: sha512-x511uiJ/57FIsbgUe5csJ13k3uzu25uWQE+XqfBis/sB0SFoiElJWXRkgEAUh0U6n40eT3ay5Ue4oPkRMu1LYw==}
     engines: {node: '>= 10.0.0'}
 
-  axios@1.12.0:
-    resolution: {integrity: sha512-oXTDccv8PcfjZmPGlWsPSwtOJCZ/b6W5jAMCNcfwJbCzDckwG0jrYJFaWH1yvivfCXjVzV/SPDEhMB3Q+DSurg==}
+  axios@1.12.2:
+    resolution: {integrity: sha512-vMJzPewAlRyOgxV2dU0Cuz2O8zzzx9VYtbJOaBgXFeLc4IV/Eg50n4LowmehOOR61S8ZMpc2K5Sa7g6A4jfkUw==}
 
   babel-jest@30.1.2:
     resolution: {integrity: sha512-IQCus1rt9kaSh7PQxLYRY5NmkNrNlU2TpabzwV7T2jljnpdHOcmnYYv8QmE04Li4S3a2Lj8/yXyET5pBarPr6g==}
@@ -14627,7 +14627,7 @@ snapshots:
   '@newrelic/security-agent@0.2.1':
     dependencies:
       '@aws-sdk/client-lambda': 3.879.0
-      axios: 1.12.0
+      axios: 1.12.2
       check-disk-space: 3.3.1
       content-type: 1.0.5
       fast-safe-stringify: 2.1.1
@@ -16922,7 +16922,7 @@ snapshots:
       uuid: 8.0.0
       xml2js: 0.6.2
 
-  axios@1.12.0:
+  axios@1.12.2:
     dependencies:
       follow-redirects: 1.15.11
       form-data: 4.0.4
@@ -24020,7 +24020,7 @@ snapshots:
 
   wait-on@8.0.5:
     dependencies:
-      axios: 1.12.0
+      axios: 1.12.2
       joi: 18.0.1
       lodash: 4.17.21
       minimist: 1.2.8
