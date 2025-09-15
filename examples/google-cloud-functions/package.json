@@ -22,8 +22,8 @@
     "graphql-helix": "1.13.0"
   },
   "devDependencies": {
-    "@azure/functions": "4.7.2",
-    "@types/node": "22.18.1",
+    "@azure/functions": "4.8.0",
+    "@types/node": "22.18.3",
     "ts-node": "10.9.2",
     "typescript": "5.9.2"
   }
