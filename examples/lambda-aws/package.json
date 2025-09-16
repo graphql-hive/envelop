@@ -17,7 +17,7 @@
   },
   "devDependencies": {
     "@types/aws-lambda": "8.10.152",
-    "@types/node": "22.18.3",
+    "@types/node": "22.18.4",
     "ts-node": "10.9.2",
     "typescript": "5.9.2"
   }
