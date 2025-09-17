@@ -36,7 +36,7 @@
     "@types/benchmark": "2.1.5",
     "@types/jest": "30.0.0",
     "@types/k6": "1.2.0",
-    "@types/node": "22.18.4",
+    "@types/node": "22.18.5",
     "@typescript-eslint/eslint-plugin": "8.44.0",
     "@typescript-eslint/parser": "8.44.0",
     "bob-the-bundler": "7.0.1",
@@ -62,8 +62,8 @@
     "ts-jest": "29.4.2",
     "ts-node": "10.9.2",
     "typescript": "5.9.2",
-    "wait-on": "8.0.5",
-    "wrangler": "4.37.0"
+    "wait-on": "9.0.0",
+    "wrangler": "4.37.1"
   },
   "lint-staged": {
     "packages/**/src/**/*.{ts,tsx}": [
