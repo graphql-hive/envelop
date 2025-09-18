@@ -1,5 +1,18 @@
 # @envelop/validation-cache
 
+## 9.0.1
+
+### Patch Changes
+
+- [#2262](https://github.com/graphql-hive/envelop/pull/2262)
+  [`2525301`](https://github.com/graphql-hive/envelop/commit/25253013bb5a717d362c2aad1bfd8ca5e88d15b0)
+  Thanks [@renovate](https://github.com/apps/renovate)! - dependencies updates:
+  - Updated dependency [`lru-cache@^11.0.0` ↗︎](https://www.npmjs.com/package/lru-cache/v/11.0.0)
+    (from `^10.0.0`, in `dependencies`)
+- Updated dependencies
+  [[`92948d8`](https://github.com/graphql-hive/envelop/commit/92948d8c060e45a02e55101045b74df76320616d)]:
+  - @envelop/core@5.3.2
+
 ## 9.0.0
 
 ### Patch Changes
@@ -81,7 +94,6 @@
 - [#1927](https://github.com/n1ru4l/envelop/pull/1927)
   [`e3c90116`](https://github.com/n1ru4l/envelop/commit/e3c9011640b73aaede4e5e472a5d45aab947165c)
   Thanks [@renovate](https://github.com/apps/renovate)! - dependencies updates:
-
   - Updated dependency
     [`@envelop/core@^4.0.2` ↗︎](https://www.npmjs.com/package/@envelop/core/v/4.0.2) (from
     `^4.0.1`, in `peerDependencies`)
@@ -112,7 +124,6 @@
 - [#1879](https://github.com/n1ru4l/envelop/pull/1879)
   [`d3ecee35`](https://github.com/n1ru4l/envelop/commit/d3ecee350883eabd99fd9fe4fa58c72a616cc6b5)
   Thanks [@renovate](https://github.com/apps/renovate)! - dependencies updates:
-
   - Updated dependency [`lru-cache@^10.0.0` ↗︎](https://www.npmjs.com/package/lru-cache/v/10.0.0)
     (from `^9.1.1`, in `dependencies`)
 
@@ -138,7 +149,6 @@
 - [#1767](https://github.com/n1ru4l/envelop/pull/1767)
   [`0b127cc4`](https://github.com/n1ru4l/envelop/commit/0b127cc40f2e6a003a05cbeb0b6f004a08ada9d2)
   Thanks [@n1ru4l](https://github.com/n1ru4l)! - dependencies updates:
-
   - Updated dependency [`lru-cache@^9.1.1` ↗︎](https://www.npmjs.com/package/lru-cache/v/9.1.1)
     (from `^6.0.0`, in `dependencies`)
 
@@ -164,14 +174,12 @@
 - [#1725](https://github.com/n1ru4l/envelop/pull/1725)
   [`c1eb2c09`](https://github.com/n1ru4l/envelop/commit/c1eb2c09ac535b076a5c13430c3892d98f7ef957)
   Thanks [@n1ru4l](https://github.com/n1ru4l)! - dependencies updates:
-
   - Updated dependency [`tslib@^2.5.0` ↗︎](https://www.npmjs.com/package/tslib/v/2.5.0) (from
     `^2.4.0`, in `dependencies`)
 
 - [#1727](https://github.com/n1ru4l/envelop/pull/1727)
   [`c80fe926`](https://github.com/n1ru4l/envelop/commit/c80fe926231269a62b05324d4939b96ac8240548)
   Thanks [@n1ru4l](https://github.com/n1ru4l)! - dependencies updates:
-
   - Added dependency [`sha1-es@^1.8.2` ↗︎](https://www.npmjs.com/package/sha1-es/v/1.8.2) (to
     `dependencies`)
   - Removed dependency [`js-sha1@^0.6.0` ↗︎](https://www.npmjs.com/package/js-sha1/v/0.6.0) (from
@@ -207,7 +215,6 @@
 - [#1602](https://github.com/n1ru4l/envelop/pull/1602)
   [`109ae870`](https://github.com/n1ru4l/envelop/commit/109ae870571f821c20507bcfe9ca2699b4533122)
   Thanks [@n1ru4l](https://github.com/n1ru4l)! - dependencies updates:
-
   - Added dependency
     [`fast-json-stable-stringify@^2.1.0` ↗︎](https://www.npmjs.com/package/fast-json-stable-stringify/v/2.1.0)
     (to `dependencies`)

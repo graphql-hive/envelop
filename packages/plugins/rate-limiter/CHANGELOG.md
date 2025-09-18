@@ -1,5 +1,44 @@
 # @envelop/rate-limiter
 
+## 8.1.0
+
+### Minor Changes
+
+- [#2676](https://github.com/graphql-hive/envelop/pull/2676)
+  [`6164637`](https://github.com/graphql-hive/envelop/commit/6164637288edb0b9f26986f5ffc36eed00dbedfd)
+  Thanks [@EmrysMyrddin](https://github.com/EmrysMyrddin)! - Validate the configuration at schema
+  loading time. The plugin now throws an error on invalid configuration, such as:
+  - Multiple field configuration matching the same field
+  - A field configuration matching a field already having a directive
+
+### Patch Changes
+
+- [#2676](https://github.com/graphql-hive/envelop/pull/2676)
+  [`6164637`](https://github.com/graphql-hive/envelop/commit/6164637288edb0b9f26986f5ffc36eed00dbedfd)
+  Thanks [@EmrysMyrddin](https://github.com/EmrysMyrddin)! - dependencies updates:
+  - Added dependency
+    [`@types/picomatch@^4.0.2` ↗︎](https://www.npmjs.com/package/@types/picomatch/v/4.0.2) (to
+    `dependencies`)
+  - Added dependency [`picomatch@^4.0.3` ↗︎](https://www.npmjs.com/package/picomatch/v/4.0.3) (to
+    `dependencies`)
+  - Removed dependency [`minimatch@^10.0.1` ↗︎](https://www.npmjs.com/package/minimatch/v/10.0.1)
+    (from `dependencies`)
+
+- [#2676](https://github.com/graphql-hive/envelop/pull/2676)
+  [`6164637`](https://github.com/graphql-hive/envelop/commit/6164637288edb0b9f26986f5ffc36eed00dbedfd)
+  Thanks [@EmrysMyrddin](https://github.com/EmrysMyrddin)! - Massive reduction of performance impact
+  on GraphQL execution. Overhead has been minimalized on rate-limited fields, and entirely
+  suppressed on other fields.
+
+- [#2676](https://github.com/graphql-hive/envelop/pull/2676)
+  [`6164637`](https://github.com/graphql-hive/envelop/commit/6164637288edb0b9f26986f5ffc36eed00dbedfd)
+  Thanks [@EmrysMyrddin](https://github.com/EmrysMyrddin)! - Fixed `rateLimitDirectiveName` option
+  being ignored.
+
+- Updated dependencies
+  [[`92948d8`](https://github.com/graphql-hive/envelop/commit/92948d8c060e45a02e55101045b74df76320616d)]:
+  - @envelop/core@5.3.2
+
 ## 8.0.0
 
 ### Patch Changes
@@ -26,7 +65,6 @@
 - [#2484](https://github.com/n1ru4l/envelop/pull/2484)
   [`26137e7`](https://github.com/n1ru4l/envelop/commit/26137e7c3d0ff349af90724867c715f3b3809a7d)
   Thanks [@renovate](https://github.com/apps/renovate)! - dependencies updates:
-
   - Updated dependency
     [`@whatwg-node/promise-helpers@^1.2.4` ↗︎](https://www.npmjs.com/package/@whatwg-node/promise-helpers/v/1.2.4)
     (from `^1.0.0`, in `dependencies`)
@@ -112,7 +150,6 @@
 - [#2330](https://github.com/n1ru4l/envelop/pull/2330)
   [`b1210bc`](https://github.com/n1ru4l/envelop/commit/b1210bcb1aad1545e953c48ca3adfc064e854a2d)
   Thanks [@enisdenjo](https://github.com/enisdenjo)! - dependencies updates:
-
   - Added dependency
     [`graphql-middleware@^6.1.35` ↗︎](https://www.npmjs.com/package/graphql-middleware/v/6.1.35)
     (to `dependencies`)
@@ -190,7 +227,6 @@
 - [#2292](https://github.com/n1ru4l/envelop/pull/2292)
   [`c3dd2c3`](https://github.com/n1ru4l/envelop/commit/c3dd2c3525b42fcab773e0ae8a637caea5c33558)
   Thanks [@ardatan](https://github.com/ardatan)! - dependencies updates:
-
   - Updated dependency
     [`graphql-rate-limit@^3.3.0` ↗︎](https://www.npmjs.com/package/graphql-rate-limit/v/3.3.0)
     (from `3.3.0`, in `dependencies`)
@@ -245,7 +281,6 @@
 - [#1927](https://github.com/n1ru4l/envelop/pull/1927)
   [`e3c90116`](https://github.com/n1ru4l/envelop/commit/e3c9011640b73aaede4e5e472a5d45aab947165c)
   Thanks [@renovate](https://github.com/apps/renovate)! - dependencies updates:
-
   - Updated dependency
     [`@envelop/on-resolve@^3.0.2` ↗︎](https://www.npmjs.com/package/@envelop/on-resolve/v/3.0.2)
     (from `^3.0.1`, in `dependencies`)
@@ -306,7 +341,6 @@
 - [#1725](https://github.com/n1ru4l/envelop/pull/1725)
   [`c1eb2c09`](https://github.com/n1ru4l/envelop/commit/c1eb2c09ac535b076a5c13430c3892d98f7ef957)
   Thanks [@n1ru4l](https://github.com/n1ru4l)! - dependencies updates:
-
   - Updated dependency [`tslib@^2.5.0` ↗︎](https://www.npmjs.com/package/tslib/v/2.5.0) (from
     `^2.4.0`, in `dependencies`)
 
