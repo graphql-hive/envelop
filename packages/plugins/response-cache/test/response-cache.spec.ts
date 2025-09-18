@@ -27,7 +27,7 @@ import {
 describe('useResponseCache', () => {
   beforeEach(() => jest.useRealTimers());
 
-  it('custom ttl per type is used instead of the global ttl - only enable caching for a specific type when the global ttl is 0', async () => {
+  it('deprecated ttlForType still work until removed', async () => {
     jest.useFakeTimers();
     const spy = jest.fn(() => [
       {
@@ -83,6 +83,92 @@ describe('useResponseCache', () => {
           session: () => null,
           ttl: 0,
           ttlPerType: {
+            User: 200,
+          },
+        }),
+      ],
+      schema,
+    );
+
+    const query = /* GraphQL */ `
+      query test {
+        users {
+          id
+          name
+          comments {
+            id
+            text
+          }
+        }
+      }
+    `;
+
+    await testInstance.execute(query);
+    await testInstance.execute(query);
+    expect(spy).toHaveBeenCalledTimes(1);
+    await testInstance.execute(query);
+    expect(spy).toHaveBeenCalledTimes(1);
+    jest.advanceTimersByTime(201);
+    await testInstance.execute(query);
+    expect(spy).toHaveBeenCalledTimes(2);
+  });
+
+  it('custom ttl per type is used instead of the global ttl - only enable caching for a specific type when the global ttl is 0', async () => {
+    jest.useFakeTimers();
+    const spy = jest.fn(() => [
+      {
+        id: 1,
+        name: 'User 1',
+        comments: [
+          {
+            id: 1,
+            text: 'Comment 1 of User 1',
+          },
+        ],
+      },
+      {
+        id: 2,
+        name: 'User 2',
+        comments: [
+          {
+            id: 2,
+            text: 'Comment 2 of User 2',
+          },
+        ],
+      },
+    ]);
+
+    const schema = makeExecutableSchema({
+      typeDefs: /* GraphQL */ `
+        type Query {
+          users: [User!]!
+        }
+
+        type User {
+          id: ID!
+          name: String!
+          comments: [Comment!]!
+          recentComment: Comment
+        }
+
+        type Comment {
+          id: ID!
+          text: String!
+        }
+      `,
+      resolvers: {
+        Query: {
+          users: spy,
+        },
+      },
+    });
+
+    const testInstance = createTestkit(
+      [
+        useResponseCache({
+          session: () => null,
+          ttl: 0,
+          ttlPerSchemaCoordinate: {
             User: 200,
           },
         }),

@@ -328,6 +328,10 @@ export function useResponseCache<PluginContext extends Record<string, any> = {}>
   // never cache Introspections
   ttlPerSchemaCoordinate = { 'Query.__schema': 0, ...ttlPerSchemaCoordinate };
   if (ttlPerType) {
+    // eslint-disable-next-line no-console
+    console.warn(
+      '[useResponseCache] `ttlForType` is deprecated. To migrate, merge it with `ttlForSchemaCoordinate` option',
+    );
     for (const [typeName, ttl] of Object.entries(ttlPerType)) {
       ttlPerSchemaCoordinate[typeName] = ttl;
     }
