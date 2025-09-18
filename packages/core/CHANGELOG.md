@@ -1,5 +1,14 @@
 # @envelop/core
 
+## 5.3.2
+
+### Patch Changes
+
+- [#2665](https://github.com/graphql-hive/envelop/pull/2665)
+  [`92948d8`](https://github.com/graphql-hive/envelop/commit/92948d8c060e45a02e55101045b74df76320616d)
+  Thanks [@EmrysMyrddin](https://github.com/EmrysMyrddin)! - Fix getters and setters being stripped
+  away. The value was copied at plugin creation instead of copying the getter and setter (if any).
+
 ## 5.3.1
 
 ### Patch Changes
