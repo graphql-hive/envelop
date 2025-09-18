@@ -59,7 +59,7 @@
     "prettier-plugin-pkg": "0.21.2",
     "prettier-plugin-sh": "0.18.0",
     "rimraf": "6.0.1",
-    "ts-jest": "29.4.2",
+    "ts-jest": "29.4.3",
     "ts-node": "10.9.2",
     "typescript": "5.9.2",
     "wait-on": "9.0.0",
