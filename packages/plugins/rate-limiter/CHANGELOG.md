@@ -1,5 +1,14 @@
 # @envelop/rate-limiter
 
+## 8.1.1
+
+### Patch Changes
+
+- [#2690](https://github.com/graphql-hive/envelop/pull/2690)
+  [`8f709a7`](https://github.com/graphql-hive/envelop/commit/8f709a7fb2809e7526c1bb591bc5fd6597807d6f)
+  Thanks [@Tolsee](https://github.com/Tolsee)! - Fix rate limiting being wrongly applied to all
+  fields with a default configuration.
+
 ## 8.1.0
 
 ### Minor Changes
