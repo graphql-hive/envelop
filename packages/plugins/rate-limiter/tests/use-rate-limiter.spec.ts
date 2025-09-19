@@ -490,9 +490,12 @@ describe('Rate-Limiter', () => {
     assertSingleExecutionValue(result2);
     expect(result2.errors?.[0]?.message).toBe("You are trying to access 'limitedField' too often");
 
-    const result3 = await testkit.execute(`{ unlimitedField }`, {}, context);
-    assertSingleExecutionValue(result3);
-    expect(result3).toEqual({ data: { unlimitedField: 'unlimited' } });
-    expect(result3.errors).toBeUndefined();
+    // unlimitedField should not be rate limited at all, so we should be able to call it many times
+    for (let i = 0; i < 10; i++) {
+      const result = await testkit.execute(`{ unlimitedField }`, {}, context);
+      assertSingleExecutionValue(result);
+      expect(result).toEqual({ data: { unlimitedField: 'unlimited' } });
+      expect(result.errors).toBeUndefined();
+    }
   });
 });

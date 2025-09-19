@@ -147,10 +147,9 @@ export const useRateLimiter = (options: RateLimiterPluginOptions): Plugin<RateLi
             );
           }
 
-          const baseConfig = rateLimitDirective ?? fieldConfig;
+          const rateLimitConfig = { ...(rateLimitDirective ?? fieldConfig) };
 
-          if (baseConfig) {
-            const rateLimitConfig = { ...baseConfig };
+          if (rateLimitConfig) {
             rateLimitConfig.max = rateLimitConfig.max && Number(rateLimitConfig.max);
 
             if (fieldConfig?.identifyFn) {
