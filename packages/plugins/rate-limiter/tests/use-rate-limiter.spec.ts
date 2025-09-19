@@ -448,4 +448,54 @@ describe('Rate-Limiter', () => {
       ),
     ).toThrow(`Config error: field 'Query.foo' has both a configuration and a directive`);
   });
+  it('should not rate limit fields that are not in configByField', async () => {
+    const schema = makeExecutableSchema({
+      typeDefs: /* GraphQL */ `
+        type Query {
+          limitedField: String
+          unlimitedField: String
+        }
+      `,
+      resolvers: {
+        Query: {
+          limitedField: () => 'limited',
+          unlimitedField: () => 'unlimited',
+        },
+      },
+    });
+
+    const testkit = createTestkit(
+      [
+        useRateLimiter({
+          identifyFn: (ctx: any) => ctx.ip,
+          configByField: [
+            {
+              type: 'Query',
+              field: 'limitedField',
+              max: 1,
+              window: '60s',
+            },
+          ],
+        }),
+      ],
+      schema,
+    );
+
+    const context = { ip: '127.0.0.1' };
+
+    const result1 = await testkit.execute(`{ limitedField }`, {}, context);
+    expect(result1).toEqual({ data: { limitedField: 'limited' } });
+
+    const result2 = await testkit.execute(`{ limitedField }`, {}, context);
+    assertSingleExecutionValue(result2);
+    expect(result2.errors?.[0]?.message).toBe("You are trying to access 'limitedField' too often");
+
+    // unlimitedField should not be rate limited at all, so we should be able to call it many times
+    for (let i = 0; i < 10; i++) {
+      const result = await testkit.execute(`{ unlimitedField }`, {}, context);
+      assertSingleExecutionValue(result);
+      expect(result).toEqual({ data: { unlimitedField: 'unlimited' } });
+      expect(result.errors).toBeUndefined();
+    }
+  });
 });
