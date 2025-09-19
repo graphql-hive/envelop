@@ -1,5 +1,34 @@
 # @envelop/response-cache
 
+## 8.1.0
+
+### Minor Changes
+
+- [#2258](https://github.com/graphql-hive/envelop/pull/2258)
+  [`35539a7`](https://github.com/graphql-hive/envelop/commit/35539a780ef5f062006bb6bfb25d5ee77f5bf299)
+  Thanks [@EmrysMyrddin](https://github.com/EmrysMyrddin)! - Deprecate `ttlPerType` in favor of
+  `ttlPerSchemaCoordinate`, for a more streamlined API
+
+  ## Migration instructions
+
+  If you where using `ttlPerType`, you can merge the object into the `ttlPerSchemaCoordinate`, the
+  syntax doesn't change.
+
+  ```diff
+  useResponseCache({
+    session: null,
+  - ttlPerType: {
+  -   User: 10_000,
+  -   Profile: 600_000,
+  - },
+    ttlPerSchemaCoordinate: {
+      'Query.me': 0
+  +    User: 10_000,
+  +    Profile: 600_000,
+    }
+  })
+  ```
+
 ## 8.0.2
 
 ### Patch Changes

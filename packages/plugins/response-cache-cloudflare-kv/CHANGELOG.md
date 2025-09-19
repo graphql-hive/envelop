@@ -1,5 +1,13 @@
 # @envelop/response-cache-cloudflare-kv
 
+## 5.0.0
+
+### Patch Changes
+
+- Updated dependencies
+  [[`35539a7`](https://github.com/graphql-hive/envelop/commit/35539a780ef5f062006bb6bfb25d5ee77f5bf299)]:
+  - @envelop/response-cache@8.1.0
+
 ## 4.0.0
 
 ### Patch Changes
