@@ -19,6 +19,10 @@
       "matchPackageNames": ["/@whatwg-node/*/"]
     },
     {
+      "groupName": "newrelic",
+      "matchPackageNames": ["/@newrelic/*/", "newrelic"]
+    },
+    {
       "matchUpdateTypes": ["minor", "patch"],
       "groupName": "all non-major dependencies",
       "groupSlug": "all-minor-patch",
