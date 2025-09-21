@@ -150,11 +150,11 @@ importers:
         specifier: 5.9.2
         version: 5.9.2
       wait-on:
-        specifier: 9.0.0
-        version: 9.0.0
+        specifier: 9.0.1
+        version: 9.0.1
       wrangler:
         specifier: 4.38.0
-        version: 4.38.0(@cloudflare/workers-types@4.20250919.0)
+        version: 4.38.0(@cloudflare/workers-types@4.20250921.0)
 
   benchmark:
     dependencies:
@@ -264,8 +264,8 @@ importers:
         version: 0.7.3
     devDependencies:
       '@cloudflare/workers-types':
-        specifier: 4.20250919.0
-        version: 4.20250919.0
+        specifier: 4.20250921.0
+        version: 4.20250921.0
       '@types/node':
         specifier: 22.18.6
         version: 22.18.6
@@ -2795,8 +2795,8 @@ packages:
   '@cloudflare/workers-types@4.20250913.0':
     resolution: {integrity: sha512-JjrYEvRn7cyALxwoFTw3XChaQneHSJOXqz2t5iKEpNzAnC2iPQU75rtTK/gw03Jjy4SHY5aEBh/uqQePtonZlA==}
 
-  '@cloudflare/workers-types@4.20250919.0':
-    resolution: {integrity: sha512-2tj/zGfDWGK/5LFShSPJWZlONnVonp7tFPJ2x1Po/Jflec/mm/CBMUsqsJuk5+PUrYUtmcthgNyZN/tuzcODUQ==}
+  '@cloudflare/workers-types@4.20250921.0':
+    resolution: {integrity: sha512-+UDLgnqSYdy1gezjhlZxRAx+tOW+Za8FYxuIMa7VnpgIlQnCL8937rb0uCt/YZuIJFE2T7OK5GvFQ3HeUAkeFQ==}
 
   '@colors/colors@1.6.0':
     resolution: {integrity: sha512-Ir+AOibqzrIsL6ajt3Rz3LskB7OiMVHqltZmspbW/TJuTVuyOMirVqAkjfY6JISiLHgyNqicAC8AyHHGzNd/dA==}
@@ -11357,8 +11357,8 @@ packages:
   vscode-uri@3.0.8:
     resolution: {integrity: sha512-AyFQ0EVmsOZOlAnxoFOGOq1SQDWAB7C6aqMGS23svWAllfOaxbuFvcT8D1i8z3Gyn8fraVeZNNmN6e9bxxXkKw==}
 
-  wait-on@9.0.0:
-    resolution: {integrity: sha512-bKOl7CJ4zGhKW4qvoasLM5t2NtLUcc1Ar2N6XeYCQpW0w+DMdLC0YH1JUH3bTWDCsHblapHMzhtFmmPc+ITNJw==}
+  wait-on@9.0.1:
+    resolution: {integrity: sha512-noeCAI+XbqWMXY23sKril0BSURhuLYarkVXwJv1uUWwoojZJE7pmX3vJ7kh7SZaNgPGzfsCSQIZM/AGvu0Q9pA==}
     engines: {node: '>=20.0.0'}
     hasBin: true
 
@@ -13280,7 +13280,7 @@ snapshots:
 
   '@cloudflare/workers-types@4.20250913.0': {}
 
-  '@cloudflare/workers-types@4.20250919.0': {}
+  '@cloudflare/workers-types@4.20250921.0': {}
 
   '@colors/colors@1.6.0': {}
 
@@ -14361,7 +14361,7 @@ snapshots:
 
   '@miniflare/shared-test-environment@2.14.4':
     dependencies:
-      '@cloudflare/workers-types': 4.20250919.0
+      '@cloudflare/workers-types': 4.20250921.0
       '@miniflare/cache': 2.14.4
       '@miniflare/core': 2.14.4
       '@miniflare/d1': 2.14.4
@@ -23900,7 +23900,7 @@ snapshots:
 
   vscode-uri@3.0.8: {}
 
-  wait-on@9.0.0:
+  wait-on@9.0.1:
     dependencies:
       axios: 1.12.2
       joi: 18.0.1
@@ -24075,7 +24075,7 @@ snapshots:
     dependencies:
       regexparam: 2.0.2
 
-  wrangler@4.38.0(@cloudflare/workers-types@4.20250919.0):
+  wrangler@4.38.0(@cloudflare/workers-types@4.20250921.0):
     dependencies:
       '@cloudflare/kv-asset-handler': 0.4.0
       '@cloudflare/unenv-preset': 2.7.4(unenv@2.0.0-rc.21)(workerd@1.20250917.0)
@@ -24086,7 +24086,7 @@ snapshots:
       unenv: 2.0.0-rc.21
       workerd: 1.20250917.0
     optionalDependencies:
-      '@cloudflare/workers-types': 4.20250919.0
+      '@cloudflare/workers-types': 4.20250921.0
       fsevents: 2.3.3
     transitivePeerDependencies:
       - bufferutil
