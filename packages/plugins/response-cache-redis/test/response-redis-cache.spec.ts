@@ -797,8 +797,8 @@ describeIf(versionInfo.major >= 16)('useResponseCache with Redis cache', () => {
     // so queried just once
     expect(spy).toHaveBeenCalledTimes(1);
 
-    // let's travel in time beyond the ttl of 100
-    jest.advanceTimersByTime(150);
+    // let's travel in time beyond the ttl of 100 seconds
+    jest.advanceTimersByTime(150_000);
 
     // since the cache has expired, now when we query
     await testInstance.execute(query);
@@ -1083,8 +1083,8 @@ describeIf(versionInfo.major >= 16)('useResponseCache with Redis cache', () => {
     await testInstance.execute(query);
     expect(spy).toHaveBeenCalledTimes(1);
 
-    // wait so User expires
-    jest.advanceTimersByTime(201);
+    // wait so User expires, beyond 200 seconds
+    jest.advanceTimersByTime(201_000);
 
     await testInstance.execute(query);
     // now we've queried twice
@@ -1174,8 +1174,8 @@ describeIf(versionInfo.major >= 16)('useResponseCache with Redis cache', () => {
     await testInstance.execute(query);
     expect(spy).toHaveBeenCalledTimes(1);
 
-    // wait so User expires
-    jest.advanceTimersByTime(201);
+    // wait so User expires beyond 200 seconds
+    jest.advanceTimersByTime(201_000);
 
     await testInstance.execute(query);
     // now we've queried twice
