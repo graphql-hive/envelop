@@ -64,7 +64,7 @@
     "@graphql-tools/schema": "10.0.25",
     "graphql": "16.8.1",
     "graphql-scalars": "1.24.2",
-    "ioredis-mock": "8.12.1",
+    "ioredis-mock": "8.13.0",
     "typescript": "5.9.2"
   },
   "publishConfig": {
