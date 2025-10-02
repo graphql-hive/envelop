@@ -7,8 +7,8 @@ import {
   TypedExecutionArgs,
   type Plugin,
 } from '@envelop/core';
+import type { TraceparentData } from '@sentry/core';
 import * as Sentry from '@sentry/node';
-import type { TraceparentData } from '@sentry/types';
 
 export type SentryPluginOptions<PluginContext extends Record<string, any>> = {
   /**

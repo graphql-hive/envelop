@@ -4,9 +4,8 @@ import { useMaskedErrors } from '@envelop/core';
 import { useSentry } from '@envelop/sentry';
 import { assertSingleExecutionValue, createTestkit } from '@envelop/testing';
 import { makeExecutableSchema } from '@graphql-tools/schema';
+import { type Span } from '@sentry/core';
 import * as Sentry from '@sentry/node';
-import { Span } from '@sentry/types';
-import '@sentry/tracing';
 
 describe('sentry', () => {
   test('report unexpected error', async () => {
