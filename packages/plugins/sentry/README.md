@@ -37,8 +37,6 @@ yarn add @sentry/node @sentry/tracing @envelop/sentry
 import { execute, parse, specifiedRules, subscribe, validate } from 'graphql'
 import { envelop, useEngine } from '@envelop/core'
 import { useSentry } from '@envelop/sentry'
-// do this only once in you entry file.
-import '@sentry/tracing'
 
 const getEnveloped = envelop({
   plugins: [
