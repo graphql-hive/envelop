@@ -61,7 +61,7 @@
     "rimraf": "6.0.1",
     "ts-jest": "29.4.4",
     "ts-node": "10.9.2",
-    "typescript": "5.9.2",
+    "typescript": "5.9.3",
     "wait-on": "9.0.1",
     "wrangler": "4.41.0"
   },
