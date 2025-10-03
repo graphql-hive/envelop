@@ -778,7 +778,11 @@ function removeMetadataFieldsFromResult(
   //       that doesn't equal Object.prototype as it should.
   //       As a workaround, we can just check that there is no parent prototype, which should be
   //       the case only when it's the Object prototype
+  //       Rollback once migrated to Bun or vitest
+  //
+  // if (dataPrototype != null && dataPrototype !== Object.prototype) {
   if (dataPrototype != null && Object.getPrototypeOf(dataPrototype) !== null) {
+    // It is not a plain object, like a Date, don't inspect further
     return;
   }
 
