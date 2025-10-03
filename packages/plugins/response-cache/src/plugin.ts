@@ -25,6 +25,7 @@ import {
   OnExecuteHookResult,
   Plugin,
 } from '@envelop/core';
+import { ExecutionResultWithSerializer } from '@envelop/graphql-jit';
 import {
   getDirective,
   MapperKind,
@@ -496,7 +497,8 @@ export function useResponseCache<PluginContext extends Record<string, any> = {}>
         setResult: (newResult: ExecutionResult) => void,
       ): void {
         if (result.data) {
-          removeMetadataFieldsFromResult(result.data as Record<string, unknown>, onEntity);
+          collectEntities(result.data as Record<string, unknown>, onEntity);
+          setStringifyWithoutMetadata(result);
         }
 
         const cacheInstance = cacheFactory(onExecuteParams.args.contextValue);
@@ -582,7 +584,8 @@ export function useResponseCache<PluginContext extends Record<string, any> = {}>
                 setResult: (newResult: ExecutionResult) => void,
               ) {
                 if (result.data) {
-                  removeMetadataFieldsFromResult(result.data, onEntity);
+                  collectEntities(result.data, onEntity);
+                  setStringifyWithoutMetadata(result);
                 }
 
                 // we only use the global ttl if no currentTtl has been determined.
@@ -674,21 +677,23 @@ function handleAsyncIterableResult<PluginContext extends Record<string, any> = {
       }
 
       if (payload.result.data) {
-        removeMetadataFieldsFromResult(payload.result.data);
+        collectEntities(payload.result.data);
       }
 
       // Handle Incremental results
       if ('hasNext' in payload.result && payload.result.incremental) {
         payload.result.incremental = payload.result.incremental.map(value => {
           if ('items' in value && value.items) {
-            removeMetadataFieldsFromResult(value.items);
+            collectEntities(value.items);
           }
           if ('data' in value && value.data) {
-            removeMetadataFieldsFromResult(value.data);
+            collectEntities(value.data);
           }
           return value;
         });
       }
+
+      setStringifyWithoutMetadata(result);
     },
   };
 }
@@ -748,22 +753,16 @@ type OnEntityHandler = (
   data: Record<string, unknown>,
 ) => void | Promise<void>;
 
-function removeMetadataFieldsFromResult(
-  data: Record<string, unknown>,
-  onEntity?: OnEntityHandler,
-): void;
-function removeMetadataFieldsFromResult(
-  data: Array<Record<string, unknown>>,
-  onEntity?: OnEntityHandler,
-): void;
-function removeMetadataFieldsFromResult(data: null | undefined, onEntity?: OnEntityHandler): void;
-function removeMetadataFieldsFromResult(
+function collectEntities(data: Record<string, unknown>, onEntity?: OnEntityHandler): void;
+function collectEntities(data: Array<Record<string, unknown>>, onEntity?: OnEntityHandler): void;
+function collectEntities(data: null | undefined, onEntity?: OnEntityHandler): void;
+function collectEntities(
   data: Record<string, unknown> | Array<Record<string, unknown>> | null | undefined,
   onEntity?: OnEntityHandler,
 ): void {
   if (Array.isArray(data)) {
     for (const record of data) {
-      removeMetadataFieldsFromResult(record, onEntity);
+      collectEntities(record, onEntity);
     }
     return;
   }
@@ -789,20 +788,29 @@ function removeMetadataFieldsFromResult(
   const typename = data.__responseCacheTypeName ?? data.__typename;
   if (typeof typename === 'string') {
     const entity: CacheEntityRecord = { typename };
-    delete data.__responseCacheTypeName;
 
     if (
       data.__responseCacheId &&
       (typeof data.__responseCacheId === 'string' || typeof data.__responseCacheId === 'number')
     ) {
       entity.id = data.__responseCacheId;
-      delete data.__responseCacheId;
     }
 
     onEntity?.(entity, data);
   }
 
   for (const key in data) {
-    removeMetadataFieldsFromResult(data[key] as any, onEntity);
+    collectEntities(data[key] as any, onEntity);
   }
 }
+
+const setStringifyWithoutMetadata = (result: ExecutionResultWithSerializer) => {
+  result.stringify = stringifyWithoutMetadata;
+  return result;
+};
+
+const stringifyWithoutMetadata: ExecutionResultWithSerializer['stringify'] = result => {
+  return JSON.stringify(result, (key: string, value: unknown) =>
+    key === '__responseCacheId' || key === '__responseCacheTypeName' ? undefined : value,
+  );
+};
