@@ -693,7 +693,7 @@ function handleAsyncIterableResult<PluginContext extends Record<string, any> = {
         });
       }
 
-      setStringifyWithoutMetadata(result);
+      setStringifyWithoutMetadata(payload.result);
     },
   };
 }
@@ -804,10 +804,10 @@ function collectEntities(
   }
 }
 
-const setStringifyWithoutMetadata = (result: ExecutionResultWithSerializer) => {
+function setStringifyWithoutMetadata(result: ExecutionResultWithSerializer) {
   result.stringify = stringifyWithoutMetadata;
   return result;
-};
+}
 
 const stringifyWithoutMetadata: ExecutionResultWithSerializer['stringify'] = result => {
   return JSON.stringify(result, (key: string, value: unknown) =>
