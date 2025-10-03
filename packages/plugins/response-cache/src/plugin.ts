@@ -496,7 +496,7 @@ export function useResponseCache<PluginContext extends Record<string, any> = {}>
         setResult: (newResult: ExecutionResult) => void,
       ): void {
         if (result.data) {
-          collectEntities(result.data as Record<string, unknown>, onEntity);
+          removeMetadataFieldsFromResult(result.data as Record<string, unknown>, onEntity);
         }
 
         const cacheInstance = cacheFactory(onExecuteParams.args.contextValue);
@@ -582,7 +582,7 @@ export function useResponseCache<PluginContext extends Record<string, any> = {}>
                 setResult: (newResult: ExecutionResult) => void,
               ) {
                 if (result.data) {
-                  collectEntities(result.data, onEntity);
+                  removeMetadataFieldsFromResult(result.data, onEntity);
                 }
 
                 // we only use the global ttl if no currentTtl has been determined.
@@ -647,7 +647,7 @@ function handleAsyncIterableResult<PluginContext extends Record<string, any> = {
     onNext(payload) {
       // This is the first result with the initial data payload sent to the client. We use it as the base result
       if (payload.result.data) {
-        result.data = deepCopy(payload.result.data);
+        result.data = structuredClone(payload.result.data);
       }
       if (payload.result.errors) {
         result.errors = payload.result.errors;
@@ -660,7 +660,10 @@ function handleAsyncIterableResult<PluginContext extends Record<string, any> = {
         const { incremental, hasNext } = payload.result;
         if (incremental) {
           for (const patch of incremental) {
-            mergeIncrementalResult({ executionResult: result, incrementalResult: deepCopy(patch) });
+            mergeIncrementalResult({
+              executionResult: result,
+              incrementalResult: structuredClone(patch),
+            });
           }
         }
 
@@ -671,17 +674,17 @@ function handleAsyncIterableResult<PluginContext extends Record<string, any> = {
       }
 
       if (payload.result.data) {
-        collectEntities(payload.result.data);
+        removeMetadataFieldsFromResult(payload.result.data);
       }
 
       // Handle Incremental results
       if ('hasNext' in payload.result && payload.result.incremental) {
         payload.result.incremental = payload.result.incremental.map(value => {
           if ('items' in value && value.items) {
-            collectEntities(value.items);
+            removeMetadataFieldsFromResult(value.items);
           }
           if ('data' in value && value.data) {
-            collectEntities(value.data);
+            removeMetadataFieldsFromResult(value.data);
           }
           return value;
         });
@@ -745,16 +748,22 @@ type OnEntityHandler = (
   data: Record<string, unknown>,
 ) => void | Promise<void>;
 
-function collectEntities(data: Record<string, unknown>, onEntity?: OnEntityHandler): void;
-function collectEntities(data: Array<Record<string, unknown>>, onEntity?: OnEntityHandler): void;
-function collectEntities(data: null | undefined, onEntity?: OnEntityHandler): void;
-function collectEntities(
+function removeMetadataFieldsFromResult(
+  data: Record<string, unknown>,
+  onEntity?: OnEntityHandler,
+): void;
+function removeMetadataFieldsFromResult(
+  data: Array<Record<string, unknown>>,
+  onEntity?: OnEntityHandler,
+): void;
+function removeMetadataFieldsFromResult(data: null | undefined, onEntity?: OnEntityHandler): void;
+function removeMetadataFieldsFromResult(
   data: Record<string, unknown> | Array<Record<string, unknown>> | null | undefined,
   onEntity?: OnEntityHandler,
 ): void {
   if (Array.isArray(data)) {
     for (const record of data) {
-      collectEntities(record, onEntity);
+      removeMetadataFieldsFromResult(record, onEntity);
     }
     return;
   }
@@ -765,7 +774,11 @@ function collectEntities(
 
   const dataPrototype = Object.getPrototypeOf(data);
 
-  if (dataPrototype != null && dataPrototype !== Object.prototype) {
+  // TODO: For some reason, when running in Jest, `structuredClone` result have a weird prototype
+  //       that doesn't equal Object.prototype as it should.
+  //       As a workaround, we can just check that there is no parent prototype, which should be
+  //       the case only when it's the Object prototype
+  if (dataPrototype != null && Object.getPrototypeOf(dataPrototype) !== null) {
     return;
   }
 
@@ -786,17 +799,6 @@ function collectEntities(
   }
 
   for (const key in data) {
-    const value = data[key];
-    if (Array.isArray(value)) {
-      collectEntities(value, onEntity);
-    }
-    if (value !== null && typeof value === 'object') {
-      collectEntities(value as Record<string, unknown>, onEntity);
-    }
+    removeMetadataFieldsFromResult(data[key] as any, onEntity);
   }
 }
-
-const deepCopy = <T extends Record<string, unknown> | unknown[] | unknown>(obj: T): T => {
-  // TODO: find an actual deep copy util
-  return JSON.parse(JSON.stringify(obj));
-};
