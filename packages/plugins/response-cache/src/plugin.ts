@@ -495,14 +495,8 @@ export function useResponseCache<PluginContext extends Record<string, any> = {}>
         result: ExecutionResult,
         setResult: (newResult: ExecutionResult) => void,
       ): void {
-        let changed = false;
         if (result.data) {
-          result = { ...result };
-          result.data = removeMetadataFieldsFromResult(
-            result.data as Record<string, unknown>,
-            onEntity,
-          );
-          changed = true;
+          collectEntities(result.data as Record<string, unknown>, onEntity);
         }
 
         const cacheInstance = cacheFactory(onExecuteParams.args.contextValue);
@@ -522,9 +516,6 @@ export function useResponseCache<PluginContext extends Record<string, any> = {}>
               }),
             );
           }
-        }
-        if (changed) {
-          setResult(result);
         }
       }
 
@@ -591,7 +582,7 @@ export function useResponseCache<PluginContext extends Record<string, any> = {}>
                 setResult: (newResult: ExecutionResult) => void,
               ) {
                 if (result.data) {
-                  result.data = removeMetadataFieldsFromResult(result.data, onEntity);
+                  collectEntities(result.data, onEntity);
                 }
 
                 // we only use the global ttl if no currentTtl has been determined.
@@ -656,7 +647,7 @@ function handleAsyncIterableResult<PluginContext extends Record<string, any> = {
     onNext(payload) {
       // This is the first result with the initial data payload sent to the client. We use it as the base result
       if (payload.result.data) {
-        result.data = payload.result.data;
+        result.data = deepCopy(payload.result.data);
       }
       if (payload.result.errors) {
         result.errors = payload.result.errors;
@@ -669,7 +660,7 @@ function handleAsyncIterableResult<PluginContext extends Record<string, any> = {
         const { incremental, hasNext } = payload.result;
         if (incremental) {
           for (const patch of incremental) {
-            mergeIncrementalResult({ executionResult: result, incrementalResult: patch });
+            mergeIncrementalResult({ executionResult: result, incrementalResult: deepCopy(patch) });
           }
         }
 
@@ -679,32 +670,22 @@ function handleAsyncIterableResult<PluginContext extends Record<string, any> = {
         }
       }
 
-      const newResult = { ...payload.result };
-
-      // Handle initial/single result
-      if (newResult.data) {
-        newResult.data = removeMetadataFieldsFromResult(newResult.data);
+      if (payload.result.data) {
+        collectEntities(payload.result.data);
       }
 
       // Handle Incremental results
-      if ('hasNext' in newResult && newResult.incremental) {
-        newResult.incremental = newResult.incremental.map(value => {
+      if ('hasNext' in payload.result && payload.result.incremental) {
+        payload.result.incremental = payload.result.incremental.map(value => {
           if ('items' in value && value.items) {
-            return {
-              ...value,
-              items: removeMetadataFieldsFromResult(value.items),
-            };
+            collectEntities(value.items);
           }
           if ('data' in value && value.data) {
-            return {
-              ...value,
-              data: removeMetadataFieldsFromResult(value.data),
-            };
+            collectEntities(value.data);
           }
           return value;
         });
       }
-      payload.setResult(newResult);
     },
   };
 }
@@ -764,38 +745,29 @@ type OnEntityHandler = (
   data: Record<string, unknown>,
 ) => void | Promise<void>;
 
-function removeMetadataFieldsFromResult(
-  data: Record<string, unknown>,
-  onEntity?: OnEntityHandler,
-): Record<string, unknown>;
-function removeMetadataFieldsFromResult(
-  data: Array<Record<string, unknown>>,
-  onEntity?: OnEntityHandler,
-): Array<Record<string, unknown>>;
-function removeMetadataFieldsFromResult(
-  data: null | undefined,
-  onEntity?: OnEntityHandler,
-): null | undefined;
-function removeMetadataFieldsFromResult(
+function collectEntities(data: Record<string, unknown>, onEntity?: OnEntityHandler): void;
+function collectEntities(data: Array<Record<string, unknown>>, onEntity?: OnEntityHandler): void;
+function collectEntities(data: null | undefined, onEntity?: OnEntityHandler): void;
+function collectEntities(
   data: Record<string, unknown> | Array<Record<string, unknown>> | null | undefined,
   onEntity?: OnEntityHandler,
-): Record<string, unknown> | Array<unknown> | null | undefined {
+): void {
   if (Array.isArray(data)) {
-    return data.map(record => removeMetadataFieldsFromResult(record, onEntity));
+    for (const record of data) {
+      collectEntities(record, onEntity);
+    }
+    return;
   }
 
   if (typeof data !== 'object' || data == null) {
-    return data;
+    return;
   }
 
   const dataPrototype = Object.getPrototypeOf(data);
 
   if (dataPrototype != null && dataPrototype !== Object.prototype) {
-    return data;
+    return;
   }
-
-  // clone the data to avoid mutation
-  data = { ...data };
 
   const typename = data.__responseCacheTypeName ?? data.__typename;
   if (typeof typename === 'string') {
@@ -816,12 +788,15 @@ function removeMetadataFieldsFromResult(
   for (const key in data) {
     const value = data[key];
     if (Array.isArray(value)) {
-      data[key] = removeMetadataFieldsFromResult(value, onEntity);
+      collectEntities(value, onEntity);
     }
     if (value !== null && typeof value === 'object') {
-      data[key] = removeMetadataFieldsFromResult(value as Record<string, unknown>, onEntity);
+      collectEntities(value as Record<string, unknown>, onEntity);
     }
   }
-
-  return data;
 }
+
+const deepCopy = <T extends Record<string, unknown> | unknown[] | unknown>(obj: T): T => {
+  // TODO: find an actual deep copy util
+  return JSON.parse(JSON.stringify(obj));
+};
