@@ -48,7 +48,6 @@
   },
   "peerDependencies": {
     "@envelop/core": "workspace:^",
-    "@sentry/core": "^8.0.0 || ^9.0.0 || ^10.0.0",
     "@sentry/node": "^8.0.0 || ^9.0.0 || ^10.0.0",
     "graphql": "^14.0.0 || ^15.0.0 || ^16.0.0"
   },
@@ -58,7 +57,6 @@
   "devDependencies": {
     "@envelop/core": "workspace:^",
     "@graphql-tools/schema": "10.0.25",
-    "@sentry/core": "^10.17.0",
     "@sentry/node": "^10.17.0",
     "graphql": "16.8.1",
     "sentry-testkit": "6.2.2",

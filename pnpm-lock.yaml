@@ -1576,9 +1576,6 @@ importers:
       '@graphql-tools/schema':
         specifier: 10.0.25
         version: 10.0.25(graphql@16.8.1)
-      '@sentry/core':
-        specifier: ^10.17.0
-        version: 10.17.0
       '@sentry/node':
         specifier: ^10.17.0
         version: 10.17.0

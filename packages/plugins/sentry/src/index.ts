@@ -7,8 +7,22 @@ import {
   TypedExecutionArgs,
   type Plugin,
 } from '@envelop/core';
-import type { TraceparentData } from '@sentry/core';
 import * as Sentry from '@sentry/node';
+
+interface TraceparentData {
+  /**
+   * Trace ID
+   */
+  traceId?: string | undefined;
+  /**
+   * Parent Span ID
+   */
+  parentSpanId?: string | undefined;
+  /**
+   * If this transaction has a parent, the parent's sampling decision
+   */
+  parentSampled?: boolean | undefined;
+}
 
 export type SentryPluginOptions<PluginContext extends Record<string, any>> = {
   /**
