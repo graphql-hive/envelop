@@ -1,5 +1,13 @@
 # @envelop/sentry
 
+## 14.1.0
+
+### Minor Changes
+
+- [#2715](https://github.com/graphql-hive/envelop/pull/2715)
+  [`262e761`](https://github.com/graphql-hive/envelop/commit/262e761cefdea77ae602bb9f8e06dcd9d11cc9c3)
+  Thanks [@thomasleduc](https://github.com/thomasleduc)! - Support Sentry v9 and v10
+
 ## 14.0.0
 
 ### Patch Changes
@@ -93,7 +101,6 @@
   Sentry v8 API
 
   **Breaking Change:**
-
   - `startTransaction` option has been removed.
   - `forceTransaction` option has been added, disabled by default.
 
@@ -104,7 +111,6 @@
 - [#2277](https://github.com/n1ru4l/envelop/pull/2277)
   [`9f65fcb`](https://github.com/n1ru4l/envelop/commit/9f65fcba8e0a6c37b43ac71012a46e4ff65f3157)
   Thanks [@trixobird](https://github.com/trixobird)! - dependencies updates:
-
   - Updated dependency
     [`@sentry/node@^8.0.0` ↗︎](https://www.npmjs.com/package/@sentry/node/v/8.0.0) (from
     `^6 || ^7`, in `peerDependencies`)
@@ -178,7 +184,6 @@
 - [#1927](https://github.com/n1ru4l/envelop/pull/1927)
   [`e3c90116`](https://github.com/n1ru4l/envelop/commit/e3c9011640b73aaede4e5e472a5d45aab947165c)
   Thanks [@renovate](https://github.com/apps/renovate)! - dependencies updates:
-
   - Updated dependency
     [`@envelop/core@^4.0.2` ↗︎](https://www.npmjs.com/package/@envelop/core/v/4.0.2) (from
     `^4.0.1`, in `peerDependencies`)
@@ -231,7 +236,6 @@
 - [#1725](https://github.com/n1ru4l/envelop/pull/1725)
   [`c1eb2c09`](https://github.com/n1ru4l/envelop/commit/c1eb2c09ac535b076a5c13430c3892d98f7ef957)
   Thanks [@n1ru4l](https://github.com/n1ru4l)! - dependencies updates:
-
   - Updated dependency [`tslib@^2.5.0` ↗︎](https://www.npmjs.com/package/tslib/v/2.5.0) (from
     `^2.4.0`, in `dependencies`)
 
@@ -269,7 +273,6 @@
 - [#1583](https://github.com/n1ru4l/envelop/pull/1583)
   [`f6361e86`](https://github.com/n1ru4l/envelop/commit/f6361e864e8d0a434a539a78679b263fc78964f7)
   Thanks [@n1ru4l](https://github.com/n1ru4l)! - dependencies updates:
-
   - Removed dependency
     [`@envelop/on-resolve@^2.0.4` ↗︎](https://www.npmjs.com/package/@envelop/on-resolve/v/2.0.4)
     (from `dependencies`)
