@@ -5,8 +5,6 @@ import { useSentry } from '@envelop/sentry';
 import { assertSingleExecutionValue, createTestkit } from '@envelop/testing';
 import { makeExecutableSchema } from '@graphql-tools/schema';
 import * as Sentry from '@sentry/node';
-import { Span } from '@sentry/types';
-import '@sentry/tracing';
 
 describe('sentry', () => {
   test('report unexpected error', async () => {
@@ -260,8 +258,7 @@ describe('sentry', () => {
       dsn: 'https://public@sentry.example.com/1',
       transport: sentryTransport,
     });
-
-    let activeSpan: Span | undefined;
+    let activeSpan: Sentry.Span | undefined;
     const schema = makeExecutableSchema({
       typeDefs: /* GraphQL */ `
         type Query {
