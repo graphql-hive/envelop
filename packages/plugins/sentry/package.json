@@ -48,8 +48,8 @@
   },
   "peerDependencies": {
     "@envelop/core": "workspace:^",
-    "@sentry/core": "^10.17.0",
-    "@sentry/node": "^10.17.0",
+    "@sentry/core": "^8.0.0 || ^9.0.0 || ^10.0.0",
+    "@sentry/node": "^8.0.0 || ^9.0.0 || ^10.0.0",
     "graphql": "^14.0.0 || ^15.0.0 || ^16.0.0"
   },
   "dependencies": {
