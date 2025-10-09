@@ -20,7 +20,7 @@
     "react-dom": "18.3.1"
   },
   "devDependencies": {
-    "@theguild/tailwind-config": "0.6.3",
+    "@theguild/tailwind-config": "0.6.4",
     "@types/node": "22.18.8",
     "@types/react": "18.3.26",
     "sharp": "0.34.4"
