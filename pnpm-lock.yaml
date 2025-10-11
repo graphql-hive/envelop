@@ -141,8 +141,8 @@ importers:
         specifier: 6.0.1
         version: 6.0.1
       ts-jest:
-        specifier: 29.4.4
-        version: 29.4.4(@babel/core@7.28.4)(@jest/transform@30.2.0)(@jest/types@30.2.0)(babel-jest@30.2.0(@babel/core@7.28.4))(jest-util@30.2.0)(jest@30.2.0(@types/node@22.18.9)(ts-node@10.9.2(@types/node@22.18.9)(typescript@5.9.3)))(typescript@5.9.3)
+        specifier: 29.4.5
+        version: 29.4.5(@babel/core@7.28.4)(@jest/transform@30.2.0)(@jest/types@30.2.0)(babel-jest@30.2.0(@babel/core@7.28.4))(jest-util@30.2.0)(jest@30.2.0(@types/node@22.18.9)(ts-node@10.9.2(@types/node@22.18.9)(typescript@5.9.3)))(typescript@5.9.3)
       ts-node:
         specifier: 10.9.2
         version: 10.9.2(@types/node@22.18.9)(typescript@5.9.3)
@@ -154,7 +154,7 @@ importers:
         version: 9.0.1
       wrangler:
         specifier: 4.42.2
-        version: 4.42.2(@cloudflare/workers-types@4.20251008.0)
+        version: 4.42.2(@cloudflare/workers-types@4.20251011.0)
 
   benchmark:
     dependencies:
@@ -264,8 +264,8 @@ importers:
         version: 0.7.3
     devDependencies:
       '@cloudflare/workers-types':
-        specifier: 4.20251008.0
-        version: 4.20251008.0
+        specifier: 4.20251011.0
+        version: 4.20251011.0
       '@types/node':
         specifier: 22.18.9
         version: 22.18.9
@@ -1525,8 +1525,8 @@ importers:
         specifier: ^2.14.1
         version: 2.14.4(jest@30.2.0(@types/node@22.18.9)(ts-node@10.9.2(@types/node@22.18.9)(typescript@5.9.3)))
       ts-jest:
-        specifier: 29.4.4
-        version: 29.4.4(@babel/core@7.28.4)(@jest/transform@30.2.0)(@jest/types@30.2.0)(babel-jest@30.2.0(@babel/core@7.28.4))(jest-util@30.2.0)(jest@30.2.0(@types/node@22.18.9)(ts-node@10.9.2(@types/node@22.18.9)(typescript@5.9.3)))(typescript@5.9.3)
+        specifier: 29.4.5
+        version: 29.4.5(@babel/core@7.28.4)(@jest/transform@30.2.0)(@jest/types@30.2.0)(babel-jest@30.2.0(@babel/core@7.28.4))(jest-util@30.2.0)(jest@30.2.0(@types/node@22.18.9)(ts-node@10.9.2(@types/node@22.18.9)(typescript@5.9.3)))(typescript@5.9.3)
       typescript:
         specifier: ^5.2.2
         version: 5.9.3
@@ -2789,8 +2789,8 @@ packages:
   '@cloudflare/workers-types@4.20251004.0':
     resolution: {integrity: sha512-FkTBHEyOBwphbW4SLQ2XLCgNntD2wz0v1Si7NwJeN0JAPW/39/w6zhsKy3rsh+203tuSfBgsoP34+Os4RaySOw==}
 
-  '@cloudflare/workers-types@4.20251008.0':
-    resolution: {integrity: sha512-dZLkO4PbCL0qcCSKzuW7KE4GYe49lI12LCfQ5y9XeSwgYBoAUbwH4gmJ6A0qUIURiTJTkGkRkhVPqpq2XNgYRA==}
+  '@cloudflare/workers-types@4.20251011.0':
+    resolution: {integrity: sha512-gQpih+pbq3sP4uXltUeCSbPgZxTNp2gQd8639SaIbQMwgA6oJNHLhIART1fWy6DQACngiRzDVULA2x0ohmkGTQ==}
 
   '@colors/colors@1.6.0':
     resolution: {integrity: sha512-Ir+AOibqzrIsL6ajt3Rz3LskB7OiMVHqltZmspbW/TJuTVuyOMirVqAkjfY6JISiLHgyNqicAC8AyHHGzNd/dA==}
@@ -10353,6 +10353,11 @@ packages:
     engines: {node: '>=10'}
     hasBin: true
 
+  semver@7.7.3:
+    resolution: {integrity: sha512-SdsKMrI9TdgjdweUSR9MweHA4EJ8YxHn8DFaDisvhVlUOe4BF1tLD7GAj0lIqWVl+dPb/rExr0Btby5loQm20Q==}
+    engines: {node: '>=10'}
+    hasBin: true
+
   send@0.19.0:
     resolution: {integrity: sha512-dW41u5VfLXu8SJh5bwRmyYUbAoSB3c9uQh6L8h/KtsFREPWpbX1lrljJo186Jc4nmci/sGUZ9a0a0J2zgfq2hw==}
     engines: {node: '>= 0.8.0'}
@@ -10952,8 +10957,8 @@ packages:
   ts-interface-checker@0.1.13:
     resolution: {integrity: sha512-Y/arvbn+rrz3JCKl9C4kVNfTfSm2/mEp5FSz5EsZSANGPSlQrpRI5M4PKF+mJnE52jOO90PnPSc3Ur3bTQw0gA==}
 
-  ts-jest@29.4.4:
-    resolution: {integrity: sha512-ccVcRABct5ZELCT5U0+DZwkXMCcOCLi2doHRrKy1nK/s7J7bch6TzJMsrY09WxgUUIP/ITfmcDS8D2yl63rnXw==}
+  ts-jest@29.4.5:
+    resolution: {integrity: sha512-HO3GyiWn2qvTQA4kTgjDcXiMwYQt68a1Y8+JuLRVpdIzm+UOLSHgl/XqR4c6nzJkq5rOkjc02O2I7P7l/Yof0Q==}
     engines: {node: ^14.15.0 || ^16.10.0 || ^18.0.0 || >=20.0.0}
     hasBin: true
     peerDependencies:
@@ -13276,7 +13281,7 @@ snapshots:
 
   '@cloudflare/workers-types@4.20251004.0': {}
 
-  '@cloudflare/workers-types@4.20251008.0': {}
+  '@cloudflare/workers-types@4.20251011.0': {}
 
   '@colors/colors@1.6.0': {}
 
@@ -14366,7 +14371,7 @@ snapshots:
 
   '@miniflare/shared-test-environment@2.14.4':
     dependencies:
-      '@cloudflare/workers-types': 4.20251008.0
+      '@cloudflare/workers-types': 4.20251011.0
       '@miniflare/cache': 2.14.4
       '@miniflare/core': 2.14.4
       '@miniflare/d1': 2.14.4
@@ -22610,6 +22615,8 @@ snapshots:
 
   semver@7.7.2: {}
 
+  semver@7.7.3: {}
+
   send@0.19.0:
     dependencies:
       debug: 2.6.9
@@ -23379,7 +23386,7 @@ snapshots:
 
   ts-interface-checker@0.1.13: {}
 
-  ts-jest@29.4.4(@babel/core@7.28.4)(@jest/transform@30.2.0)(@jest/types@30.2.0)(babel-jest@30.2.0(@babel/core@7.28.4))(jest-util@30.2.0)(jest@30.2.0(@types/node@22.18.9)(ts-node@10.9.2(@types/node@22.18.9)(typescript@5.9.3)))(typescript@5.9.3):
+  ts-jest@29.4.5(@babel/core@7.28.4)(@jest/transform@30.2.0)(@jest/types@30.2.0)(babel-jest@30.2.0(@babel/core@7.28.4))(jest-util@30.2.0)(jest@30.2.0(@types/node@22.18.9)(ts-node@10.9.2(@types/node@22.18.9)(typescript@5.9.3)))(typescript@5.9.3):
     dependencies:
       bs-logger: 0.2.6
       fast-json-stable-stringify: 2.1.0
@@ -23388,7 +23395,7 @@ snapshots:
       json5: 2.2.3
       lodash.memoize: 4.1.2
       make-error: 1.3.6
-      semver: 7.7.2
+      semver: 7.7.3
       type-fest: 4.41.0
       typescript: 5.9.3
       yargs-parser: 21.1.1
@@ -24053,7 +24060,7 @@ snapshots:
     dependencies:
       regexparam: 2.0.2
 
-  wrangler@4.42.2(@cloudflare/workers-types@4.20251008.0):
+  wrangler@4.42.2(@cloudflare/workers-types@4.20251011.0):
     dependencies:
       '@cloudflare/kv-asset-handler': 0.4.0
       '@cloudflare/unenv-preset': 2.7.7(unenv@2.0.0-rc.21)(workerd@1.20251008.0)
@@ -24064,7 +24071,7 @@ snapshots:
       unenv: 2.0.0-rc.21
       workerd: 1.20251008.0
     optionalDependencies:
-      '@cloudflare/workers-types': 4.20251008.0
+      '@cloudflare/workers-types': 4.20251011.0
       fsevents: 2.3.3
     transitivePeerDependencies:
       - bufferutil
