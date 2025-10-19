@@ -688,12 +688,15 @@ importers:
         specifier: ^2.5.0
         version: 2.8.1
     devDependencies:
+      '@graphql-tools/executor':
+        specifier: ^1.1.0
+        version: 1.4.9(graphql@16.8.1)
       '@graphql-tools/schema':
         specifier: 10.0.25
         version: 10.0.25(graphql@16.8.1)
       '@graphql-tools/utils':
-        specifier: 10.9.1
-        version: 10.9.1(graphql@16.8.1)
+        specifier: 10.0.11
+        version: 10.0.11(graphql@16.8.1)
       '@repeaterjs/repeater':
         specifier: 3.0.6
         version: 3.0.6
@@ -3192,6 +3195,12 @@ packages:
 
   '@graphql-tools/schema@9.0.19':
     resolution: {integrity: sha512-oBRPoNBtCkk0zbUsyP4GaIzCt8C0aCI4ycIRUL67KK5pOHljKLBBtGT+Jr6hkzA74C8Gco8bpZPe7aWFjiaK2w==}
+    peerDependencies:
+      graphql: 16.8.1
+
+  '@graphql-tools/utils@10.0.11':
+    resolution: {integrity: sha512-vVjXgKn6zjXIlYBd7yJxCVMYGb5j18gE3hx3Qw3mNsSEsYQXbJbPdlwb7Fc9FogsJei5AaqiQerqH4kAosp1nQ==}
+    engines: {node: '>=16.0.0'}
     peerDependencies:
       graphql: 16.8.1
 
@@ -6414,6 +6423,10 @@ packages:
     resolution: {integrity: sha512-GsYosgnACZTADcmEyJctkJIoqAhHjttw7RsFrVoJNXbsWWqaq6Ym+7kZjq6mS45O0jij6vtiReppKQEtqWy6Dw==}
     engines: {node: '>=20'}
     hasBin: true
+
+  cross-inspect@1.0.0:
+    resolution: {integrity: sha512-4PFfn4b5ZN6FMNGSZlyb7wUhuN8wvj8t/VQHZdM4JsDcruGJ8L2kf9zao98QIrBPFCpdk27qst/AGTl7pL3ypQ==}
+    engines: {node: '>=16.0.0'}
 
   cross-inspect@1.0.1:
     resolution: {integrity: sha512-Pcw1JTvZLSJH83iiGWt6fRcT+BjZlCDRVwYLbUcHzv/CRpB7r0MlSrGbIyQvVSNyGnbt7G4AXuyCiDR3POvZ1A==}
@@ -13700,6 +13713,14 @@ snapshots:
       tslib: 2.8.1
       value-or-promise: 1.0.12
 
+  '@graphql-tools/utils@10.0.11(graphql@16.8.1)':
+    dependencies:
+      '@graphql-typed-document-node/core': 3.2.0(graphql@16.8.1)
+      cross-inspect: 1.0.0
+      dset: 3.1.4
+      graphql: 16.8.1
+      tslib: 2.8.1
+
   '@graphql-tools/utils@10.9.1(graphql@16.8.1)':
     dependencies:
       '@graphql-typed-document-node/core': 3.2.0(graphql@16.8.1)
@@ -17371,6 +17392,10 @@ snapshots:
     dependencies:
       '@epic-web/invariant': 1.0.0
       cross-spawn: 7.0.6
+
+  cross-inspect@1.0.0:
+    dependencies:
+      tslib: 2.8.1
 
   cross-inspect@1.0.1:
     dependencies:
