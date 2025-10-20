@@ -7,7 +7,7 @@ settings:
 overrides:
   esbuild: ^0.25.0
   graphql: 16.8.1
-  estree-util-value-to-estree: 3.4.0
+  estree-util-value-to-estree: 3.4.1
   estree-util-build-jsx: 3.0.1
   braces: 3.0.3
   cross-spawn: 7.0.6
@@ -126,8 +126,8 @@ importers:
         specifier: 30.2.0
         version: 30.2.0(@types/node@22.18.11)(ts-node@10.9.2(@types/node@22.18.11)(typescript@5.9.3))
       lint-staged:
-        specifier: 16.2.4
-        version: 16.2.4
+        specifier: 16.2.5
+        version: 16.2.5
       prettier:
         specifier: 3.6.2
         version: 3.6.2
@@ -154,7 +154,7 @@ importers:
         version: 9.0.1
       wrangler:
         specifier: 4.43.0
-        version: 4.43.0(@cloudflare/workers-types@4.20251011.0)
+        version: 4.43.0(@cloudflare/workers-types@4.20251014.0)
 
   benchmark:
     dependencies:
@@ -264,8 +264,8 @@ importers:
         version: 0.7.3
     devDependencies:
       '@cloudflare/workers-types':
-        specifier: 4.20251011.0
-        version: 4.20251011.0
+        specifier: 4.20251014.0
+        version: 4.20251014.0
       '@types/node':
         specifier: 22.18.11
         version: 22.18.11
@@ -319,8 +319,8 @@ importers:
         specifier: 13.5.0
         version: 13.5.0(encoding@0.1.13)
       firebase-functions:
-        specifier: 6.5.0
-        version: 6.5.0(firebase-admin@13.5.0(encoding@0.1.13))
+        specifier: 6.6.0
+        version: 6.6.0(firebase-admin@13.5.0(encoding@0.1.13))
       graphql:
         specifier: 16.8.1
         version: 16.8.1
@@ -2794,6 +2794,9 @@ packages:
 
   '@cloudflare/workers-types@4.20251011.0':
     resolution: {integrity: sha512-gQpih+pbq3sP4uXltUeCSbPgZxTNp2gQd8639SaIbQMwgA6oJNHLhIART1fWy6DQACngiRzDVULA2x0ohmkGTQ==}
+
+  '@cloudflare/workers-types@4.20251014.0':
+    resolution: {integrity: sha512-tEW98J/kOa0TdylIUOrLKRdwkUw0rvvYVlo+Ce0mqRH3c8kSoxLzUH9gfCvwLe0M89z1RkzFovSKAW2Nwtyn3w==}
 
   '@colors/colors@1.6.0':
     resolution: {integrity: sha512-Ir+AOibqzrIsL6ajt3Rz3LskB7OiMVHqltZmspbW/TJuTVuyOMirVqAkjfY6JISiLHgyNqicAC8AyHHGzNd/dA==}
@@ -7127,8 +7130,8 @@ packages:
   estree-util-to-js@2.0.0:
     resolution: {integrity: sha512-WDF+xj5rRWmD5tj6bIqRi6CkLIXbbNQUcxQHzGysQzvHmdYG2G7p/Tf0J0gpxGgkeMZNTIjT/AoSvC9Xehcgdg==}
 
-  estree-util-value-to-estree@3.4.0:
-    resolution: {integrity: sha512-Zlp+gxis+gCfK12d3Srl2PdX2ybsEA8ZYy6vQGVQTNNYLEGRQQ56XB64bjemN8kxIKXP1nC9ip4Z+ILy9LGzvQ==}
+  estree-util-value-to-estree@3.4.1:
+    resolution: {integrity: sha512-E4fEc8KLhDXnbyDa5XrbdT9PbgSMt0AGZPFUsGFok8N2Q7DTO+F6xAFJjIdw71EkidRg186I1mQCKzZ1ZbEsCw==}
 
   estree-util-visit@2.0.0:
     resolution: {integrity: sha512-m5KgiH85xAhhW8Wta0vShLcUvOsh3LLPI2YVwcbio1l7E09NTLL1EyMZFM1OyWowoH0skScNbhOPl4kcBgzTww==}
@@ -7359,8 +7362,8 @@ packages:
     resolution: {integrity: sha512-QZOpv1DJRJpH8NcWiL1xXE10tw3L/bdPFlgjcWrqU3ufyOJDYfxB1MMtxiVTwxK16NlybQbEM6ciSich2uWEIQ==}
     engines: {node: '>=18'}
 
-  firebase-functions@6.5.0:
-    resolution: {integrity: sha512-ffntJkq88K0pdLDq14IyetKQu99Je4vBBJBe9rkZK2X4QyeJJnmA527+v2iTKA+SwRtxf5lh7sXgxpvxGS8HtQ==}
+  firebase-functions@6.6.0:
+    resolution: {integrity: sha512-wwfo6JF+N7HUExVs5gUFgkgVGHDEog9O+qtouh7IuJWk8TBQ+KwXEgRiXbatSj7EbTu3/yYnHuzh3XExbfF6wQ==}
     engines: {node: '>=14.10.0'}
     hasBin: true
     peerDependencies:
@@ -8614,8 +8617,8 @@ packages:
   lines-and-columns@1.2.4:
     resolution: {integrity: sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==}
 
-  lint-staged@16.2.4:
-    resolution: {integrity: sha512-Pkyr/wd90oAyXk98i/2KwfkIhoYQUMtss769FIT9hFM5ogYZwrk+GRE46yKXSg2ZGhcJ1p38Gf5gmI5Ohjg2yg==}
+  lint-staged@16.2.5:
+    resolution: {integrity: sha512-o36wH3OX0jRWqDw5dOa8a8x6GXTKaLM+LvhRaucZxez0IxA+KNDUCiyjBfNgsMNmchwSX6urLSL7wShcUqAang==}
     engines: {node: '>=20.17'}
     hasBin: true
 
@@ -13293,6 +13296,8 @@ snapshots:
 
   '@cloudflare/workers-types@4.20251011.0': {}
 
+  '@cloudflare/workers-types@4.20251014.0': {}
+
   '@colors/colors@1.6.0': {}
 
   '@contrast/fn-inspect@3.4.0':
@@ -14381,7 +14386,7 @@ snapshots:
 
   '@miniflare/shared-test-environment@2.14.4':
     dependencies:
-      '@cloudflare/workers-types': 4.20251011.0
+      '@cloudflare/workers-types': 4.20251014.0
       '@miniflare/cache': 2.14.4
       '@miniflare/core': 2.14.4
       '@miniflare/d1': 2.14.4
@@ -18238,7 +18243,7 @@ snapshots:
       astring: 1.9.0
       source-map: 0.7.6
 
-  estree-util-value-to-estree@3.4.0:
+  estree-util-value-to-estree@3.4.1:
     dependencies:
       '@types/estree': 1.0.8
 
@@ -18614,7 +18619,7 @@ snapshots:
       - encoding
       - supports-color
 
-  firebase-functions@6.5.0(firebase-admin@13.5.0(encoding@0.1.13)):
+  firebase-functions@6.6.0(firebase-admin@13.5.0(encoding@0.1.13)):
     dependencies:
       '@types/cors': 2.8.19
       '@types/express': 4.17.23
@@ -20189,7 +20194,7 @@ snapshots:
 
   lines-and-columns@1.2.4: {}
 
-  lint-staged@16.2.4:
+  lint-staged@16.2.5:
     dependencies:
       commander: 14.0.1
       listr2: 9.0.4
@@ -21365,7 +21370,7 @@ snapshots:
       better-react-mathjax: 2.3.0(react@18.3.1)
       clsx: 2.1.1
       estree-util-to-js: 2.0.0
-      estree-util-value-to-estree: 3.4.0
+      estree-util-value-to-estree: 3.4.1
       github-slugger: 2.0.0
       graceful-fs: 4.2.11
       gray-matter: 4.0.3
@@ -21409,7 +21414,7 @@ snapshots:
       better-react-mathjax: 2.3.0(react@18.3.1)
       clsx: 2.1.1
       estree-util-to-js: 2.0.0
-      estree-util-value-to-estree: 3.4.0
+      estree-util-value-to-estree: 3.4.1
       github-slugger: 2.0.0
       graceful-fs: 4.2.11
       gray-matter: 4.0.3
@@ -22348,7 +22353,7 @@ snapshots:
   remark-reading-time@2.0.2:
     dependencies:
       estree-util-is-identifier-name: 2.1.0
-      estree-util-value-to-estree: 3.4.0
+      estree-util-value-to-estree: 3.4.1
       reading-time: 1.5.0
       unist-util-visit: 3.1.0
 
@@ -24071,7 +24076,7 @@ snapshots:
     dependencies:
       regexparam: 2.0.2
 
-  wrangler@4.43.0(@cloudflare/workers-types@4.20251011.0):
+  wrangler@4.43.0(@cloudflare/workers-types@4.20251014.0):
     dependencies:
       '@cloudflare/kv-asset-handler': 0.4.0
       '@cloudflare/unenv-preset': 2.7.7(unenv@2.0.0-rc.21)(workerd@1.20251008.0)
@@ -24082,7 +24087,7 @@ snapshots:
       unenv: 2.0.0-rc.21
       workerd: 1.20251008.0
     optionalDependencies:
-      '@cloudflare/workers-types': 4.20251011.0
+      '@cloudflare/workers-types': 4.20251014.0
       fsevents: 2.3.3
     transitivePeerDependencies:
       - bufferutil
