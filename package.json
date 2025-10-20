@@ -54,7 +54,7 @@
     "globby": "15.0.0",
     "husky": "9.1.7",
     "jest": "30.2.0",
-    "lint-staged": "16.2.4",
+    "lint-staged": "16.2.5",
     "prettier": "3.6.2",
     "prettier-plugin-pkg": "0.21.2",
     "prettier-plugin-sh": "0.18.0",
@@ -77,7 +77,7 @@
     "overrides": {
       "esbuild": "^0.25.0",
       "graphql": "16.8.1",
-      "estree-util-value-to-estree": "3.4.0",
+      "estree-util-value-to-estree": "3.4.1",
       "estree-util-build-jsx": "3.0.1",
       "braces": "3.0.3",
       "cross-spawn": "7.0.6",
