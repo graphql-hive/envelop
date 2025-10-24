@@ -13,7 +13,7 @@
     "@apollo/server-gateway-interface": "^1.1.1",
     "@envelop/core": "workspace:^",
     "@graphql-tools/schema": "10.0.25",
-    "graphql": "16.10.0"
+    "graphql": "16.11.0"
   },
   "devDependencies": {
     "@types/node": "22.18.12",
