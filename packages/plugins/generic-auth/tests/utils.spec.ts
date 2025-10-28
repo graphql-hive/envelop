@@ -1,5 +1,5 @@
 import { parse, print } from 'graphql';
-import { sanitizeDocument } from '../src/utils';
+import { removeEmptyOrUnusedNodes } from '../src/utils';
 
 it('removes inline fragment spreads that are empty', () => {
   const document = parse(/* GraphQL */ `
@@ -21,7 +21,7 @@ it('removes inline fragment spreads that are empty', () => {
    }"
   `);
 
-  const sanitized = sanitizeDocument(document);
+  const sanitized = removeEmptyOrUnusedNodes(document);
   expect(print(sanitized)).toMatchInlineSnapshot(`
    "{
      name
@@ -47,7 +47,7 @@ it('empties the whole document when no fields remain', () => {
    }"
   `);
 
-  const sanitized = sanitizeDocument(document);
+  const sanitized = removeEmptyOrUnusedNodes(document);
   expect(print(sanitized)).toBe('');
 });
 
@@ -79,7 +79,7 @@ it('removes inline fragment spreads and parent field when empty', () => {
    }"
   `);
 
-  const sanitized = sanitizeDocument(document);
+  const sanitized = removeEmptyOrUnusedNodes(document);
   expect(print(sanitized)).toMatchInlineSnapshot(`
    "{
      name
@@ -114,7 +114,7 @@ it('removes fragment spreads that reference empty fragments with leftover empty 
    fragment A on Admin "
   `);
 
-  const sanitized = sanitizeDocument(document);
+  const sanitized = removeEmptyOrUnusedNodes(document);
   expect(print(sanitized)).toMatchInlineSnapshot(`
    "{
      name
@@ -159,7 +159,7 @@ it('removes nested inline fragments and bubbles to parent field', () => {
    }"
   `);
 
-  const sanitized = sanitizeDocument(document);
+  const sanitized = removeEmptyOrUnusedNodes(document);
   expect(print(sanitized)).toMatchInlineSnapshot(`
    "{
      user {
@@ -203,7 +203,7 @@ it('recursively removes fragments referencing other fragments that are empty', (
    fragment B on User "
   `);
 
-  const sanitized = sanitizeDocument(document);
+  const sanitized = removeEmptyOrUnusedNodes(document);
   expect(print(sanitized)).toMatchInlineSnapshot(`
    "{
      hello
@@ -224,7 +224,7 @@ it('removes unused fragment definitions', () => {
     }
   `);
 
-  const sanitized = sanitizeDocument(document);
+  const sanitized = removeEmptyOrUnusedNodes(document);
   expect(print(sanitized)).toMatchInlineSnapshot(`
    "{
      name
@@ -265,7 +265,7 @@ it('removes all fields referencing empty fragments', () => {
    fragment A on Admin "
   `);
 
-  const sanitized = sanitizeDocument(document);
+  const sanitized = removeEmptyOrUnusedNodes(document);
   expect(print(sanitized)).toMatchInlineSnapshot(`
    "{
      hello

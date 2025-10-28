@@ -12,7 +12,7 @@ import { DocumentNode, FragmentDefinitionNode, SelectionSetNode } from 'graphql'
  * ensuring that cascading cleanups (e.g., removing an empty inline fragment
  * that causes a parent field to become empty) are handled correctly.
  */
-export function sanitizeDocument(documentNode: DocumentNode): DocumentNode {
+export function removeEmptyOrUnusedNodes(documentNode: DocumentNode): DocumentNode {
   let hasChanged = true;
   let document = {
     ...documentNode,
@@ -35,16 +35,16 @@ export function sanitizeDocument(documentNode: DocumentNode): DocumentNode {
     document.definitions = document.definitions.map(def => {
       if (def.kind === 'OperationDefinition') {
         const sanitized = sanitizeSelectionSet(def.selectionSet, fragmentMap);
-        if (sanitized !== def.selectionSet) {
+        if (sanitized.changed) {
           hasChanged = true;
         }
-        return { ...def, selectionSet: sanitized };
+        return { ...def, selectionSet: sanitized.selectionSet };
       } else if (def.kind === 'FragmentDefinition') {
         const sanitized = sanitizeSelectionSet(def.selectionSet, fragmentMap);
-        if (sanitized !== def.selectionSet) {
+        if (sanitized.changed) {
           hasChanged = true;
         }
-        return { ...def, selectionSet: sanitized };
+        return { ...def, selectionSet: sanitized.selectionSet };
       }
       return def;
     });
@@ -88,46 +88,70 @@ export function sanitizeDocument(documentNode: DocumentNode): DocumentNode {
 }
 
 /**
+ * Result of sanitizing a selection set
+ */
+type SanitizeSelectionSetResult = {
+  selectionSet: SelectionSetNode;
+  changed: boolean;
+};
+
+/**
  * Sanitizes a selection set by removing empty selections.
  * Performs sanitization bottom-up (recursively sanitizes child selection sets first).
  */
 function sanitizeSelectionSet(
   selectionSet: SelectionSetNode,
   fragmentMap: Map<string, FragmentDefinitionNode>,
-): SelectionSetNode {
+): SanitizeSelectionSetResult {
   let selections = [...selectionSet.selections];
+  let anyChanged = false;
 
   // Recursively sanitize nested selection sets first (bottom-up approach)
   selections = selections.map(selection => {
     if (selection.kind === 'Field') {
       if (selection.selectionSet) {
         const sanitizedChildSet = sanitizeSelectionSet(selection.selectionSet, fragmentMap);
-        return { ...selection, selectionSet: sanitizedChildSet };
+        if (sanitizedChildSet.changed) {
+          anyChanged = true;
+        }
+        return { ...selection, selectionSet: sanitizedChildSet.selectionSet };
       }
     } else if (selection.kind === 'InlineFragment') {
       const sanitizedChildSet = sanitizeSelectionSet(selection.selectionSet, fragmentMap);
-      return { ...selection, selectionSet: sanitizedChildSet };
+      if (sanitizedChildSet.changed) {
+        anyChanged = true;
+      }
+      return { ...selection, selectionSet: sanitizedChildSet.selectionSet };
     }
     return selection;
   });
 
   // Remove empty inline fragments
+  const beforeInlineFilterLength = selections.length;
   selections = selections.filter(selection => {
     if (selection.kind === 'InlineFragment') {
       return selection.selectionSet.selections.length > 0;
     }
     return true;
   });
+  if (selections.length !== beforeInlineFilterLength) {
+    anyChanged = true;
+  }
 
   // Remove fields with empty selection sets (scalar fields have no selectionSet)
+  const beforeFieldFilterLength = selections.length;
   selections = selections.filter(selection => {
     if (selection.kind === 'Field') {
       return !selection.selectionSet || selection.selectionSet.selections.length > 0;
     }
     return true;
   });
+  if (selections.length !== beforeFieldFilterLength) {
+    anyChanged = true;
+  }
 
   // Remove fragment spreads that reference empty fragments
+  const beforeSpreadFilterLength = selections.length;
   selections = selections.filter(selection => {
     if (selection.kind === 'FragmentSpread') {
       const fragment = fragmentMap.get(selection.name.value);
@@ -135,13 +159,19 @@ function sanitizeSelectionSet(
     }
     return true;
   });
-
-  // Return new selection set only if something was removed
-  if (selections.length !== selectionSet.selections.length) {
-    return { ...selectionSet, selections };
+  if (selections.length !== beforeSpreadFilterLength) {
+    anyChanged = true;
   }
 
-  return selectionSet;
+  // Return new selection set if anything changed or selections were modified
+  if (anyChanged || selections.length !== selectionSet.selections.length) {
+    return {
+      selectionSet: { ...selectionSet, selections },
+      changed: true,
+    };
+  }
+
+  return { selectionSet, changed: false };
 }
 
 /**
