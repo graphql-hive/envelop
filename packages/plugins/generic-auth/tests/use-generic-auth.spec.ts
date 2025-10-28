@@ -448,6 +448,17 @@ describe('useGenericAuth', () => {
             }
           }
         `,
+        /* GraphQL */ `
+          query {
+            public
+            person {
+              ...A
+            }
+          }
+          fragment A on Admin {
+            email
+          }
+        `,
       ]) {
         const result = await testInstance.execute(query);
         assertSingleExecutionValue(result);
@@ -459,9 +470,7 @@ describe('useGenericAuth', () => {
                   name: 'John',
                   email: null,
                 }
-              : {
-                  email: null,
-                },
+              : null,
           },
           errors: [
             {
@@ -479,6 +488,9 @@ describe('useGenericAuth', () => {
          person {
            name
          }
+       }",
+         "{
+         public
        }",
          "{
          public
