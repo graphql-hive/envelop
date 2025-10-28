@@ -1,4 +1,4 @@
-import { getIntrospectionQuery } from 'graphql';
+import { getIntrospectionQuery, print } from 'graphql';
 import { assertSingleExecutionValue, createTestkit } from '@envelop/testing';
 import { makeExecutableSchema } from '@graphql-tools/schema';
 import { createGraphQLError } from '@graphql-tools/utils';
@@ -282,7 +282,7 @@ describe('useGenericAuth', () => {
           type Query {
             protected: String @authenticated
             public: String
-            protectedPerson: Person
+            person: Person
           }
           interface Person {
             name: String
@@ -297,7 +297,7 @@ describe('useGenericAuth', () => {
         Query: {
           protected: (root, args, context) => context.currentUser.name,
           public: (root, args, context) => 'public',
-          protectedPerson: (root, args, context) => ({
+          person: (root, args, context) => ({
             name: context.currentUser?.name,
             email: context.currentUser?.email,
           }),
@@ -408,6 +408,7 @@ describe('useGenericAuth', () => {
     });
 
     it('Should prevent interface of protected type execution when user is not authenticated correctly but continue execution for public fields', async () => {
+      let reducedQuery = '';
       const testInstance = createTestkit(
         [
           useGenericAuth({
@@ -415,28 +416,41 @@ describe('useGenericAuth', () => {
             resolveUserFn: invalidresolveUserFn,
             rejectUnauthenticated: false,
           }),
+          {
+            onExecute({ args }) {
+              reducedQuery = print(args.document);
+            },
+          },
         ],
         schemaWithDirective,
       );
 
       const result = await testInstance.execute(
-        `query { public protectedPerson { ...on Admin { email } } }`,
+        `query { public person { name ...on Admin { email } } }`,
       );
       assertSingleExecutionValue(result);
       expect(result).toMatchObject({
         data: {
           public: 'public',
-          protectedPerson: {
+          person: {
             email: null,
           },
         },
         errors: [
           {
             message: `Unauthorized field or type`,
-            path: ['protectedPerson', 'email'],
+            path: ['person', 'email'],
           },
         ],
       });
+      expect(reducedQuery).toMatchInlineSnapshot(`
+       "{
+         public
+         person {
+           name
+         }
+       }"
+      `);
     });
 
     describe('auth directive with role', () => {
