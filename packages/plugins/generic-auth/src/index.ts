@@ -27,7 +27,7 @@ import {
   shouldIncludeNode,
 } from '@graphql-tools/utils';
 import { handleMaybePromise } from '@whatwg-node/promise-helpers';
-import { removeEmptyOrUnusedNodes } from './utils';
+import { removeEmptyOrUnusedNodes } from './utils.js';
 
 export type ResolveUserFn<UserType, ContextType = DefaultContext> = (
   context: ContextType,
