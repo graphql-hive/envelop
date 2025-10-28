@@ -282,6 +282,14 @@ describe('useGenericAuth', () => {
           type Query {
             protected: String @authenticated
             public: String
+            protectedPerson: Person
+          }
+          interface Person {
+            name: String
+          }
+          type Admin implements Person @authenticated {
+            name: String
+            email: String
           }
         `,
       ],
@@ -289,6 +297,16 @@ describe('useGenericAuth', () => {
         Query: {
           protected: (root, args, context) => context.currentUser.name,
           public: (root, args, context) => 'public',
+          protectedPerson: (root, args, context) => ({
+            name: context.currentUser?.name,
+            email: context.currentUser?.email,
+          }),
+        },
+        Person: {
+          __resolveType() {
+            // for the sake of tests, always admin
+            return 'Admin';
+          },
         },
       },
     });
@@ -384,6 +402,38 @@ describe('useGenericAuth', () => {
           {
             message: `Unauthorized field or type`,
             path: ['protected'],
+          },
+        ],
+      });
+    });
+
+    it('Should prevent interface of protected type execution when user is not authenticated correctly but continue execution for public fields', async () => {
+      const testInstance = createTestkit(
+        [
+          useGenericAuth({
+            mode: 'protect-granular',
+            resolveUserFn: invalidresolveUserFn,
+            rejectUnauthenticated: false,
+          }),
+        ],
+        schemaWithDirective,
+      );
+
+      const result = await testInstance.execute(
+        `query { public protectedPerson { ...on Admin { email } } }`,
+      );
+      assertSingleExecutionValue(result);
+      expect(result).toMatchObject({
+        data: {
+          public: 'public',
+          protectedPerson: {
+            email: null,
+          },
+        },
+        errors: [
+          {
+            message: `Unauthorized field or type`,
+            path: ['protectedPerson', 'email'],
           },
         ],
       });
