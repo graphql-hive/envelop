@@ -27,6 +27,7 @@ import {
   shouldIncludeNode,
 } from '@graphql-tools/utils';
 import { handleMaybePromise } from '@whatwg-node/promise-helpers';
+import { removeEmptyOrUnusedNodes } from './utils';
 
 export type ResolveUserFn<UserType, ContextType = DefaultContext> = (
   context: ContextType,
@@ -316,6 +317,7 @@ export const useGenericAuth = <
         addPlugin(
           useExtendedValidation({
             rejectOnErrors: rejectUnauthenticated,
+            onDocument: removeEmptyOrUnusedNodes,
             rules: [
               function AuthorizationExtendedValidationRule(context, args) {
                 const user = (args.contextValue as any)[contextFieldName];
