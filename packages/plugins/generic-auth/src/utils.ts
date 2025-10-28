@@ -1,23 +1,29 @@
-import {
-  DocumentNode,
-  DefinitionNode,
-  OperationDefinitionNode,
-  FragmentDefinitionNode,
-  SelectionSetNode,
-  SelectionNode,
-  FieldNode,
-  InlineFragmentNode,
-  FragmentSpreadNode,
-} from 'graphql';
+import { DocumentNode, FragmentDefinitionNode, SelectionSetNode } from 'graphql';
 
+/**
+ * Sanitizes a GraphQL document node by removing empty and unused elements.
+ * This includes:
+ * - Empty inline fragments
+ * - Fields with empty selection sets
+ * - Fragment spreads referencing empty fragments
+ * - Unused fragment definitions
+ *
+ * The sanitization is performed iteratively until the document stabilizes,
+ * ensuring that cascading cleanups (e.g., removing an empty inline fragment
+ * that causes a parent field to become empty) are handled correctly.
+ */
 export function sanitizeDocument(documentNode: DocumentNode): DocumentNode {
-  let changed = true;
-  let document = { ...documentNode, definitions: [...documentNode.definitions] };
+  let hasChanged = true;
+  let document = {
+    ...documentNode,
+    definitions: [...documentNode.definitions],
+  };
 
-  while (changed) {
-    changed = false;
+  // Keep sanitizing until no more changes occur
+  while (hasChanged) {
+    hasChanged = false;
 
-    // Build a map of fragment definitions
+    // Create a map of all fragment definitions for quick lookup
     const fragmentMap = new Map<string, FragmentDefinitionNode>();
     for (const definition of document.definitions) {
       if (definition.kind === 'FragmentDefinition') {
@@ -25,43 +31,54 @@ export function sanitizeDocument(documentNode: DocumentNode): DocumentNode {
       }
     }
 
-    // Sanitize each operation definition
-    document.definitions = document.definitions.map((def) => {
+    // Sanitize all definitions (both operations and fragments)
+    document.definitions = document.definitions.map(def => {
       if (def.kind === 'OperationDefinition') {
         const sanitized = sanitizeSelectionSet(def.selectionSet, fragmentMap);
         if (sanitized !== def.selectionSet) {
-          changed = true;
+          hasChanged = true;
+        }
+        return { ...def, selectionSet: sanitized };
+      } else if (def.kind === 'FragmentDefinition') {
+        const sanitized = sanitizeSelectionSet(def.selectionSet, fragmentMap);
+        if (sanitized !== def.selectionSet) {
+          hasChanged = true;
         }
         return { ...def, selectionSet: sanitized };
       }
       return def;
     });
 
-    // Rebuild fragment map after sanitization
-    const newFragmentMap = new Map<string, FragmentDefinitionNode>();
+    // Rebuild fragment map after potential sanitization
+    const updatedFragmentMap = new Map<string, FragmentDefinitionNode>();
     for (const definition of document.definitions) {
       if (definition.kind === 'FragmentDefinition') {
-        newFragmentMap.set(definition.name.value, definition);
+        updatedFragmentMap.set(definition.name.value, definition);
       }
     }
 
-    // Remove unused fragments
+    // Collect all fragments that are actually used
     const usedFragmentNames = new Set<string>();
     for (const definition of document.definitions) {
       if (definition.kind === 'OperationDefinition') {
-        collectUsedFragments(definition.selectionSet, newFragmentMap, usedFragmentNames);
+        findUsedFragments(definition.selectionSet, updatedFragmentMap, usedFragmentNames);
+      } else if (definition.kind === 'FragmentDefinition') {
+        // Fragments can also reference other fragments
+        findUsedFragments(definition.selectionSet, updatedFragmentMap, usedFragmentNames);
       }
     }
 
-    const filteredDefinitions = document.definitions.filter((def) => {
+    // Remove unused fragment definitions
+    const filteredDefinitions = document.definitions.filter(def => {
       if (def.kind === 'FragmentDefinition') {
         return usedFragmentNames.has(def.name.value);
       }
       return true;
     });
 
+    // Track if any fragments were removed
     if (filteredDefinitions.length !== document.definitions.length) {
-      changed = true;
+      hasChanged = true;
     }
 
     document = { ...document, definitions: filteredDefinitions };
@@ -70,57 +87,56 @@ export function sanitizeDocument(documentNode: DocumentNode): DocumentNode {
   return document;
 }
 
+/**
+ * Sanitizes a selection set by removing empty selections.
+ * Performs sanitization bottom-up (recursively sanitizes child selection sets first).
+ */
 function sanitizeSelectionSet(
   selectionSet: SelectionSetNode,
-  fragmentMap: Map<string, FragmentDefinitionNode>
+  fragmentMap: Map<string, FragmentDefinitionNode>,
 ): SelectionSetNode {
   let selections = [...selectionSet.selections];
 
-  // First pass: sanitize child selection sets
-  selections = selections.map((selection) => {
+  // Recursively sanitize nested selection sets first (bottom-up approach)
+  selections = selections.map(selection => {
     if (selection.kind === 'Field') {
       if (selection.selectionSet) {
-        const sanitized = sanitizeSelectionSet(selection.selectionSet, fragmentMap);
-        return { ...selection, selectionSet: sanitized };
+        const sanitizedChildSet = sanitizeSelectionSet(selection.selectionSet, fragmentMap);
+        return { ...selection, selectionSet: sanitizedChildSet };
       }
     } else if (selection.kind === 'InlineFragment') {
-      const sanitized = sanitizeSelectionSet(selection.selectionSet, fragmentMap);
-      return { ...selection, selectionSet: sanitized };
+      const sanitizedChildSet = sanitizeSelectionSet(selection.selectionSet, fragmentMap);
+      return { ...selection, selectionSet: sanitizedChildSet };
     }
     return selection;
   });
 
-  // Second pass: remove empty inline fragments
-  selections = selections.filter((selection) => {
+  // Remove empty inline fragments
+  selections = selections.filter(selection => {
     if (selection.kind === 'InlineFragment') {
-      if (selection.selectionSet.selections.length === 0) {
-        return false;
-      }
+      return selection.selectionSet.selections.length > 0;
     }
     return true;
   });
 
-  // Third pass: remove fields with empty selection sets (unless they have no selectionSet at all)
-  selections = selections.filter((selection) => {
+  // Remove fields with empty selection sets (scalar fields have no selectionSet)
+  selections = selections.filter(selection => {
     if (selection.kind === 'Field') {
-      if (selection.selectionSet && selection.selectionSet.selections.length === 0) {
-        return false;
-      }
+      return !selection.selectionSet || selection.selectionSet.selections.length > 0;
     }
     return true;
   });
 
-  // Fourth pass: remove fragment spreads that reference empty fragments
-  selections = selections.filter((selection) => {
+  // Remove fragment spreads that reference empty fragments
+  selections = selections.filter(selection => {
     if (selection.kind === 'FragmentSpread') {
       const fragment = fragmentMap.get(selection.name.value);
-      if (fragment && fragment.selectionSet.selections.length === 0) {
-        return false;
-      }
+      return !fragment || fragment.selectionSet.selections.length > 0;
     }
     return true;
   });
 
+  // Return new selection set only if something was removed
   if (selections.length !== selectionSet.selections.length) {
     return { ...selectionSet, selections };
   }
@@ -128,21 +144,28 @@ function sanitizeSelectionSet(
   return selectionSet;
 }
 
-function collectUsedFragments(
+/**
+ * Recursively collects all fragment names that are used in a selection set.
+ * This includes fragments referenced directly and fragments referenced by other fragments.
+ */
+function findUsedFragments(
   selectionSet: SelectionSetNode,
   fragmentMap: Map<string, FragmentDefinitionNode>,
-  usedFragments: Set<string>
+  usedFragments: Set<string>,
 ): void {
   for (const selection of selectionSet.selections) {
     if (selection.kind === 'Field' && selection.selectionSet) {
-      collectUsedFragments(selection.selectionSet, fragmentMap, usedFragments);
+      findUsedFragments(selection.selectionSet, fragmentMap, usedFragments);
     } else if (selection.kind === 'InlineFragment' && selection.selectionSet) {
-      collectUsedFragments(selection.selectionSet, fragmentMap, usedFragments);
+      findUsedFragments(selection.selectionSet, fragmentMap, usedFragments);
     } else if (selection.kind === 'FragmentSpread') {
-      usedFragments.add(selection.name.value);
-      const fragment = fragmentMap.get(selection.name.value);
-      if (fragment && fragment.selectionSet) {
-        collectUsedFragments(fragment.selectionSet, fragmentMap, usedFragments);
+      const fragmentName = selection.name.value;
+      usedFragments.add(fragmentName);
+
+      // Also include fragments referenced by this fragment (recursive)
+      const fragment = fragmentMap.get(fragmentName);
+      if (fragment?.selectionSet) {
+        findUsedFragments(fragment.selectionSet, fragmentMap, usedFragments);
       }
     }
   }
