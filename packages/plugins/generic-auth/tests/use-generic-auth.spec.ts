@@ -474,7 +474,7 @@ describe('useGenericAuth', () => {
           },
           errors: [
             {
-              message: `Unauthorized field or type`,
+              message: 'Unauthorized field or type',
               path: ['person', 'email'],
             },
           ],
