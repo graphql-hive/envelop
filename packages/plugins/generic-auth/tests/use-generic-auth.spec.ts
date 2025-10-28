@@ -298,7 +298,7 @@ describe('useGenericAuth', () => {
           protected: (root, args, context) => context.currentUser.name,
           public: (root, args, context) => 'public',
           person: (root, args, context) => ({
-            name: context.currentUser?.name,
+            name: 'John',
             email: context.currentUser?.email,
           }),
         },
@@ -408,7 +408,7 @@ describe('useGenericAuth', () => {
     });
 
     it('Should prevent interface of protected type execution when user is not authenticated correctly but continue execution for public fields', async () => {
-      let reducedQuery = '';
+      const reducedQueries = [] as string[];
       const testInstance = createTestkit(
         [
           useGenericAuth({
@@ -418,38 +418,72 @@ describe('useGenericAuth', () => {
           }),
           {
             onExecute({ args }) {
-              reducedQuery = print(args.document);
+              reducedQueries.push(print(args.document));
             },
           },
         ],
         schemaWithDirective,
       );
 
-      const result = await testInstance.execute(
-        `query { public person { name ...on Admin { email } } }`,
-      );
-      assertSingleExecutionValue(result);
-      expect(result).toMatchObject({
-        data: {
-          public: 'public',
-          person: {
-            email: null,
-          },
-        },
-        errors: [
+      // includes name (public) and admin spread (private)
+      for (const query of [
+        /* GraphQL */ `
           {
-            message: `Unauthorized field or type`,
-            path: ['person', 'email'],
+            public
+            person {
+              name
+              ... on Admin {
+                email
+              }
+            }
+          }
+        `,
+        /* GraphQL */ `
+          {
+            public
+            person {
+              ... on Admin {
+                email
+              }
+            }
+          }
+        `,
+      ]) {
+        const result = await testInstance.execute(query);
+        assertSingleExecutionValue(result);
+        expect(result).toMatchObject({
+          data: {
+            public: 'public',
+            person: query.includes('name')
+              ? {
+                  name: 'John',
+                  email: null,
+                }
+              : {
+                  email: null,
+                },
           },
-        ],
-      });
-      expect(reducedQuery).toMatchInlineSnapshot(`
-       "{
+          errors: [
+            {
+              message: `Unauthorized field or type`,
+              path: ['person', 'email'],
+            },
+          ],
+        });
+      }
+
+      expect(reducedQueries).toMatchInlineSnapshot(`
+       [
+         "{
          public
          person {
            name
          }
-       }"
+       }",
+         "{
+         public
+       }",
+       ]
       `);
     });
 
