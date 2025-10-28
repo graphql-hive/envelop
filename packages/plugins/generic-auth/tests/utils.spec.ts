@@ -29,6 +29,28 @@ it('removes inline fragment spreads that are empty', () => {
   `);
 });
 
+it('empties the whole document when no fields remain', () => {
+  const document = parse(/* GraphQL */ `
+    {
+      ... on Admin {
+        email
+      }
+    }
+  `);
+
+  // @ts-expect-error break it
+  document.definitions[0].selectionSet.selections[0].selectionSet.selections = [];
+
+  expect(print(document)).toMatchInlineSnapshot(`
+   "{
+     ... on Admin
+   }"
+  `);
+
+  const sanitized = sanitizeDocument(document);
+  expect(print(sanitized)).toBe('');
+});
+
 it('removes inline fragment spreads and parent field when empty', () => {
   const document = parse(
     /* GraphQL */ `
@@ -96,6 +118,157 @@ it('removes fragment spreads that reference empty fragments with leftover empty 
   expect(print(sanitized)).toMatchInlineSnapshot(`
    "{
      name
+   }"
+  `);
+});
+
+it('removes nested inline fragments and bubbles to parent field', () => {
+  const document = parse(/* GraphQL */ `
+    {
+      user {
+        name
+        profile {
+          ... on Admin {
+            settings {
+              ... on Admin {
+                theme
+              }
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  // @ts-expect-error break it
+  document.definitions[0].selectionSet.selections[0].selectionSet.selections[1].selectionSet.selections[0].selectionSet.selections[0].selectionSet.selections[0].selectionSet.selections =
+    [];
+
+  expect(print(document)).toMatchInlineSnapshot(`
+   "{
+     user {
+       name
+       profile {
+         ... on Admin {
+           settings {
+             ... on Admin
+           }
+         }
+       }
+     }
+   }"
+  `);
+
+  const sanitized = sanitizeDocument(document);
+  expect(print(sanitized)).toMatchInlineSnapshot(`
+   "{
+     user {
+       name
+     }
+   }"
+  `);
+});
+
+it('recursively removes fragments referencing other fragments that are empty', () => {
+  const document = parse(/* GraphQL */ `
+    {
+      hello
+      user {
+        ...A
+      }
+    }
+    fragment A on User {
+      ...B
+    }
+    fragment B on User {
+      name
+    }
+  `);
+
+  // @ts-expect-error break it
+  document.definitions[2].selectionSet.selections = [];
+
+  expect(print(document)).toMatchInlineSnapshot(`
+   "{
+     hello
+     user {
+       ...A
+     }
+   }
+
+   fragment A on User {
+     ...B
+   }
+
+   fragment B on User "
+  `);
+
+  const sanitized = sanitizeDocument(document);
+  expect(print(sanitized)).toMatchInlineSnapshot(`
+   "{
+     hello
+   }"
+  `);
+});
+
+it('removes unused fragment definitions', () => {
+  const document = parse(/* GraphQL */ `
+    {
+      name
+    }
+    fragment A on Admin {
+      email
+    }
+    fragment B on User {
+      name
+    }
+  `);
+
+  const sanitized = sanitizeDocument(document);
+  expect(print(sanitized)).toMatchInlineSnapshot(`
+   "{
+     name
+   }"
+  `);
+});
+
+it('removes all fields referencing empty fragments', () => {
+  const document = parse(/* GraphQL */ `
+    {
+      hello
+      admin {
+        ...A
+      }
+      user {
+        ...A
+      }
+    }
+    fragment A on Admin {
+      name
+    }
+  `);
+
+  // @ts-expect-error break it
+  document.definitions[1].selectionSet.selections = [];
+
+  expect(print(document)).toMatchInlineSnapshot(`
+   "{
+     hello
+     admin {
+       ...A
+     }
+     user {
+       ...A
+     }
+   }
+
+   fragment A on Admin "
+  `);
+
+  const sanitized = sanitizeDocument(document);
+  expect(print(sanitized)).toMatchInlineSnapshot(`
+   "{
+     hello
    }"
   `);
 });
