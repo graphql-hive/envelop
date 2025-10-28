@@ -14,7 +14,7 @@ it('removes inline fragment spreads that are empty', () => {
   // @ts-expect-error break it
   document.definitions[0].selectionSet.selections[1].selectionSet.selections = [];
 
-  expect(print(document)).toMatchInlineSnapshot(`
+  expect(print(document).trim()).toMatchInlineSnapshot(`
    "{
      name
      ... on Admin
@@ -22,7 +22,7 @@ it('removes inline fragment spreads that are empty', () => {
   `);
 
   const sanitized = removeEmptyOrUnusedNodes(document);
-  expect(print(sanitized)).toMatchInlineSnapshot(`
+  expect(print(sanitized).trim()).toMatchInlineSnapshot(`
    "{
      name
    }"
@@ -41,14 +41,14 @@ it('empties the whole document when no fields remain', () => {
   // @ts-expect-error break it
   document.definitions[0].selectionSet.selections[0].selectionSet.selections = [];
 
-  expect(print(document)).toMatchInlineSnapshot(`
+  expect(print(document).trim()).toMatchInlineSnapshot(`
    "{
      ... on Admin
    }"
   `);
 
   const sanitized = removeEmptyOrUnusedNodes(document);
-  expect(print(sanitized)).toBe('');
+  expect(print(sanitized).trim()).toBe('');
 });
 
 it('removes inline fragment spreads and parent field when empty', () => {
@@ -70,7 +70,7 @@ it('removes inline fragment spreads and parent field when empty', () => {
   document.definitions[0].selectionSet.selections[1].selectionSet.selections[0].selectionSet.selections =
     [];
 
-  expect(print(document)).toMatchInlineSnapshot(`
+  expect(print(document).trim()).toMatchInlineSnapshot(`
    "{
      name
      person {
@@ -80,7 +80,7 @@ it('removes inline fragment spreads and parent field when empty', () => {
   `);
 
   const sanitized = removeEmptyOrUnusedNodes(document);
-  expect(print(sanitized)).toMatchInlineSnapshot(`
+  expect(print(sanitized).trim()).toMatchInlineSnapshot(`
    "{
      name
    }"
@@ -103,7 +103,7 @@ it('removes fragment spreads that reference empty fragments with leftover empty 
   // @ts-expect-error break it
   document.definitions[1].selectionSet.selections = [];
 
-  expect(print(document)).toMatchInlineSnapshot(`
+  expect(print(document).trim()).toMatchInlineSnapshot(`
    "{
      name
      person {
@@ -115,7 +115,7 @@ it('removes fragment spreads that reference empty fragments with leftover empty 
   `);
 
   const sanitized = removeEmptyOrUnusedNodes(document);
-  expect(print(sanitized)).toMatchInlineSnapshot(`
+  expect(print(sanitized).trim()).toMatchInlineSnapshot(`
    "{
      name
    }"
@@ -144,7 +144,7 @@ it('removes nested inline fragments and bubbles to parent field', () => {
   document.definitions[0].selectionSet.selections[0].selectionSet.selections[1].selectionSet.selections[0].selectionSet.selections[0].selectionSet.selections[0].selectionSet.selections =
     [];
 
-  expect(print(document)).toMatchInlineSnapshot(`
+  expect(print(document).trim()).toMatchInlineSnapshot(`
    "{
      user {
        name
@@ -160,7 +160,7 @@ it('removes nested inline fragments and bubbles to parent field', () => {
   `);
 
   const sanitized = removeEmptyOrUnusedNodes(document);
-  expect(print(sanitized)).toMatchInlineSnapshot(`
+  expect(print(sanitized).trim()).toMatchInlineSnapshot(`
    "{
      user {
        name
@@ -188,7 +188,7 @@ it('recursively removes fragments referencing other fragments that are empty', (
   // @ts-expect-error break it
   document.definitions[2].selectionSet.selections = [];
 
-  expect(print(document)).toMatchInlineSnapshot(`
+  expect(print(document).trim()).toMatchInlineSnapshot(`
    "{
      hello
      user {
@@ -204,7 +204,7 @@ it('recursively removes fragments referencing other fragments that are empty', (
   `);
 
   const sanitized = removeEmptyOrUnusedNodes(document);
-  expect(print(sanitized)).toMatchInlineSnapshot(`
+  expect(print(sanitized).trim()).toMatchInlineSnapshot(`
    "{
      hello
    }"
@@ -225,7 +225,7 @@ it('removes unused fragment definitions', () => {
   `);
 
   const sanitized = removeEmptyOrUnusedNodes(document);
-  expect(print(sanitized)).toMatchInlineSnapshot(`
+  expect(print(sanitized).trim()).toMatchInlineSnapshot(`
    "{
      name
    }"
@@ -251,7 +251,7 @@ it('removes all fields referencing empty fragments', () => {
   // @ts-expect-error break it
   document.definitions[1].selectionSet.selections = [];
 
-  expect(print(document)).toMatchInlineSnapshot(`
+  expect(print(document).trim()).toMatchInlineSnapshot(`
    "{
      hello
      admin {
@@ -266,7 +266,7 @@ it('removes all fields referencing empty fragments', () => {
   `);
 
   const sanitized = removeEmptyOrUnusedNodes(document);
-  expect(print(sanitized)).toMatchInlineSnapshot(`
+  expect(print(sanitized).trim()).toMatchInlineSnapshot(`
    "{
      hello
    }"

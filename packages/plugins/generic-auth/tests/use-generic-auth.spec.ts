@@ -418,7 +418,7 @@ describe('useGenericAuth', () => {
           }),
           {
             onExecute({ args }) {
-              redactedQuery = print(args.document);
+              redactedQuery = print(args.document).trim();
             },
           },
         ],
@@ -465,7 +465,7 @@ describe('useGenericAuth', () => {
 
     // TODO: broken
     it.skip('Should prevent inline fragment of protected type execution when user is not authenticated correctly but continue execution for public fields outside the parent', async () => {
-      const reducedQueries = [] as string[];
+      let redactedQuery = '';
       const testInstance = createTestkit(
         [
           useGenericAuth({
@@ -475,7 +475,7 @@ describe('useGenericAuth', () => {
           }),
           {
             onExecute({ args }) {
-              reducedQueries.push(print(args.document));
+              redactedQuery = print(args.document).trim();
             },
           },
         ],
@@ -496,7 +496,9 @@ describe('useGenericAuth', () => {
       expect(result).toMatchObject({
         data: {
           public: 'public',
-          person: null,
+          person: {
+            email: null,
+          },
         },
         errors: [
           {
@@ -506,18 +508,16 @@ describe('useGenericAuth', () => {
         ],
       });
 
-      expect(reducedQueries).toMatchInlineSnapshot(`
-       [
-         "{
+      expect(redactedQuery).toMatchInlineSnapshot(`
+       "{
          public
-       }",
-       ]
+       }"
       `);
     });
 
     // TODO: broken
     it.skip('Should prevent fragment definition of protected type execution when user is not authenticated correctly but continue execution for public fields outside the parent', async () => {
-      const reducedQueries = [] as string[];
+      let redactedQuery = '';
       const testInstance = createTestkit(
         [
           useGenericAuth({
@@ -527,7 +527,7 @@ describe('useGenericAuth', () => {
           }),
           {
             onExecute({ args }) {
-              reducedQueries.push(print(args.document));
+              redactedQuery = print(args.document).trim();
             },
           },
         ],
@@ -548,7 +548,9 @@ describe('useGenericAuth', () => {
       assertSingleExecutionValue(result);
       expect(result.data).toEqual({
         public: 'public',
-        person: null,
+        person: {
+          email: null,
+        },
       });
       expect(result.errors).toMatchObject([
         {
@@ -557,12 +559,10 @@ describe('useGenericAuth', () => {
         },
       ]);
 
-      expect(reducedQueries).toMatchInlineSnapshot(`
-       [
-         "{
+      expect(redactedQuery).toMatchInlineSnapshot(`
+       "{
          public
-       }",
-       ]
+       }"
       `);
     });
 
