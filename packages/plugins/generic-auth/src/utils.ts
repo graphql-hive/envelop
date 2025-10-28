@@ -1,7 +1,7 @@
 import { DocumentNode, FragmentDefinitionNode, SelectionSetNode } from 'graphql';
 
 /**
- * Sanitizes a GraphQL document node by removing empty and unused elements.
+ * Sanitizes a GraphQL document node by removing empty and unused nodes.
  * This includes:
  * - Empty inline fragments
  * - Fields with empty selection sets
