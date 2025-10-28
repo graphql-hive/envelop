@@ -111,7 +111,7 @@ it('removes fragment spreads that reference empty fragments with leftover empty 
      }
    }
 
-   fragment A on Admin "
+   fragment A on Admin"
   `);
 
   const sanitized = removeEmptyOrUnusedNodes(document);
@@ -200,7 +200,7 @@ it('recursively removes fragments referencing other fragments that are empty', (
      ...B
    }
 
-   fragment B on User "
+   fragment B on User"
   `);
 
   const sanitized = removeEmptyOrUnusedNodes(document);
@@ -262,7 +262,7 @@ it('removes all fields referencing empty fragments', () => {
      }
    }
 
-   fragment A on Admin "
+   fragment A on Admin"
   `);
 
   const sanitized = removeEmptyOrUnusedNodes(document);
