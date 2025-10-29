@@ -463,8 +463,7 @@ describe('useGenericAuth', () => {
       `);
     });
 
-    // TODO: broken
-    it.skip('Should prevent inline fragment of protected type execution when user is not authenticated correctly but continue execution for public fields outside the parent', async () => {
+    it('Should prevent inline fragment of protected type execution when user is not authenticated correctly but continue execution for public fields outside the parent', async () => {
       let redactedQuery = '';
       const testInstance = createTestkit(
         [
@@ -515,8 +514,7 @@ describe('useGenericAuth', () => {
       `);
     });
 
-    // TODO: broken
-    it.skip('Should prevent fragment definition of protected type execution when user is not authenticated correctly but continue execution for public fields outside the parent', async () => {
+    it('Should prevent fragment definition of protected type execution when user is not authenticated correctly but continue execution for public fields outside the parent', async () => {
       let redactedQuery = '';
       const testInstance = createTestkit(
         [
@@ -546,18 +544,18 @@ describe('useGenericAuth', () => {
         }
       `);
       assertSingleExecutionValue(result);
-      expect(result.data).toEqual({
-        public: 'public',
-        person: {
-          email: null,
-        },
-      });
       expect(result.errors).toMatchObject([
         {
           message: 'Unauthorized field or type',
           path: ['person', 'email'],
         },
       ]);
+      expect(result.data).toEqual({
+        public: 'public',
+        person: {
+          email: null,
+        },
+      });
 
       expect(redactedQuery).toMatchInlineSnapshot(`
        "{

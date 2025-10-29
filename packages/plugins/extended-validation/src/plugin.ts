@@ -175,10 +175,7 @@ function buildHandler(
                 for (const pathItemIndex in path.slice(0, -1)) {
                   const pathItem = path[pathItemIndex];
                   currentData = currentData[pathItem] ||=
-                    typeof path[Number(pathItemIndex) + 1] === 'number' ||
-                    path[Number(pathItemIndex) + 1]
-                      ? []
-                      : {};
+                    typeof path[Number(pathItemIndex) + 1] === 'number' ? [] : {};
                   if (Array.isArray(currentData)) {
                     let pathItemIndexInArray = Number(pathItemIndex) + 1;
                     if (path[pathItemIndexInArray] === '@') {
