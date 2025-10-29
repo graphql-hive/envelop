@@ -1,5 +1,18 @@
 # @envelop/generic-auth
 
+## 10.0.1
+
+### Patch Changes
+
+- [#2742](https://github.com/graphql-hive/envelop/pull/2742)
+  [`62a8915`](https://github.com/graphql-hive/envelop/commit/62a891547ee2e24185e2c9c0362a5168784be300)
+  Thanks [@enisdenjo](https://github.com/enisdenjo)! - Remove empty and unused nodes from redacted
+  query after validation
+
+- Updated dependencies
+  [[`62a8915`](https://github.com/graphql-hive/envelop/commit/62a891547ee2e24185e2c9c0362a5168784be300)]:
+  - @envelop/extended-validation@6.1.0
+
 ## 10.0.0
 
 ### Patch Changes
@@ -36,7 +49,6 @@
 - [#2473](https://github.com/n1ru4l/envelop/pull/2473)
   [`90dd1a6`](https://github.com/n1ru4l/envelop/commit/90dd1a665e027ec309df4411f04a310806ee8f15)
   Thanks [@renovate](https://github.com/apps/renovate)! - dependencies updates:
-
   - Added dependency
     [`@whatwg-node/promise-helpers@^1.2.1` ↗︎](https://www.npmjs.com/package/@whatwg-node/promise-helpers/v/1.2.1)
     (to `dependencies`)
@@ -86,7 +98,6 @@
 - [#2347](https://github.com/n1ru4l/envelop/pull/2347)
   [`8b7e657`](https://github.com/n1ru4l/envelop/commit/8b7e657997cff286db145502d6d86cf7bc956cd0)
   Thanks [@ardatan](https://github.com/ardatan)! - dependencies updates:
-
   - Added dependency
     [`@graphql-tools/executor@^1.3.6` ↗︎](https://www.npmjs.com/package/@graphql-tools/executor/v/1.3.6)
     (to `dependencies`)
@@ -129,7 +140,6 @@
 - [#2281](https://github.com/n1ru4l/envelop/pull/2281)
   [`70d4d7a`](https://github.com/n1ru4l/envelop/commit/70d4d7a1fc359315e50704e52f96d98ba1506575)
   Thanks [@UserType;](https://github.com/UserType;)! - Refactor Generic Auth plugin;
-
   - [BREAKING] - Now `@auth` directive is renamed to `@authenticated`. If you want to keep the old
     name you can configure the plugin to use the old name.
 
@@ -266,7 +276,6 @@
 - [#1927](https://github.com/n1ru4l/envelop/pull/1927)
   [`e3c90116`](https://github.com/n1ru4l/envelop/commit/e3c9011640b73aaede4e5e472a5d45aab947165c)
   Thanks [@renovate](https://github.com/apps/renovate)! - dependencies updates:
-
   - Updated dependency
     [`@envelop/extended-validation@^3.0.2` ↗︎](https://www.npmjs.com/package/@envelop/extended-validation/v/3.0.2)
     (from `^3.0.1`, in `dependencies`)
@@ -295,7 +304,6 @@
 - [#1950](https://github.com/n1ru4l/envelop/pull/1950)
   [`4e368f61`](https://github.com/n1ru4l/envelop/commit/4e368f611cf06332407ab35641619cfb9b0d65ff)
   Thanks [@EmrysMyrddin](https://github.com/EmrysMyrddin)! - dependencies updates:
-
   - Added dependency
     [`@graphql-tools/utils@^10.0.6` ↗︎](https://www.npmjs.com/package/@graphql-tools/utils/v/10.0.6)
     (to `dependencies`)
@@ -347,7 +355,6 @@
 - [#1725](https://github.com/n1ru4l/envelop/pull/1725)
   [`c1eb2c09`](https://github.com/n1ru4l/envelop/commit/c1eb2c09ac535b076a5c13430c3892d98f7ef957)
   Thanks [@n1ru4l](https://github.com/n1ru4l)! - dependencies updates:
-
   - Updated dependency [`tslib@^2.5.0` ↗︎](https://www.npmjs.com/package/tslib/v/2.5.0) (from
     `^2.4.0`, in `dependencies`)
 
