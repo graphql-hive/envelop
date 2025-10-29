@@ -8,7 +8,6 @@ import {
   GraphQLField,
   GraphQLInterfaceType,
   GraphQLObjectType,
-  GraphQLOutputType,
   isAbstractType,
   isInterfaceType,
   isIntrospectionType,
@@ -27,6 +26,7 @@ import {
   shouldIncludeNode,
 } from '@graphql-tools/utils';
 import { handleMaybePromise } from '@whatwg-node/promise-helpers';
+import { removeEmptyOrUnusedNodes } from './utils.js';
 
 export type ResolveUserFn<UserType, ContextType = DefaultContext> = (
   context: ContextType,
@@ -316,6 +316,7 @@ export const useGenericAuth = <
         addPlugin(
           useExtendedValidation({
             rejectOnErrors: rejectUnauthenticated,
+            onDocument: removeEmptyOrUnusedNodes,
             rules: [
               function AuthorizationExtendedValidationRule(context, args) {
                 const user = (args.contextValue as any)[contextFieldName];
@@ -335,6 +336,48 @@ export const useGenericAuth = <
                   variableValues = args.variableValues;
                 }
                 const operationType = operationAST?.operation ?? ('query' as OperationTypeNode);
+
+                const fragmentPaths = new Map<string, ReadonlyArray<string | number>>();
+
+                function getResolvePath(
+                  path: readonly (string | number)[],
+                  currType: GraphQLObjectType,
+                ): (string | number)[] {
+                  const resolvePath: (string | number)[] = [];
+                  let curr: any = args.document;
+                  for (const pathItem of path) {
+                    curr = curr[pathItem];
+                    if (curr?.kind === 'Field') {
+                      const fieldName = curr.name.value;
+                      const responseKey = curr.alias?.value ?? fieldName;
+                      let field: GraphQLField<any, any> | undefined;
+                      if (isObjectType(currType)) {
+                        field = currType.getFields()[fieldName];
+                      } else if (isAbstractType(currType)) {
+                        for (const possibleType of schema.getPossibleTypes(currType)) {
+                          field = possibleType.getFields()[fieldName];
+                          if (field) {
+                            break;
+                          }
+                        }
+                      }
+                      if (isListType(field?.type)) {
+                        resolvePath.push('@');
+                      }
+                      resolvePath.push(responseKey);
+                      if (field?.type) {
+                        currType = getNamedType(field.type) as GraphQLObjectType;
+                      }
+                    } else if (curr?.kind === 'FragmentDefinition') {
+                      currType = schema.getType(curr.typeCondition.name.value) as GraphQLObjectType;
+                      const fragmentPath = fragmentPaths.get(curr.name.value);
+                      if (fragmentPath) {
+                        resolvePath.push(...fragmentPath);
+                      }
+                    }
+                  }
+                  return resolvePath;
+                }
 
                 const handleField = (
                   {
@@ -367,38 +410,10 @@ export const useGenericAuth = <
                   const userPolicies =
                     policiesByContext.get(args.contextValue as unknown as ContextType) ?? [];
 
-                  const resolvePath: (string | number)[] = [];
-
-                  let curr: any = args.document;
-                  let currType: GraphQLOutputType | undefined | null = getDefinedRootType(
-                    schema,
-                    operationType,
+                  const resolvePath: (string | number)[] = getResolvePath(
+                    path,
+                    getDefinedRootType(schema, operationType),
                   );
-                  for (const pathItem of path) {
-                    curr = curr[pathItem];
-                    if (curr?.kind === 'Field') {
-                      const fieldName = curr.name.value;
-                      const responseKey = curr.alias?.value ?? fieldName;
-                      let field: GraphQLField<any, any> | undefined;
-                      if (isObjectType(currType)) {
-                        field = currType.getFields()[fieldName];
-                      } else if (isAbstractType(currType)) {
-                        for (const possibleType of schema.getPossibleTypes(currType)) {
-                          field = possibleType.getFields()[fieldName];
-                          if (field) {
-                            break;
-                          }
-                        }
-                      }
-                      if (isListType(field?.type)) {
-                        resolvePath.push('@');
-                      }
-                      resolvePath.push(responseKey);
-                      if (field?.type) {
-                        currType = getNamedType(field.type);
-                      }
-                    }
-                  }
 
                   return validateUser({
                     user,
@@ -421,6 +436,17 @@ export const useGenericAuth = <
                 };
 
                 return {
+                  FragmentSpread(node, key, parent, path, ancestors) {
+                    const fragmentName = node.name.value;
+                    const fragment = context.getFragment(fragmentName);
+                    if (fragment) {
+                      const resolvePath = getResolvePath(
+                        path,
+                        schema.getType(fragment.typeCondition.name.value) as GraphQLObjectType,
+                      );
+                      fragmentPaths.set(fragmentName, resolvePath);
+                    }
+                  },
                   Field(node, key, parent, path, ancestors) {
                     if (variableValues && !shouldIncludeNode(variableValues, node)) {
                       return;

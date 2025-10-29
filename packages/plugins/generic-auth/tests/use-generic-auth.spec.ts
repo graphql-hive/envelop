@@ -1,4 +1,4 @@
-import { getIntrospectionQuery } from 'graphql';
+import { getIntrospectionQuery, print } from 'graphql';
 import { assertSingleExecutionValue, createTestkit } from '@envelop/testing';
 import { makeExecutableSchema } from '@graphql-tools/schema';
 import { createGraphQLError } from '@graphql-tools/utils';
@@ -282,6 +282,14 @@ describe('useGenericAuth', () => {
           type Query {
             protected: String @authenticated
             public: String
+            person: Person
+          }
+          interface Person {
+            name: String
+          }
+          type Admin implements Person @authenticated {
+            name: String
+            email: String
           }
         `,
       ],
@@ -289,6 +297,16 @@ describe('useGenericAuth', () => {
         Query: {
           protected: (root, args, context) => context.currentUser.name,
           public: (root, args, context) => 'public',
+          person: (root, args, context) => ({
+            name: 'John',
+            email: context.currentUser?.email,
+          }),
+        },
+        Person: {
+          __resolveType() {
+            // for the sake of tests, always admin
+            return 'Admin';
+          },
         },
       },
     });
@@ -387,6 +405,163 @@ describe('useGenericAuth', () => {
           },
         ],
       });
+    });
+
+    it('Should prevent inline fragment of protected type execution when user is not authenticated correctly but continue execution for public fields inside the parent', async () => {
+      let redactedQuery = '';
+      const testInstance = createTestkit(
+        [
+          useGenericAuth({
+            mode: 'protect-granular',
+            resolveUserFn: invalidresolveUserFn,
+            rejectUnauthenticated: false,
+          }),
+          {
+            onExecute({ args }) {
+              redactedQuery = print(args.document).trim();
+            },
+          },
+        ],
+        schemaWithDirective,
+      );
+
+      const result = await testInstance.execute(/* GraphQL */ `
+        {
+          public
+          person {
+            name
+            ... on Admin {
+              email
+            }
+          }
+        }
+      `);
+      assertSingleExecutionValue(result);
+      expect(result).toMatchObject({
+        data: {
+          public: 'public',
+          person: {
+            name: 'John',
+            email: null,
+          },
+        },
+        errors: [
+          {
+            message: 'Unauthorized field or type',
+            path: ['person', 'email'],
+          },
+        ],
+      });
+
+      expect(redactedQuery).toMatchInlineSnapshot(`
+       "{
+         public
+         person {
+           name
+         }
+       }"
+      `);
+    });
+
+    it('Should prevent inline fragment of protected type execution when user is not authenticated correctly but continue execution for public fields outside the parent', async () => {
+      let redactedQuery = '';
+      const testInstance = createTestkit(
+        [
+          useGenericAuth({
+            mode: 'protect-granular',
+            resolveUserFn: invalidresolveUserFn,
+            rejectUnauthenticated: false,
+          }),
+          {
+            onExecute({ args }) {
+              redactedQuery = print(args.document).trim();
+            },
+          },
+        ],
+        schemaWithDirective,
+      );
+
+      const result = await testInstance.execute(/* GraphQL */ `
+        {
+          public
+          person {
+            ... on Admin {
+              email
+            }
+          }
+        }
+      `);
+      assertSingleExecutionValue(result);
+      expect(result).toMatchObject({
+        data: {
+          public: 'public',
+          person: {
+            email: null,
+          },
+        },
+        errors: [
+          {
+            message: 'Unauthorized field or type',
+            path: ['person', 'email'],
+          },
+        ],
+      });
+
+      expect(redactedQuery).toMatchInlineSnapshot(`
+       "{
+         public
+       }"
+      `);
+    });
+
+    it('Should prevent fragment definition of protected type execution when user is not authenticated correctly but continue execution for public fields outside the parent', async () => {
+      let redactedQuery = '';
+      const testInstance = createTestkit(
+        [
+          useGenericAuth({
+            mode: 'protect-granular',
+            resolveUserFn: invalidresolveUserFn,
+            rejectUnauthenticated: false,
+          }),
+          {
+            onExecute({ args }) {
+              redactedQuery = print(args.document).trim();
+            },
+          },
+        ],
+        schemaWithDirective,
+      );
+
+      const result = await testInstance.execute(/* GraphQL */ `
+        query {
+          public
+          person {
+            ...A
+          }
+        }
+        fragment A on Admin {
+          email
+        }
+      `);
+      assertSingleExecutionValue(result);
+      expect(result.errors).toMatchObject([
+        {
+          message: 'Unauthorized field or type',
+          path: ['person', 'email'],
+        },
+      ]);
+      expect(result.data).toEqual({
+        public: 'public',
+        person: {
+          email: null,
+        },
+      });
+
+      expect(redactedQuery).toMatchInlineSnapshot(`
+       "{
+         public
+       }"
+      `);
     });
 
     describe('auth directive with role', () => {

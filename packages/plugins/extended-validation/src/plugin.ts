@@ -1,4 +1,5 @@
 import {
+  DocumentNode,
   ExecutionArgs,
   ExecutionResult,
   GraphQLError,
@@ -34,6 +35,10 @@ type OnValidationFailedCallback = (params: {
 
 export const useExtendedValidation = <PluginContext extends Record<string, any> = {}>(options: {
   rules: Array<ExtendedValidationRule>;
+  /**
+   * Callback that is invoked when the document is assembled by the visitor.
+   */
+  onDocument?: (document: DocumentNode) => DocumentNode;
   /**
    * Callback that is invoked if the extended validation yields any errors.
    */
@@ -74,12 +79,14 @@ export const useExtendedValidation = <PluginContext extends Record<string, any> 
     onSubscribe: buildHandler(
       'subscribe',
       getTypeInfo,
+      options.onDocument,
       options.onValidationFailed,
       options.rejectOnErrors !== false,
     ),
     onExecute: buildHandler(
       'execute',
       getTypeInfo,
+      options.onDocument,
       options.onValidationFailed,
       options.rejectOnErrors !== false,
     ),
@@ -89,6 +96,7 @@ export const useExtendedValidation = <PluginContext extends Record<string, any> 
 function buildHandler(
   name: 'execute' | 'subscribe',
   getTypeInfo: () => TypeInfo | undefined,
+  onDocument?: (document: DocumentNode) => DocumentNode,
   onValidationFailed?: OnValidationFailedCallback,
   rejectOnErrors = true,
 ) {
@@ -127,6 +135,9 @@ function buildHandler(
         );
 
         args.document = visit(args.document, visitWithTypeInfo(typeInfo, visitor));
+        if (onDocument) {
+          args.document = onDocument(args.document);
+        }
 
         if (errors.length > 0) {
           if (rejectOnErrors) {
@@ -164,10 +175,7 @@ function buildHandler(
                 for (const pathItemIndex in path.slice(0, -1)) {
                   const pathItem = path[pathItemIndex];
                   currentData = currentData[pathItem] ||=
-                    typeof path[Number(pathItemIndex) + 1] === 'number' ||
-                    path[Number(pathItemIndex) + 1]
-                      ? []
-                      : {};
+                    typeof path[Number(pathItemIndex) + 1] === 'number' ? [] : {};
                   if (Array.isArray(currentData)) {
                     let pathItemIndexInArray = Number(pathItemIndex) + 1;
                     if (path[pathItemIndexInArray] === '@') {
