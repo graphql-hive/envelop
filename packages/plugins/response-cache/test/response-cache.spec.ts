@@ -3586,7 +3586,8 @@ describe('useResponseCache', () => {
           [
             useResponseCache({
               session: () => null,
-              buildResponseCacheKey: ({ extras: { scope, metadata }, ...rest }) => {
+              buildResponseCacheKey: ({ extras, ...rest }) => {
+                const { scope, metadata } = extras(schema);
                 expect(scope).toEqual('PRIVATE');
                 expect(metadata?.privateProperty).toEqual(getPrivateProperty());
                 return defaultBuildResponseCacheKey(rest);
@@ -3667,13 +3668,17 @@ describe('useResponseCache', () => {
         },
       });
 
+      let multipleCalls = false;
+
       const testInstance = createTestkit(
         [
           useResponseCache({
             session: () => null,
-            buildResponseCacheKey: ({ extras: { scope, metadata }, ...rest }) => {
+            buildResponseCacheKey: ({ extras, ...rest }) => {
+              const { scope, metadata } = extras(schema);
               expect(scope).toEqual('PRIVATE');
-              expect(metadata?.privateProperty).toEqual('User.name');
+              expect(metadata.privateProperty).toEqual('User.name');
+              expect(metadata.hitCache).toEqual(multipleCalls ? true : undefined);
               return defaultBuildResponseCacheKey(rest);
             },
             ttl: 200,
@@ -3700,8 +3705,11 @@ describe('useResponseCache', () => {
       `;
 
       await testInstance.execute(query);
-
       expect(spy).toHaveBeenCalledTimes(1);
+
+      multipleCalls = true;
+      await testInstance.execute(query);
+      expect(spy).toHaveBeenCalledTimes(2);
     });
 
     it('should cache correctly for session with ttl being a valid number', async () => {

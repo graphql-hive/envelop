@@ -1,4 +1,4 @@
-import jsonStableStringify from 'fast-json-stable-stringify';
+import stringify from 'fast-json-stable-stringify';
 import {
   ASTVisitor,
   DocumentNode,
@@ -36,7 +36,7 @@ import {
 } from '@graphql-tools/utils';
 import { handleMaybePromise, MaybePromise } from '@whatwg-node/promise-helpers';
 import type { Cache, CacheEntityRecord } from './cache.js';
-import { getScopeFromQuery } from './get-scope.js';
+import { getScopeFromQuery, Scope } from './get-scope.js';
 import { hashSHA256 } from './hash-sha256.js';
 import { createInMemoryCache } from './in-memory-cache.js';
 
@@ -55,12 +55,7 @@ export type BuildResponseCacheKeyFunction = (params: {
   /** GraphQL Context */
   context: ExecutionArgs['contextValue'];
   /** Extras of the query (won't be computed if not requested) */
-  extras: {
-    scope: NonNullable<CacheControlDirective['scope']>;
-    metadata: {
-      privateProperty?: string;
-    };
-  };
+  extras: (schema: GraphQLSchema) => Scope;
 }) => MaybePromise<string>;
 
 export type GetDocumentStringFunction = (executionArgs: ExecutionArgs) => string;
@@ -180,7 +175,7 @@ export const defaultBuildResponseCacheKey = (params: {
     [
       params.documentString,
       params.operationName ?? '',
-      jsonStableStringify(params.variableValues ?? {}),
+      stringify(params.variableValues ?? {}),
       params.sessionId ?? '',
     ].join('|'),
   );
@@ -309,14 +304,11 @@ export type CacheControlDirective = {
   scope?: 'PUBLIC' | 'PRIVATE';
 };
 
-export let schema: GraphQLSchema;
+let schema: GraphQLSchema;
 let ttlPerSchemaCoordinate: Record<string, CacheControlDirective['maxAge']> = {};
 let scopePerSchemaCoordinate: Record<string, CacheControlDirective['scope']> = {};
 
-export function isPrivate(
-  typeName: string,
-  data?: Record<string, NonNullable<CacheControlDirective['scope']>>,
-): boolean {
+export function isPrivate(typeName: string, data?: Record<string, unknown>): boolean {
   if (scopePerSchemaCoordinate[typeName] === 'PRIVATE') {
     return true;
   }
@@ -370,15 +362,6 @@ export function useResponseCache<PluginContext extends Record<string, any> = {}>
   };
   scopePerSchemaCoordinate = { ...localScopePerSchemaCoordinate };
   const idFieldByTypeName = new Map<string, string>();
-
-  function isPrivate(typeName: string, data: Record<string, unknown>): boolean {
-    if (scopePerSchemaCoordinate[typeName] === 'PRIVATE') {
-      return true;
-    }
-    return Object.keys(data).some(
-      fieldName => scopePerSchemaCoordinate[`${typeName}.${fieldName}`] === 'PRIVATE',
-    );
-  }
 
   return {
     onSchemaChange({ schema: newSchema }) {
@@ -585,26 +568,15 @@ export function useResponseCache<PluginContext extends Record<string, any> = {}>
 
       return handleMaybePromise(
         () =>
-          buildResponseCacheKey(
-            new Proxy(
-              {
-                documentString: getDocumentString(onExecuteParams.args),
-                variableValues: onExecuteParams.args.variableValues,
-                operationName: onExecuteParams.args.operationName,
-                sessionId,
-                context: onExecuteParams.args.contextValue,
-                extras: undefined as any,
-              },
-              {
-                get: (obj, prop) => {
-                  if (prop === 'extras') {
-                    return getScopeFromQuery(schema, onExecuteParams.args.document.loc.source.body);
-                  }
-                  return obj[prop as keyof typeof obj];
-                },
-              },
-            ),
-          ),
+          buildResponseCacheKey({
+            documentString: getDocumentString(onExecuteParams.args),
+            variableValues: onExecuteParams.args.variableValues,
+            operationName: onExecuteParams.args.operationName,
+            sessionId,
+            context: onExecuteParams.args.contextValue,
+            extras: (schema: GraphQLSchema) =>
+              getScopeFromQuery(schema, onExecuteParams.args.document.loc.source.body),
+          }),
         cacheKey => {
           const cacheInstance = cacheFactory(onExecuteParams.args.contextValue);
           if (cacheInstance == null) {

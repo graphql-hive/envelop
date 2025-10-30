@@ -10,7 +10,7 @@ import {
   SelectionNode,
   visit,
 } from 'graphql';
-import { memoize1 } from '@graphql-tools/utils';
+import { LRUCache } from 'lru-cache';
 import { isPrivate, type CacheControlDirective } from './plugin';
 
 /** Parse the selected query fields */
@@ -92,14 +92,33 @@ function getSchemaCoordinatesFromQuery(schema: GraphQLSchema, query: string): Se
   return fields;
 }
 
+export type Scope = {
+  scope: NonNullable<CacheControlDirective['scope']>;
+  metadata: { privateProperty?: string; hitCache?: boolean };
+};
+
+const scopeCachePerSchema = new WeakMap<GraphQLSchema, LRUCache<string, Scope>>();
+
 export const getScopeFromQuery = (
   schema: GraphQLSchema,
   query: string,
-): {
-  scope: NonNullable<CacheControlDirective['scope']>;
-  metadata: { privateProperty?: string };
-} => {
-  const fn = memoize1(({ query }: { query: string }) => {
+  options?: { sizePerSchema?: number },
+): Scope => {
+  if (!scopeCachePerSchema.has(schema)) {
+    scopeCachePerSchema.set(
+      schema,
+      new LRUCache({
+        max: options?.sizePerSchema ?? 1000,
+      }),
+    );
+  }
+
+  const cache = scopeCachePerSchema.get(schema);
+  const cachedScope = cache?.get(query);
+
+  if (cachedScope) return { ...cachedScope, metadata: { ...cachedScope.metadata, hitCache: true } };
+
+  function getScope() {
     const schemaCoordinates = getSchemaCoordinatesFromQuery(schema, query);
 
     for (const coordinate of schemaCoordinates) {
@@ -109,7 +128,10 @@ export const getScopeFromQuery = (
     }
 
     return { scope: 'PUBLIC' as const, metadata: {} };
-  });
+  }
 
-  return fn({ query });
+  const scope = getScope();
+  cache?.set(query, scope);
+
+  return scope;
 };
