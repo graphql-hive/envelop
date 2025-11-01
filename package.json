@@ -43,7 +43,7 @@
     "caniuse-lite": "^1.0.30001692",
     "chalk": "5.6.2",
     "cross-env": "10.1.0",
-    "eslint": "9.38.0",
+    "eslint": "9.39.0",
     "eslint-config-prettier": "10.1.8",
     "eslint-config-standard": "17.1.0",
     "eslint-plugin-import": "2.32.0",
@@ -58,12 +58,12 @@
     "prettier": "3.6.2",
     "prettier-plugin-pkg": "0.21.2",
     "prettier-plugin-sh": "0.18.0",
-    "rimraf": "6.0.1",
+    "rimraf": "6.1.0",
     "ts-jest": "29.4.5",
     "ts-node": "10.9.2",
     "typescript": "5.9.3",
     "wait-on": "9.0.1",
-    "wrangler": "4.45.2"
+    "wrangler": "4.45.3"
   },
   "lint-staged": {
     "packages/**/src/**/*.{ts,tsx}": [
