@@ -38,6 +38,7 @@ export type ExcludeOperationNamesFn = (operationName: string | undefined) => boo
 export type TracingOptions = {
   document?: boolean;
   resolvers?: boolean;
+  defaultResolvers?: boolean;
   variables?: boolean | ResolveVariablesAttributesFn;
   result?: boolean;
   traceIdInResult?: string;
@@ -89,39 +90,42 @@ export const useOpenTelemetry = (
     onPluginInit({ addPlugin }) {
       if (options.resolvers) {
         addPlugin(
-          useOnResolve(({ info, context, args }) => {
-            const parentSpan = spanByContext.get(context);
-            if (parentSpan) {
-              const ctx = opentelemetry.trace.setSpan(getCurrentOtelContext(context), parentSpan);
-              const { fieldName, returnType, parentType } = info;
+          useOnResolve(
+            ({ info, context, args }) => {
+              const parentSpan = spanByContext.get(context);
+              if (parentSpan) {
+                const ctx = opentelemetry.trace.setSpan(getCurrentOtelContext(context), parentSpan);
+                const { fieldName, returnType, parentType } = info;
 
-              const resolverSpan = tracer.startSpan(
-                `${spanPrefix}${parentType.name}.${fieldName}`,
-                {
-                  attributes: {
-                    [AttributeName.RESOLVER_FIELD_NAME]: fieldName,
-                    [AttributeName.RESOLVER_TYPE_NAME]: parentType.toString(),
-                    [AttributeName.RESOLVER_RESULT_TYPE]: returnType.toString(),
-                    [AttributeName.RESOLVER_ARGS]: JSON.stringify(args || {}),
+                const resolverSpan = tracer.startSpan(
+                  `${spanPrefix}${parentType.name}.${fieldName}`,
+                  {
+                    attributes: {
+                      [AttributeName.RESOLVER_FIELD_NAME]: fieldName,
+                      [AttributeName.RESOLVER_TYPE_NAME]: parentType.toString(),
+                      [AttributeName.RESOLVER_RESULT_TYPE]: returnType.toString(),
+                      [AttributeName.RESOLVER_ARGS]: JSON.stringify(args || {}),
+                    },
                   },
-                },
-                ctx,
-              );
+                  ctx,
+                );
 
-              return ({ result }) => {
-                if (result instanceof Error) {
-                  resolverSpan.recordException({
-                    name: AttributeName.RESOLVER_EXCEPTION,
-                    message: JSON.stringify(result),
-                  });
-                } else {
-                  resolverSpan.end();
-                }
-              };
-            }
+                return ({ result }) => {
+                  if (result instanceof Error) {
+                    resolverSpan.recordException({
+                      name: AttributeName.RESOLVER_EXCEPTION,
+                      message: JSON.stringify(result),
+                    });
+                  } else {
+                    resolverSpan.end();
+                  }
+                };
+              }
 
-            return () => {};
-          }),
+              return () => {};
+            },
+            { skipDefaultResolvers: (options.defaultResolvers ?? true) === false },
+          ),
         );
       }
     },
