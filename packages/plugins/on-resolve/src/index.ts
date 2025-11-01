@@ -40,6 +40,13 @@ export type UseOnResolveOptions = {
    * @default true
    */
   skipIntrospection?: boolean;
+
+  /**
+   * Skip executing the `onResolve` hook on fields with default resolvers.
+   *
+   * @default false
+   */
+  skipDefaultResolvers?: boolean;
 };
 
 /**
@@ -49,7 +56,7 @@ export type UseOnResolveOptions = {
  */
 export function useOnResolve<PluginContext extends Record<string, any> = {}>(
   onResolve: OnResolve<PluginContext>,
-  opts: UseOnResolveOptions = { skipIntrospection: true },
+  opts: UseOnResolveOptions = { skipIntrospection: true, skipDefaultResolvers: false },
 ): Plugin<PluginContext> {
   const hasWrappedResolveSymbol = Symbol('hasWrappedResolve');
   return {
@@ -61,6 +68,7 @@ export function useOnResolve<PluginContext extends Record<string, any> = {}>(
         if ((!opts.skipIntrospection || !isIntrospectionType(type)) && isObjectType(type)) {
           for (const field of Object.values(type.getFields())) {
             if ((field as { [hasWrappedResolveSymbol]?: true })[hasWrappedResolveSymbol]) continue;
+            if (opts.skipDefaultResolvers && !field.resolve) continue;
 
             let resolver = (field.resolve || defaultFieldResolver) as Resolver<PluginContext>;
 
