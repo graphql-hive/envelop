@@ -62,7 +62,7 @@
   },
   "devDependencies": {
     "@envelop/core": "workspace:^",
-    "@graphql-tools/schema": "10.0.25",
+    "@graphql-tools/schema": "10.0.26",
     "graphql": "16.8.1",
     "hot-shots": "11.2.0",
     "typescript": "5.9.3"
