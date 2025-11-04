@@ -84,7 +84,7 @@
       "micromatch": "4.0.8",
       "dompurify": "3.3.0",
       "webpack": "5.102.1",
-      "axios": "1.13.1",
+      "axios": "1.13.2",
       "undici": "5.29.0",
       "cookie": "1.0.2",
       "@eslint/plugin-kit": "0.4.1",
