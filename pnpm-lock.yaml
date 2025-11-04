@@ -14,7 +14,7 @@ overrides:
   micromatch: 4.0.8
   dompurify: 3.3.0
   webpack: 5.102.1
-  axios: 1.13.1
+  axios: 1.13.2
   undici: 5.29.0
   cookie: 1.0.2
   '@eslint/plugin-kit': 0.4.1
@@ -230,8 +230,8 @@ importers:
         version: 1.13.0(graphql@16.8.1)
     devDependencies:
       '@azure/functions':
-        specifier: 4.8.0
-        version: 4.8.0
+        specifier: 4.8.1
+        version: 4.8.1
       '@types/node':
         specifier: 24.10.0
         version: 24.10.0
@@ -329,8 +329,8 @@ importers:
         version: 1.13.0(graphql@16.8.1)
     devDependencies:
       '@azure/functions':
-        specifier: 4.8.0
-        version: 4.8.0
+        specifier: 4.8.1
+        version: 4.8.1
       '@types/node':
         specifier: 24.10.0
         version: 24.10.0
@@ -755,11 +755,11 @@ importers:
         version: 2.8.1
     devDependencies:
       '@apollo/gateway':
-        specifier: 2.11.3
-        version: 2.11.3(encoding@0.1.13)(graphql@16.8.1)
+        specifier: 2.12.0
+        version: 2.12.0(encoding@0.1.13)(graphql@16.8.1)
       '@apollo/subgraph':
-        specifier: 2.11.3
-        version: 2.11.3(graphql@16.8.1)
+        specifier: 2.12.0
+        version: 2.12.0(graphql@16.8.1)
       '@envelop/core':
         specifier: workspace:^
         version: link:../../core/dist
@@ -1742,8 +1742,8 @@ packages:
     peerDependencies:
       graphql: 16.8.1
 
-  '@apollo/composition@2.11.3':
-    resolution: {integrity: sha512-R10CLo4b9kXaDOtpcJrNEXTfoozDI0BrL18LXcfCxZhPcPQiHfX2YO3lpwwjB5Qe3tnHGJC/9nKStGw4HnFgjA==}
+  '@apollo/composition@2.12.0':
+    resolution: {integrity: sha512-Gf6SWzfFAUyxj+dIBImraRsDDigvdO0zkoq0tnYSwqzHUO9dHeztkLf2+4VJPHnwJ06UqLOLrZARMB7pzb/UBg==}
     engines: {node: '>=14.15.0'}
     peerDependencies:
       graphql: 16.8.1
@@ -1754,14 +1754,14 @@ packages:
     peerDependencies:
       graphql: 16.8.1
 
-  '@apollo/federation-internals@2.11.3':
-    resolution: {integrity: sha512-TOiJc1hkf22LBRA9X0D6XnM3ve1iDJSyK5voypPzhpOkNAHhJToVMF8LaTmM56mDx5KuAfsQZp1D/285LmfcRw==}
+  '@apollo/federation-internals@2.12.0':
+    resolution: {integrity: sha512-NCqKxZqTT9oFqRfq/yLcb8U5rzt+v00i5d5cFFadjdO61YwAUCD0W5JFDQzZsYzX7huuK/7N7JWqI897vAOeeQ==}
     engines: {node: '>=14.15.0'}
     peerDependencies:
       graphql: 16.8.1
 
-  '@apollo/gateway@2.11.3':
-    resolution: {integrity: sha512-1fFyYJoD++XeaOiGhgfFAK7XRdAxp6Y3MppS10HwLaviKU9c8E2uC0jn77pBZ6BnKR8DXWGMax5KAtivsNGehQ==}
+  '@apollo/gateway@2.12.0':
+    resolution: {integrity: sha512-L6n5qgaJSch/fHiU1LhYLqhiRwrNzvWP3sh8yhHbZeDw55KxUbzF9B69o1ic3ltKR0AO6i5lIejBVFimtauL6w==}
     engines: {node: '>=14.15.0'}
     peerDependencies:
       graphql: 16.8.1
@@ -1778,14 +1778,14 @@ packages:
     resolution: {integrity: sha512-Lahx5zntHPZia35myYDBRuF58tlwPskwHc5CWBZC/4bMKB6siTBWwtMrkqXcsNwQiFSzSx5hKdRPUmemrEp3Gg==}
     hasBin: true
 
-  '@apollo/query-graphs@2.11.3':
-    resolution: {integrity: sha512-yRr6rexXd/unurxyFZMWZELgByOvjAc7ujlkiBm07BPItGtdTLfSbmx8E+7yCX0BJCnBDzW58ORDZKVtRupvnA==}
+  '@apollo/query-graphs@2.12.0':
+    resolution: {integrity: sha512-4O8noHTpbwvAu0aYBfX7hTLw/FYjYGL2bFbmL/VXDDH46zd+oow0k3HAk3Jyq/i0AXobZ26Amne7cDB1IzyLEQ==}
     engines: {node: '>=14.15.0'}
     peerDependencies:
       graphql: 16.8.1
 
-  '@apollo/query-planner@2.11.3':
-    resolution: {integrity: sha512-m8b077tgaohC9yAT6YPeRbQZ4f2EhmPgAEsUfx3LOkJS21d6UazeGbIgnjJwSy86y1NIJlcaO3HdlFk/Mwn5oA==}
+  '@apollo/query-planner@2.12.0':
+    resolution: {integrity: sha512-lnO9cDS5+rNXus3T3woPB0QUtEq2BYnP3+IczUfBH2uc3xjOSss7a1yy/RAbb4GPMJH0gCqJKVAl+WUHe47qbQ==}
     engines: {node: '>=14.15.0'}
     peerDependencies:
       graphql: 16.8.1
@@ -1803,8 +1803,8 @@ packages:
     peerDependencies:
       graphql: 16.8.1
 
-  '@apollo/subgraph@2.11.3':
-    resolution: {integrity: sha512-Tgk2WhEqfu50eEOtRFnthQ1eTCVfIYkzJZ1DPQzxZzK5x3FzYmQzRdJ5e32lPu+LPIt/m2kLaGDC6cVdVGmi4g==}
+  '@apollo/subgraph@2.12.0':
+    resolution: {integrity: sha512-5bRPmdUwDoxz8MbD8QeMx06ReDAvQycytqOnV4QjXMb9innoIRfqvv8mpVyQ8Bsy3cd53L6myMikXLEhbm0bSw==}
     engines: {node: '>=14.15.0'}
     peerDependencies:
       graphql: 16.8.1
@@ -2056,8 +2056,8 @@ packages:
     resolution: {integrity: sha512-ORHRQ2tmvnBXc8t/X9Z8IcSbBA4xTLKuN873FopzklHMeqBst7YG0d+AX97inkvDX+NChYtSr+qGfcqGFaI8Zw==}
     engines: {node: '>=18.0.0'}
 
-  '@azure/functions@4.8.0':
-    resolution: {integrity: sha512-LNtl3xZNE40vE7+SIST+GYQX5cnnI1M65fXPi26l9XCdPakuQrz54lHv+qQQt1GG5JbqLfQk75iM7A6Y9O+2dQ==}
+  '@azure/functions@4.8.1':
+    resolution: {integrity: sha512-DZ/wsRMosFhQmVET0xvUpLPPFJnAM5t4bUqAd4JnWDq4+wPZhTEn6zLT0ug1DLnWy+Lv+W21CbLQZOAGclDKuQ==}
     engines: {node: '>=18.0'}
 
   '@babel/code-frame@7.27.1':
@@ -5987,8 +5987,8 @@ packages:
     resolution: {integrity: sha512-x511uiJ/57FIsbgUe5csJ13k3uzu25uWQE+XqfBis/sB0SFoiElJWXRkgEAUh0U6n40eT3ay5Ue4oPkRMu1LYw==}
     engines: {node: '>= 10.0.0'}
 
-  axios@1.13.1:
-    resolution: {integrity: sha512-hU4EGxxt+j7TQijx1oYdAjw4xuIp1wRQSsbMFwSthCWeBQur1eF+qJ5iQ5sN3Tw8YRzQNKb8jszgBdMDVqwJcw==}
+  axios@1.13.2:
+    resolution: {integrity: sha512-VPk9ebNqPcy5lRGuSlKx752IlDatOjT9paPlm8A7yOuW2Fbvp4X3JznJtT4f0GzGLLiWE9W8onz51SqLYwzGaA==}
 
   babel-jest@30.2.0:
     resolution: {integrity: sha512-0YiBEOxWqKkSQWL9nNGGEgndoeL0ZpWrbLMNL5u/Kaxrli3Eaxlt3ZtIDktEvXt4L/R9r3ODr2zKwGM/2BjxVw==}
@@ -11713,10 +11713,10 @@ snapshots:
     dependencies:
       graphql: 16.8.1
 
-  '@apollo/composition@2.11.3(graphql@16.8.1)':
+  '@apollo/composition@2.12.0(graphql@16.8.1)':
     dependencies:
-      '@apollo/federation-internals': 2.11.3(graphql@16.8.1)
-      '@apollo/query-graphs': 2.11.3(graphql@16.8.1)
+      '@apollo/federation-internals': 2.12.0(graphql@16.8.1)
+      '@apollo/query-graphs': 2.12.0(graphql@16.8.1)
       graphql: 16.8.1
 
   '@apollo/datasource-rest@6.4.1(encoding@0.1.13)(graphql@16.8.1)':
@@ -11734,7 +11734,7 @@ snapshots:
     transitivePeerDependencies:
       - encoding
 
-  '@apollo/federation-internals@2.11.3(graphql@16.8.1)':
+  '@apollo/federation-internals@2.12.0(graphql@16.8.1)':
     dependencies:
       '@types/uuid': 9.0.8
       chalk: 4.1.2
@@ -11742,11 +11742,11 @@ snapshots:
       js-levenshtein: 1.1.6
       uuid: 9.0.1
 
-  '@apollo/gateway@2.11.3(encoding@0.1.13)(graphql@16.8.1)':
+  '@apollo/gateway@2.12.0(encoding@0.1.13)(graphql@16.8.1)':
     dependencies:
-      '@apollo/composition': 2.11.3(graphql@16.8.1)
-      '@apollo/federation-internals': 2.11.3(graphql@16.8.1)
-      '@apollo/query-planner': 2.11.3(graphql@16.8.1)
+      '@apollo/composition': 2.12.0(graphql@16.8.1)
+      '@apollo/federation-internals': 2.12.0(graphql@16.8.1)
+      '@apollo/query-planner': 2.12.0(graphql@16.8.1)
       '@apollo/server-gateway-interface': 1.1.1(graphql@16.8.1)
       '@apollo/usage-reporting-protobuf': 4.1.1
       '@apollo/utils.createhash': 2.0.2
@@ -11814,18 +11814,18 @@ snapshots:
       '@types/long': 4.0.2
       long: 4.0.0
 
-  '@apollo/query-graphs@2.11.3(graphql@16.8.1)':
+  '@apollo/query-graphs@2.12.0(graphql@16.8.1)':
     dependencies:
-      '@apollo/federation-internals': 2.11.3(graphql@16.8.1)
+      '@apollo/federation-internals': 2.12.0(graphql@16.8.1)
       deep-equal: 2.2.3
       graphql: 16.8.1
       ts-graphviz: 1.8.2
       uuid: 9.0.1
 
-  '@apollo/query-planner@2.11.3(graphql@16.8.1)':
+  '@apollo/query-planner@2.12.0(graphql@16.8.1)':
     dependencies:
-      '@apollo/federation-internals': 2.11.3(graphql@16.8.1)
-      '@apollo/query-graphs': 2.11.3(graphql@16.8.1)
+      '@apollo/federation-internals': 2.12.0(graphql@16.8.1)
+      '@apollo/query-graphs': 2.12.0(graphql@16.8.1)
       '@apollo/utils.keyvaluecache': 2.1.1
       chalk: 4.1.2
       deep-equal: 2.2.3
@@ -11871,10 +11871,10 @@ snapshots:
       - encoding
       - supports-color
 
-  '@apollo/subgraph@2.11.3(graphql@16.8.1)':
+  '@apollo/subgraph@2.12.0(graphql@16.8.1)':
     dependencies:
       '@apollo/cache-control-types': 1.0.3(graphql@16.8.1)
-      '@apollo/federation-internals': 2.11.3(graphql@16.8.1)
+      '@apollo/federation-internals': 2.12.0(graphql@16.8.1)
       graphql: 16.8.1
 
   '@apollo/usage-reporting-protobuf@4.1.1':
@@ -12352,7 +12352,7 @@ snapshots:
 
   '@aws/lambda-invoke-store@0.0.1': {}
 
-  '@azure/functions@4.8.0':
+  '@azure/functions@4.8.1':
     dependencies:
       cookie: 1.0.2
       long: 4.0.0
@@ -14677,7 +14677,7 @@ snapshots:
   '@newrelic/security-agent@0.2.1':
     dependencies:
       '@aws-sdk/client-lambda': 3.913.0
-      axios: 1.13.1
+      axios: 1.13.2
       check-disk-space: 3.3.1
       content-type: 1.0.5
       fast-safe-stringify: 2.1.1
@@ -16954,7 +16954,7 @@ snapshots:
       uuid: 8.0.0
       xml2js: 0.6.2
 
-  axios@1.13.1:
+  axios@1.13.2:
     dependencies:
       follow-redirects: 1.15.11
       form-data: 4.0.4
@@ -24009,7 +24009,7 @@ snapshots:
 
   wait-on@9.0.1:
     dependencies:
-      axios: 1.13.1
+      axios: 1.13.2
       joi: 18.0.1
       lodash: 4.17.21
       minimist: 1.2.8
