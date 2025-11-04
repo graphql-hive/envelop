@@ -124,7 +124,7 @@ export const useOpenTelemetry = (
 
               return () => {};
             },
-            { skipDefaultResolvers: (options.defaultResolvers ?? true) === false },
+            { skipDefaultResolvers: options.defaultResolvers === false },
           ),
         );
       }

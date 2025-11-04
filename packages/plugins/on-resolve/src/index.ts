@@ -68,7 +68,12 @@ export function useOnResolve<PluginContext extends Record<string, any> = {}>(
         if ((!opts.skipIntrospection || !isIntrospectionType(type)) && isObjectType(type)) {
           for (const field of Object.values(type.getFields())) {
             if ((field as { [hasWrappedResolveSymbol]?: true })[hasWrappedResolveSymbol]) continue;
-            if (opts.skipDefaultResolvers && !field.resolve) continue;
+            if (
+              opts.skipDefaultResolvers &&
+              (!field.resolve || field.resolve === defaultFieldResolver)
+            ) {
+              continue;
+            }
 
             let resolver = (field.resolve || defaultFieldResolver) as Resolver<PluginContext>;
 
