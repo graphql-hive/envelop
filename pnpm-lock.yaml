@@ -108,8 +108,8 @@ importers:
         specifier: 17.23.1
         version: 17.23.1(eslint@9.39.1(jiti@1.21.7))(typescript@5.9.3)
       eslint-plugin-package-json:
-        specifier: ^0.63.0
-        version: 0.63.0(@types/estree@1.0.8)(eslint@9.39.1(jiti@1.21.7))(jsonc-eslint-parser@2.4.1)
+        specifier: ^0.64.0
+        version: 0.64.0(@types/estree@1.0.8)(eslint@9.39.1(jiti@1.21.7))(jsonc-eslint-parser@2.4.1)
       eslint-plugin-promise:
         specifier: 7.2.1
         version: 7.2.1(eslint@9.39.1(jiti@1.21.7))
@@ -230,8 +230,8 @@ importers:
         version: 1.13.0(graphql@16.8.1)
     devDependencies:
       '@azure/functions':
-        specifier: 4.8.1
-        version: 4.8.1
+        specifier: 4.9.0
+        version: 4.9.0
       '@types/node':
         specifier: 24.10.0
         version: 24.10.0
@@ -316,11 +316,11 @@ importers:
         specifier: 10.0.26
         version: 10.0.26(graphql@16.8.1)
       firebase-admin:
-        specifier: 13.5.0
-        version: 13.5.0(encoding@0.1.13)
+        specifier: 13.6.0
+        version: 13.6.0(encoding@0.1.13)
       firebase-functions:
         specifier: 6.6.0
-        version: 6.6.0(firebase-admin@13.5.0(encoding@0.1.13))
+        version: 6.6.0(firebase-admin@13.6.0(encoding@0.1.13))
       graphql:
         specifier: 16.8.1
         version: 16.8.1
@@ -329,8 +329,8 @@ importers:
         version: 1.13.0(graphql@16.8.1)
     devDependencies:
       '@azure/functions':
-        specifier: 4.8.1
-        version: 4.8.1
+        specifier: 4.9.0
+        version: 4.9.0
       '@types/node':
         specifier: 24.10.0
         version: 24.10.0
@@ -2056,9 +2056,13 @@ packages:
     resolution: {integrity: sha512-ORHRQ2tmvnBXc8t/X9Z8IcSbBA4xTLKuN873FopzklHMeqBst7YG0d+AX97inkvDX+NChYtSr+qGfcqGFaI8Zw==}
     engines: {node: '>=18.0.0'}
 
-  '@azure/functions@4.8.1':
-    resolution: {integrity: sha512-DZ/wsRMosFhQmVET0xvUpLPPFJnAM5t4bUqAd4JnWDq4+wPZhTEn6zLT0ug1DLnWy+Lv+W21CbLQZOAGclDKuQ==}
+  '@azure/functions-extensions-base@0.2.0':
+    resolution: {integrity: sha512-ncCkHBNQYJa93dBIh+toH0v1iSgCzSo9tr94s6SMBe7DPWREkaWh8cq33A5P4rPSFX1g5W+3SPvIzDr/6/VOWQ==}
     engines: {node: '>=18.0'}
+
+  '@azure/functions@4.9.0':
+    resolution: {integrity: sha512-IlgCl2/OiSXjMaow5oUhtMQMlsxEAZwsk7BXoT44vgzdIaiZz1VjCzGK9D/7pi6bd0FSyDo6H/1mZASzcD0K6A==}
+    engines: {node: '>=20.0'}
 
   '@babel/code-frame@7.27.1':
     resolution: {integrity: sha512-cjQ7ZlQ0Mv3b47hABuTevyTuYN4i+loJKGeV9flcCgIK37cCXRh+L1bd3iBHlynerhQ7BhCkn2BPbQUL+rGqFg==}
@@ -7084,8 +7088,8 @@ packages:
     peerDependencies:
       eslint: '>=8.23.0'
 
-  eslint-plugin-package-json@0.63.0:
-    resolution: {integrity: sha512-FmeLtFSplo53v48b1XDhmdWwZmj/pnaIaCYfNLDTRtm+nLeY23kgWnPwOlB9tA6+ru2BpHYhnZytwMV6AOymZg==}
+  eslint-plugin-package-json@0.64.0:
+    resolution: {integrity: sha512-tNqczNSlZdQlnFWE9vk33XhLIQkG1mJiSiCy9bbggGB14xAhrTQAfj+hCfW4cRXMQoYtsNDHf+D8Mxy2jCKfWQ==}
     engines: {node: ^20.19.0 || >=22.12.0}
     peerDependencies:
       eslint: '>=8.0.0'
@@ -7408,8 +7412,8 @@ packages:
     resolution: {integrity: sha512-78/PXT1wlLLDgTzDs7sjq9hzz0vXD+zn+7wypEe4fXQxCmdmqfGsEPQxmiCSQI3ajFV91bVSsvNtrJRiW6nGng==}
     engines: {node: '>=10'}
 
-  firebase-admin@13.5.0:
-    resolution: {integrity: sha512-QZOpv1DJRJpH8NcWiL1xXE10tw3L/bdPFlgjcWrqU3ufyOJDYfxB1MMtxiVTwxK16NlybQbEM6ciSich2uWEIQ==}
+  firebase-admin@13.6.0:
+    resolution: {integrity: sha512-GdPA/t0+Cq8p1JnjFRBmxRxAGvF/kl2yfdhALl38PrRp325YxyQ5aNaHui0XmaKcKiGRFIJ/EgBNWFoDP0onjw==}
     engines: {node: '>=18'}
 
   firebase-functions@6.6.0:
@@ -12352,8 +12356,11 @@ snapshots:
 
   '@aws/lambda-invoke-store@0.0.1': {}
 
-  '@azure/functions@4.8.1':
+  '@azure/functions-extensions-base@0.2.0': {}
+
+  '@azure/functions@4.9.0':
     dependencies:
+      '@azure/functions-extensions-base': 0.2.0
       cookie: 1.0.2
       long: 4.0.0
       undici: 5.29.0
@@ -18206,7 +18213,7 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
-  eslint-plugin-package-json@0.63.0(@types/estree@1.0.8)(eslint@9.39.1(jiti@1.21.7))(jsonc-eslint-parser@2.4.1):
+  eslint-plugin-package-json@0.64.0(@types/estree@1.0.8)(eslint@9.39.1(jiti@1.21.7))(jsonc-eslint-parser@2.4.1):
     dependencies:
       '@altano/repository-tools': 2.0.1
       change-case: 5.4.4
@@ -18715,7 +18722,7 @@ snapshots:
       locate-path: 6.0.0
       path-exists: 4.0.0
 
-  firebase-admin@13.5.0(encoding@0.1.13):
+  firebase-admin@13.6.0(encoding@0.1.13):
     dependencies:
       '@fastify/busboy': 3.2.0
       '@firebase/database-compat': 2.1.0
@@ -18735,13 +18742,13 @@ snapshots:
       - encoding
       - supports-color
 
-  firebase-functions@6.6.0(firebase-admin@13.5.0(encoding@0.1.13)):
+  firebase-functions@6.6.0(firebase-admin@13.6.0(encoding@0.1.13)):
     dependencies:
       '@types/cors': 2.8.19
       '@types/express': 4.17.23
       cors: 2.8.5
       express: 4.21.2
-      firebase-admin: 13.5.0(encoding@0.1.13)
+      firebase-admin: 13.6.0(encoding@0.1.13)
       protobufjs: 7.5.4
     transitivePeerDependencies:
       - supports-color
