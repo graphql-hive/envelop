@@ -174,8 +174,8 @@ importers:
         specifier: workspace:^
         version: link:../packages/plugins/validation-cache/dist
       '@graphql-tools/schema':
-        specifier: 10.0.26
-        version: 10.0.26(graphql@16.8.1)
+        specifier: 10.0.27
+        version: 10.0.27(graphql@16.8.1)
       faker:
         specifier: 5.5.3
         version: 5.5.3
@@ -198,8 +198,8 @@ importers:
         specifier: workspace:^
         version: link:../../packages/core/dist
       '@graphql-tools/schema':
-        specifier: 10.0.26
-        version: 10.0.26(graphql@16.8.1)
+        specifier: 10.0.27
+        version: 10.0.27(graphql@16.8.1)
       graphql:
         specifier: 16.8.1
         version: 16.8.1
@@ -220,8 +220,8 @@ importers:
         specifier: workspace:^
         version: link:../../packages/core/dist
       '@graphql-tools/schema':
-        specifier: 10.0.26
-        version: 10.0.26(graphql@16.8.1)
+        specifier: 10.0.27
+        version: 10.0.27(graphql@16.8.1)
       graphql:
         specifier: 16.8.1
         version: 16.8.1
@@ -248,8 +248,8 @@ importers:
         specifier: workspace:^
         version: link:../../packages/core/dist
       '@graphql-tools/schema':
-        specifier: 10.0.26
-        version: 10.0.26(graphql@16.8.1)
+        specifier: 10.0.27
+        version: 10.0.27(graphql@16.8.1)
       graphql:
         specifier: 16.8.1
         version: 16.8.1
@@ -282,8 +282,8 @@ importers:
         specifier: workspace:^
         version: link:../../packages/core/dist
       '@graphql-tools/schema':
-        specifier: 10.0.26
-        version: 10.0.26(graphql@16.8.1)
+        specifier: 10.0.27
+        version: 10.0.27(graphql@16.8.1)
       express:
         specifier: 5.1.0
         version: 5.1.0
@@ -313,8 +313,8 @@ importers:
         specifier: workspace:^
         version: link:../../packages/core/dist
       '@graphql-tools/schema':
-        specifier: 10.0.26
-        version: 10.0.26(graphql@16.8.1)
+        specifier: 10.0.27
+        version: 10.0.27(graphql@16.8.1)
       firebase-admin:
         specifier: 13.6.0
         version: 13.6.0(encoding@0.1.13)
@@ -347,8 +347,8 @@ importers:
         specifier: workspace:^
         version: link:../../packages/core/dist
       '@graphql-tools/schema':
-        specifier: 10.0.26
-        version: 10.0.26(graphql@16.8.1)
+        specifier: 10.0.27
+        version: 10.0.27(graphql@16.8.1)
       fastify:
         specifier: 5.6.1
         version: 5.6.1
@@ -378,8 +378,8 @@ importers:
         specifier: workspace:^
         version: link:../../packages/core/dist
       '@graphql-tools/schema':
-        specifier: 10.0.26
-        version: 10.0.26(graphql@16.8.1)
+        specifier: 10.0.27
+        version: 10.0.27(graphql@16.8.1)
       fastify:
         specifier: 5.6.1
         version: 5.6.1
@@ -406,8 +406,8 @@ importers:
         specifier: workspace:^
         version: link:../../packages/core/dist
       '@graphql-tools/schema':
-        specifier: 10.0.26
-        version: 10.0.26(graphql@16.8.1)
+        specifier: 10.0.27
+        version: 10.0.27(graphql@16.8.1)
       graphql:
         specifier: 16.8.1
         version: 16.8.1
@@ -431,8 +431,8 @@ importers:
         specifier: workspace:^
         version: link:../../packages/core/dist
       '@graphql-tools/schema':
-        specifier: 10.0.26
-        version: 10.0.26(graphql@16.8.1)
+        specifier: 10.0.27
+        version: 10.0.27(graphql@16.8.1)
       '@n1ru4l/socket-io-graphql-client':
         specifier: 0.13.0
         version: 0.13.0(socket.io-client@4.8.1)
@@ -474,8 +474,8 @@ importers:
         specifier: workspace:^
         version: link:../../packages/core/dist
       '@graphql-tools/schema':
-        specifier: 10.0.26
-        version: 10.0.26(graphql@16.8.1)
+        specifier: 10.0.27
+        version: 10.0.27(graphql@16.8.1)
       graphql:
         specifier: 16.8.1
         version: 16.8.1
@@ -502,8 +502,8 @@ importers:
         specifier: workspace:^
         version: link:../../packages/core/dist
       '@graphql-tools/schema':
-        specifier: 10.0.26
-        version: 10.0.26(graphql@16.8.1)
+        specifier: 10.0.27
+        version: 10.0.27(graphql@16.8.1)
       graphql:
         specifier: 16.8.1
         version: 16.8.1
@@ -533,8 +533,8 @@ importers:
         specifier: workspace:^
         version: link:../../packages/core/dist
       '@graphql-tools/schema':
-        specifier: 10.0.26
-        version: 10.0.26(graphql@16.8.1)
+        specifier: 10.0.27
+        version: 10.0.27(graphql@16.8.1)
       aws-sdk:
         specifier: 2.1692.0
         version: 2.1692.0
@@ -595,8 +595,8 @@ importers:
         specifier: workspace:^
         version: link:../../packages/core/dist
       '@graphql-tools/schema':
-        specifier: 10.0.26
-        version: 10.0.26(graphql@16.8.1)
+        specifier: 10.0.27
+        version: 10.0.27(graphql@16.8.1)
       graphql:
         specifier: 16.8.1
         version: 16.8.1
@@ -651,8 +651,8 @@ importers:
         specifier: workspace:^
         version: link:../../packages/core/dist
       '@graphql-tools/schema':
-        specifier: 10.0.26
-        version: 10.0.26(graphql@16.8.1)
+        specifier: 10.0.27
+        version: 10.0.27(graphql@16.8.1)
       fastify:
         specifier: 5.6.1
         version: 5.6.1
@@ -689,11 +689,11 @@ importers:
         version: 2.8.1
     devDependencies:
       '@graphql-tools/schema':
-        specifier: 10.0.26
-        version: 10.0.26(graphql@16.8.1)
+        specifier: 10.0.27
+        version: 10.0.27(graphql@16.8.1)
       '@graphql-tools/utils':
-        specifier: 10.10.0
-        version: 10.10.0(graphql@16.8.1)
+        specifier: 10.10.1
+        version: 10.10.1(graphql@16.8.1)
       '@repeaterjs/repeater':
         specifier: 3.0.6
         version: 3.0.6
@@ -735,8 +735,8 @@ importers:
         specifier: workspace:^
         version: link:../../core/dist
       '@graphql-tools/schema':
-        specifier: 10.0.26
-        version: 10.0.26(graphql@16.8.1)
+        specifier: 10.0.27
+        version: 10.0.27(graphql@16.8.1)
       graphql:
         specifier: 16.8.1
         version: 16.8.1
@@ -787,8 +787,8 @@ importers:
         specifier: workspace:^
         version: link:../../core/dist
       '@graphql-tools/schema':
-        specifier: 10.0.26
-        version: 10.0.26(graphql@16.8.1)
+        specifier: 10.0.27
+        version: 10.0.27(graphql@16.8.1)
       apollo-server-core:
         specifier: 3.13.0
         version: 3.13.0(encoding@0.1.13)(graphql@16.8.1)
@@ -819,8 +819,8 @@ importers:
         specifier: workspace:^
         version: link:../../core/dist
       '@graphql-tools/schema':
-        specifier: 10.0.26
-        version: 10.0.26(graphql@16.8.1)
+        specifier: 10.0.27
+        version: 10.0.27(graphql@16.8.1)
       graphql:
         specifier: 16.8.1
         version: 16.8.1
@@ -868,8 +868,8 @@ importers:
         specifier: workspace:^
         version: link:../../core/dist
       '@graphql-tools/schema':
-        specifier: 10.0.26
-        version: 10.0.26(graphql@16.8.1)
+        specifier: 10.0.27
+        version: 10.0.27(graphql@16.8.1)
       dataloader:
         specifier: 2.2.3
         version: 2.2.3
@@ -960,8 +960,8 @@ importers:
         specifier: workspace:^
         version: link:../../core/dist
       '@graphql-tools/schema':
-        specifier: 10.0.26
-        version: 10.0.26(graphql@16.8.1)
+        specifier: 10.0.27
+        version: 10.0.27(graphql@16.8.1)
       graphql:
         specifier: 16.8.1
         version: 16.8.1
@@ -997,11 +997,11 @@ importers:
         specifier: workspace:^
         version: link:../../core/dist
       '@graphql-tools/schema':
-        specifier: 10.0.26
-        version: 10.0.26(graphql@16.8.1)
+        specifier: 10.0.27
+        version: 10.0.27(graphql@16.8.1)
       '@graphql-tools/utils':
-        specifier: 10.10.0
-        version: 10.10.0(graphql@16.8.1)
+        specifier: 10.10.1
+        version: 10.10.1(graphql@16.8.1)
       '@types/common-tags':
         specifier: 1.8.4
         version: 1.8.4
@@ -1044,8 +1044,8 @@ importers:
         specifier: workspace:^
         version: link:../../core/dist
       '@graphql-tools/schema':
-        specifier: 10.0.26
-        version: 10.0.26(graphql@16.8.1)
+        specifier: 10.0.27
+        version: 10.0.27(graphql@16.8.1)
       graphql:
         specifier: 16.8.1
         version: 16.8.1
@@ -1070,8 +1070,8 @@ importers:
         specifier: workspace:^
         version: link:../../core/dist
       '@graphql-tools/schema':
-        specifier: 10.0.26
-        version: 10.0.26(graphql@16.8.1)
+        specifier: 10.0.27
+        version: 10.0.27(graphql@16.8.1)
       graphql:
         specifier: 16.8.1
         version: 16.8.1
@@ -1096,8 +1096,8 @@ importers:
         specifier: workspace:^
         version: link:../../core/dist
       '@graphql-tools/schema':
-        specifier: 10.0.26
-        version: 10.0.26(graphql@16.8.1)
+        specifier: 10.0.27
+        version: 10.0.27(graphql@16.8.1)
       graphql:
         specifier: 16.8.1
         version: 16.8.1
@@ -1171,8 +1171,8 @@ importers:
         specifier: workspace:^
         version: link:../../core/dist
       '@graphql-tools/schema':
-        specifier: 10.0.26
-        version: 10.0.26(graphql@16.8.1)
+        specifier: 10.0.27
+        version: 10.0.27(graphql@16.8.1)
       '@n1ru4l/graphql-live-query-patch-jsondiffpatch':
         specifier: 0.8.0
         version: 0.8.0(graphql@16.8.1)
@@ -1226,8 +1226,8 @@ importers:
         specifier: workspace:^
         version: link:../../core/dist
       '@graphql-tools/schema':
-        specifier: 10.0.26
-        version: 10.0.26(graphql@16.8.1)
+        specifier: 10.0.27
+        version: 10.0.27(graphql@16.8.1)
       graphql:
         specifier: 16.8.1
         version: 16.8.1
@@ -1287,8 +1287,8 @@ importers:
         specifier: workspace:^
         version: link:../../core/dist
       '@graphql-tools/schema':
-        specifier: 10.0.26
-        version: 10.0.26(graphql@16.8.1)
+        specifier: 10.0.27
+        version: 10.0.27(graphql@16.8.1)
       graphql:
         specifier: 16.8.1
         version: 16.8.1
@@ -1327,8 +1327,8 @@ importers:
         specifier: workspace:^
         version: link:../../core/dist
       '@graphql-tools/schema':
-        specifier: 10.0.26
-        version: 10.0.26(graphql@16.8.1)
+        specifier: 10.0.27
+        version: 10.0.27(graphql@16.8.1)
       graphql:
         specifier: 16.8.1
         version: 16.8.1
@@ -1347,8 +1347,8 @@ importers:
         specifier: workspace:^
         version: link:../../core/dist
       '@graphql-tools/schema':
-        specifier: 10.0.26
-        version: 10.0.26(graphql@16.8.1)
+        specifier: 10.0.27
+        version: 10.0.27(graphql@16.8.1)
       graphql:
         specifier: 16.8.1
         version: 16.8.1
@@ -1370,8 +1370,8 @@ importers:
         specifier: workspace:^
         version: link:../../core/dist
       '@graphql-tools/schema':
-        specifier: 10.0.26
-        version: 10.0.26(graphql@16.8.1)
+        specifier: 10.0.27
+        version: 10.0.27(graphql@16.8.1)
       graphql:
         specifier: 16.8.1
         version: 16.8.1
@@ -1414,8 +1414,8 @@ importers:
         specifier: workspace:*
         version: link:../../core/dist
       '@graphql-tools/schema':
-        specifier: 10.0.26
-        version: 10.0.26(graphql@16.8.1)
+        specifier: 10.0.27
+        version: 10.0.27(graphql@16.8.1)
       '@types/lodash.get':
         specifier: 4.4.9
         version: 4.4.9
@@ -1452,8 +1452,8 @@ importers:
         specifier: workspace:^
         version: link:../../core/dist
       '@graphql-tools/schema':
-        specifier: 10.0.26
-        version: 10.0.26(graphql@16.8.1)
+        specifier: 10.0.27
+        version: 10.0.27(graphql@16.8.1)
       graphql:
         specifier: 16.8.1
         version: 16.8.1
@@ -1490,8 +1490,8 @@ importers:
         specifier: ^1.3.1
         version: 1.4.9(graphql@16.8.1)
       '@graphql-tools/schema':
-        specifier: 10.0.26
-        version: 10.0.26(graphql@16.8.1)
+        specifier: 10.0.27
+        version: 10.0.27(graphql@16.8.1)
       graphql:
         specifier: 16.8.1
         version: 16.8.1
@@ -1551,8 +1551,8 @@ importers:
         specifier: workspace:^
         version: link:../../core/dist
       '@graphql-tools/schema':
-        specifier: 10.0.26
-        version: 10.0.26(graphql@16.8.1)
+        specifier: 10.0.27
+        version: 10.0.27(graphql@16.8.1)
       graphql:
         specifier: 16.8.1
         version: 16.8.1
@@ -1574,8 +1574,8 @@ importers:
         specifier: workspace:^
         version: link:../../core/dist
       '@graphql-tools/schema':
-        specifier: 10.0.26
-        version: 10.0.26(graphql@16.8.1)
+        specifier: 10.0.27
+        version: 10.0.27(graphql@16.8.1)
       '@sentry/node':
         specifier: ^10.17.0
         version: 10.20.0
@@ -1600,8 +1600,8 @@ importers:
         specifier: workspace:^
         version: link:../../core/dist
       '@graphql-tools/schema':
-        specifier: 10.0.26
-        version: 10.0.26(graphql@16.8.1)
+        specifier: 10.0.27
+        version: 10.0.27(graphql@16.8.1)
       graphql:
         specifier: 16.8.1
         version: 16.8.1
@@ -1655,8 +1655,8 @@ importers:
         specifier: workspace:^
         version: link:../core/dist
       '@graphql-tools/schema':
-        specifier: 10.0.26
-        version: 10.0.26(graphql@16.8.1)
+        specifier: 10.0.27
+        version: 10.0.27(graphql@16.8.1)
       graphql:
         specifier: 16.8.1
         version: 16.8.1
@@ -3213,8 +3213,8 @@ packages:
     peerDependencies:
       graphql: 16.8.1
 
-  '@graphql-tools/merge@9.1.2':
-    resolution: {integrity: sha512-Ny9YhWKv+KxZFdXYt+wlyEW55GzhFiq4daV4wYgpP0aRbwQaczNJd1L3VjjBsPKjmW8lctZXUoqYTqU5QPcBGw==}
+  '@graphql-tools/merge@9.1.3':
+    resolution: {integrity: sha512-O53kiNwGU/moJxX8m4BKpf9xHxVhmThhrctZ1gqHkdC3fYmafzWdzyNGkBsZcoh9x0wKM1ORPPuaE6Bwp3OFBA==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       graphql: 16.8.1
@@ -3230,8 +3230,8 @@ packages:
     peerDependencies:
       graphql: 16.8.1
 
-  '@graphql-tools/schema@10.0.26':
-    resolution: {integrity: sha512-KOmjuiWa9poP/Lza4HV0ZBPYGJI3VE3QzXA/8e0+wjcsRuEmxMLP82re1PUg0QRzp2UzifAB/gd7DoXmVGG9Fg==}
+  '@graphql-tools/schema@10.0.27':
+    resolution: {integrity: sha512-Lb5mJG8eF3TPnW0TXS9qoqR40S5rrnS3DFaY9dGf+8y3petTF2nc1khcOaLlOsvyvfSWSMUgkB/U6LRofRjb6w==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       graphql: 16.8.1
@@ -3246,8 +3246,8 @@ packages:
     peerDependencies:
       graphql: 16.8.1
 
-  '@graphql-tools/utils@10.10.0':
-    resolution: {integrity: sha512-OOeab5Y9qeKq0zfoJCSScMcDfGcIxp05+LW2xYVCS2l3su+K3lYcg5+cAAx9n0SFxpJl8zF5denq2QDsfM7NnQ==}
+  '@graphql-tools/utils@10.10.1':
+    resolution: {integrity: sha512-9iOZ7x6tuIpp/dviNmTCSH1cDDNLIcrj6T3WKH9lU4nRWx5Pr0e7Faj7T/HmP2Njrjik63dJWuDVRxfQSTOc4g==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       graphql: 16.8.1
@@ -13720,7 +13720,7 @@ snapshots:
 
   '@graphql-tools/batch-execute@9.0.19(graphql@16.8.1)':
     dependencies:
-      '@graphql-tools/utils': 10.10.0(graphql@16.8.1)
+      '@graphql-tools/utils': 10.10.1(graphql@16.8.1)
       '@whatwg-node/promise-helpers': 1.3.2
       dataloader: 2.2.3
       graphql: 16.8.1
@@ -13730,8 +13730,8 @@ snapshots:
     dependencies:
       '@graphql-tools/batch-execute': 9.0.19(graphql@16.8.1)
       '@graphql-tools/executor': 1.4.9(graphql@16.8.1)
-      '@graphql-tools/schema': 10.0.26(graphql@16.8.1)
-      '@graphql-tools/utils': 10.10.0(graphql@16.8.1)
+      '@graphql-tools/schema': 10.0.27(graphql@16.8.1)
+      '@graphql-tools/utils': 10.10.1(graphql@16.8.1)
       '@repeaterjs/repeater': 3.0.6
       '@whatwg-node/promise-helpers': 1.3.2
       dataloader: 2.2.3
@@ -13751,7 +13751,7 @@ snapshots:
 
   '@graphql-tools/executor@1.4.9(graphql@16.8.1)':
     dependencies:
-      '@graphql-tools/utils': 10.10.0(graphql@16.8.1)
+      '@graphql-tools/utils': 10.10.1(graphql@16.8.1)
       '@graphql-typed-document-node/core': 3.2.0(graphql@16.8.1)
       '@repeaterjs/repeater': 3.0.6
       '@whatwg-node/disposablestack': 0.0.6
@@ -13773,13 +13773,13 @@ snapshots:
 
   '@graphql-tools/merge@9.1.1(graphql@16.8.1)':
     dependencies:
-      '@graphql-tools/utils': 10.10.0(graphql@16.8.1)
+      '@graphql-tools/utils': 10.10.1(graphql@16.8.1)
       graphql: 16.8.1
       tslib: 2.8.1
 
-  '@graphql-tools/merge@9.1.2(graphql@16.8.1)':
+  '@graphql-tools/merge@9.1.3(graphql@16.8.1)':
     dependencies:
-      '@graphql-tools/utils': 10.10.0(graphql@16.8.1)
+      '@graphql-tools/utils': 10.10.1(graphql@16.8.1)
       graphql: 16.8.1
       tslib: 2.8.1
 
@@ -13794,14 +13794,14 @@ snapshots:
   '@graphql-tools/schema@10.0.25(graphql@16.8.1)':
     dependencies:
       '@graphql-tools/merge': 9.1.1(graphql@16.8.1)
-      '@graphql-tools/utils': 10.10.0(graphql@16.8.1)
+      '@graphql-tools/utils': 10.10.1(graphql@16.8.1)
       graphql: 16.8.1
       tslib: 2.8.1
 
-  '@graphql-tools/schema@10.0.26(graphql@16.8.1)':
+  '@graphql-tools/schema@10.0.27(graphql@16.8.1)':
     dependencies:
-      '@graphql-tools/merge': 9.1.2(graphql@16.8.1)
-      '@graphql-tools/utils': 10.10.0(graphql@16.8.1)
+      '@graphql-tools/merge': 9.1.3(graphql@16.8.1)
+      '@graphql-tools/utils': 10.10.1(graphql@16.8.1)
       graphql: 16.8.1
       tslib: 2.8.1
 
@@ -13821,12 +13821,11 @@ snapshots:
       tslib: 2.8.1
       value-or-promise: 1.0.12
 
-  '@graphql-tools/utils@10.10.0(graphql@16.8.1)':
+  '@graphql-tools/utils@10.10.1(graphql@16.8.1)':
     dependencies:
       '@graphql-typed-document-node/core': 3.2.0(graphql@16.8.1)
       '@whatwg-node/promise-helpers': 1.3.2
       cross-inspect: 1.0.1
-      dset: 3.1.4
       graphql: 16.8.1
       tslib: 2.8.1
 
@@ -13858,8 +13857,8 @@ snapshots:
   '@graphql-tools/wrap@10.1.4(graphql@16.8.1)':
     dependencies:
       '@graphql-tools/delegate': 10.2.23(graphql@16.8.1)
-      '@graphql-tools/schema': 10.0.26(graphql@16.8.1)
-      '@graphql-tools/utils': 10.10.0(graphql@16.8.1)
+      '@graphql-tools/schema': 10.0.27(graphql@16.8.1)
+      '@graphql-tools/utils': 10.10.1(graphql@16.8.1)
       '@whatwg-node/promise-helpers': 1.3.2
       graphql: 16.8.1
       tslib: 2.8.1
@@ -19082,7 +19081,7 @@ snapshots:
 
   graphql-modules@3.0.0(graphql@16.8.1):
     dependencies:
-      '@graphql-tools/schema': 10.0.26(graphql@16.8.1)
+      '@graphql-tools/schema': 10.0.27(graphql@16.8.1)
       '@graphql-tools/wrap': 10.1.4(graphql@16.8.1)
       '@graphql-typed-document-node/core': 3.2.0(graphql@16.8.1)
       graphql: 16.8.1
