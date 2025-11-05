@@ -14,7 +14,7 @@ overrides:
   micromatch: 4.0.8
   dompurify: 3.3.0
   webpack: 5.102.1
-  axios: 1.13.1
+  axios: 1.13.2
   undici: 5.29.0
   cookie: 1.0.2
   '@eslint/plugin-kit': 0.4.1
@@ -108,8 +108,8 @@ importers:
         specifier: 17.23.1
         version: 17.23.1(eslint@9.39.1(jiti@1.21.7))(typescript@5.9.3)
       eslint-plugin-package-json:
-        specifier: ^0.63.0
-        version: 0.63.0(@types/estree@1.0.8)(eslint@9.39.1(jiti@1.21.7))(jsonc-eslint-parser@2.4.1)
+        specifier: ^0.64.0
+        version: 0.64.0(@types/estree@1.0.8)(eslint@9.39.1(jiti@1.21.7))(jsonc-eslint-parser@2.4.1)
       eslint-plugin-promise:
         specifier: 7.2.1
         version: 7.2.1(eslint@9.39.1(jiti@1.21.7))
@@ -230,8 +230,8 @@ importers:
         version: 1.13.0(graphql@16.8.1)
     devDependencies:
       '@azure/functions':
-        specifier: 4.8.0
-        version: 4.8.0
+        specifier: 4.9.0
+        version: 4.9.0
       '@types/node':
         specifier: 24.10.0
         version: 24.10.0
@@ -316,11 +316,11 @@ importers:
         specifier: 10.0.27
         version: 10.0.27(graphql@16.8.1)
       firebase-admin:
-        specifier: 13.5.0
-        version: 13.5.0(encoding@0.1.13)
+        specifier: 13.6.0
+        version: 13.6.0(encoding@0.1.13)
       firebase-functions:
         specifier: 6.6.0
-        version: 6.6.0(firebase-admin@13.5.0(encoding@0.1.13))
+        version: 6.6.0(firebase-admin@13.6.0(encoding@0.1.13))
       graphql:
         specifier: 16.8.1
         version: 16.8.1
@@ -329,8 +329,8 @@ importers:
         version: 1.13.0(graphql@16.8.1)
     devDependencies:
       '@azure/functions':
-        specifier: 4.8.0
-        version: 4.8.0
+        specifier: 4.9.0
+        version: 4.9.0
       '@types/node':
         specifier: 24.10.0
         version: 24.10.0
@@ -755,11 +755,11 @@ importers:
         version: 2.8.1
     devDependencies:
       '@apollo/gateway':
-        specifier: 2.11.3
-        version: 2.11.3(encoding@0.1.13)(graphql@16.8.1)
+        specifier: 2.12.0
+        version: 2.12.0(encoding@0.1.13)(graphql@16.8.1)
       '@apollo/subgraph':
-        specifier: 2.11.3
-        version: 2.11.3(graphql@16.8.1)
+        specifier: 2.12.0
+        version: 2.12.0(graphql@16.8.1)
       '@envelop/core':
         specifier: workspace:^
         version: link:../../core/dist
@@ -1742,8 +1742,8 @@ packages:
     peerDependencies:
       graphql: 16.8.1
 
-  '@apollo/composition@2.11.3':
-    resolution: {integrity: sha512-R10CLo4b9kXaDOtpcJrNEXTfoozDI0BrL18LXcfCxZhPcPQiHfX2YO3lpwwjB5Qe3tnHGJC/9nKStGw4HnFgjA==}
+  '@apollo/composition@2.12.0':
+    resolution: {integrity: sha512-Gf6SWzfFAUyxj+dIBImraRsDDigvdO0zkoq0tnYSwqzHUO9dHeztkLf2+4VJPHnwJ06UqLOLrZARMB7pzb/UBg==}
     engines: {node: '>=14.15.0'}
     peerDependencies:
       graphql: 16.8.1
@@ -1754,14 +1754,14 @@ packages:
     peerDependencies:
       graphql: 16.8.1
 
-  '@apollo/federation-internals@2.11.3':
-    resolution: {integrity: sha512-TOiJc1hkf22LBRA9X0D6XnM3ve1iDJSyK5voypPzhpOkNAHhJToVMF8LaTmM56mDx5KuAfsQZp1D/285LmfcRw==}
+  '@apollo/federation-internals@2.12.0':
+    resolution: {integrity: sha512-NCqKxZqTT9oFqRfq/yLcb8U5rzt+v00i5d5cFFadjdO61YwAUCD0W5JFDQzZsYzX7huuK/7N7JWqI897vAOeeQ==}
     engines: {node: '>=14.15.0'}
     peerDependencies:
       graphql: 16.8.1
 
-  '@apollo/gateway@2.11.3':
-    resolution: {integrity: sha512-1fFyYJoD++XeaOiGhgfFAK7XRdAxp6Y3MppS10HwLaviKU9c8E2uC0jn77pBZ6BnKR8DXWGMax5KAtivsNGehQ==}
+  '@apollo/gateway@2.12.0':
+    resolution: {integrity: sha512-L6n5qgaJSch/fHiU1LhYLqhiRwrNzvWP3sh8yhHbZeDw55KxUbzF9B69o1ic3ltKR0AO6i5lIejBVFimtauL6w==}
     engines: {node: '>=14.15.0'}
     peerDependencies:
       graphql: 16.8.1
@@ -1778,14 +1778,14 @@ packages:
     resolution: {integrity: sha512-Lahx5zntHPZia35myYDBRuF58tlwPskwHc5CWBZC/4bMKB6siTBWwtMrkqXcsNwQiFSzSx5hKdRPUmemrEp3Gg==}
     hasBin: true
 
-  '@apollo/query-graphs@2.11.3':
-    resolution: {integrity: sha512-yRr6rexXd/unurxyFZMWZELgByOvjAc7ujlkiBm07BPItGtdTLfSbmx8E+7yCX0BJCnBDzW58ORDZKVtRupvnA==}
+  '@apollo/query-graphs@2.12.0':
+    resolution: {integrity: sha512-4O8noHTpbwvAu0aYBfX7hTLw/FYjYGL2bFbmL/VXDDH46zd+oow0k3HAk3Jyq/i0AXobZ26Amne7cDB1IzyLEQ==}
     engines: {node: '>=14.15.0'}
     peerDependencies:
       graphql: 16.8.1
 
-  '@apollo/query-planner@2.11.3':
-    resolution: {integrity: sha512-m8b077tgaohC9yAT6YPeRbQZ4f2EhmPgAEsUfx3LOkJS21d6UazeGbIgnjJwSy86y1NIJlcaO3HdlFk/Mwn5oA==}
+  '@apollo/query-planner@2.12.0':
+    resolution: {integrity: sha512-lnO9cDS5+rNXus3T3woPB0QUtEq2BYnP3+IczUfBH2uc3xjOSss7a1yy/RAbb4GPMJH0gCqJKVAl+WUHe47qbQ==}
     engines: {node: '>=14.15.0'}
     peerDependencies:
       graphql: 16.8.1
@@ -1803,8 +1803,8 @@ packages:
     peerDependencies:
       graphql: 16.8.1
 
-  '@apollo/subgraph@2.11.3':
-    resolution: {integrity: sha512-Tgk2WhEqfu50eEOtRFnthQ1eTCVfIYkzJZ1DPQzxZzK5x3FzYmQzRdJ5e32lPu+LPIt/m2kLaGDC6cVdVGmi4g==}
+  '@apollo/subgraph@2.12.0':
+    resolution: {integrity: sha512-5bRPmdUwDoxz8MbD8QeMx06ReDAvQycytqOnV4QjXMb9innoIRfqvv8mpVyQ8Bsy3cd53L6myMikXLEhbm0bSw==}
     engines: {node: '>=14.15.0'}
     peerDependencies:
       graphql: 16.8.1
@@ -2056,9 +2056,13 @@ packages:
     resolution: {integrity: sha512-ORHRQ2tmvnBXc8t/X9Z8IcSbBA4xTLKuN873FopzklHMeqBst7YG0d+AX97inkvDX+NChYtSr+qGfcqGFaI8Zw==}
     engines: {node: '>=18.0.0'}
 
-  '@azure/functions@4.8.0':
-    resolution: {integrity: sha512-LNtl3xZNE40vE7+SIST+GYQX5cnnI1M65fXPi26l9XCdPakuQrz54lHv+qQQt1GG5JbqLfQk75iM7A6Y9O+2dQ==}
+  '@azure/functions-extensions-base@0.2.0':
+    resolution: {integrity: sha512-ncCkHBNQYJa93dBIh+toH0v1iSgCzSo9tr94s6SMBe7DPWREkaWh8cq33A5P4rPSFX1g5W+3SPvIzDr/6/VOWQ==}
     engines: {node: '>=18.0'}
+
+  '@azure/functions@4.9.0':
+    resolution: {integrity: sha512-IlgCl2/OiSXjMaow5oUhtMQMlsxEAZwsk7BXoT44vgzdIaiZz1VjCzGK9D/7pi6bd0FSyDo6H/1mZASzcD0K6A==}
+    engines: {node: '>=20.0'}
 
   '@babel/code-frame@7.27.1':
     resolution: {integrity: sha512-cjQ7ZlQ0Mv3b47hABuTevyTuYN4i+loJKGeV9flcCgIK37cCXRh+L1bd3iBHlynerhQ7BhCkn2BPbQUL+rGqFg==}
@@ -5987,8 +5991,8 @@ packages:
     resolution: {integrity: sha512-x511uiJ/57FIsbgUe5csJ13k3uzu25uWQE+XqfBis/sB0SFoiElJWXRkgEAUh0U6n40eT3ay5Ue4oPkRMu1LYw==}
     engines: {node: '>= 10.0.0'}
 
-  axios@1.13.1:
-    resolution: {integrity: sha512-hU4EGxxt+j7TQijx1oYdAjw4xuIp1wRQSsbMFwSthCWeBQur1eF+qJ5iQ5sN3Tw8YRzQNKb8jszgBdMDVqwJcw==}
+  axios@1.13.2:
+    resolution: {integrity: sha512-VPk9ebNqPcy5lRGuSlKx752IlDatOjT9paPlm8A7yOuW2Fbvp4X3JznJtT4f0GzGLLiWE9W8onz51SqLYwzGaA==}
 
   babel-jest@30.2.0:
     resolution: {integrity: sha512-0YiBEOxWqKkSQWL9nNGGEgndoeL0ZpWrbLMNL5u/Kaxrli3Eaxlt3ZtIDktEvXt4L/R9r3ODr2zKwGM/2BjxVw==}
@@ -7084,8 +7088,8 @@ packages:
     peerDependencies:
       eslint: '>=8.23.0'
 
-  eslint-plugin-package-json@0.63.0:
-    resolution: {integrity: sha512-FmeLtFSplo53v48b1XDhmdWwZmj/pnaIaCYfNLDTRtm+nLeY23kgWnPwOlB9tA6+ru2BpHYhnZytwMV6AOymZg==}
+  eslint-plugin-package-json@0.64.0:
+    resolution: {integrity: sha512-tNqczNSlZdQlnFWE9vk33XhLIQkG1mJiSiCy9bbggGB14xAhrTQAfj+hCfW4cRXMQoYtsNDHf+D8Mxy2jCKfWQ==}
     engines: {node: ^20.19.0 || >=22.12.0}
     peerDependencies:
       eslint: '>=8.0.0'
@@ -7408,8 +7412,8 @@ packages:
     resolution: {integrity: sha512-78/PXT1wlLLDgTzDs7sjq9hzz0vXD+zn+7wypEe4fXQxCmdmqfGsEPQxmiCSQI3ajFV91bVSsvNtrJRiW6nGng==}
     engines: {node: '>=10'}
 
-  firebase-admin@13.5.0:
-    resolution: {integrity: sha512-QZOpv1DJRJpH8NcWiL1xXE10tw3L/bdPFlgjcWrqU3ufyOJDYfxB1MMtxiVTwxK16NlybQbEM6ciSich2uWEIQ==}
+  firebase-admin@13.6.0:
+    resolution: {integrity: sha512-GdPA/t0+Cq8p1JnjFRBmxRxAGvF/kl2yfdhALl38PrRp325YxyQ5aNaHui0XmaKcKiGRFIJ/EgBNWFoDP0onjw==}
     engines: {node: '>=18'}
 
   firebase-functions@6.6.0:
@@ -11713,10 +11717,10 @@ snapshots:
     dependencies:
       graphql: 16.8.1
 
-  '@apollo/composition@2.11.3(graphql@16.8.1)':
+  '@apollo/composition@2.12.0(graphql@16.8.1)':
     dependencies:
-      '@apollo/federation-internals': 2.11.3(graphql@16.8.1)
-      '@apollo/query-graphs': 2.11.3(graphql@16.8.1)
+      '@apollo/federation-internals': 2.12.0(graphql@16.8.1)
+      '@apollo/query-graphs': 2.12.0(graphql@16.8.1)
       graphql: 16.8.1
 
   '@apollo/datasource-rest@6.4.1(encoding@0.1.13)(graphql@16.8.1)':
@@ -11734,7 +11738,7 @@ snapshots:
     transitivePeerDependencies:
       - encoding
 
-  '@apollo/federation-internals@2.11.3(graphql@16.8.1)':
+  '@apollo/federation-internals@2.12.0(graphql@16.8.1)':
     dependencies:
       '@types/uuid': 9.0.8
       chalk: 4.1.2
@@ -11742,11 +11746,11 @@ snapshots:
       js-levenshtein: 1.1.6
       uuid: 9.0.1
 
-  '@apollo/gateway@2.11.3(encoding@0.1.13)(graphql@16.8.1)':
+  '@apollo/gateway@2.12.0(encoding@0.1.13)(graphql@16.8.1)':
     dependencies:
-      '@apollo/composition': 2.11.3(graphql@16.8.1)
-      '@apollo/federation-internals': 2.11.3(graphql@16.8.1)
-      '@apollo/query-planner': 2.11.3(graphql@16.8.1)
+      '@apollo/composition': 2.12.0(graphql@16.8.1)
+      '@apollo/federation-internals': 2.12.0(graphql@16.8.1)
+      '@apollo/query-planner': 2.12.0(graphql@16.8.1)
       '@apollo/server-gateway-interface': 1.1.1(graphql@16.8.1)
       '@apollo/usage-reporting-protobuf': 4.1.1
       '@apollo/utils.createhash': 2.0.2
@@ -11814,18 +11818,18 @@ snapshots:
       '@types/long': 4.0.2
       long: 4.0.0
 
-  '@apollo/query-graphs@2.11.3(graphql@16.8.1)':
+  '@apollo/query-graphs@2.12.0(graphql@16.8.1)':
     dependencies:
-      '@apollo/federation-internals': 2.11.3(graphql@16.8.1)
+      '@apollo/federation-internals': 2.12.0(graphql@16.8.1)
       deep-equal: 2.2.3
       graphql: 16.8.1
       ts-graphviz: 1.8.2
       uuid: 9.0.1
 
-  '@apollo/query-planner@2.11.3(graphql@16.8.1)':
+  '@apollo/query-planner@2.12.0(graphql@16.8.1)':
     dependencies:
-      '@apollo/federation-internals': 2.11.3(graphql@16.8.1)
-      '@apollo/query-graphs': 2.11.3(graphql@16.8.1)
+      '@apollo/federation-internals': 2.12.0(graphql@16.8.1)
+      '@apollo/query-graphs': 2.12.0(graphql@16.8.1)
       '@apollo/utils.keyvaluecache': 2.1.1
       chalk: 4.1.2
       deep-equal: 2.2.3
@@ -11871,10 +11875,10 @@ snapshots:
       - encoding
       - supports-color
 
-  '@apollo/subgraph@2.11.3(graphql@16.8.1)':
+  '@apollo/subgraph@2.12.0(graphql@16.8.1)':
     dependencies:
       '@apollo/cache-control-types': 1.0.3(graphql@16.8.1)
-      '@apollo/federation-internals': 2.11.3(graphql@16.8.1)
+      '@apollo/federation-internals': 2.12.0(graphql@16.8.1)
       graphql: 16.8.1
 
   '@apollo/usage-reporting-protobuf@4.1.1':
@@ -12352,8 +12356,11 @@ snapshots:
 
   '@aws/lambda-invoke-store@0.0.1': {}
 
-  '@azure/functions@4.8.0':
+  '@azure/functions-extensions-base@0.2.0': {}
+
+  '@azure/functions@4.9.0':
     dependencies:
+      '@azure/functions-extensions-base': 0.2.0
       cookie: 1.0.2
       long: 4.0.0
       undici: 5.29.0
@@ -14676,7 +14683,7 @@ snapshots:
   '@newrelic/security-agent@0.2.1':
     dependencies:
       '@aws-sdk/client-lambda': 3.913.0
-      axios: 1.13.1
+      axios: 1.13.2
       check-disk-space: 3.3.1
       content-type: 1.0.5
       fast-safe-stringify: 2.1.1
@@ -16953,7 +16960,7 @@ snapshots:
       uuid: 8.0.0
       xml2js: 0.6.2
 
-  axios@1.13.1:
+  axios@1.13.2:
     dependencies:
       follow-redirects: 1.15.11
       form-data: 4.0.4
@@ -18205,7 +18212,7 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
-  eslint-plugin-package-json@0.63.0(@types/estree@1.0.8)(eslint@9.39.1(jiti@1.21.7))(jsonc-eslint-parser@2.4.1):
+  eslint-plugin-package-json@0.64.0(@types/estree@1.0.8)(eslint@9.39.1(jiti@1.21.7))(jsonc-eslint-parser@2.4.1):
     dependencies:
       '@altano/repository-tools': 2.0.1
       change-case: 5.4.4
@@ -18714,7 +18721,7 @@ snapshots:
       locate-path: 6.0.0
       path-exists: 4.0.0
 
-  firebase-admin@13.5.0(encoding@0.1.13):
+  firebase-admin@13.6.0(encoding@0.1.13):
     dependencies:
       '@fastify/busboy': 3.2.0
       '@firebase/database-compat': 2.1.0
@@ -18734,13 +18741,13 @@ snapshots:
       - encoding
       - supports-color
 
-  firebase-functions@6.6.0(firebase-admin@13.5.0(encoding@0.1.13)):
+  firebase-functions@6.6.0(firebase-admin@13.6.0(encoding@0.1.13)):
     dependencies:
       '@types/cors': 2.8.19
       '@types/express': 4.17.23
       cors: 2.8.5
       express: 4.21.2
-      firebase-admin: 13.5.0(encoding@0.1.13)
+      firebase-admin: 13.6.0(encoding@0.1.13)
       protobufjs: 7.5.4
     transitivePeerDependencies:
       - supports-color
@@ -24008,7 +24015,7 @@ snapshots:
 
   wait-on@9.0.1:
     dependencies:
-      axios: 1.13.1
+      axios: 1.13.2
       joi: 18.0.1
       lodash: 4.17.21
       minimist: 1.2.8
