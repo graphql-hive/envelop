@@ -1,5 +1,14 @@
 # @envelop/newrelic
 
+## 10.0.0
+
+### Patch Changes
+
+- Updated dependencies
+  [[`0434fbd`](https://github.com/graphql-hive/envelop/commit/0434fbdf9e6a33a64f5cb5fe34662ea4815647eb)]:
+  - @envelop/core@5.4.0
+  - @envelop/on-resolve@7.0.0
+
 ## 9.0.0
 
 ### Patch Changes
@@ -103,7 +112,6 @@
 - [#1927](https://github.com/n1ru4l/envelop/pull/1927)
   [`e3c90116`](https://github.com/n1ru4l/envelop/commit/e3c9011640b73aaede4e5e472a5d45aab947165c)
   Thanks [@renovate](https://github.com/apps/renovate)! - dependencies updates:
-
   - Updated dependency
     [`@envelop/on-resolve@^3.0.2` ↗︎](https://www.npmjs.com/package/@envelop/on-resolve/v/3.0.2)
     (from `^3.0.1`, in `dependencies`)
@@ -135,7 +143,6 @@
 - [#1935](https://github.com/n1ru4l/envelop/pull/1935)
   [`89ae34e3`](https://github.com/n1ru4l/envelop/commit/89ae34e3bb3daef5f98608d79dc269ed9f549c11)
   Thanks [@EmrysMyrddin](https://github.com/EmrysMyrddin)! - dependencies updates:
-
   - Updated dependency [`newrelic@>=7 <12` ↗︎](https://www.npmjs.com/package/newrelic/v/7.0.0)
     (from `^7 || ^8.0.0`, in `peerDependencies`)
 
@@ -186,7 +193,6 @@
 - [#1725](https://github.com/n1ru4l/envelop/pull/1725)
   [`c1eb2c09`](https://github.com/n1ru4l/envelop/commit/c1eb2c09ac535b076a5c13430c3892d98f7ef957)
   Thanks [@n1ru4l](https://github.com/n1ru4l)! - dependencies updates:
-
   - Updated dependency [`tslib@^2.5.0` ↗︎](https://www.npmjs.com/package/tslib/v/2.5.0) (from
     `^2.4.0`, in `dependencies`)
 
@@ -308,7 +314,6 @@
   [`ff8b4476`](https://github.com/n1ru4l/envelop/commit/ff8b447652ed71159ac7b3d94223e8e1dfb2d14e)
   Thanks [@zawadzkip](https://github.com/zawadzkip)! - New Relic: add error for agent not being
   found Adds an error message when initializing the new relic plugin
-
   - This error message will occur when the new relic agent is not found when initializing the
     plugin. Signalling information to a developer that new relic may not be
   - installed correctly or may be disabled where this plugin is being instantiated.

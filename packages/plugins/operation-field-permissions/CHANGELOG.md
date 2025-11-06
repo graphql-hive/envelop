@@ -1,5 +1,14 @@
 # @envelop/operation-field-permissions
 
+## 9.0.0
+
+### Patch Changes
+
+- Updated dependencies
+  [[`0434fbd`](https://github.com/graphql-hive/envelop/commit/0434fbdf9e6a33a64f5cb5fe34662ea4815647eb)]:
+  - @envelop/core@5.4.0
+  - @envelop/extended-validation@7.0.0
+
 ## 8.0.0
 
 ### Patch Changes
@@ -26,7 +35,6 @@
 - [#2484](https://github.com/n1ru4l/envelop/pull/2484)
   [`26137e7`](https://github.com/n1ru4l/envelop/commit/26137e7c3d0ff349af90724867c715f3b3809a7d)
   Thanks [@renovate](https://github.com/apps/renovate)! - dependencies updates:
-
   - Added dependency
     [`@whatwg-node/promise-helpers@^1.2.4` ↗︎](https://www.npmjs.com/package/@whatwg-node/promise-helpers/v/1.2.4)
     (to `dependencies`)
@@ -108,7 +116,6 @@
 - [#1927](https://github.com/n1ru4l/envelop/pull/1927)
   [`e3c90116`](https://github.com/n1ru4l/envelop/commit/e3c9011640b73aaede4e5e472a5d45aab947165c)
   Thanks [@renovate](https://github.com/apps/renovate)! - dependencies updates:
-
   - Updated dependency
     [`@envelop/extended-validation@^3.0.2` ↗︎](https://www.npmjs.com/package/@envelop/extended-validation/v/3.0.2)
     (from `^3.0.1`, in `dependencies`)
@@ -169,7 +176,6 @@
 - [#1725](https://github.com/n1ru4l/envelop/pull/1725)
   [`c1eb2c09`](https://github.com/n1ru4l/envelop/commit/c1eb2c09ac535b076a5c13430c3892d98f7ef957)
   Thanks [@n1ru4l](https://github.com/n1ru4l)! - dependencies updates:
-
   - Updated dependency [`tslib@^2.5.0` ↗︎](https://www.npmjs.com/package/tslib/v/2.5.0) (from
     `^2.4.0`, in `dependencies`)
 

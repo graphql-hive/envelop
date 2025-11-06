@@ -1,5 +1,12 @@
 # @envelop/response-cache-redis
 
+## 4.2.5
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @envelop/response-cache@9.0.0
+
 ## 4.2.4
 
 ### Patch Changes
@@ -21,7 +28,6 @@
 - [#2484](https://github.com/n1ru4l/envelop/pull/2484)
   [`26137e7`](https://github.com/n1ru4l/envelop/commit/26137e7c3d0ff349af90724867c715f3b3809a7d)
   Thanks [@renovate](https://github.com/apps/renovate)! - dependencies updates:
-
   - Added dependency
     [`@whatwg-node/promise-helpers@^1.2.4` ↗︎](https://www.npmjs.com/package/@whatwg-node/promise-helpers/v/1.2.4)
     (to `dependencies`)
@@ -153,7 +159,6 @@
 - [#1927](https://github.com/n1ru4l/envelop/pull/1927)
   [`e3c90116`](https://github.com/n1ru4l/envelop/commit/e3c9011640b73aaede4e5e472a5d45aab947165c)
   Thanks [@renovate](https://github.com/apps/renovate)! - dependencies updates:
-
   - Updated dependency
     [`@envelop/response-cache@^5.3.1` ↗︎](https://www.npmjs.com/package/@envelop/response-cache/v/5.3.1)
     (from `^5.3.0`, in `dependencies`)
@@ -241,7 +246,6 @@
 - [#1725](https://github.com/n1ru4l/envelop/pull/1725)
   [`c1eb2c09`](https://github.com/n1ru4l/envelop/commit/c1eb2c09ac535b076a5c13430c3892d98f7ef957)
   Thanks [@n1ru4l](https://github.com/n1ru4l)! - dependencies updates:
-
   - Updated dependency [`tslib@^2.5.0` ↗︎](https://www.npmjs.com/package/tslib/v/2.5.0) (from
     `^2.4.0`, in `dependencies`)
 

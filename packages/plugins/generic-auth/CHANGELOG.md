@@ -1,5 +1,14 @@
 # @envelop/generic-auth
 
+## 11.0.0
+
+### Patch Changes
+
+- Updated dependencies
+  [[`0434fbd`](https://github.com/graphql-hive/envelop/commit/0434fbdf9e6a33a64f5cb5fe34662ea4815647eb)]:
+  - @envelop/core@5.4.0
+  - @envelop/extended-validation@7.0.0
+
 ## 10.0.1
 
 ### Patch Changes

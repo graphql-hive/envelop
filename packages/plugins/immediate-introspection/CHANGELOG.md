@@ -1,5 +1,13 @@
 # @envelop/immediate-introspection
 
+## 7.0.0
+
+### Patch Changes
+
+- Updated dependencies
+  [[`0434fbd`](https://github.com/graphql-hive/envelop/commit/0434fbdf9e6a33a64f5cb5fe34662ea4815647eb)]:
+  - @envelop/core@5.4.0
+
 ## 6.0.0
 
 ### Patch Changes
@@ -73,7 +81,6 @@
 - [#2277](https://github.com/n1ru4l/envelop/pull/2277)
   [`9f65fcb`](https://github.com/n1ru4l/envelop/commit/9f65fcba8e0a6c37b43ac71012a46e4ff65f3157)
   Thanks [@trixobird](https://github.com/trixobird)! - dependencies updates:
-
   - Updated dependency
     [`@sentry/node@^8.0.0` ↗︎](https://www.npmjs.com/package/@sentry/node/v/8.0.0) (from
     `^6 || ^7`, in `peerDependencies`)
@@ -99,7 +106,6 @@
 - [#1927](https://github.com/n1ru4l/envelop/pull/1927)
   [`e3c90116`](https://github.com/n1ru4l/envelop/commit/e3c9011640b73aaede4e5e472a5d45aab947165c)
   Thanks [@renovate](https://github.com/apps/renovate)! - dependencies updates:
-
   - Updated dependency
     [`@envelop/core@^4.0.2` ↗︎](https://www.npmjs.com/package/@envelop/core/v/4.0.2) (from
     `^4.0.1`, in `peerDependencies`)
