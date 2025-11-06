@@ -13,4 +13,4 @@ export * from './plugins/use-masked-errors.js';
 export * from './plugins/use-engine.js';
 export * from './plugins/use-validation-rule.js';
 export * from './plugin-with-state.js';
-export { getDocumentString } from './document-string-map.js';
+export { getDocumentString, documentStringMap } from './document-string-map.js';
