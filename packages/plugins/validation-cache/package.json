@@ -1,6 +1,6 @@
 {
   "name": "@envelop/validation-cache",
-  "version": "9.0.1",
+  "version": "10.0.0",
   "type": "module",
   "repository": {
     "type": "git",

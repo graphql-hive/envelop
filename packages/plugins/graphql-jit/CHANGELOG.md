@@ -1,5 +1,13 @@
 # @envelop/graphql-jit
 
+## 11.0.0
+
+### Patch Changes
+
+- Updated dependencies
+  [[`0434fbd`](https://github.com/graphql-hive/envelop/commit/0434fbdf9e6a33a64f5cb5fe34662ea4815647eb)]:
+  - @envelop/core@5.4.0
+
 ## 10.0.0
 
 ### Patch Changes
@@ -77,7 +85,6 @@
 - [#2188](https://github.com/n1ru4l/envelop/pull/2188)
   [`3a32aa9`](https://github.com/n1ru4l/envelop/commit/3a32aa977fcf3bc9c0e3416901deadd7c2f49582)
   Thanks [@renovate](https://github.com/apps/renovate)! - dependencies updates:
-
   - Updated dependency [`graphql-jit@0.8.6` ↗︎](https://www.npmjs.com/package/graphql-jit/v/0.8.6)
     (from `0.8.5`, in `dependencies`)
 
@@ -88,7 +95,6 @@
 - [#2177](https://github.com/n1ru4l/envelop/pull/2177)
   [`dded74e`](https://github.com/n1ru4l/envelop/commit/dded74eb630f5537ef4af9b00afba1f307b28d20)
   Thanks [@renovate](https://github.com/apps/renovate)! - dependencies updates:
-
   - Updated dependency [`graphql-jit@0.8.5` ↗︎](https://www.npmjs.com/package/graphql-jit/v/0.8.5)
     (from `0.8.2`, in `dependencies`)
 
@@ -119,7 +125,6 @@
 - [#1999](https://github.com/n1ru4l/envelop/pull/1999)
   [`aba3c5c6`](https://github.com/n1ru4l/envelop/commit/aba3c5c601f861b51c3ebe52ba379140622018ed)
   Thanks [@renovate](https://github.com/apps/renovate)! - dependencies updates:
-
   - Updated dependency [`graphql-jit@0.8.4` ↗︎](https://www.npmjs.com/package/graphql-jit/v/0.8.4)
     (from `0.8.2`, in `dependencies`)
 
@@ -137,7 +142,6 @@
 - [#1992](https://github.com/n1ru4l/envelop/pull/1992)
   [`a07b2955`](https://github.com/n1ru4l/envelop/commit/a07b2955e37f261f96f30ca1cfb1f6d07179fb9b)
   Thanks [@ardatan](https://github.com/ardatan)! - dependencies updates:
-
   - Updated dependency [`graphql-jit@0.8.2` ↗︎](https://www.npmjs.com/package/graphql-jit/v/0.8.2)
     (from `^0.8.0`, in `dependencies`)
   - Added dependency
@@ -167,7 +171,6 @@
 - [#1927](https://github.com/n1ru4l/envelop/pull/1927)
   [`e3c90116`](https://github.com/n1ru4l/envelop/commit/e3c9011640b73aaede4e5e472a5d45aab947165c)
   Thanks [@renovate](https://github.com/apps/renovate)! - dependencies updates:
-
   - Updated dependency
     [`@envelop/core@^4.0.2` ↗︎](https://www.npmjs.com/package/@envelop/core/v/4.0.2) (from
     `^4.0.1`, in `peerDependencies`)
@@ -198,7 +201,6 @@
 - [#1879](https://github.com/n1ru4l/envelop/pull/1879)
   [`d3ecee35`](https://github.com/n1ru4l/envelop/commit/d3ecee350883eabd99fd9fe4fa58c72a616cc6b5)
   Thanks [@renovate](https://github.com/apps/renovate)! - dependencies updates:
-
   - Updated dependency [`lru-cache@^10.0.0` ↗︎](https://www.npmjs.com/package/lru-cache/v/10.0.0)
     (from `^9.1.1`, in `dependencies`)
 
@@ -224,7 +226,6 @@
 - [#1767](https://github.com/n1ru4l/envelop/pull/1767)
   [`0b127cc4`](https://github.com/n1ru4l/envelop/commit/0b127cc40f2e6a003a05cbeb0b6f004a08ada9d2)
   Thanks [@n1ru4l](https://github.com/n1ru4l)! - dependencies updates:
-
   - Updated dependency [`lru-cache@^9.1.1` ↗︎](https://www.npmjs.com/package/lru-cache/v/9.1.1)
     (from `^6.0.0`, in `dependencies`)
 
@@ -242,7 +243,6 @@
 - [#1725](https://github.com/n1ru4l/envelop/pull/1725)
   [`c1eb2c09`](https://github.com/n1ru4l/envelop/commit/c1eb2c09ac535b076a5c13430c3892d98f7ef957)
   Thanks [@n1ru4l](https://github.com/n1ru4l)! - dependencies updates:
-
   - Updated dependency [`tslib@^2.5.0` ↗︎](https://www.npmjs.com/package/tslib/v/2.5.0) (from
     `^2.4.0`, in `dependencies`)
 

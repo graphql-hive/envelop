@@ -1,5 +1,13 @@
 # @envelop/core
 
+## 5.4.0
+
+### Minor Changes
+
+- [`0434fbd`](https://github.com/graphql-hive/envelop/commit/0434fbdf9e6a33a64f5cb5fe34662ea4815647eb)
+  Thanks [@ardatan](https://github.com/ardatan)! - Export `documentStringMap` to set a value for
+  `getDocumentString` externally
+
 ## 5.3.2
 
 ### Patch Changes

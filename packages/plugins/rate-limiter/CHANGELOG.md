@@ -1,5 +1,14 @@
 # @envelop/rate-limiter
 
+## 9.0.0
+
+### Patch Changes
+
+- Updated dependencies
+  [[`0434fbd`](https://github.com/graphql-hive/envelop/commit/0434fbdf9e6a33a64f5cb5fe34662ea4815647eb)]:
+  - @envelop/core@5.4.0
+  - @envelop/on-resolve@7.0.0
+
 ## 8.1.1
 
 ### Patch Changes
