@@ -109,8 +109,8 @@ importers:
         specifier: 17.23.1
         version: 17.23.1(eslint@9.39.1(jiti@1.21.7))(typescript@5.9.3)
       eslint-plugin-package-json:
-        specifier: ^0.64.0
-        version: 0.64.0(@types/estree@1.0.8)(eslint@9.39.1(jiti@1.21.7))(jsonc-eslint-parser@2.4.1)
+        specifier: ^0.65.0
+        version: 0.65.0(@types/estree@1.0.8)(eslint@9.39.1(jiti@1.21.7))(jsonc-eslint-parser@2.4.1)
       eslint-plugin-promise:
         specifier: 7.2.1
         version: 7.2.1(eslint@9.39.1(jiti@1.21.7))
@@ -151,11 +151,11 @@ importers:
         specifier: 5.9.3
         version: 5.9.3
       wait-on:
-        specifier: 9.0.1
-        version: 9.0.1
+        specifier: 9.0.3
+        version: 9.0.3
       wrangler:
         specifier: 4.46.0
-        version: 4.46.0(@cloudflare/workers-types@4.20251107.0)
+        version: 4.46.0(@cloudflare/workers-types@4.20251109.0)
 
   benchmark:
     dependencies:
@@ -265,8 +265,8 @@ importers:
         version: 0.7.3
     devDependencies:
       '@cloudflare/workers-types':
-        specifier: 4.20251107.0
-        version: 4.20251107.0
+        specifier: 4.20251109.0
+        version: 4.20251109.0
       '@types/node':
         specifier: 24.10.0
         version: 24.10.0
@@ -2800,8 +2800,8 @@ packages:
   '@cloudflare/workers-types@4.20251014.0':
     resolution: {integrity: sha512-tEW98J/kOa0TdylIUOrLKRdwkUw0rvvYVlo+Ce0mqRH3c8kSoxLzUH9gfCvwLe0M89z1RkzFovSKAW2Nwtyn3w==}
 
-  '@cloudflare/workers-types@4.20251107.0':
-    resolution: {integrity: sha512-4y3U2kDxzAMKthjx6iIlxY2oA3l5FVP1WR2Zkz1j0Cx0RI5P1DZknSV5WP86i2anE5eal+pmtzvCO4oZWgcgtA==}
+  '@cloudflare/workers-types@4.20251109.0':
+    resolution: {integrity: sha512-/wMfoS6NmoY0GgKVoRUp4x0yiZM0eNXwXTTzM7gFJKcm+0NtZmzUzgXj6xpShkfWSrmug0mX7BbyaFMAMHFlPA==}
 
   '@colors/colors@1.6.0':
     resolution: {integrity: sha512-Ir+AOibqzrIsL6ajt3Rz3LskB7OiMVHqltZmspbW/TJuTVuyOMirVqAkjfY6JISiLHgyNqicAC8AyHHGzNd/dA==}
@@ -7053,8 +7053,8 @@ packages:
     peerDependencies:
       eslint: '>=8.23.0'
 
-  eslint-plugin-package-json@0.64.0:
-    resolution: {integrity: sha512-tNqczNSlZdQlnFWE9vk33XhLIQkG1mJiSiCy9bbggGB14xAhrTQAfj+hCfW4cRXMQoYtsNDHf+D8Mxy2jCKfWQ==}
+  eslint-plugin-package-json@0.65.0:
+    resolution: {integrity: sha512-uCrnZBdMowAkewhMVZebTnoLN5gJwBSi3L8060ZovAMc0qPPUJle8IT5G1wHyddcQziyzlxt94khbEcn7zzdig==}
     engines: {node: ^20.19.0 || >=22.12.0}
     peerDependencies:
       eslint: '>=8.0.0'
@@ -9575,8 +9575,8 @@ packages:
   package-json-from-dist@1.0.1:
     resolution: {integrity: sha512-UEZIS3/by4OC8vL3P2dTXRETpebLI2NiI5vIrjaD/5UtrkFX/tNbwjTSRAGC/+7CAo2pIcBaRgWmcBBHcsaCIw==}
 
-  package-json-validator@0.32.1:
-    resolution: {integrity: sha512-SjAz3cXUAZsN6UjrvLZMj03nDohZ4KI/yj0ljNSMPVI4ZSsR7TPIMlQRHuCOOBsqUGKPhjNrAn++oVU+r77j0Q==}
+  package-json-validator@0.34.0:
+    resolution: {integrity: sha512-kij4ALmQrfqNBPgfgTs3c6mbGwpG0M3Di8dtkt9RFXg73cFKxberr7SW0kwMHgJ8PNVq+QnOP12p7TFzMxgJZw==}
     engines: {node: ^20.19.0 || >=22.12.0}
     hasBin: true
 
@@ -11373,8 +11373,8 @@ packages:
   vscode-uri@3.0.8:
     resolution: {integrity: sha512-AyFQ0EVmsOZOlAnxoFOGOq1SQDWAB7C6aqMGS23svWAllfOaxbuFvcT8D1i8z3Gyn8fraVeZNNmN6e9bxxXkKw==}
 
-  wait-on@9.0.1:
-    resolution: {integrity: sha512-noeCAI+XbqWMXY23sKril0BSURhuLYarkVXwJv1uUWwoojZJE7pmX3vJ7kh7SZaNgPGzfsCSQIZM/AGvu0Q9pA==}
+  wait-on@9.0.3:
+    resolution: {integrity: sha512-13zBnyYvFDW1rBvWiJ6Av3ymAaq8EDQuvxZnPIw3g04UqGi4TyoIJABmfJ6zrvKo9yeFQExNkOk7idQbDJcuKA==}
     engines: {node: '>=20.0.0'}
     hasBin: true
 
@@ -13309,7 +13309,7 @@ snapshots:
 
   '@cloudflare/workers-types@4.20251014.0': {}
 
-  '@cloudflare/workers-types@4.20251107.0': {}
+  '@cloudflare/workers-types@4.20251109.0': {}
 
   '@colors/colors@1.6.0': {}
 
@@ -14411,7 +14411,7 @@ snapshots:
 
   '@miniflare/shared-test-environment@2.14.4':
     dependencies:
-      '@cloudflare/workers-types': 4.20251107.0
+      '@cloudflare/workers-types': 4.20251109.0
       '@miniflare/cache': 2.14.4
       '@miniflare/core': 2.14.4
       '@miniflare/d1': 2.14.4
@@ -18117,7 +18117,7 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
-  eslint-plugin-package-json@0.64.0(@types/estree@1.0.8)(eslint@9.39.1(jiti@1.21.7))(jsonc-eslint-parser@2.4.1):
+  eslint-plugin-package-json@0.65.0(@types/estree@1.0.8)(eslint@9.39.1(jiti@1.21.7))(jsonc-eslint-parser@2.4.1):
     dependencies:
       '@altano/repository-tools': 2.0.1
       change-case: 5.4.4
@@ -18126,7 +18126,7 @@ snapshots:
       eslint: 9.39.1(jiti@1.21.7)
       eslint-fix-utils: 0.4.0(@types/estree@1.0.8)(eslint@9.39.1(jiti@1.21.7))
       jsonc-eslint-parser: 2.4.1
-      package-json-validator: 0.32.1
+      package-json-validator: 0.34.0
       semver: 7.7.3
       sort-object-keys: 2.0.0
       sort-package-json: 3.4.0
@@ -21705,7 +21705,7 @@ snapshots:
 
   package-json-from-dist@1.0.1: {}
 
-  package-json-validator@0.32.1:
+  package-json-validator@0.34.0:
     dependencies:
       semver: 7.7.3
       validate-npm-package-license: 3.0.4
@@ -23919,7 +23919,7 @@ snapshots:
 
   vscode-uri@3.0.8: {}
 
-  wait-on@9.0.1:
+  wait-on@9.0.3:
     dependencies:
       axios: 1.13.2
       joi: 18.0.1
@@ -24094,7 +24094,7 @@ snapshots:
     dependencies:
       regexparam: 2.0.2
 
-  wrangler@4.46.0(@cloudflare/workers-types@4.20251107.0):
+  wrangler@4.46.0(@cloudflare/workers-types@4.20251109.0):
     dependencies:
       '@cloudflare/kv-asset-handler': 0.4.0
       '@cloudflare/unenv-preset': 2.7.9(unenv@2.0.0-rc.24)(workerd@1.20251105.0)
@@ -24105,7 +24105,7 @@ snapshots:
       unenv: 2.0.0-rc.24
       workerd: 1.20251105.0
     optionalDependencies:
-      '@cloudflare/workers-types': 4.20251107.0
+      '@cloudflare/workers-types': 4.20251109.0
       fsevents: 2.3.3
     transitivePeerDependencies:
       - bufferutil
