@@ -48,7 +48,7 @@
     "eslint-config-standard": "17.1.0",
     "eslint-plugin-import": "2.32.0",
     "eslint-plugin-n": "17.23.1",
-    "eslint-plugin-package-json": "^0.64.0",
+    "eslint-plugin-package-json": "^0.65.0",
     "eslint-plugin-promise": "7.2.1",
     "eslint-plugin-unicorn": "62.0.0",
     "globby": "15.0.0",
@@ -62,7 +62,7 @@
     "ts-jest": "29.4.5",
     "ts-node": "10.9.2",
     "typescript": "5.9.3",
-    "wait-on": "9.0.1",
+    "wait-on": "9.0.3",
     "wrangler": "4.46.0"
   },
   "lint-staged": {
