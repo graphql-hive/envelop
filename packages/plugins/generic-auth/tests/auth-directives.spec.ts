@@ -237,7 +237,7 @@ describe('Auth Directives', () => {
             locations: [
               {
                 line: 8,
-                column: 17,
+                column: 15,
               },
             ],
             extensions: {
