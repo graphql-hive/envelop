@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@envelop/core": "workspace:^",
-    "@graphql-tools/schema": "10.0.28",
+    "@graphql-tools/schema": "10.0.29",
     "graphql": "16.10.0"
   },
   "devDependencies": {
