@@ -3,7 +3,7 @@
   "author": "Dotan Simha <dotansimha@gmail.com>",
   "license": "MIT",
   "private": true,
-  "packageManager": "pnpm@10.21.0",
+  "packageManager": "pnpm@10.22.0",
   "engines": {
     "node": ">=18.0.0",
     "pnpm": ">=10.2.1"
@@ -36,7 +36,7 @@
     "@types/benchmark": "2.1.5",
     "@types/jest": "30.0.0",
     "@types/k6": "1.4.0",
-    "@types/node": "24.10.0",
+    "@types/node": "24.10.1",
     "@typescript-eslint/eslint-plugin": "8.46.4",
     "@typescript-eslint/parser": "8.46.4",
     "bob-the-bundler": "7.0.1",
@@ -48,7 +48,7 @@
     "eslint-config-standard": "17.1.0",
     "eslint-plugin-import": "2.32.0",
     "eslint-plugin-n": "17.23.1",
-    "eslint-plugin-package-json": "^0.65.0",
+    "eslint-plugin-package-json": "^0.71.0",
     "eslint-plugin-promise": "7.2.1",
     "eslint-plugin-unicorn": "62.0.0",
     "globby": "15.0.0",
