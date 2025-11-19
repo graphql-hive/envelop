@@ -866,13 +866,25 @@ mutation SetNameMutation {
 
 #### Get scope of the query
 
-Useful for building a cache key that is shared across all sessions when `PUBLIC`.
+Useful for building a cache with more flexibility (e.g. generate a key that is shared across all
+sessions when `PUBLIC`).
 
 ```ts
 import jsonStableStringify from 'fast-json-stable-stringify'
 import { execute, parse, subscribe, validate } from 'graphql'
 import { envelop } from '@envelop/core'
 import { hashSHA256, useResponseCache } from '@envelop/response-cache'
+
+const schema = buildSchema(/* GraphQL */ `
+  ${cacheControlDirective}
+  type PrivateProfile @cacheControl(scope: PRIVATE) {
+    # ...
+  }
+
+  type Profile {
+    privateData: String @cacheControl(scope: PRIVATE)
+  }
+`)
 
 const getEnveloped = envelop({
   parse,
@@ -885,16 +897,16 @@ const getEnveloped = envelop({
       ttl: 2000,
       session: request => getSessionId(request),
       buildResponseCacheKey: ({
-        getScope,
         sessionId,
         documentString,
         operationName,
-        variableValues
+        variableValues,
+        extras
       }) =>
-        // Use `getScope()` to put a unique key for every session when `PUBLIC`
         hashSHA256(
           [
-            getScope() === 'PUBLIC' ? 'PUBLIC' : sessionId,
+            // Use it to put a unique key for every session when `PUBLIC`
+            extras(schema).scope === 'PUBLIC' ? 'PUBLIC' : sessionId,
             documentString,
             operationName ?? '',
             jsonStableStringify(variableValues ?? {})

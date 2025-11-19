@@ -94,15 +94,20 @@ function getSchemaCoordinatesFromQuery(schema: GraphQLSchema, query: string): Se
 
 export type Scope = {
   scope: NonNullable<CacheControlDirective['scope']>;
-  metadata: { privateProperty?: string; hitCache?: boolean };
+  metadata?: { privateProperty?: string; hitCache?: boolean };
 };
 
 const scopeCachePerSchema = new WeakMap<GraphQLSchema, LRUCache<string, Scope>>();
 
+export type GetScopeFromQueryOptions = {
+  includeExtensionMetadata?: boolean;
+  sizePerSchema?: number;
+};
+
 export const getScopeFromQuery = (
   schema: GraphQLSchema,
   query: string,
-  options?: { sizePerSchema?: number },
+  options?: GetScopeFromQueryOptions,
 ): Scope => {
   if (!scopeCachePerSchema.has(schema)) {
     scopeCachePerSchema.set(
@@ -116,18 +121,32 @@ export const getScopeFromQuery = (
   const cache = scopeCachePerSchema.get(schema);
   const cachedScope = cache?.get(query);
 
-  if (cachedScope) return { ...cachedScope, metadata: { ...cachedScope.metadata, hitCache: true } };
+  if (cachedScope)
+    return {
+      ...cachedScope,
+      ...(options?.includeExtensionMetadata
+        ? { metadata: { ...cachedScope.metadata, hitCache: true } }
+        : {}),
+    };
 
   function getScope() {
     const schemaCoordinates = getSchemaCoordinatesFromQuery(schema, query);
 
     for (const coordinate of schemaCoordinates) {
       if (isPrivate(coordinate)) {
-        return { scope: 'PRIVATE' as const, metadata: { privateProperty: coordinate } };
+        return {
+          scope: 'PRIVATE' as const,
+          ...(options?.includeExtensionMetadata
+            ? { metadata: { privateProperty: coordinate } }
+            : {}),
+        };
       }
     }
 
-    return { scope: 'PUBLIC' as const, metadata: {} };
+    return {
+      scope: 'PUBLIC' as const,
+      ...(options?.includeExtensionMetadata ? { metadata: {} } : {}),
+    };
   }
 
   const scope = getScope();

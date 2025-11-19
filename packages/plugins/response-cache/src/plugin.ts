@@ -36,7 +36,7 @@ import {
 } from '@graphql-tools/utils';
 import { handleMaybePromise, MaybePromise } from '@whatwg-node/promise-helpers';
 import type { Cache, CacheEntityRecord } from './cache.js';
-import { getScopeFromQuery, Scope } from './get-scope.js';
+import { getScopeFromQuery, GetScopeFromQueryOptions, Scope } from './get-scope.js';
 import { hashSHA256 } from './hash-sha256.js';
 import { createInMemoryCache } from './in-memory-cache.js';
 
@@ -574,8 +574,14 @@ export function useResponseCache<PluginContext extends Record<string, any> = {}>
             operationName: onExecuteParams.args.operationName,
             sessionId,
             context: onExecuteParams.args.contextValue,
-            extras: (schema: GraphQLSchema) =>
-              getScopeFromQuery(schema, onExecuteParams.args.document.loc.source.body),
+            extras: (
+              schema: GraphQLSchema,
+              options?: Omit<GetScopeFromQueryOptions, 'includeExtensionMetadata'>,
+            ) =>
+              getScopeFromQuery(schema, onExecuteParams.args.document.loc.source.body, {
+                ...options,
+                includeExtensionMetadata,
+              }),
           }),
         cacheKey => {
           const cacheInstance = cacheFactory(onExecuteParams.args.contextValue);

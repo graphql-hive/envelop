@@ -3586,6 +3586,7 @@ describe('useResponseCache', () => {
           [
             useResponseCache({
               session: () => null,
+              includeExtensionMetadata: true,
               buildResponseCacheKey: ({ extras, ...rest }) => {
                 const { scope, metadata } = extras(schema);
                 expect(scope).toEqual('PRIVATE');
@@ -3674,11 +3675,12 @@ describe('useResponseCache', () => {
         [
           useResponseCache({
             session: () => null,
+            includeExtensionMetadata: true,
             buildResponseCacheKey: ({ extras, ...rest }) => {
               const { scope, metadata } = extras(schema);
               expect(scope).toEqual('PRIVATE');
-              expect(metadata.privateProperty).toEqual('User.name');
-              expect(metadata.hitCache).toEqual(multipleCalls ? true : undefined);
+              expect(metadata?.privateProperty).toEqual('User.name');
+              expect(metadata?.hitCache).toEqual(multipleCalls ? true : undefined);
               return defaultBuildResponseCacheKey(rest);
             },
             ttl: 200,
