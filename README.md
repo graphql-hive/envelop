@@ -176,6 +176,6 @@ from [Contributor Covenant](https://www.contributor-covenant.org/)
 
 ### License
 
-[![GitHub license](https://img.shields.io/badge/license-MIT-lightgrey.svg?maxAge=2592000)](https://raw.githubusercontent.com/apollostack/apollo-ios/master/LICENSE)
+[![GitHub license](https://img.shields.io/badge/license-MIT-lightgrey.svg?maxAge=2592000)](https://raw.githubusercontent.com/graphql-hive/envelop/master/LICENSE)
 
 MIT
