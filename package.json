@@ -3,7 +3,7 @@
   "author": "Dotan Simha <dotansimha@gmail.com>",
   "license": "MIT",
   "private": true,
-  "packageManager": "pnpm@10.22.0",
+  "packageManager": "pnpm@10.23.0",
   "engines": {
     "node": ">=18.0.0",
     "pnpm": ">=10.2.1"
@@ -63,7 +63,7 @@
     "ts-node": "10.9.2",
     "typescript": "5.9.3",
     "wait-on": "9.0.3",
-    "wrangler": "4.49.0"
+    "wrangler": "4.50.0"
   },
   "lint-staged": {
     "packages/**/src/**/*.{ts,tsx}": [
