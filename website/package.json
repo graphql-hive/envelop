@@ -22,7 +22,7 @@
   "devDependencies": {
     "@theguild/tailwind-config": "0.6.4",
     "@types/node": "24.10.1",
-    "@types/react": "18.3.26",
+    "@types/react": "18.3.27",
     "sharp": "0.34.5"
   },
   "browserslist": {
