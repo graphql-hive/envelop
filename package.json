@@ -75,6 +75,7 @@
   },
   "pnpm": {
     "overrides": {
+      "body-parser": "2.2.1",
       "esbuild": "^0.27.0",
       "graphql": "16.8.1",
       "glob": "13.0.0",
