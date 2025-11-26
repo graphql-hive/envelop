@@ -1618,12 +1618,12 @@ importers:
 
   packages/plugins/validation-cache:
     dependencies:
-      hash-it:
-        specifier: ^6.0.0
-        version: 6.0.1
       lru-cache:
         specifier: ^11.0.0
         version: 11.2.2
+      object-hash:
+        specifier: ^3.0.0
+        version: 3.0.0
       tslib:
         specifier: ^2.5.0
         version: 2.8.1
@@ -1631,6 +1631,9 @@ importers:
       '@envelop/core':
         specifier: workspace:^
         version: link:../../core/dist
+      '@types/object-hash':
+        specifier: ^3.0.6
+        version: 3.0.6
       graphql:
         specifier: 16.8.1
         version: 16.8.1
@@ -5298,6 +5301,9 @@ packages:
   '@types/node@8.10.66':
     resolution: {integrity: sha512-tktOkFUA4kXx2hhhrB8bIFb5TbwzS4uOhKEmwiD+NoiL0qtP2OQ9mFldbgD4dV1djrlBYP6eBuQZiWjuHUpqFw==}
 
+  '@types/object-hash@3.0.6':
+    resolution: {integrity: sha512-fOBV8C1FIu2ELinoILQ+ApxcUKz4ngq+IWUYrxSGjXzzjUALijilampwkMgEtJ+h2njAW3pi853QpzNVCHB73w==}
+
   '@types/pg-pool@2.0.6':
     resolution: {integrity: sha512-TaAUE5rq2VQYxab5Ts7WZhKNmuN78Q6PiFonTDdpbx8a1H0M1vhy3rhiMjl+e2iHmogyMw7jZF4FrE6eJUy5HQ==}
 
@@ -7730,9 +7736,6 @@ packages:
   has-tostringtag@1.0.2:
     resolution: {integrity: sha512-NqADB8VjPFLM2V0VvHUewwwsw0ZWBaIdgo+ieHtK3hasLz4qeCRjYcqfB6AQrBggRKppKF8L52/VqdVsO47Dlw==}
     engines: {node: '>= 0.4'}
-
-  hash-it@6.0.1:
-    resolution: {integrity: sha512-qhl8+l4Zwi1eLlL3lja5ywmDQnBzLEJxd0QJoAVIgZpgQbdtVZrN5ypB0y3VHwBlvAalpcbM2/A6x7oUks5zNg==}
 
   hash.js@1.1.7:
     resolution: {integrity: sha512-taOaskGt4z4SOANNseOviYDvjEJinIkRgmp7LbKP2YTTmVxWBl87s/uzK9r+44BclBSp2X7K1hqeNfz9JbBeXA==}
@@ -16037,6 +16040,8 @@ snapshots:
 
   '@types/node@8.10.66': {}
 
+  '@types/object-hash@3.0.6': {}
+
   '@types/pg-pool@2.0.6':
     dependencies:
       '@types/pg': 8.15.6
@@ -18910,8 +18915,6 @@ snapshots:
   has-tostringtag@1.0.2:
     dependencies:
       has-symbols: 1.1.0
-
-  hash-it@6.0.1: {}
 
   hash.js@1.1.7:
     dependencies:
