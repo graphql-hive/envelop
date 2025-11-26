@@ -1,6 +1,6 @@
 import { GraphQLError, introspectionFromSchema, print, type GraphQLSchema } from 'graphql';
-import hashIt from 'hash-it';
 import { LRUCache } from 'lru-cache';
+import objectHash from 'object-hash';
 import { getDocumentString, type Plugin } from '@envelop/core';
 
 export interface ValidationCache {
@@ -29,7 +29,7 @@ function getSchemaHash(schema: GraphQLSchema) {
     return hash;
   }
   const introspection = introspectionFromSchema(schema);
-  hash = String(hashIt(introspection.__schema));
+  hash = String(objectHash(introspection.__schema));
   schemaHashCache.set(schema, hash);
   return hash;
 }
