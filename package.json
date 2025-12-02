@@ -59,11 +59,11 @@
     "prettier-plugin-pkg": "0.21.2",
     "prettier-plugin-sh": "0.18.0",
     "rimraf": "6.1.2",
-    "ts-jest": "29.4.5",
+    "ts-jest": "29.4.6",
     "ts-node": "10.9.2",
     "typescript": "5.9.3",
     "wait-on": "9.0.3",
-    "wrangler": "4.51.0"
+    "wrangler": "4.52.0"
   },
   "lint-staged": {
     "packages/**/src/**/*.{ts,tsx}": [
