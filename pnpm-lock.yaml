@@ -62,10 +62,10 @@ importers:
         version: 2.29.7(@types/node@24.10.1)
       '@ianvs/prettier-plugin-sort-imports':
         specifier: 4.7.0
-        version: 4.7.0(patch_hash=db9ab7a110c54b5d60464680286f2c0d90ea2331a1142bc3fc068b09696655ce)(prettier@3.7.3)
+        version: 4.7.0(patch_hash=db9ab7a110c54b5d60464680286f2c0d90ea2331a1142bc3fc068b09696655ce)(prettier@3.7.4)
       '@theguild/prettier-config':
         specifier: 2.0.7
-        version: 2.0.7(prettier@3.7.3)
+        version: 2.0.7(prettier@3.7.4)
       '@types/benchmark':
         specifier: 2.1.5
         version: 2.1.5
@@ -133,14 +133,14 @@ importers:
         specifier: 16.2.7
         version: 16.2.7
       prettier:
-        specifier: 3.7.3
-        version: 3.7.3
+        specifier: 3.7.4
+        version: 3.7.4
       prettier-plugin-pkg:
         specifier: 0.21.2
-        version: 0.21.2(prettier@3.7.3)
+        version: 0.21.2(prettier@3.7.4)
       prettier-plugin-sh:
         specifier: 0.18.0
-        version: 0.18.0(prettier@3.7.3)
+        version: 0.18.0(prettier@3.7.4)
       rimraf:
         specifier: 6.1.2
         version: 6.1.2
@@ -157,8 +157,8 @@ importers:
         specifier: 9.0.3
         version: 9.0.3
       wrangler:
-        specifier: 4.52.0
-        version: 4.52.0(@cloudflare/workers-types@4.20251202.0)
+        specifier: 4.53.0
+        version: 4.53.0(@cloudflare/workers-types@4.20251202.0)
 
   benchmark:
     dependencies:
@@ -323,8 +323,8 @@ importers:
         specifier: 13.6.0
         version: 13.6.0(encoding@0.1.13)
       firebase-functions:
-        specifier: 7.0.0
-        version: 7.0.0(firebase-admin@13.6.0(encoding@0.1.13))
+        specifier: 7.0.1
+        version: 7.0.1(firebase-admin@13.6.0(encoding@0.1.13))
       graphql:
         specifier: 16.8.1
         version: 16.8.1
@@ -2764,41 +2764,41 @@ packages:
     resolution: {integrity: sha512-Nu8ahitGFFJztxUml9oD/DLb7Z28C8cd8F46IVQ7y5Btz575pvMY8AqZsXkX7Gds29eCKdMgIHjIvzskHgPSFg==}
     engines: {node: '>=18.0.0'}
 
-  '@cloudflare/unenv-preset@2.7.12':
-    resolution: {integrity: sha512-SIBo+k58R9OyBsxF1jL6GdL7XHbzatT86c0be+UY5v5tg6TAuJ1/2QsRuC3pHgKVHile1HcJqEEORoS9hv8hNw==}
+  '@cloudflare/unenv-preset@2.7.13':
+    resolution: {integrity: sha512-NulO1H8R/DzsJguLC0ndMuk4Ufv0KSlN+E54ay9rn9ZCQo0kpAPwwh3LhgpZ96a3Dr6L9LqW57M4CqC34iLOvw==}
     peerDependencies:
       unenv: 2.0.0-rc.24
-      workerd: ^1.20251125.0
+      workerd: ^1.20251202.0
     peerDependenciesMeta:
       workerd:
         optional: true
 
-  '@cloudflare/workerd-darwin-64@1.20251128.0':
-    resolution: {integrity: sha512-51A1sBKMgLbuYThB9G9QhOlBOe70yc9NsQLtmUT+hNjbVUDmR3KVrHyirGioP1IcCA5dKah55TNG/mVCjoTB7Q==}
+  '@cloudflare/workerd-darwin-64@1.20251202.0':
+    resolution: {integrity: sha512-/uvEAWEukTWb1geHhbjGUeZqcSSSyYzp0mvoPUBl+l0ont4NVGao3fgwM0q8wtKvgoKCHSG6zcG23wj9Opj3Nw==}
     engines: {node: '>=16'}
     cpu: [x64]
     os: [darwin]
 
-  '@cloudflare/workerd-darwin-arm64@1.20251128.0':
-    resolution: {integrity: sha512-4qy9usTWMzrv1uKDpIjHuiCWtEQTVVnpTfzMaDBReCWGozuJMVqX/TPiq2HdXGzAdZjdRfaTRpRvonunhwHYlQ==}
+  '@cloudflare/workerd-darwin-arm64@1.20251202.0':
+    resolution: {integrity: sha512-f52xRvcI9cWRd6400EZStRtXiRC5XKEud7K5aFIbbUv0VeINltujFQQ9nHWtsF6g1quIXWkjhh5u01gPAYNNXA==}
     engines: {node: '>=16'}
     cpu: [arm64]
     os: [darwin]
 
-  '@cloudflare/workerd-linux-64@1.20251128.0':
-    resolution: {integrity: sha512-CaEJJiKITkUuYV5Boy13Pfv3Gw5aI2cEWvTnm4oJtmNbT4taj74wUfyfCuj9TQm0Cz/GCS9Cc4V9uTe6TtzUAw==}
+  '@cloudflare/workerd-linux-64@1.20251202.0':
+    resolution: {integrity: sha512-HYXinF5RBH7oXbsFUMmwKCj+WltpYbf5mRKUBG5v3EuPhUjSIFB84U+58pDyfBJjcynHdy3EtvTWcvh/+lcgow==}
     engines: {node: '>=16'}
     cpu: [x64]
     os: [linux]
 
-  '@cloudflare/workerd-linux-arm64@1.20251128.0':
-    resolution: {integrity: sha512-NI1eiLpLGl3mtiYDrCHuCQAef0zhhkrhUtv7jx73W7fzzNPGIUx/r93N5dtgucqX/qh9J1MamMpO4efP1qnNbQ==}
+  '@cloudflare/workerd-linux-arm64@1.20251202.0':
+    resolution: {integrity: sha512-++L02Jdoxz7hEA9qDaQjbVU1RzQS+S+eqIi22DkPe2Tgiq2M3UfNpeu+75k5L9DGRIkZPYvwMBMbcmKvQqdIIg==}
     engines: {node: '>=16'}
     cpu: [arm64]
     os: [linux]
 
-  '@cloudflare/workerd-windows-64@1.20251128.0':
-    resolution: {integrity: sha512-JavIUsxpgC+flsh2LR9sOhjArHl0Ed7uO6uXo+ThtHcxOvW0QlvF6H1SypETaECE0gKDre/NHlP/WKj8XA5OGA==}
+  '@cloudflare/workerd-windows-64@1.20251202.0':
+    resolution: {integrity: sha512-gzeU6eDydTi7ib+Q9DD/c0hpXtqPucnHk2tfGU03mljPObYxzMkkPGgB5qxpksFvub3y4K0ChjqYxGJB4F+j3g==}
     engines: {node: '>=16'}
     cpu: [x64]
     os: [win32]
@@ -7361,8 +7361,8 @@ packages:
     resolution: {integrity: sha512-GdPA/t0+Cq8p1JnjFRBmxRxAGvF/kl2yfdhALl38PrRp325YxyQ5aNaHui0XmaKcKiGRFIJ/EgBNWFoDP0onjw==}
     engines: {node: '>=18'}
 
-  firebase-functions@7.0.0:
-    resolution: {integrity: sha512-IPedw7JJ4Ok7t1Lg75RDCQkLtUhs5V1I/WzZK25iGjK9Ej7U5EWFBchiLX0uhuNlRMKixUFuiDAGj2A5ryg2bw==}
+  firebase-functions@7.0.1:
+    resolution: {integrity: sha512-9hFqiCO4phVosFLMjXlqQvtKTS+g5xWHHt3qU94bIHhdFX3RvQFiRvBTFgy+e9jBcrauEqCt5pqPe9em0AgPDQ==}
     engines: {node: '>=18.0.0'}
     hasBin: true
     peerDependencies:
@@ -9107,8 +9107,8 @@ packages:
     resolution: {integrity: sha512-VP79XUPxV2CigYP3jWwAUFSku2aKqBH7uTAapFWCBqutsbmDo96KY5o8uh6U+/YSIn5OxJnXp73beVkpqMIGhA==}
     engines: {node: '>=18'}
 
-  miniflare@4.20251128.0:
-    resolution: {integrity: sha512-0IcxnpTLybVN5O5pO7FZdRWNMlyi7HGOF1JVDZya4OzM08T8NnGy/TpGH19O+e581DcCFHhACW5Q7KHqNKcZRg==}
+  miniflare@4.20251202.1:
+    resolution: {integrity: sha512-cRp2QNgnt9wpLMoNs4MOzzomyfe9UTS9sPRxIpUvxMl+mweCZ0FHpWWQvCnU7wWlfAP8VGZrHwqSsV5ERA6ahQ==}
     engines: {node: '>=18.0.0'}
     hasBin: true
 
@@ -9807,8 +9807,8 @@ packages:
     engines: {node: '>=10.13.0'}
     hasBin: true
 
-  prettier@3.7.3:
-    resolution: {integrity: sha512-QgODejq9K3OzoBbuyobZlUhznP5SKwPqp+6Q6xw6o8gnhr4O85L2U915iM2IDcfF2NPXVaM9zlo9tdwipnYwzg==}
+  prettier@3.7.4:
+    resolution: {integrity: sha512-v6UNi1+3hSlVvv8fSaoUbggEM5VErKmmpGA7Pl3HF8V6uKY7rvClBOJlH6yNwQtfTueNkGVpOv/mtWL9L4bgRA==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -11403,8 +11403,8 @@ packages:
   wordwrap@1.0.0:
     resolution: {integrity: sha512-gvVzJFlPycKc5dZN4yPkP8w7Dc37BtP1yczEneOb4uq34pXZcvrtRTmWV8W+Ume+XCxKgbjM+nevkyFPMybd4Q==}
 
-  workerd@1.20251128.0:
-    resolution: {integrity: sha512-NMdDi9oJ4uFKPN2vfytlfUzIz5PPuFZ1H2j/Jbp070CFX3EFH5sk60iIb5/WjJ49LontkaMoKPrbsD4RQukXYA==}
+  workerd@1.20251202.0:
+    resolution: {integrity: sha512-p08YfrUMHkjCECNdT36r+6DpJIZX4kixbZ4n6GMUcLR5Gh18fakSCsiQrh72iOm4M9QHv/rM7P8YvCrUPWT5sg==}
     engines: {node: '>=16'}
     hasBin: true
 
@@ -11412,13 +11412,12 @@ packages:
     resolution: {integrity: sha512-WBHP1hk8pLP7ahAw13fugDWcO0SUAOiCD6DHT/bfLWoCIA/PL9u7GKdudT2nGZ8EGR1APbGCAI6ZzKG1+X+PnQ==}
     engines: {node: '>=12'}
 
-  wrangler@4.52.0:
-    resolution: {integrity: sha512-VRNclJHTDgNyPsaensT0RwX2arwvxMh4LHmdgpb1yeYMdV+elkcxlAWbMaKeOkbWPGsDxfniPyDIX+JYiiTWGA==}
+  wrangler@4.53.0:
+    resolution: {integrity: sha512-/wvnHlRnlHsqaeIgGbmcEJE5NFYdTUWHCKow+U5Tv2XwQXI9vXUqBwCLAGy/BwqyS5nnycRt2kppqCzgHgyb7Q==}
     engines: {node: '>=20.0.0'}
-    deprecated: Issues deploying new Workers. Downgrade to 4.51.0.
     hasBin: true
     peerDependencies:
-      '@cloudflare/workers-types': ^4.20251128.0
+      '@cloudflare/workers-types': ^4.20251202.0
     peerDependenciesMeta:
       '@cloudflare/workers-types':
         optional: true
@@ -13211,25 +13210,25 @@ snapshots:
     dependencies:
       mime: 3.0.0
 
-  '@cloudflare/unenv-preset@2.7.12(unenv@2.0.0-rc.24)(workerd@1.20251128.0)':
+  '@cloudflare/unenv-preset@2.7.13(unenv@2.0.0-rc.24)(workerd@1.20251202.0)':
     dependencies:
       unenv: 2.0.0-rc.24
     optionalDependencies:
-      workerd: 1.20251128.0
+      workerd: 1.20251202.0
 
-  '@cloudflare/workerd-darwin-64@1.20251128.0':
+  '@cloudflare/workerd-darwin-64@1.20251202.0':
     optional: true
 
-  '@cloudflare/workerd-darwin-arm64@1.20251128.0':
+  '@cloudflare/workerd-darwin-arm64@1.20251202.0':
     optional: true
 
-  '@cloudflare/workerd-linux-64@1.20251128.0':
+  '@cloudflare/workerd-linux-64@1.20251202.0':
     optional: true
 
-  '@cloudflare/workerd-linux-arm64@1.20251128.0':
+  '@cloudflare/workerd-linux-arm64@1.20251202.0':
     optional: true
 
-  '@cloudflare/workerd-windows-64@1.20251128.0':
+  '@cloudflare/workerd-windows-64@1.20251202.0':
     optional: true
 
   '@cloudflare/workers-types@4.20251120.0': {}
@@ -13751,25 +13750,25 @@ snapshots:
 
   '@humanwhocodes/retry@0.4.3': {}
 
-  '@ianvs/prettier-plugin-sort-imports@4.3.1(patch_hash=db9ab7a110c54b5d60464680286f2c0d90ea2331a1142bc3fc068b09696655ce)(prettier@3.7.3)':
+  '@ianvs/prettier-plugin-sort-imports@4.3.1(patch_hash=db9ab7a110c54b5d60464680286f2c0d90ea2331a1142bc3fc068b09696655ce)(prettier@3.7.4)':
     dependencies:
       '@babel/core': 7.28.5
       '@babel/generator': 7.28.5
       '@babel/parser': 7.28.5
       '@babel/traverse': 7.28.5
       '@babel/types': 7.28.5
-      prettier: 3.7.3
+      prettier: 3.7.4
       semver: 7.7.3
     transitivePeerDependencies:
       - supports-color
 
-  '@ianvs/prettier-plugin-sort-imports@4.7.0(patch_hash=db9ab7a110c54b5d60464680286f2c0d90ea2331a1142bc3fc068b09696655ce)(prettier@3.7.3)':
+  '@ianvs/prettier-plugin-sort-imports@4.7.0(patch_hash=db9ab7a110c54b5d60464680286f2c0d90ea2331a1142bc3fc068b09696655ce)(prettier@3.7.4)':
     dependencies:
       '@babel/generator': 7.28.5
       '@babel/parser': 7.28.5
       '@babel/traverse': 7.28.5
       '@babel/types': 7.28.5
-      prettier: 3.7.3
+      prettier: 3.7.4
       semver: 7.7.3
     transitivePeerDependencies:
       - supports-color
@@ -15669,12 +15668,12 @@ snapshots:
       - utf-8-validate
       - webpack
 
-  '@theguild/prettier-config@2.0.7(prettier@3.7.3)':
+  '@theguild/prettier-config@2.0.7(prettier@3.7.4)':
     dependencies:
-      '@ianvs/prettier-plugin-sort-imports': 4.3.1(patch_hash=db9ab7a110c54b5d60464680286f2c0d90ea2331a1142bc3fc068b09696655ce)(prettier@3.7.3)
-      prettier: 3.7.3
-      prettier-plugin-pkg: 0.18.1(prettier@3.7.3)
-      prettier-plugin-sh: 0.14.0(prettier@3.7.3)
+      '@ianvs/prettier-plugin-sort-imports': 4.3.1(patch_hash=db9ab7a110c54b5d60464680286f2c0d90ea2331a1142bc3fc068b09696655ce)(prettier@3.7.4)
+      prettier: 3.7.4
+      prettier-plugin-pkg: 0.18.1(prettier@3.7.4)
+      prettier-plugin-sh: 0.14.0(prettier@3.7.4)
     transitivePeerDependencies:
       - '@vue/compiler-sfc'
       - supports-color
@@ -18514,7 +18513,7 @@ snapshots:
       - encoding
       - supports-color
 
-  firebase-functions@7.0.0(firebase-admin@13.6.0(encoding@0.1.13)):
+  firebase-functions@7.0.1(firebase-admin@13.6.0(encoding@0.1.13)):
     dependencies:
       '@types/cors': 2.8.19
       '@types/express': 4.17.25
@@ -20999,7 +20998,7 @@ snapshots:
 
   mimic-function@5.0.1: {}
 
-  miniflare@4.20251128.0:
+  miniflare@4.20251202.1:
     dependencies:
       '@cspotcode/source-map-support': 0.8.1
       acorn: 8.14.0
@@ -21009,7 +21008,7 @@ snapshots:
       sharp: 0.33.5
       stoppable: 1.1.0
       undici: 5.29.0
-      workerd: 1.20251128.0
+      workerd: 1.20251202.0
       ws: 8.18.0
       youch: 4.1.0-beta.10
       zod: 3.22.3
@@ -21777,29 +21776,29 @@ snapshots:
 
   prelude-ls@1.2.1: {}
 
-  prettier-plugin-pkg@0.18.1(prettier@3.7.3):
+  prettier-plugin-pkg@0.18.1(prettier@3.7.4):
     dependencies:
-      prettier: 3.7.3
+      prettier: 3.7.4
 
-  prettier-plugin-pkg@0.21.2(prettier@3.7.3):
+  prettier-plugin-pkg@0.21.2(prettier@3.7.4):
     dependencies:
-      prettier: 3.7.3
+      prettier: 3.7.4
 
-  prettier-plugin-sh@0.14.0(prettier@3.7.3):
+  prettier-plugin-sh@0.14.0(prettier@3.7.4):
     dependencies:
       mvdan-sh: 0.10.1
-      prettier: 3.7.3
+      prettier: 3.7.4
       sh-syntax: 0.4.2
 
-  prettier-plugin-sh@0.18.0(prettier@3.7.3):
+  prettier-plugin-sh@0.18.0(prettier@3.7.4):
     dependencies:
       '@reteps/dockerfmt': 0.3.6
-      prettier: 3.7.3
+      prettier: 3.7.4
       sh-syntax: 0.5.8
 
   prettier@2.8.8: {}
 
-  prettier@3.7.3: {}
+  prettier@3.7.4: {}
 
   pretty-bytes@5.6.0: {}
 
@@ -23889,28 +23888,28 @@ snapshots:
 
   wordwrap@1.0.0: {}
 
-  workerd@1.20251128.0:
+  workerd@1.20251202.0:
     optionalDependencies:
-      '@cloudflare/workerd-darwin-64': 1.20251128.0
-      '@cloudflare/workerd-darwin-arm64': 1.20251128.0
-      '@cloudflare/workerd-linux-64': 1.20251128.0
-      '@cloudflare/workerd-linux-arm64': 1.20251128.0
-      '@cloudflare/workerd-windows-64': 1.20251128.0
+      '@cloudflare/workerd-darwin-64': 1.20251202.0
+      '@cloudflare/workerd-darwin-arm64': 1.20251202.0
+      '@cloudflare/workerd-linux-64': 1.20251202.0
+      '@cloudflare/workerd-linux-arm64': 1.20251202.0
+      '@cloudflare/workerd-windows-64': 1.20251202.0
 
   worktop@0.7.3:
     dependencies:
       regexparam: 2.0.2
 
-  wrangler@4.52.0(@cloudflare/workers-types@4.20251202.0):
+  wrangler@4.53.0(@cloudflare/workers-types@4.20251202.0):
     dependencies:
       '@cloudflare/kv-asset-handler': 0.4.1
-      '@cloudflare/unenv-preset': 2.7.12(unenv@2.0.0-rc.24)(workerd@1.20251128.0)
+      '@cloudflare/unenv-preset': 2.7.13(unenv@2.0.0-rc.24)(workerd@1.20251202.0)
       blake3-wasm: 2.1.5
       esbuild: 0.27.0
-      miniflare: 4.20251128.0
+      miniflare: 4.20251202.1
       path-to-regexp: 6.3.0
       unenv: 2.0.0-rc.24
-      workerd: 1.20251128.0
+      workerd: 1.20251202.0
     optionalDependencies:
       '@cloudflare/workers-types': 4.20251202.0
       fsevents: 2.3.3
