@@ -70,7 +70,9 @@ export function useOnResolve<PluginContext extends Record<string, any> = {}>(
             if ((field as { [hasWrappedResolveSymbol]?: true })[hasWrappedResolveSymbol]) continue;
             if (
               opts.skipDefaultResolvers &&
-              (!field.resolve || field.resolve?.name === 'defaultFieldResolver')
+              (!field.resolve ||
+                field.resolve?.name === 'defaultFieldResolver' ||
+                field.resolve?.name === 'defaultMergedResolver')
             ) {
               continue;
             }
