@@ -159,7 +159,7 @@ export const useRateLimiter = (options: RateLimiterPluginOptions): Plugin<RateLi
     schema: GraphQLSchema,
     type: GraphQLNamedOutputType,
     field: GraphQLField<any, any>,
-  ): FinalRateLimitConfig {
+  ): FinalRateLimitConfig | undefined {
     const fieldConfigs = configByField?.filter(
       ({ isMatch }) => isMatch.type(type.name) && isMatch.field(field.name),
     );
@@ -180,7 +180,19 @@ export const useRateLimiter = (options: RateLimiterPluginOptions): Plugin<RateLi
       );
     }
 
-    return { ...(rateLimitDirective ?? fieldConfig) };
+    const rateLimitConfig: FinalRateLimitConfig = rateLimitDirective || fieldConfig;
+
+    if (!rateLimitConfig) {
+      return undefined;
+    }
+
+    rateLimitConfig.max = Number(rateLimitConfig.max);
+
+    if (rateLimitConfig?.identifyFn) {
+      rateLimitConfig.identityArgs = ['identifier', ...(rateLimitConfig.identityArgs ?? [])];
+    }
+
+    return rateLimitConfig;
   });
   return {
     onExecute({ args, setResultAndStopExecution }) {
@@ -196,13 +208,8 @@ export const useRateLimiter = (options: RateLimiterPluginOptions): Plugin<RateLi
             const field = typeInfo.getFieldDef();
             if (type != null && field != null) {
               const rateLimitConfig = getRateLimitConfig(configByField, schema, type, field);
-              rateLimitConfig.max = rateLimitConfig.max && Number(rateLimitConfig.max);
-
-              if (rateLimitConfig?.identifyFn) {
-                rateLimitConfig.identityArgs = [
-                  'identifier',
-                  ...(rateLimitConfig.identityArgs ?? []),
-                ];
+              if (!rateLimitConfig) {
+                return;
               }
 
               const resolverRateLimitConfig = { ...rateLimitConfig };
