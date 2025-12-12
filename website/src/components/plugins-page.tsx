@@ -2,8 +2,9 @@ import { useMemo } from 'react';
 import { StaticImageData } from 'next/image';
 import { compareDesc } from 'date-fns';
 import { useData } from 'nextra/hooks';
+import { fetchPackageInfoCachedAndRetried } from '@/lib/fetch-package-info-cached-and-retried';
 import { ALL_TAGS, PLUGINS } from '@/lib/plugins';
-import { cn, fetchPackageInfo, MarketplaceSearch } from '@theguild/components';
+import { cn, MarketplaceSearch } from '@theguild/components';
 
 type Plugin = {
   title: string;
@@ -18,43 +19,40 @@ type Plugin = {
   className?: string;
 };
 
-function retry<T>(fn: () => Promise<T>, retriesLeft = 3, interval = 1000): Promise<T> {
-  return fn().catch(error => {
-    if (retriesLeft === 1) {
-      throw error;
-    }
-    return new Promise<T>(resolve => {
-      setTimeout(() => {
-        resolve(retry(fn, retriesLeft - 1, interval));
-      }, interval);
-    });
-  });
-}
-
 export const getStaticProps = async () => {
-  const plugins: Plugin[] = [];
-  await Promise.all(
-    PLUGINS.map(({ identifier, npmPackage, title, icon, tags, githubReadme, className = '' }) =>
-      retry(() => fetchPackageInfo(npmPackage, githubReadme))
-        .then(({ readme, createdAt, updatedAt, description, weeklyNPMDownloads = 0 }) => {
-          plugins.push({
-            title,
-            readme,
-            createdAt,
-            updatedAt,
-            description,
-            linkHref: `/plugins/${identifier}`,
-            weeklyNPMDownloads,
-            icon,
-            tags,
-            className,
-          });
-        })
-        .catch(err => {
-          console.warn(`failed to fetch package info for ${npmPackage}`, err);
-        }),
+  const plugins: Plugin[] = await Promise.all(
+    PLUGINS.map(
+      async ({ identifier, npmPackage, title, icon, tags, githubReadme, className = '' }) => {
+        const {
+          readme,
+          createdAt,
+          updatedAt,
+          description,
+          weeklyNPMDownloads = 0,
+        } = await fetchPackageInfoCachedAndRetried(npmPackage, githubReadme);
+        const actualReadme = githubReadme ? 'TODO' : readme;
+
+        return {
+          title,
+          readme: actualReadme,
+          createdAt,
+          updatedAt,
+          description,
+          linkHref: `/plugins/${identifier}`,
+          weeklyNPMDownloads,
+          icon,
+          tags,
+          className,
+        };
+      },
     ),
-  );
+  ).catch(err => {
+    console.error('failed to fetch plugins', err);
+    if (process.env.NODE_ENV === 'development') {
+      return []; // flakily fails on HMR
+    }
+    throw err;
+  });
 
   return {
     props: {

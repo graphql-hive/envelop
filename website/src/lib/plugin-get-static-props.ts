@@ -2,6 +2,7 @@ import { GetStaticPaths, GetStaticProps } from 'next';
 import { format } from 'date-fns';
 import { buildDynamicMDX, buildDynamicMeta } from 'nextra/remote';
 import { fetchPackageInfo } from '@theguild/components';
+import { fetchPackageInfoCachedAndRetried } from './fetch-package-info-cached-and-retried';
 import { PLUGINS } from './plugins';
 
 export const getStaticPaths: GetStaticPaths = () => ({
@@ -19,7 +20,7 @@ export const getStaticProps: GetStaticProps = async ctx => {
     throw new Error(`Unknown "${pluginPath}" plugin identifier`);
   }
   const { npmPackage, githubReadme, title } = plugin;
-  const { readme, updatedAt } = await fetchPackageInfo(npmPackage, githubReadme);
+  const { readme, updatedAt } = await fetchPackageInfoCachedAndRetried(npmPackage, githubReadme);
 
   const mdx = await buildDynamicMDX(
     `
