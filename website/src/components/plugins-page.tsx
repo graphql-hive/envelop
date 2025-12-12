@@ -18,40 +18,43 @@ type Plugin = {
   className?: string;
 };
 
-export const getStaticProps = async () => {
-  const plugins: Plugin[] = await Promise.all(
-    PLUGINS.map(
-      async ({ identifier, npmPackage, title, icon, tags, githubReadme, className = '' }) => {
-        const {
-          readme,
-          createdAt,
-          updatedAt,
-          description,
-          weeklyNPMDownloads = 0,
-        } = await fetchPackageInfo(npmPackage, githubReadme);
-        const actualReadme = githubReadme ? 'TODO' : readme;
-
-        return {
-          title,
-          readme: actualReadme,
-          createdAt,
-          updatedAt,
-          description,
-          linkHref: `/plugins/${identifier}`,
-          weeklyNPMDownloads,
-          icon,
-          tags,
-          className,
-        };
-      },
-    ),
-  ).catch(err => {
-    console.error('failed to fetch plugins', err);
-    if (process.env.NODE_ENV === 'development') {
-      return []; // flakily fails on HMR
+function retry<T>(fn: () => Promise<T>, retriesLeft = 3, interval = 1000): Promise<T> {
+  return fn().catch(error => {
+    if (retriesLeft === 1) {
+      throw error;
     }
-    throw err;
+    return new Promise<T>(resolve => {
+      setTimeout(() => {
+        resolve(retry(fn, retriesLeft - 1, interval));
+      }, interval);
+    });
   });
+}
+
+export const getStaticProps = async () => {
+  const plugins: Plugin[] = [];
+  await Promise.all(
+    PLUGINS.map(({ identifier, npmPackage, title, icon, tags, githubReadme, className = '' }) =>
+      retry(() => fetchPackageInfo(npmPackage, githubReadme))
+        .then(({ readme, createdAt, updatedAt, description, weeklyNPMDownloads = 0 }) => {
+          plugins.push({
+            title,
+            readme,
+            createdAt,
+            updatedAt,
+            description,
+            linkHref: `/plugins/${identifier}`,
+            weeklyNPMDownloads,
+            icon,
+            tags,
+            className,
+          });
+        })
+        .catch(err => {
+          console.warn(`failed to fetch package info for ${npmPackage}`, err);
+        }),
+    ),
+  );
 
   return {
     props: {
