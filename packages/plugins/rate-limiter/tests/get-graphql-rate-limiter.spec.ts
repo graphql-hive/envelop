@@ -47,13 +47,13 @@ test('getGraphQLRateLimiter with an empty store passes, but second time fails', 
   });
   const config = { max: 1, window: '1s' };
   const field = {
-    parent: {},
     args: {},
     context: { id: '1' },
-    info: { fieldName: 'myField' } as any as GraphQLResolveInfo,
   };
-  expect(await rateLimit(field, config)).toBeFalsy();
-  expect(await rateLimit(field, config)).toBe(`You are trying to access 'myField' too often`);
+  expect(await rateLimit('myField', field, config)).toBeFalsy();
+  expect(await rateLimit('myField', field, config)).toBe(
+    `You are trying to access 'myField' too often`,
+  );
 });
 
 test('getGraphQLRateLimiter should block a batch of rate limited fields in a single query', async () => {
@@ -64,14 +64,12 @@ test('getGraphQLRateLimiter should block a batch of rate limited fields in a sin
   });
   const config = { max: 3, window: '1s' };
   const field = {
-    parent: {},
     args: {},
     context: { id: '1' },
-    info: { fieldName: 'myField' } as any as GraphQLResolveInfo,
   };
 
   const requests = Array.from({ length: 5 })
-    .map(async () => rateLimit(field, config))
+    .map(async () => rateLimit('myField', field, config))
     .map(p => p.catch(e => e));
 
   (await Promise.all(requests)).forEach((result, idx) => {
@@ -87,15 +85,15 @@ test('getGraphQLRateLimiter timestamps should expire', async () => {
   });
   const config = { max: 1, window: '0.5s' };
   const field = {
-    parent: {},
     args: {},
     context: { id: '1' },
-    info: { fieldName: 'myField' } as any as GraphQLResolveInfo,
   };
-  expect(await rateLimit(field, config)).toBeFalsy();
-  expect(await rateLimit(field, config)).toBe(`You are trying to access 'myField' too often`);
+  expect(await rateLimit('myField', field, config)).toBeFalsy();
+  expect(await rateLimit('myField', field, config)).toBe(
+    `You are trying to access 'myField' too often`,
+  );
   await sleep(500);
-  expect(await rateLimit(field, config)).toBeFalsy();
+  expect(await rateLimit('myField', field, config)).toBeFalsy();
 });
 
 test('getGraphQLRateLimiter uncountRejected should ignore rejections', async () => {
@@ -105,16 +103,16 @@ test('getGraphQLRateLimiter uncountRejected should ignore rejections', async () 
   });
   const config = { max: 1, window: '1s', uncountRejected: true };
   const field = {
-    parent: {},
     args: {},
     context: { id: '1' },
-    info: { fieldName: 'myField' } as any as GraphQLResolveInfo,
   };
-  expect(await rateLimit(field, config)).toBeFalsy();
+  expect(await rateLimit('myField', field, config)).toBeFalsy();
   await sleep(500);
-  expect(await rateLimit(field, config)).toBe(`You are trying to access 'myField' too often`);
+  expect(await rateLimit('myField', field, config)).toBe(
+    `You are trying to access 'myField' too often`,
+  );
   await sleep(500);
-  expect(await rateLimit(field, config)).toBeFalsy();
+  expect(await rateLimit('myField', field, config)).toBeFalsy();
 });
 
 test('getGraphQLRateLimiter should limit by callCount if arrayLengthField is passed', async () => {
@@ -128,14 +126,14 @@ test('getGraphQLRateLimiter should limit by callCount if arrayLengthField is pas
     arrayLengthField: 'items',
   };
   const field = {
-    parent: {},
     args: {
       items: [1, 2, 3, 4, 5],
     },
     context: { id: '1' },
-    info: { fieldName: 'listOfItems' } as any as GraphQLResolveInfo,
   };
-  expect(await rateLimit(field, config)).toBe(`You are trying to access 'listOfItems' too often`);
+  expect(await rateLimit('listOfItems', field, config)).toBe(
+    `You are trying to access 'listOfItems' too often`,
+  );
 });
 
 test('getGraphQLRateLimiter should allow multiple calls to a field if the identityArgs change', async () => {
@@ -149,15 +147,17 @@ test('getGraphQLRateLimiter should allow multiple calls to a field if the identi
     identityArgs: ['id'],
   };
   const field = {
-    parent: {},
     args: {
       id: '1',
     },
     context: { id: '1' },
-    info: { fieldName: 'listOfItems' } as any as GraphQLResolveInfo,
   };
-  expect(await rateLimit(field, config)).toBeFalsy();
-  expect(await rateLimit(field, config)).toBe(`You are trying to access 'listOfItems' too often`);
-  expect(await rateLimit({ ...field, args: { id: '2' } }, config)).toBeFalsy();
-  expect(await rateLimit(field, config)).toBe(`You are trying to access 'listOfItems' too often`);
+  expect(await rateLimit('listOfItems', field, config)).toBeFalsy();
+  expect(await rateLimit('listOfItems', field, config)).toBe(
+    `You are trying to access 'listOfItems' too often`,
+  );
+  expect(await rateLimit('listOfItems', { ...field, args: { id: '2' } }, config)).toBeFalsy();
+  expect(await rateLimit('listOfItems', field, config)).toBe(
+    `You are trying to access 'listOfItems' too often`,
+  );
 });

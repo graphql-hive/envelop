@@ -1,4 +1,3 @@
-import type { GraphQLResolveInfo } from 'graphql';
 import get from 'lodash.get';
 import ms from 'ms';
 import { handleMaybePromise, MaybePromise } from '@whatwg-node/promise-helpers';
@@ -47,15 +46,13 @@ const getGraphQLRateLimiter = (
   // Main config (e.g. the config passed to the createRateLimitDirective func)
   userConfig: GraphQLRateLimitConfig,
 ): ((
+  fieldName: string,
   {
     args,
     context,
-    info,
   }: {
-    parent: any;
     args: Record<string, any>;
     context: any;
-    info: GraphQLResolveInfo;
   },
   {
     arrayLengthField,
@@ -92,16 +89,14 @@ const getGraphQLRateLimiter = (
    * @param config - field level config
    */
   const rateLimiter = (
+    fieldName: string,
     // Resolver args
     {
       args,
       context,
-      info,
     }: {
-      parent: any;
       args: Record<string, any>;
       context: any;
-      info: GraphQLResolveInfo;
     },
     // Field level config (e.g. the directive parameters)
     {
@@ -120,7 +115,7 @@ const getGraphQLRateLimiter = (
     const windowMs = (window ? ms(window as ms.StringValue) : DEFAULT_WINDOW) as number;
     // String key for this field
     const fieldIdentity = getFieldIdentity(
-      info.fieldName,
+      fieldName,
       identityArgs || DEFAULT_FIELD_IDENTITY_ARGS,
       args,
     );
@@ -172,7 +167,7 @@ const getGraphQLRateLimiter = (
               formatError({
                 contextIdentity,
                 fieldIdentity,
-                fieldName: info.fieldName,
+                fieldName,
                 max: maxCalls,
                 window: windowMs,
               });
