@@ -26,7 +26,10 @@ const app = express();
 app.use(
   '/graphql',
   graphqlHTTP(async (req, res) => {
-    const { parse, validate, contextFactory, execute } = getEnveloped({ req, res });
+    const { parse, validate, contextFactory, execute } = getEnveloped({
+      req,
+      res,
+    });
     return {
       schema,
       graphiql: true,

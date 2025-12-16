@@ -10,12 +10,12 @@
   },
   "dependencies": {
     "@envelop/core": "workspace:^",
-    "@graphql-tools/schema": "10.0.29",
+    "@graphql-tools/schema": "10.0.30",
     "graphql": "16.8.1",
     "graphql-http": "^1.18.0"
   },
   "devDependencies": {
-    "@types/node": "24.10.1",
+    "@types/node": "24.10.4",
     "ts-node": "10.9.2",
     "typescript": "5.9.3"
   }

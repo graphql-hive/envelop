@@ -1,4 +1,10 @@
-import { DefaultContext, ExecutionResult, Plugin, TypedExecutionArgs } from '@envelop/types';
+import {
+  DefaultContext,
+  ExecutionResult,
+  IncrementalExecutionResult,
+  Plugin,
+  TypedExecutionArgs,
+} from '@envelop/types';
 import { handleStreamOrSingleExecutionResult } from '../utils.js';
 import { isGraphQLError, SerializableGraphQLErrorLike } from './use-masked-errors.js';
 
@@ -13,15 +19,24 @@ export type ErrorHandler = ({
 }) => void;
 
 type ErrorHandlerCallback<ContextType> = {
-  result: ExecutionResult;
+  result: ExecutionResult | IncrementalExecutionResult;
   args: TypedExecutionArgs<ContextType>;
 };
 
 const makeHandleResult =
   <ContextType extends Record<any, any>>(errorHandler: ErrorHandler) =>
   ({ result, args }: ErrorHandlerCallback<ContextType>) => {
-    if (result.errors?.length) {
-      errorHandler({ errors: result.errors, context: args, phase: 'execution' });
+    const errors = result.errors ? [...result.errors] : [];
+    if ('incremental' in result && result.incremental) {
+      for (const increment of result.incremental) {
+        if (increment.errors) {
+          errors.push(...increment.errors);
+        }
+      }
+    }
+
+    if (errors.length) {
+      errorHandler({ errors, context: args, phase: 'execution' });
     }
   };
 
@@ -40,7 +55,11 @@ export const useErrorHandler = <ContextType extends Record<string, any>>(
     onValidate() {
       return function onValidateEnd({ valid, result, context }) {
         if (valid === false && result.length > 0) {
-          errorHandler({ errors: result as Error[], context, phase: 'validate' });
+          errorHandler({
+            errors: result as Error[],
+            context,
+            phase: 'validate',
+          });
         }
       };
     },
@@ -49,8 +68,12 @@ export const useErrorHandler = <ContextType extends Record<string, any>>(
         if (isGraphQLError(error)) {
           errorHandler({ errors: [error], context, phase: 'context' });
         } else {
-          // @ts-expect-error its not an error at this point so we just create a new one - can we handle this better?
-          errorHandler({ errors: [new Error(error)], context, phase: 'context' });
+          errorHandler({
+            // @ts-expect-error its not an error at this point so we just create a new one - can we handle this better?
+            errors: [new Error(error)],
+            context,
+            phase: 'context',
+          });
         }
       });
     },

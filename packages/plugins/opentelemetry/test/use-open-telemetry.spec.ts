@@ -31,6 +31,11 @@ describe('useOpenTelemetry', () => {
         echo(message: String): String
         error: String
         context: String
+        obj: Obj
+      }
+
+      type Obj {
+        field1: String!
       }
 
       type Subscription {
@@ -48,6 +53,9 @@ describe('useOpenTelemetry', () => {
         error: () => {
           throw new GraphQLError('boom');
         },
+        obj: () => ({
+          field1: 'field1',
+        }),
       },
       Subscription: {
         counter: {
@@ -127,6 +135,49 @@ describe('useOpenTelemetry', () => {
     const actual = exporter.getFinishedSpans();
     expect(actual.length).toBe(2);
     expect(actual[0].name).toBe('Query.ping');
+    expect(actual[1].name).toBe('query.anonymous');
+  });
+
+  it('Should add default resolver spans if enabled / unspecified', async () => {
+    const exporter = new InMemorySpanExporter();
+    const testInstance = createTestkit(
+      [useTestOpenTelemetry(exporter, { resolvers: true })],
+      schema,
+    );
+
+    await testInstance.execute(/* GraphQL */ `
+      query {
+        obj {
+          field1
+        }
+      }
+    `);
+
+    const actual = exporter.getFinishedSpans();
+    expect(actual.length).toBe(3);
+    expect(actual[0].name).toBe('Query.obj');
+    expect(actual[1].name).toBe('Obj.field1');
+    expect(actual[2].name).toBe('query.anonymous');
+  });
+
+  it('Should not add default resolver spans if disabled', async () => {
+    const exporter = new InMemorySpanExporter();
+    const testInstance = createTestkit(
+      [useTestOpenTelemetry(exporter, { resolvers: true, defaultResolvers: false })],
+      schema,
+    );
+
+    await testInstance.execute(/* GraphQL */ `
+      query {
+        obj {
+          field1
+        }
+      }
+    `);
+
+    const actual = exporter.getFinishedSpans();
+    expect(actual.length).toBe(2);
+    expect(actual[0].name).toBe('Query.obj');
     expect(actual[1].name).toBe('query.anonymous');
   });
 
@@ -298,8 +349,6 @@ describe('useOpenTelemetry', () => {
       testVar2: 'world',
       selector: '1',
     });
-
-    console.log(resp);
 
     assertSingleValue(resp);
 

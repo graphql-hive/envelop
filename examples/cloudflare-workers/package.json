@@ -10,15 +10,15 @@
   },
   "dependencies": {
     "@envelop/core": "workspace:^",
-    "@graphql-tools/schema": "10.0.29",
+    "@graphql-tools/schema": "10.0.30",
     "graphql": "16.8.1",
     "graphql-helix": "1.13.0",
     "tslib": "2.8.1",
     "worktop": "0.7.3"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "4.20251202.0",
-    "@types/node": "24.10.1",
+    "@cloudflare/workers-types": "4.20251213.0",
+    "@types/node": "24.10.4",
     "ts-node": "10.9.2",
     "typescript": "5.9.3"
   }

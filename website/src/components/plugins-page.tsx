@@ -2,8 +2,9 @@ import { useMemo } from 'react';
 import { StaticImageData } from 'next/image';
 import { compareDesc } from 'date-fns';
 import { useData } from 'nextra/hooks';
+import { fetchPackageInfoCachedAndRetried } from '@/lib/fetch-package-info-cached-and-retried';
 import { ALL_TAGS, PLUGINS } from '@/lib/plugins';
-import { cn, fetchPackageInfo, MarketplaceSearch } from '@theguild/components';
+import { cn, MarketplaceSearch } from '@theguild/components';
 
 type Plugin = {
   title: string;
@@ -28,7 +29,7 @@ export const getStaticProps = async () => {
           updatedAt,
           description,
           weeklyNPMDownloads = 0,
-        } = await fetchPackageInfo(npmPackage, githubReadme);
+        } = await fetchPackageInfoCachedAndRetried(npmPackage, githubReadme);
         const actualReadme = githubReadme ? 'TODO' : readme;
 
         return {

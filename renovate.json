@@ -41,6 +41,6 @@
     }
   ],
   "ignorePaths": ["**/__tests__/**", "**/test/**", "**/tests/**", "**/__fixtures__/**"],
-  "ignoreDeps": ["faker", "nextra"],
+  "ignoreDeps": ["faker", "nextra", "newrelic", "@newrelic/test-utilities"],
   "baseBranches": ["main"]
 }
