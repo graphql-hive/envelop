@@ -25,7 +25,9 @@ const getEnveloped = envelop({
 });
 
 const server = createServer((req, res) => {
-  const { parse, validate, contextFactory, execute, schema } = getEnveloped({ req });
+  const { parse, validate, contextFactory, execute, schema } = getEnveloped({
+    req,
+  });
   let payload = '';
 
   req.on('data', chunk => {

@@ -87,7 +87,10 @@ const makeHandleResult =
     setResult: (result: ExecutionResult) => void;
   }) => {
     if (result.errors != null) {
-      setResult({ ...result, errors: result.errors.map(error => maskError(error, message)) });
+      setResult({
+        ...result,
+        errors: result.errors.map(error => maskError(error, message)),
+      });
     }
   };
 
