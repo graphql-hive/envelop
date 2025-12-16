@@ -26,7 +26,9 @@ const getEnveloped = envelop({
 });
 
 export const index: AzureFunction = async (context: Context, req: HttpRequest): Promise<void> => {
-  const { parse, validate, contextFactory, execute, schema } = getEnveloped({ req });
+  const { parse, validate, contextFactory, execute, schema } = getEnveloped({
+    req,
+  });
   const request = {
     body: req.body,
     headers: req.headers,

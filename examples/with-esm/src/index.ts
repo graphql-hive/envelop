@@ -37,7 +37,9 @@ app.route({
   method: ['GET', 'POST'],
   url: '/graphql',
   async handler(req, res) {
-    const { parse, validate, contextFactory, execute, schema } = getEnveloped({ req });
+    const { parse, validate, contextFactory, execute, schema } = getEnveloped({
+      req,
+    });
     const request = {
       body: req.body,
       headers: req.headers,
@@ -70,6 +72,11 @@ app.route({
   },
 });
 
-app.listen(3000, () => {
-  console.log(`GraphQL server is running in http://127.0.0.1:3000/graphql.`);
-});
+app.listen(
+  {
+    port: 3000,
+  },
+  () => {
+    console.log(`GraphQL server is running in http://127.0.0.1:3000/graphql.`);
+  },
+);

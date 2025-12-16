@@ -31,7 +31,9 @@ const getEnveloped = envelop({
 });
 
 const executor: GatewayExecutor = async requestContext => {
-  const { schema, execute, contextFactory } = getEnveloped({ req: requestContext.request.http });
+  const { schema, execute, contextFactory } = getEnveloped({
+    req: requestContext.request.http,
+  });
 
   return execute({
     schema,

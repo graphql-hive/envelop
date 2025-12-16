@@ -55,7 +55,11 @@ export const useErrorHandler = <ContextType extends Record<string, any>>(
     onValidate() {
       return function onValidateEnd({ valid, result, context }) {
         if (valid === false && result.length > 0) {
-          errorHandler({ errors: result as Error[], context, phase: 'validate' });
+          errorHandler({
+            errors: result as Error[],
+            context,
+            phase: 'validate',
+          });
         }
       };
     },
@@ -64,8 +68,12 @@ export const useErrorHandler = <ContextType extends Record<string, any>>(
         if (isGraphQLError(error)) {
           errorHandler({ errors: [error], context, phase: 'context' });
         } else {
-          // @ts-expect-error its not an error at this point so we just create a new one - can we handle this better?
-          errorHandler({ errors: [new Error(error)], context, phase: 'context' });
+          errorHandler({
+            // @ts-expect-error its not an error at this point so we just create a new one - can we handle this better?
+            errors: [new Error(error)],
+            context,
+            phase: 'context',
+          });
         }
       });
     },

@@ -27,7 +27,9 @@ const getEnveloped = envelop({
 
 // https://firebase.google.com/docs/functions/typescript
 export const helloWorld = functions.https.onRequest(async (req, res) => {
-  const { parse, validate, contextFactory, execute, schema } = getEnveloped({ req });
+  const { parse, validate, contextFactory, execute, schema } = getEnveloped({
+    req,
+  });
   const request = {
     body: req.body,
     headers: req.headers,
