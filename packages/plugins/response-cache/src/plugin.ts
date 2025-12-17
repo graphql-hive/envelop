@@ -416,10 +416,9 @@ export function useResponseCache<PluginContext extends Record<string, any> = {}>
         return;
       }
 
+      // Reset all configs, to avoid keeping stale field configuration
       const config = makeSchemaConfig(schema);
       schemaConfigs.set(schema, config);
-
-      // Reset all configs, to avoid keeping stale field configuration
 
       const directive = schema.getDirective('cacheControl') as unknown as
         | GraphQLDirective
