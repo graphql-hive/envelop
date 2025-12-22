@@ -3524,7 +3524,7 @@ describe('useResponseCache', () => {
       expect(spy).toHaveBeenCalledTimes(2);
     });
 
-    it.only('should ignore session id for responses with public key', async () => {
+    it('should ignore session id for responses with public key', async () => {
       jest.useFakeTimers();
       const spy = jest.fn(() => [
         {
@@ -4495,4 +4495,38 @@ it('handles DateTime scalar', async () => {
 
   await checkResult();
   await checkResult();
+});
+
+it('should skip operation if no cache instance is available', async () => {
+  let resolverSpy = jest.fn().mockReturnValue('hello');
+  const schema = makeExecutableSchema({
+    typeDefs: /* GraphQL */ `
+      type Query {
+        foo: String
+      }
+    `,
+    resolvers: {
+      Query: {
+        foo: () => resolverSpy(),
+      },
+    },
+  });
+
+  const testkit = createTestkit(
+    [
+      useResponseCache({
+        session: () => null,
+        // @ts-ignore Even if not allowed by TS, we want to test in case it happens in JS world
+        cache: () => null,
+      }),
+    ],
+    schema,
+  );
+
+  const operation = `{ foo }`;
+
+  await testkit.execute(operation);
+  await testkit.execute(operation);
+
+  expect(resolverSpy).toHaveBeenCalledTimes(2);
 });
