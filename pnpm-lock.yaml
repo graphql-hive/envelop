@@ -1615,8 +1615,8 @@ importers:
         specifier: 16.8.1
         version: 16.8.1
       hot-shots:
-        specifier: 11.4.0
-        version: 11.4.0
+        specifier: 12.0.0
+        version: 12.0.0
       typescript:
         specifier: 5.9.3
         version: 5.9.3
@@ -7789,8 +7789,8 @@ packages:
   hastscript@9.0.1:
     resolution: {integrity: sha512-g7df9rMFX/SPi34tyGCyUBREQoKkapwdY/T04Qn9TDWfHhAYt4/I0gMVirzK5wEzeUqIjEB+LXC/ypb7Aqno5w==}
 
-  hot-shots@11.4.0:
-    resolution: {integrity: sha512-IoyXi0eBFLbaARl6IjQxNzxqNxH3h1XX026PP5uru/RwVVLOt9Qr9f87GW+4L/sj7sNyMGzmIsh++0z5ibkP5w==}
+  hot-shots@12.0.0:
+    resolution: {integrity: sha512-VdEXhNX4FYOY/Qx8sPcdR8+y/jXgwGlQdhk77dgFvJsVx+uS9WwiHEc+NKJqEQmd+0FTwy2/5FOtqe4cZ/JV5g==}
     engines: {node: '>=16.0.0'}
 
   html-entities@2.6.0:
@@ -19047,7 +19047,7 @@ snapshots:
       property-information: 7.1.0
       space-separated-tokens: 2.0.2
 
-  hot-shots@11.4.0:
+  hot-shots@12.0.0:
     optionalDependencies:
       unix-dgram: 2.0.7
 
