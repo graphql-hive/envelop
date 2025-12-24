@@ -863,3 +863,67 @@ mutation SetNameMutation {
   }
 }
 ```
+
+#### Get scope of the query
+
+Useful for building a cache with more flexibility (e.g. generate a key that is shared across all
+sessions when `PUBLIC`).
+
+```ts
+import jsonStableStringify from 'fast-json-stable-stringify'
+import { execute, parse, subscribe, validate } from 'graphql'
+import { envelop } from '@envelop/core'
+import { hashSHA256, useResponseCache } from '@envelop/response-cache'
+
+const schema = buildSchema(/* GraphQL */ `
+  ${cacheControlDirective}
+  type PrivateProfile @cacheControl(scope: PRIVATE) {
+    # ...
+  }
+
+  type Profile {
+    privateData: String @cacheControl(scope: PRIVATE)
+  }
+`)
+
+const getEnveloped = envelop({
+  parse,
+  validate,
+  execute,
+  subscribe,
+  plugins: [
+    // ... other plugins ...
+    useResponseCache({
+      ttl: 2000,
+      session: request => getSessionId(request),
+      buildResponseCacheKey: ({
+        sessionId,
+        documentString,
+        operationName,
+        variableValues,
+        extras
+      }) =>
+        hashSHA256(
+          [
+            // Use it to put a unique key for every session when `PUBLIC`
+            extras(schema).scope === 'PUBLIC' ? 'PUBLIC' : sessionId,
+            documentString,
+            operationName ?? '',
+            jsonStableStringify(variableValues ?? {})
+          ].join('|')
+        ),
+      scopePerSchemaCoordinate: {
+        // Set scope for an entire query
+        'Query.getProfile': 'PRIVATE',
+        // Set scope for an entire type
+        PrivateProfile: 'PRIVATE',
+        // Set scope for a single field
+        'Profile.privateData': 'PRIVATE'
+      }
+    })
+  ]
+})
+```
+
+> Note: The use of this callback will increase the ram usage since it memoizes the scope for each
+> query in a weak map.
