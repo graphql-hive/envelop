@@ -1,5 +1,21 @@
 import { MaybePromise } from '@whatwg-node/promise-helpers';
 
+/**
+ * A function allowing to add a `state` to the payload (first object parameter of any function)
+ */
+export function withState<
+  P extends { instrumentation?: GenericInstrumentation },
+  HttpState = object,
+  GraphqlState = object,
+  SubExecState = object,
+>(
+  pluginFactory: (
+    getState: <SP extends {}>(
+      payload: SP,
+    ) => PayloadWithState<SP, HttpState, GraphqlState, SubExecState>['state'],
+  ) => PluginWithState<P, HttpState, GraphqlState, SubExecState>,
+): P;
+// Secondary signature with simpler generics when you have the same state in all layers
 export function withState<P extends { instrumentation?: GenericInstrumentation }, State = object>(
   pluginFactory: (
     getState: <SP extends {}>(payload: SP) => PayloadWithState<SP, State, State, State>['state'],
@@ -75,7 +91,7 @@ export function withState<
       } else {
         result[hookName] = {
           [hook.name](payload: any, ...args: any[]) {
-            if (payload && (payload.request || payload.context || payload.executionRequest)) {
+            if (payload && Object.getPrototypeOf(payload) === Object.prototype) {
               return hook(
                 {
                   ...payload,

@@ -18,9 +18,10 @@ describe('pluginWithState', () => {
     expect(plugin).toEqual({ test: 'test' });
   });
 
-  it('should keep parameters when there is no state to add', () => {
-    const objectPayload = {};
+  it('should add state to first parameter only if it a plain object', () => {
+    const objectPayload = new Date();
     expect(plugin.hook(objectPayload)[0]).toBe(objectPayload);
+    expect(Object.hasOwn(objectPayload, 'state')).toBeFalsy();
 
     const arrayPayload: any[] = [];
     expect(plugin.hook(arrayPayload)[0]).toBe(arrayPayload);
@@ -106,7 +107,9 @@ describe('pluginWithState', () => {
   });
 
   describe('instrumentation', () => {
-    const plugin = withState(() => ({ instrumentation: { hook: (...args: any[]): any => args } }));
+    const plugin = withState(() => ({
+      instrumentation: { hook: (...args: any[]): any => args },
+    }));
 
     it('should add request state', () => {
       expect(plugin.instrumentation.hook({ request: {} })).toMatchObject([
@@ -139,8 +142,16 @@ describe('pluginWithState', () => {
       ]);
 
       expect(
-        plugin.instrumentation.hook({ executionRequest: {}, request: {}, context: {} }),
-      ).toMatchObject([{ state: { forSubgraphExecution: {}, forRequest: {}, forOperation: {} } }]);
+        plugin.instrumentation.hook({
+          executionRequest: {},
+          request: {},
+          context: {},
+        }),
+      ).toMatchObject([
+        {
+          state: { forSubgraphExecution: {}, forRequest: {}, forOperation: {} },
+        },
+      ]);
     });
 
     it('should have a stable state', () => {
@@ -156,8 +167,9 @@ describe('pluginWithState', () => {
         forOperation,
       );
       expect(
-        plugin.instrumentation.hook({ executionRequest: refs.executionRequest })[0]
-          .forSubgraphExecution,
+        plugin.instrumentation.hook({
+          executionRequest: refs.executionRequest,
+        })[0].forSubgraphExecution,
       ).toBe(forSubgraphExecution);
     });
   });
@@ -178,7 +190,9 @@ describe('pluginWithState', () => {
     });
 
     it('should add subgraph execution state', () => {
-      expect(getState({ executionRequest: {} })).toMatchObject({ forSubgraphExecution: {} });
+      expect(getState({ executionRequest: {} })).toMatchObject({
+        forSubgraphExecution: {},
+      });
     });
 
     it('should combine all states', () => {
@@ -236,9 +250,13 @@ describe('pluginWithState', () => {
         forSubgraphExecution,
       );
 
-      expect(getMostSpecificState({ forOperation, forRequest, forSubgraphExecution })).toBe(
-        forSubgraphExecution,
-      );
+      expect(
+        getMostSpecificState({
+          forOperation,
+          forRequest,
+          forSubgraphExecution,
+        }),
+      ).toBe(forSubgraphExecution);
     });
   });
 });
