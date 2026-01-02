@@ -1,5 +1,14 @@
 # @envelop/core
 
+## 5.5.0
+
+### Minor Changes
+
+- [#2113](https://github.com/graphql-hive/envelop/pull/2113)
+  [`d3d83bc`](https://github.com/graphql-hive/envelop/commit/d3d83bca20ba03e6c145fbd6449d5b56602627af)
+  Thanks [@andrew0](https://github.com/andrew0)! - Handle incremental execution errors in
+  useErrorHandler
+
 ## 5.4.0
 
 ### Minor Changes
@@ -399,8 +408,8 @@
 - [#1706](https://github.com/n1ru4l/envelop/pull/1706)
   [`270249cf`](https://github.com/n1ru4l/envelop/commit/270249cfb7650f8ad64f0167bb45a99475a03b04)
   Thanks [@renovate](https://github.com/apps/renovate)! - dependencies updates:
-  - Updated dependency [`tslib@2.5.0` ↗︎](https://www.npmjs.com/package/tslib/v/2.5.0) (from
-    `2.4.0`, in `dependencies`)
+  - Updated dependency [`tslib@2.5.0` ↗︎](https://www.npmjs.com/package/tslib/v/2.5.0) (from `2.4.0`,
+    in `dependencies`)
 
 ## 3.0.4
 
