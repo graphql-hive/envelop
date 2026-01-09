@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@envelop/core": "workspace:^",
-    "@graphql-tools/schema": "10.0.30",
+    "@graphql-tools/schema": "10.0.31",
     "fastify": "5.6.2",
     "graphql": "experimental-stream-defer",
     "graphql-helix": "1.13.0"
