@@ -52,7 +52,7 @@
   },
   "dependencies": {
     "@envelop/on-resolve": "workspace:^",
-    "@graphql-tools/utils": "^10.5.4",
+    "@graphql-tools/utils": "^11.0.0",
     "@types/picomatch": "^4.0.2",
     "@whatwg-node/promise-helpers": "^1.2.4",
     "lodash.get": "^4.4.2",
