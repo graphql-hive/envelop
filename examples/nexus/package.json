@@ -17,7 +17,7 @@
     "reflect-metadata": "0.2.2"
   },
   "devDependencies": {
-    "@types/node": "24.10.4",
+    "@types/node": "24.10.7",
     "ts-node": "10.9.2",
     "typescript": "5.9.3"
   }
