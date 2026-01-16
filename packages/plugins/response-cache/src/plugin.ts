@@ -1,10 +1,11 @@
-import jsonStableStringify from 'fast-json-stable-stringify';
+import stringify from 'fast-json-stable-stringify';
 import {
   ASTVisitor,
   DocumentNode,
   ExecutionArgs,
   getOperationAST,
   GraphQLDirective,
+  GraphQLSchema,
   GraphQLType,
   isListType,
   isNonNullType,
@@ -15,6 +16,7 @@ import {
   visit,
   visitWithTypeInfo,
 } from 'graphql';
+import { LRUCache } from 'lru-cache';
 import {
   ExecutionResult,
   getDocumentString,
@@ -61,6 +63,9 @@ export type ShouldCacheResultFunction = (params: {
   result: ExecutionResult;
 }) => boolean;
 
+export type TTLPerSchemaCoordinate = Record<string, number | undefined>;
+export type ScopePerSchemaCoordinate = Record<string, 'PRIVATE' | 'PUBLIC' | undefined>;
+
 export type UseResponseCacheParameter<PluginContext extends Record<string, any> = {}> = {
   cache?: Cache | ((ctx: Record<string, any>) => Cache);
   /**
@@ -79,8 +84,25 @@ export type UseResponseCacheParameter<PluginContext extends Record<string, any> 
    * In the unusual case where you actually want to cache introspection query operations,
    * you need to provide the value `{ 'Query.__schema': undefined }`.
    */
-  ttlPerSchemaCoordinate?: Record<string, number | undefined>;
-  scopePerSchemaCoordinate?: Record<string, 'PRIVATE' | 'PUBLIC' | undefined>;
+  ttlPerSchemaCoordinate?: TTLPerSchemaCoordinate;
+  /**
+   * Define the scope (PUBLIC or PRIVATE) by schema coordinate.
+   * The default scope for all types and fields is PUBLIC
+   *
+   * If an operation contains a PRIVATE type or field, the result will be cached only if a session
+   * id is found for this request.
+   *
+   * Note: To share cache of responses with a PUBLIC scope between all users, enable `ignoreSessionIdForPublicScope`
+   */
+  scopePerSchemaCoordinate?: ScopePerSchemaCoordinate;
+  /**
+   * If enabled, a response with a PUBLIC scope will be cached with an operation key ignoring the
+   * session ID. This allows to improve cache hit further, but scope should be carefully defined
+   * to avoid any private data.
+   *
+   * @default false.
+   */
+  ignoreSessionIdForPublicScope?: boolean;
   /**
    * Allows to cache responses based on the resolved session id.
    * Return a unique value for each session.
@@ -171,7 +193,7 @@ export const defaultBuildResponseCacheKey = (params: {
     [
       params.documentString,
       params.operationName ?? '',
-      jsonStableStringify(params.variableValues ?? {}),
+      stringify(params.variableValues ?? {}),
       params.sessionId ?? '',
     ].join('|'),
   );
@@ -295,10 +317,29 @@ const getDocumentWithMetadataAndTTL = memoize4(function addTypeNameToDocument(
   return [visit(document, visitWithTypeInfo(typeInfo, visitor)), ttl];
 });
 
-type CacheControlDirective = {
+export type CacheControlDirective = {
   maxAge?: number;
   scope?: 'PUBLIC' | 'PRIVATE';
 };
+
+type SchemaConfig = {
+  schema: GraphQLSchema | undefined;
+  idFieldByTypeName: Map<string, string>;
+  perSchemaCoordinate: {
+    type: Map<string, string[]>;
+    scope: ScopePerSchemaCoordinate;
+    ttl: TTLPerSchemaCoordinate;
+  };
+  publicDocuments: LRUCache<string, boolean>;
+  documentMetadataOptions: Record<
+    'queries' | 'mutations',
+    { ttlPerSchemaCoordinate?: TTLPerSchemaCoordinate; invalidateViaMutation: boolean }
+  >;
+  isPrivate(typeName: string, data?: Record<string, unknown>): boolean;
+};
+
+const DOCUMENTS_SCOPE_MAX = 1000;
+const DOCUMENTS_SCOPE_TTL = 3600000;
 
 export function useResponseCache<PluginContext extends Record<string, any> = {}>({
   cache = createInMemoryCache(),
@@ -307,10 +348,9 @@ export function useResponseCache<PluginContext extends Record<string, any> = {}>
   enabled,
   ignoredTypes = [],
   ttlPerType,
-  ttlPerSchemaCoordinate = {},
-  scopePerSchemaCoordinate = {},
   idFields = ['id'],
   invalidateViaMutation = true,
+  ignoreSessionIdForPublicScope = false,
   buildResponseCacheKey = defaultBuildResponseCacheKey,
   getDocumentString = defaultGetDocumentString,
   shouldCacheResult = defaultShouldCacheResult,
@@ -319,46 +359,66 @@ export function useResponseCache<PluginContext extends Record<string, any> = {}>
     ? // eslint-disable-next-line dot-notation
       process.env['NODE_ENV'] === 'development' || !!process.env['DEBUG']
     : false,
+  ...options
 }: UseResponseCacheParameter<PluginContext>): Plugin<PluginContext> {
   const cacheFactory = typeof cache === 'function' ? memoize1(cache) : () => cache;
   const ignoredTypesMap = new Set<string>(ignoredTypes);
-  const typePerSchemaCoordinateMap = new Map<string, string[]>();
   enabled = enabled ? memoize1(enabled) : enabled;
 
-  // never cache Introspections
-  ttlPerSchemaCoordinate = { 'Query.__schema': 0, ...ttlPerSchemaCoordinate };
+  const configPerSchemaCoordinate = {
+    // never cache Introspections
+    ttl: { 'Query.__schema': 0, ...options.ttlPerSchemaCoordinate } as TTLPerSchemaCoordinate,
+    scope: { ...options.scopePerSchemaCoordinate } as ScopePerSchemaCoordinate,
+  };
+
   if (ttlPerType) {
     // eslint-disable-next-line no-console
     console.warn(
       '[useResponseCache] `ttlForType` is deprecated. To migrate, merge it with `ttlForSchemaCoordinate` option',
     );
     for (const [typeName, ttl] of Object.entries(ttlPerType)) {
-      ttlPerSchemaCoordinate[typeName] = ttl;
+      configPerSchemaCoordinate.ttl[typeName] = ttl;
     }
   }
 
-  const documentMetadataOptions = {
-    queries: { invalidateViaMutation, ttlPerSchemaCoordinate },
-    mutations: { invalidateViaMutation }, // remove ttlPerSchemaCoordinate for mutations to skip TTL calculation
+  const makeSchemaConfig = function makeSchemaConfig(schema?: GraphQLSchema): SchemaConfig {
+    const ttl = { ...configPerSchemaCoordinate.ttl };
+    const scope = { ...configPerSchemaCoordinate.scope };
+    return {
+      schema,
+      perSchemaCoordinate: { ttl, scope, type: new Map() },
+      idFieldByTypeName: new Map(),
+      publicDocuments: new LRUCache({
+        max: DOCUMENTS_SCOPE_MAX,
+        ttl: DOCUMENTS_SCOPE_TTL,
+      }),
+      documentMetadataOptions: {
+        // Do not override mutations metadata to keep a stable reference for memoization
+        mutations: { invalidateViaMutation },
+        queries: { invalidateViaMutation, ttlPerSchemaCoordinate: ttl },
+      },
+      isPrivate(typeName: string, data?: Record<string, unknown>): boolean {
+        if (scope[typeName] === 'PRIVATE') {
+          return true;
+        }
+        return data
+          ? Object.keys(data).some(fieldName => scope[`${typeName}.${fieldName}`] === 'PRIVATE')
+          : false;
+      },
+    };
   };
-  const idFieldByTypeName = new Map<string, string>();
-  let schema: any;
 
-  function isPrivate(typeName: string, data: Record<string, unknown>): boolean {
-    if (scopePerSchemaCoordinate[typeName] === 'PRIVATE') {
-      return true;
-    }
-    return Object.keys(data).some(
-      fieldName => scopePerSchemaCoordinate[`${typeName}.${fieldName}`] === 'PRIVATE',
-    );
-  }
+  const schemaConfigs = new WeakMap<GraphQLSchema, SchemaConfig>();
 
   return {
-    onSchemaChange({ schema: newSchema }) {
-      if (schema === newSchema) {
+    onSchemaChange({ schema }) {
+      if (schemaConfigs.has(schema)) {
         return;
       }
-      schema = newSchema;
+
+      // Reset all configs, to avoid keeping stale field configuration
+      const config = makeSchemaConfig(schema);
+      schemaConfigs.set(schema, config);
 
       const directive = schema.getDirective('cacheControl') as unknown as
         | GraphQLDirective
@@ -374,10 +434,10 @@ export function useResponseCache<PluginContext extends Record<string, any> = {}>
             ) as unknown as CacheControlDirective[] | undefined;
             cacheControlAnnotations?.forEach(cacheControl => {
               if (cacheControl.maxAge != null) {
-                ttlPerSchemaCoordinate[type.name] = cacheControl.maxAge * 1000;
+                config.perSchemaCoordinate.ttl[type.name] = cacheControl.maxAge * 1000;
               }
               if (cacheControl.scope) {
-                scopePerSchemaCoordinate[type.name] = cacheControl.scope;
+                config.perSchemaCoordinate.scope[type.name] = cacheControl.scope;
               }
             });
             return type;
@@ -386,10 +446,10 @@ export function useResponseCache<PluginContext extends Record<string, any> = {}>
         [MapperKind.FIELD]: (fieldConfig, fieldName, typeName) => {
           const schemaCoordinates = `${typeName}.${fieldName}`;
           const resultTypeNames = unwrapTypenames(fieldConfig.type);
-          typePerSchemaCoordinateMap.set(schemaCoordinates, resultTypeNames);
+          config.perSchemaCoordinate.type.set(schemaCoordinates, resultTypeNames);
 
-          if (idFields.includes(fieldName) && !idFieldByTypeName.has(typeName)) {
-            idFieldByTypeName.set(typeName, fieldName);
+          if (idFields.includes(fieldName) && !config.idFieldByTypeName.has(typeName)) {
+            config.idFieldByTypeName.set(typeName, fieldName);
           }
 
           if (directive) {
@@ -400,10 +460,10 @@ export function useResponseCache<PluginContext extends Record<string, any> = {}>
             ) as unknown as CacheControlDirective[] | undefined;
             cacheControlAnnotations?.forEach(cacheControl => {
               if (cacheControl.maxAge != null) {
-                ttlPerSchemaCoordinate[schemaCoordinates] = cacheControl.maxAge * 1000;
+                config.perSchemaCoordinate.ttl[schemaCoordinates] = cacheControl.maxAge * 1000;
               }
               if (cacheControl.scope) {
-                scopePerSchemaCoordinate[schemaCoordinates] = cacheControl.scope;
+                config.perSchemaCoordinate.scope[schemaCoordinates] = cacheControl.scope;
               }
             });
           }
@@ -415,12 +475,29 @@ export function useResponseCache<PluginContext extends Record<string, any> = {}>
       if (enabled && !enabled(onExecuteParams.args.contextValue)) {
         return;
       }
+
+      const { schema } = onExecuteParams.args;
+      if (!schemaConfigs.has(schema)) {
+        // eslint-disable-next-line no-console
+        console.error('[response-cache] Unknown schema, operation ignored');
+        return;
+      }
+      const config = schemaConfigs.get(schema)!;
+
       const identifier = new Map<string, CacheEntityRecord>();
       const types = new Set<string>();
       let currentTtl: number | undefined;
+      let isPrivate = false;
       let skip = false;
 
-      const sessionId = session(onExecuteParams.args.contextValue);
+      const documentString = getDocumentString(onExecuteParams.args);
+      // Verify if we already know this document is public or not. If it is public, we should not
+      // take the session ID into account. If not, we keep the default behavior of letting user
+      // decide if a session id should be used to build the key
+      const sessionId =
+        ignoreSessionIdForPublicScope && config.publicDocuments.get(documentString)
+          ? undefined
+          : session(onExecuteParams.args.contextValue);
 
       function setExecutor({
         execute,
@@ -452,25 +529,23 @@ export function useResponseCache<PluginContext extends Record<string, any> = {}>
           return;
         }
 
-        if (
-          ignoredTypesMap.has(entity.typename) ||
-          (!sessionId && isPrivate(entity.typename, data))
-        ) {
+        isPrivate ||= config.isPrivate(entity.typename, data);
+        if (ignoredTypesMap.has(entity.typename) || (!sessionId && isPrivate)) {
           skip = true;
           return;
         }
 
         // in case the entity has no id, we attempt to extract it from the data
         if (!entity.id) {
-          const idField = idFieldByTypeName.get(entity.typename);
+          const idField = config.idFieldByTypeName.get(entity.typename);
           if (idField) {
             entity.id = data[idField] as string | number | undefined;
           }
         }
 
         types.add(entity.typename);
-        if (entity.typename in ttlPerSchemaCoordinate) {
-          const maybeTtl = ttlPerSchemaCoordinate[entity.typename] as unknown;
+        if (entity.typename in config.perSchemaCoordinate.ttl) {
+          const maybeTtl = config.perSchemaCoordinate.ttl[entity.typename] as unknown;
           currentTtl = calculateTtl(maybeTtl, currentTtl);
         }
         if (entity.id != null) {
@@ -479,10 +554,12 @@ export function useResponseCache<PluginContext extends Record<string, any> = {}>
         for (const fieldName in data) {
           const fieldData = data[fieldName];
           if (fieldData == null || (Array.isArray(fieldData) && fieldData.length === 0)) {
-            const inferredTypes = typePerSchemaCoordinateMap.get(`${entity.typename}.${fieldName}`);
+            const inferredTypes = config.perSchemaCoordinate.type.get(
+              `${entity.typename}.${fieldName}`,
+            );
             inferredTypes?.forEach(inferredType => {
-              if (inferredType in ttlPerSchemaCoordinate) {
-                const maybeTtl = ttlPerSchemaCoordinate[inferredType] as unknown;
+              if (inferredType in config.perSchemaCoordinate.ttl) {
+                const maybeTtl = config.perSchemaCoordinate.ttl[inferredType] as unknown;
                 currentTtl = calculateTtl(maybeTtl, currentTtl);
               }
               identifier.set(inferredType, { typename: inferredType });
@@ -539,9 +616,9 @@ export function useResponseCache<PluginContext extends Record<string, any> = {}>
             execute(args) {
               const [document] = getDocumentWithMetadataAndTTL(
                 args.document,
-                documentMetadataOptions.mutations,
+                config.documentMetadataOptions.mutations,
                 args.schema,
-                idFieldByTypeName,
+                config.idFieldByTypeName,
               );
               return onExecuteParams.executeFn({ ...args, document });
             },
@@ -559,10 +636,10 @@ export function useResponseCache<PluginContext extends Record<string, any> = {}>
       return handleMaybePromise(
         () =>
           buildResponseCacheKey({
-            documentString: getDocumentString(onExecuteParams.args),
+            sessionId,
+            documentString,
             variableValues: onExecuteParams.args.variableValues,
             operationName: onExecuteParams.args.operationName,
-            sessionId,
             context: onExecuteParams.args.contextValue,
           }),
         cacheKey => {
@@ -572,28 +649,34 @@ export function useResponseCache<PluginContext extends Record<string, any> = {}>
             console.warn(
               '[useResponseCache] Cache instance is not available for the context. Skipping cache lookup.',
             );
+            return;
           }
 
-          return handleMaybePromise(
-            () => cacheInstance.get(cacheKey),
-            cachedResponse => {
-              if (cachedResponse != null) {
-                return setExecutor({
-                  execute: () =>
-                    includeExtensionMetadata
-                      ? resultWithMetadata(cachedResponse, { hit: true })
-                      : cachedResponse,
-                });
-              }
+          function maybeCacheResult(
+            result: ExecutionResult,
+            setResult: (newResult: ExecutionResult) => void,
+          ) {
+            if (result.data) {
+              result.data = removeMetadataFieldsFromResult(result.data, onEntity);
+            }
 
-              function maybeCacheResult(
-                result: ExecutionResult,
-                setResult: (newResult: ExecutionResult) => void,
-              ) {
-                if (result.data) {
-                  result.data = removeMetadataFieldsFromResult(result.data, onEntity);
+            return handleMaybePromise(
+              () => {
+                if (!skip && ignoreSessionIdForPublicScope && !isPrivate && sessionId) {
+                  config.publicDocuments.set(documentString, true);
+                  return buildResponseCacheKey({
+                    // Build a public key for this document
+                    sessionId: undefined,
+                    documentString,
+                    variableValues: onExecuteParams.args.variableValues,
+                    operationName: onExecuteParams.args.operationName,
+                    context: onExecuteParams.args.contextValue,
+                  });
                 }
 
+                return cacheKey;
+              },
+              cacheKey => {
                 // we only use the global ttl if no currentTtl has been determined.
                 let finalTtl = currentTtl ?? globalTtl;
                 if (onTtl) {
@@ -616,15 +699,29 @@ export function useResponseCache<PluginContext extends Record<string, any> = {}>
                     resultWithMetadata(result, { hit: false, didCache: true, ttl: finalTtl }),
                   );
                 }
+              },
+            );
+          }
+
+          return handleMaybePromise(
+            () => cacheInstance.get(cacheKey),
+            cachedResponse => {
+              if (cachedResponse != null) {
+                return setExecutor({
+                  execute: () =>
+                    includeExtensionMetadata
+                      ? resultWithMetadata(cachedResponse, { hit: true })
+                      : cachedResponse,
+                });
               }
 
               return setExecutor({
                 execute(args) {
                   const [document, ttl] = getDocumentWithMetadataAndTTL(
                     args.document,
-                    documentMetadataOptions.queries,
+                    config.documentMetadataOptions.queries,
                     schema,
-                    idFieldByTypeName,
+                    config.idFieldByTypeName,
                   );
                   currentTtl = ttl;
                   return onExecuteParams.executeFn({ ...args, document });
