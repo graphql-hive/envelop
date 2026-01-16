@@ -1135,8 +1135,8 @@ importers:
         specifier: 16.8.1
         version: 16.8.1
       graphql-modules:
-        specifier: 3.0.0
-        version: 3.0.0(graphql@16.8.1)
+        specifier: 3.1.1
+        version: 3.1.1(graphql@16.8.1)
       reflect-metadata:
         specifier: 0.2.2
         version: 0.2.2
@@ -7598,8 +7598,8 @@ packages:
     peerDependencies:
       graphql: 16.8.1
 
-  graphql-modules@3.0.0:
-    resolution: {integrity: sha512-ADQRySHp7SMqLHsv/NMkEBqOcyAC5bT6bTYuQemjmvSsF+gj1iQbzNF1pjy1lsE6UWxvRRzZN+sovp85Z6c3Vw==}
+  graphql-modules@3.1.1:
+    resolution: {integrity: sha512-T87Z7V99LG5KU+w15VJ+M8KwRAXMCMB6n7mv+iEBuJMiH6fC6snXr83yAPrcKCzSbiHstildq5SqUcvFfj7ymw==}
     peerDependencies:
       graphql: 16.8.1
 
@@ -18765,7 +18765,7 @@ snapshots:
       '@graphql-tools/schema': 8.5.1(graphql@16.8.1)
       graphql: 16.8.1
 
-  graphql-modules@3.0.0(graphql@16.8.1):
+  graphql-modules@3.1.1(graphql@16.8.1):
     dependencies:
       '@graphql-tools/schema': 10.0.31(graphql@16.8.1)
       '@graphql-tools/wrap': 10.1.4(graphql@16.8.1)
