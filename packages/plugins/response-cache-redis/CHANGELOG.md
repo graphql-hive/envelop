@@ -1,5 +1,13 @@
 # @envelop/response-cache-redis
 
+## 4.2.6
+
+### Patch Changes
+
+- Updated dependencies
+  [[`dc2327d`](https://github.com/graphql-hive/envelop/commit/dc2327df6b1d46d53d000eadcfac3850c5a41daf)]:
+  - @envelop/response-cache@10.0.0
+
 ## 4.2.5
 
 ### Patch Changes
