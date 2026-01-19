@@ -1616,8 +1616,8 @@ importers:
         specifier: 16.8.1
         version: 16.8.1
       hot-shots:
-        specifier: 12.1.0
-        version: 12.1.0
+        specifier: 13.0.0
+        version: 13.0.0
       typescript:
         specifier: 5.9.3
         version: 5.9.3
@@ -7759,8 +7759,8 @@ packages:
   hastscript@9.0.1:
     resolution: {integrity: sha512-g7df9rMFX/SPi34tyGCyUBREQoKkapwdY/T04Qn9TDWfHhAYt4/I0gMVirzK5wEzeUqIjEB+LXC/ypb7Aqno5w==}
 
-  hot-shots@12.1.0:
-    resolution: {integrity: sha512-Wu5rNjuBZy826Umns60bB47gF8b4rPIa0QDMXNKNMmQUqIWVlizmTgomHUS64zLChVytbieO7KDnT2M4E3/njw==}
+  hot-shots@13.0.0:
+    resolution: {integrity: sha512-WLD9mN3JftwITmJkqUMtfQE4EchMfvt+K22LGsYgu26mVYfLKs7wnzQ5yhPHQGZq9GbmUJLvp6fwjVRVF/YvOA==}
     engines: {node: '>=16.0.0'}
 
   html-entities@2.6.0:
@@ -10686,6 +10686,7 @@ packages:
   tar@6.2.1:
     resolution: {integrity: sha512-DZ4yORTwrbTj/7MZYq2w+/ZFdI6OZ/f9SFHR+71gIVUZhOQPHzVCLpvRnPgyaMpfWxxk/4ONva3GQSyNIKRv6A==}
     engines: {node: '>=10'}
+    deprecated: Old versions of tar are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exhorbitant rates) by contacting i@izs.me
 
   tdigest@0.1.2:
     resolution: {integrity: sha512-+G0LLgjjo9BZX2MfdvPfH+MKLCrxlXSYec5DaPYP1fe6Iyhf0/fSmJ0bFiZ1F8BT6cGXl2LpltQptzjXKWEkKA==}
@@ -19018,7 +19019,7 @@ snapshots:
       property-information: 7.1.0
       space-separated-tokens: 2.0.2
 
-  hot-shots@12.1.0:
+  hot-shots@13.0.0:
     optionalDependencies:
       unix-dgram: 2.0.7
 
