@@ -101,6 +101,8 @@ describe('useGraphQLModules', () => {
     expect(isDestroyed).toEqual(true);
   });
 
+  // TODO: check how well it works with graphql-modules when integrating other envelop plugins
+
   test("merging singleton provider context with envelop's context", async () => {
     @Injectable({ scope: Scope.Singleton })
     class IdentifierProvider {
