@@ -1,5 +1,58 @@
 # @envelop/rate-limiter
 
+## 10.0.0
+
+### Major Changes
+
+- [#1323](https://github.com/graphql-hive/envelop/pull/1323)
+  [`cecd3f6`](https://github.com/graphql-hive/envelop/commit/cecd3f61300ecb3d276a92f821b4703663210174)
+  Thanks [@ardatan](https://github.com/ardatan)! - Rate Limiter no longer gets attached to the
+  resolvers and use `onExecute` hook instead. This improves performance by reducing the number of
+  function calls, and issues with multiple plugins trying to wrap the same resolver.
+
+  `onRateLimitError` no longer receives `info` object, but receives `type` and `field` instead.
+  `interpolateMessage` also receives `type` and `field` instead of `info`.
+
+  ```diff
+  onRateLimitError({
+      error: string;
+      identifier: string;
+      context: unknown;
+  -   info: GraphQLResolveInfo;
+  +   type: GraphQLNamedOutputType;
+  +   field: GraphQLField<any, any>;
+  })
+  ```
+
+  ```diff
+  interpolateMessage(
+      message: string,
+      identifier: string,
+      params: {
+          root: unknown;
+          args: Record<string, unknown>;
+          context: unknown;
+  -       info: GraphQLResolveInfo;
+  +       type: GraphQLNamedOutputType;
+  +       field: GraphQLField<any, any>;
+      }
+  ): string
+  ```
+
+### Patch Changes
+
+- [#2827](https://github.com/graphql-hive/envelop/pull/2827)
+  [`dc2327d`](https://github.com/graphql-hive/envelop/commit/dc2327df6b1d46d53d000eadcfac3850c5a41daf)
+  Thanks [@renovate](https://github.com/apps/renovate)! - dependencies updates:
+  - Updated dependency
+    [`@graphql-tools/utils@^11.0.0` ↗︎](https://www.npmjs.com/package/@graphql-tools/utils/v/11.0.0)
+    (from `^10.5.4`, in `dependencies`)
+- Updated dependencies
+  [[`d3d83bc`](https://github.com/graphql-hive/envelop/commit/d3d83bca20ba03e6c145fbd6449d5b56602627af),
+  [`49346b2`](https://github.com/graphql-hive/envelop/commit/49346b237e22a779ff27fc41ea59ec916601df38)]:
+  - @envelop/core@5.5.0
+  - @envelop/on-resolve@7.1.0
+
 ## 9.0.0
 
 ### Patch Changes
@@ -149,8 +202,8 @@
     [`graphql-middleware@^6.1.35` ↗︎](https://www.npmjs.com/package/graphql-middleware/v/6.1.35)
     (from `dependencies`)
   - Removed dependency
-    [`graphql-rate-limit@^3.3.0` ↗︎](https://www.npmjs.com/package/graphql-rate-limit/v/3.3.0)
-    (from `dependencies`)
+    [`graphql-rate-limit@^3.3.0` ↗︎](https://www.npmjs.com/package/graphql-rate-limit/v/3.3.0) (from
+    `dependencies`)
 
 ## 7.0.0
 
@@ -169,8 +222,8 @@
   [`b1210bc`](https://github.com/n1ru4l/envelop/commit/b1210bcb1aad1545e953c48ca3adfc064e854a2d)
   Thanks [@enisdenjo](https://github.com/enisdenjo)! - dependencies updates:
   - Added dependency
-    [`graphql-middleware@^6.1.35` ↗︎](https://www.npmjs.com/package/graphql-middleware/v/6.1.35)
-    (to `dependencies`)
+    [`graphql-middleware@^6.1.35` ↗︎](https://www.npmjs.com/package/graphql-middleware/v/6.1.35) (to
+    `dependencies`)
 
 - [#2330](https://github.com/n1ru4l/envelop/pull/2330)
   [`b1210bc`](https://github.com/n1ru4l/envelop/commit/b1210bcb1aad1545e953c48ca3adfc064e854a2d)
@@ -246,8 +299,8 @@
   [`c3dd2c3`](https://github.com/n1ru4l/envelop/commit/c3dd2c3525b42fcab773e0ae8a637caea5c33558)
   Thanks [@ardatan](https://github.com/ardatan)! - dependencies updates:
   - Updated dependency
-    [`graphql-rate-limit@^3.3.0` ↗︎](https://www.npmjs.com/package/graphql-rate-limit/v/3.3.0)
-    (from `3.3.0`, in `dependencies`)
+    [`graphql-rate-limit@^3.3.0` ↗︎](https://www.npmjs.com/package/graphql-rate-limit/v/3.3.0) (from
+    `3.3.0`, in `dependencies`)
   - Added dependency
     [`@graphql-tools/utils@^10.5.4` ↗︎](https://www.npmjs.com/package/@graphql-tools/utils/v/10.5.4)
     (to `dependencies`)
@@ -303,8 +356,8 @@
     [`@envelop/on-resolve@^3.0.2` ↗︎](https://www.npmjs.com/package/@envelop/on-resolve/v/3.0.2)
     (from `^3.0.1`, in `dependencies`)
   - Updated dependency
-    [`@envelop/core@^4.0.2` ↗︎](https://www.npmjs.com/package/@envelop/core/v/4.0.2) (from
-    `^4.0.1`, in `peerDependencies`)
+    [`@envelop/core@^4.0.2` ↗︎](https://www.npmjs.com/package/@envelop/core/v/4.0.2) (from `^4.0.1`,
+    in `peerDependencies`)
 
 - Updated dependencies
   [[`dee6b8d2`](https://github.com/n1ru4l/envelop/commit/dee6b8d215f21301660090037b6685e86d217593)]:

@@ -1,5 +1,18 @@
 # @envelop/statsd
 
+## 8.1.0
+
+### Patch Changes
+
+- [#2817](https://github.com/graphql-hive/envelop/pull/2817)
+  [`8a09855`](https://github.com/graphql-hive/envelop/commit/8a09855ce8588c8749cfdfbc1b0dbe947138fa58)
+  Thanks [@renovate](https://github.com/apps/renovate)! - dependencies updates:
+  - Updated dependency [`hot-shots@^12.0.0` ↗︎](https://www.npmjs.com/package/hot-shots/v/12.0.0)
+    (from `^11.0.0`, in `peerDependencies`)
+- Updated dependencies
+  [[`d3d83bc`](https://github.com/graphql-hive/envelop/commit/d3d83bca20ba03e6c145fbd6449d5b56602627af)]:
+  - @envelop/core@5.5.0
+
 ## 8.0.0
 
 ### Patch Changes
@@ -110,8 +123,8 @@
   [`e3c90116`](https://github.com/n1ru4l/envelop/commit/e3c9011640b73aaede4e5e472a5d45aab947165c)
   Thanks [@renovate](https://github.com/apps/renovate)! - dependencies updates:
   - Updated dependency
-    [`@envelop/core@^4.0.2` ↗︎](https://www.npmjs.com/package/@envelop/core/v/4.0.2) (from
-    `^4.0.1`, in `peerDependencies`)
+    [`@envelop/core@^4.0.2` ↗︎](https://www.npmjs.com/package/@envelop/core/v/4.0.2) (from `^4.0.1`,
+    in `peerDependencies`)
 
 - Updated dependencies
   [[`dee6b8d2`](https://github.com/n1ru4l/envelop/commit/dee6b8d215f21301660090037b6685e86d217593)]:
