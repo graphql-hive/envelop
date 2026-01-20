@@ -7,10 +7,18 @@ export const useGraphQLModules = (app: Application): Plugin => {
       setSchema(app.schema);
     },
     onExecute({ setExecuteFn, executeFn }) {
-      setExecuteFn(app.createExecution({ execute: executeFn }));
+      setExecuteFn(
+        app.createExecution({
+          execute: executeFn,
+        }),
+      );
     },
     onSubscribe({ setSubscribeFn, subscribeFn }) {
-      setSubscribeFn(app.createSubscription({ subscribe: subscribeFn }));
+      setSubscribeFn(
+        app.createSubscription({
+          subscribe: subscribeFn,
+        }),
+      );
     },
   };
 };
