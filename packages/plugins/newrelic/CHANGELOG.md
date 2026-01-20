@@ -1,5 +1,15 @@
 # @envelop/newrelic
 
+## 10.1.0
+
+### Patch Changes
+
+- Updated dependencies
+  [[`d3d83bc`](https://github.com/graphql-hive/envelop/commit/d3d83bca20ba03e6c145fbd6449d5b56602627af),
+  [`49346b2`](https://github.com/graphql-hive/envelop/commit/49346b237e22a779ff27fc41ea59ec916601df38)]:
+  - @envelop/core@5.5.0
+  - @envelop/on-resolve@7.1.0
+
 ## 10.0.0
 
 ### Patch Changes
@@ -116,8 +126,8 @@
     [`@envelop/on-resolve@^3.0.2` ↗︎](https://www.npmjs.com/package/@envelop/on-resolve/v/3.0.2)
     (from `^3.0.1`, in `dependencies`)
   - Updated dependency
-    [`@envelop/core@^4.0.2` ↗︎](https://www.npmjs.com/package/@envelop/core/v/4.0.2) (from
-    `^4.0.1`, in `peerDependencies`)
+    [`@envelop/core@^4.0.2` ↗︎](https://www.npmjs.com/package/@envelop/core/v/4.0.2) (from `^4.0.1`,
+    in `peerDependencies`)
 
 - Updated dependencies
   [[`dee6b8d2`](https://github.com/n1ru4l/envelop/commit/dee6b8d215f21301660090037b6685e86d217593)]:
@@ -143,8 +153,8 @@
 - [#1935](https://github.com/n1ru4l/envelop/pull/1935)
   [`89ae34e3`](https://github.com/n1ru4l/envelop/commit/89ae34e3bb3daef5f98608d79dc269ed9f549c11)
   Thanks [@EmrysMyrddin](https://github.com/EmrysMyrddin)! - dependencies updates:
-  - Updated dependency [`newrelic@>=7 <12` ↗︎](https://www.npmjs.com/package/newrelic/v/7.0.0)
-    (from `^7 || ^8.0.0`, in `peerDependencies`)
+  - Updated dependency [`newrelic@>=7 <12` ↗︎](https://www.npmjs.com/package/newrelic/v/7.0.0) (from
+    `^7 || ^8.0.0`, in `peerDependencies`)
 
 - Updated dependencies []:
   - @envelop/core@4.0.1
