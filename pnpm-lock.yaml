@@ -5,6 +5,7 @@ settings:
   excludeLinksFromLockfile: false
 
 overrides:
+  '@changesets/assemble-release-plan': 5.2.3
   body-parser: 2.2.2
   esbuild: ^0.27.0
   graphql: 16.8.1
@@ -28,9 +29,9 @@ overrides:
   qs: 6.14.1
 
 patchedDependencies:
-  '@changesets/assemble-release-plan':
-    hash: e929d4d48a9e0237e7a5b5283297e70eec7ad4472c14fd4f5a8fbab66387eb00
-    path: patches/@changesets__assemble-release-plan.patch
+  '@changesets/assemble-release-plan@5.2.3':
+    hash: 9aa87d318a43fcd8887df3e6ce0ff4627ad1da587dde018b7964496e42dca3a8
+    path: patches/@changesets__assemble-release-plan@5.2.3.patch
   '@eslint/eslintrc':
     hash: a0d2a06b3b47afeb51607aa94a8724c9c0904e3b3fb53665d5a6294d00489681
     path: patches/@eslint__eslintrc.patch
@@ -2757,8 +2758,8 @@ packages:
   '@changesets/apply-release-plan@7.0.14':
     resolution: {integrity: sha512-ddBvf9PHdy2YY0OUiEl3TV78mH9sckndJR14QAt87KLEbIov81XO0q0QAmvooBxXlqRRP8I9B7XOzZwQG7JkWA==}
 
-  '@changesets/assemble-release-plan@6.0.9':
-    resolution: {integrity: sha512-tPgeeqCHIwNo8sypKlS3gOPmsS3wP0zHt67JDuL20P4QcXiw/O4Hl7oXiuLnP9yg+rXLQ2sScdV1Kkzde61iSQ==}
+  '@changesets/assemble-release-plan@5.2.3':
+    resolution: {integrity: sha512-g7EVZCmnWz3zMBAdrcKhid4hkHT+Ft1n0mLussFMcB1dE2zCuwcvGoy9ec3yOgPGF4hoMtgHaMIk3T3TBdvU9g==}
 
   '@changesets/changelog-git@0.2.1':
     resolution: {integrity: sha512-x/xEleCFLH28c3bQeQIyeZf8lFXyDFVn1SgcBiR2Tw/r4IAWlk1fzxCEZ6NxQAjF2Nwtczoen3OA2qR+UawQ8Q==}
@@ -2773,8 +2774,14 @@ packages:
   '@changesets/config@3.1.2':
     resolution: {integrity: sha512-CYiRhA4bWKemdYi/uwImjPxqWNpqGPNbEBdX1BdONALFIDK7MCUj6FPkzD+z9gJcvDFUQJn9aDVf4UG7OT6Kog==}
 
+  '@changesets/errors@0.1.4':
+    resolution: {integrity: sha512-HAcqPF7snsUJ/QzkWoKfRfXushHTu+K5KZLJWPb34s4eCZShIf8BFO3fwq6KU8+G7L5KdtN2BzQAXOSXEyiY9Q==}
+
   '@changesets/errors@0.2.0':
     resolution: {integrity: sha512-6BLOQUscTpZeGljvyQXlWOItQyU71kCdGz7Pi8H8zdw6BI0g3m43iL4xKUVPWtG+qrrL9DTjpdn8eYuCQSRpow==}
+
+  '@changesets/get-dependents-graph@1.3.6':
+    resolution: {integrity: sha512-Q/sLgBANmkvUm09GgRsAvEtY3p1/5OCzgBE5vX3vgb5CvW0j7CEljocx5oPXeQSNph6FXulJlXV3Re/v3K3P3Q==}
 
   '@changesets/get-dependents-graph@2.1.3':
     resolution: {integrity: sha512-gphr+v0mv2I3Oxt19VdWRRUxq3sseyUpX9DaHpTUmLj92Y10AGy+XOtV+kbM6L/fDcpx7/ISDFK6T8A/P3lOdQ==}
@@ -2808,6 +2815,9 @@ packages:
 
   '@changesets/types@4.1.0':
     resolution: {integrity: sha512-LDQvVDv5Kb50ny2s25Fhm3d9QSZimsoUGBsUioj6MC3qbMUCuC8GPIvk/M6IvXx3lYhAs0lwWUQLb+VIEUCECw==}
+
+  '@changesets/types@5.2.1':
+    resolution: {integrity: sha512-myLfHbVOqaq9UtUKqR/nZA/OY7xFjQMdfgfqeZIBK4d0hA6pgxArvdv8M+6NUzzBsjWLOtvApv8YHr4qM+Kpfg==}
 
   '@changesets/types@6.1.0':
     resolution: {integrity: sha512-rKQcJ+o1nKNgeoYRHKOS07tAMNd3YSN0uHaJOZYjBAgxfV7TUE7JE+z4BzZdQwb5hKaYbayKN5KrYV7ODb2rAA==}
@@ -13078,14 +13088,14 @@ snapshots:
       resolve-from: 5.0.0
       semver: 7.7.3
 
-  '@changesets/assemble-release-plan@6.0.9(patch_hash=e929d4d48a9e0237e7a5b5283297e70eec7ad4472c14fd4f5a8fbab66387eb00)':
+  '@changesets/assemble-release-plan@5.2.3(patch_hash=9aa87d318a43fcd8887df3e6ce0ff4627ad1da587dde018b7964496e42dca3a8)':
     dependencies:
-      '@changesets/errors': 0.2.0
-      '@changesets/get-dependents-graph': 2.1.3
-      '@changesets/should-skip-package': 0.1.2
-      '@changesets/types': 6.1.0
+      '@babel/runtime': 7.28.4
+      '@changesets/errors': 0.1.4
+      '@changesets/get-dependents-graph': 1.3.6
+      '@changesets/types': 5.2.1
       '@manypkg/get-packages': 1.1.3
-      semver: 7.7.3
+      semver: 5.7.2
 
   '@changesets/changelog-git@0.2.1':
     dependencies:
@@ -13102,7 +13112,7 @@ snapshots:
   '@changesets/cli@2.29.8(@types/node@24.10.8)':
     dependencies:
       '@changesets/apply-release-plan': 7.0.14
-      '@changesets/assemble-release-plan': 6.0.9(patch_hash=e929d4d48a9e0237e7a5b5283297e70eec7ad4472c14fd4f5a8fbab66387eb00)
+      '@changesets/assemble-release-plan': 5.2.3(patch_hash=9aa87d318a43fcd8887df3e6ce0ff4627ad1da587dde018b7964496e42dca3a8)
       '@changesets/changelog-git': 0.2.1
       '@changesets/config': 3.1.2
       '@changesets/errors': 0.2.0
@@ -13142,9 +13152,21 @@ snapshots:
       fs-extra: 7.0.1
       micromatch: 4.0.8
 
+  '@changesets/errors@0.1.4':
+    dependencies:
+      extendable-error: 0.1.7
+
   '@changesets/errors@0.2.0':
     dependencies:
       extendable-error: 0.1.7
+
+  '@changesets/get-dependents-graph@1.3.6':
+    dependencies:
+      '@changesets/types': 5.2.1
+      '@manypkg/get-packages': 1.1.3
+      chalk: 2.3.0
+      fs-extra: 7.0.1
+      semver: 7.7.3
 
   '@changesets/get-dependents-graph@2.1.3':
     dependencies:
@@ -13162,7 +13184,7 @@ snapshots:
 
   '@changesets/get-release-plan@4.0.14':
     dependencies:
-      '@changesets/assemble-release-plan': 6.0.9(patch_hash=e929d4d48a9e0237e7a5b5283297e70eec7ad4472c14fd4f5a8fbab66387eb00)
+      '@changesets/assemble-release-plan': 5.2.3(patch_hash=9aa87d318a43fcd8887df3e6ce0ff4627ad1da587dde018b7964496e42dca3a8)
       '@changesets/config': 3.1.2
       '@changesets/pre': 2.0.2
       '@changesets/read': 0.6.6
@@ -13211,6 +13233,8 @@ snapshots:
       '@manypkg/get-packages': 1.1.3
 
   '@changesets/types@4.1.0': {}
+
+  '@changesets/types@5.2.1': {}
 
   '@changesets/types@6.1.0': {}
 
