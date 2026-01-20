@@ -7,6 +7,7 @@ import {
   Scope,
 } from 'graphql-modules';
 import 'reflect-metadata';
+import { useExtendContext } from '@envelop/core';
 import {
   assertSingleExecutionValue,
   assertStreamExecutionValue,
@@ -98,6 +99,56 @@ describe('useGraphQLModules', () => {
     expect(allResults).toHaveLength(1);
     expect(allResults[0]?.data?.bar).toEqual('testBar');
     expect(isDestroyed).toEqual(true);
+  });
+
+  test("merging singleton provider context with envelop's context", async () => {
+    @Injectable({ scope: Scope.Singleton })
+    class IdentifierProvider {
+      @ExecutionContext()
+      private context: any;
+      getId() {
+        return this.context.identifier;
+      }
+    }
+
+    const mod = createModule({
+      id: 'mod',
+      providers: [IdentifierProvider],
+      typeDefs: parse(/* GraphQL */ `
+        type Query {
+          getAsyncIdentifier: String!
+        }
+      `),
+      resolvers: {
+        Query: {
+          async getAsyncIdentifier(_0: unknown, _1: unknown, context: GraphQLModules.Context) {
+            const identifier = context.injector.get(IdentifierProvider).getId();
+            // @ts-expect-error just to make sure envelop's contexts are properly merged
+            return context.identifierPrefix + identifier + context.identifierSuffix;
+          },
+        },
+      },
+    });
+
+    const app = createApplication({ modules: [mod] });
+
+    const testInstance = createTestkit([
+      useExtendContext(() => ({ identifierSuffix: '-bye' })),
+      useGraphQLModules(app),
+      useExtendContext(() => ({ identifierPrefix: 'henlo-' })),
+    ]);
+
+    const query = /* GraphQL */ `
+      {
+        getAsyncIdentifier
+      }
+    `;
+
+    await expect(testInstance.execute(query, {}, { identifier: 'bob' })).resolves.toEqual({
+      data: {
+        getAsyncIdentifier: 'henlo-bob-bye',
+      },
+    });
   });
 
   test('accessing a singleton provider context during another asynchronous execution', async () => {
