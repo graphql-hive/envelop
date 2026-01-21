@@ -1,5 +1,21 @@
 # @envelop/generic-auth
 
+## 11.1.0
+
+### Patch Changes
+
+- [#2827](https://github.com/graphql-hive/envelop/pull/2827)
+  [`dc2327d`](https://github.com/graphql-hive/envelop/commit/dc2327df6b1d46d53d000eadcfac3850c5a41daf)
+  Thanks [@renovate](https://github.com/apps/renovate)! - dependencies updates:
+  - Updated dependency
+    [`@graphql-tools/utils@^11.0.0` ↗︎](https://www.npmjs.com/package/@graphql-tools/utils/v/11.0.0)
+    (from `^10.5.1`, in `dependencies`)
+- Updated dependencies
+  [[`dc2327d`](https://github.com/graphql-hive/envelop/commit/dc2327df6b1d46d53d000eadcfac3850c5a41daf),
+  [`d3d83bc`](https://github.com/graphql-hive/envelop/commit/d3d83bca20ba03e6c145fbd6449d5b56602627af)]:
+  - @envelop/extended-validation@7.1.0
+  - @envelop/core@5.5.0
+
 ## 11.0.0
 
 ### Patch Changes
@@ -289,8 +305,8 @@
     [`@envelop/extended-validation@^3.0.2` ↗︎](https://www.npmjs.com/package/@envelop/extended-validation/v/3.0.2)
     (from `^3.0.1`, in `dependencies`)
   - Updated dependency
-    [`@envelop/core@^4.0.2` ↗︎](https://www.npmjs.com/package/@envelop/core/v/4.0.2) (from
-    `^4.0.1`, in `peerDependencies`)
+    [`@envelop/core@^4.0.2` ↗︎](https://www.npmjs.com/package/@envelop/core/v/4.0.2) (from `^4.0.1`,
+    in `peerDependencies`)
 
 - Updated dependencies
   [[`dee6b8d2`](https://github.com/n1ru4l/envelop/commit/dee6b8d215f21301660090037b6685e86d217593)]:

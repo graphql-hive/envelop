@@ -1,5 +1,15 @@
 # @envelop/operation-field-permissions
 
+## 9.1.0
+
+### Patch Changes
+
+- Updated dependencies
+  [[`dc2327d`](https://github.com/graphql-hive/envelop/commit/dc2327df6b1d46d53d000eadcfac3850c5a41daf),
+  [`d3d83bc`](https://github.com/graphql-hive/envelop/commit/d3d83bca20ba03e6c145fbd6449d5b56602627af)]:
+  - @envelop/extended-validation@7.1.0
+  - @envelop/core@5.5.0
+
 ## 9.0.0
 
 ### Patch Changes
@@ -120,8 +130,8 @@
     [`@envelop/extended-validation@^3.0.2` ↗︎](https://www.npmjs.com/package/@envelop/extended-validation/v/3.0.2)
     (from `^3.0.1`, in `dependencies`)
   - Updated dependency
-    [`@envelop/core@^4.0.2` ↗︎](https://www.npmjs.com/package/@envelop/core/v/4.0.2) (from
-    `^4.0.1`, in `peerDependencies`)
+    [`@envelop/core@^4.0.2` ↗︎](https://www.npmjs.com/package/@envelop/core/v/4.0.2) (from `^4.0.1`,
+    in `peerDependencies`)
 
 - Updated dependencies
   [[`dee6b8d2`](https://github.com/n1ru4l/envelop/commit/dee6b8d215f21301660090037b6685e86d217593)]:
