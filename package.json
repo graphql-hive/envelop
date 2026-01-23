@@ -75,7 +75,7 @@
   },
   "pnpm": {
     "overrides": {
-      "@changesets/assemble-release-plan": "5.2.3",
+      "@changesets/assemble-release-plan": "6.0.9",
       "body-parser": "2.2.2",
       "esbuild": "^0.27.0",
       "graphql": "16.8.1",
