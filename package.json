@@ -90,7 +90,7 @@
       "jws": "4.0.1",
       "mdast-util-to-hast": "13.2.1",
       "webpack": "5.104.1",
-      "axios": "1.13.2",
+      "axios": "1.13.3",
       "undici": "5.29.0",
       "cookie": "1.1.1",
       "@eslint/plugin-kit": "0.5.1",
