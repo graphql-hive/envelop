@@ -91,7 +91,7 @@ export const useOpenTelemetry = (
       if (options.resolvers) {
         addPlugin(
           useOnResolve(
-            ({ info, context, args }) => {
+            ({ info, context, args, resolver, replaceResolver }) => {
               const parentSpan = spanByContext.get(context);
               if (parentSpan) {
                 const ctx = opentelemetry.trace.setSpan(getCurrentOtelContext(context), parentSpan);
@@ -108,6 +108,14 @@ export const useOpenTelemetry = (
                     },
                   },
                   ctx,
+                );
+
+                const resolverContext = opentelemetry.trace.setSpan(ctx, resolverSpan);
+                const resolverFn = resolver;
+                replaceResolver((root, resolverArgs, resolverContextValue, resolverInfo) =>
+                  opentelemetry.context.with(resolverContext, () =>
+                    resolverFn(root, resolverArgs, resolverContextValue, resolverInfo),
+                  ),
                 );
 
                 return ({ result }) => {
