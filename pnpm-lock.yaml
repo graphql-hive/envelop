@@ -20,7 +20,7 @@ overrides:
   jws: 4.0.1
   mdast-util-to-hast: 13.2.1
   webpack: 5.104.1
-  axios: 1.13.2
+  axios: 1.13.3
   undici: 5.29.0
   cookie: 1.1.1
   '@eslint/plugin-kit': 0.5.1
@@ -162,7 +162,7 @@ importers:
         version: 9.0.3
       wrangler:
         specifier: 4.60.0
-        version: 4.60.0(@cloudflare/workers-types@4.20260123.0)
+        version: 4.60.0(@cloudflare/workers-types@4.20260124.0)
 
   benchmark:
     dependencies:
@@ -272,8 +272,8 @@ importers:
         version: 0.7.3
     devDependencies:
       '@cloudflare/workers-types':
-        specifier: 4.20260123.0
-        version: 4.20260123.0
+        specifier: 4.20260124.0
+        version: 4.20260124.0
       '@types/node':
         specifier: 24.10.9
         version: 24.10.9
@@ -2823,8 +2823,8 @@ packages:
   '@cloudflare/workers-types@4.20260113.0':
     resolution: {integrity: sha512-CS2tUdGn1EMAV5GoFYYUfsZ4vwwXiYxwrUiI8ZRkxrJGqkHNGily/5Zf+vt/wh1HSoiCIChNYiuLEoCA/XUybw==}
 
-  '@cloudflare/workers-types@4.20260123.0':
-    resolution: {integrity: sha512-pQccZ8IDLFKkvdKBXZRPkbMtWtS7vVz1giJGkAAZ5cZH2RHK5Bs6p1OoVZA8Z2Sry8Q0tZbZ5Yjud4R7SrG3KQ==}
+  '@cloudflare/workers-types@4.20260124.0':
+    resolution: {integrity: sha512-h6TJlew6AtGuEXFc+k5ifalk+tg3fkg0lla6XbMAb2AKKfJGwlFNTwW2xyT/Ha92KY631CIJ+Ace08DPdFohdA==}
 
   '@colors/colors@1.6.0':
     resolution: {integrity: sha512-Ir+AOibqzrIsL6ajt3Rz3LskB7OiMVHqltZmspbW/TJuTVuyOMirVqAkjfY6JISiLHgyNqicAC8AyHHGzNd/dA==}
@@ -5875,8 +5875,8 @@ packages:
     resolution: {integrity: sha512-cJmb8xEnVLT+R6fBS5sn/EFJiX7tUnDaPtOPZ1vFbOJtd0fnZn/Ky2XGgsvvoeliWeH7mL3TWSX5zXXGSQV6gQ==}
     engines: {node: '>= 10.0.0'}
 
-  axios@1.13.2:
-    resolution: {integrity: sha512-VPk9ebNqPcy5lRGuSlKx752IlDatOjT9paPlm8A7yOuW2Fbvp4X3JznJtT4f0GzGLLiWE9W8onz51SqLYwzGaA==}
+  axios@1.13.3:
+    resolution: {integrity: sha512-ERT8kdX7DZjtUm7IitEyV7InTHAF42iJuMArIiDIV5YtPanJkgw4hw5Dyg9fh0mihdWNn1GKaeIWErfe56UQ1g==}
 
   babel-jest@30.2.0:
     resolution: {integrity: sha512-0YiBEOxWqKkSQWL9nNGGEgndoeL0ZpWrbLMNL5u/Kaxrli3Eaxlt3ZtIDktEvXt4L/R9r3ODr2zKwGM/2BjxVw==}
@@ -13126,7 +13126,7 @@ snapshots:
 
   '@cloudflare/workers-types@4.20260113.0': {}
 
-  '@cloudflare/workers-types@4.20260123.0': {}
+  '@cloudflare/workers-types@4.20260124.0': {}
 
   '@colors/colors@1.6.0': {}
 
@@ -14143,7 +14143,7 @@ snapshots:
 
   '@miniflare/shared-test-environment@2.14.4':
     dependencies:
-      '@cloudflare/workers-types': 4.20260123.0
+      '@cloudflare/workers-types': 4.20260124.0
       '@miniflare/cache': 2.14.4
       '@miniflare/core': 2.14.4
       '@miniflare/d1': 2.14.4
@@ -14320,7 +14320,7 @@ snapshots:
   '@newrelic/security-agent@0.2.1':
     dependencies:
       '@aws-sdk/client-lambda': 3.971.0
-      axios: 1.13.2
+      axios: 1.13.3
       check-disk-space: 3.3.1
       content-type: 1.0.5
       fast-safe-stringify: 2.1.1
@@ -16580,7 +16580,7 @@ snapshots:
       uuid: 8.0.0
       xml2js: 0.6.2
 
-  axios@1.13.2:
+  axios@1.13.3:
     dependencies:
       follow-redirects: 1.15.11
       form-data: 4.0.5
@@ -23474,7 +23474,7 @@ snapshots:
 
   wait-on@9.0.3:
     dependencies:
-      axios: 1.13.2
+      axios: 1.13.3
       joi: 18.0.2
       lodash: 4.17.21
       minimist: 1.2.8
@@ -23639,7 +23639,7 @@ snapshots:
     dependencies:
       regexparam: 2.0.2
 
-  wrangler@4.60.0(@cloudflare/workers-types@4.20260123.0):
+  wrangler@4.60.0(@cloudflare/workers-types@4.20260124.0):
     dependencies:
       '@cloudflare/kv-asset-handler': 0.4.2
       '@cloudflare/unenv-preset': 2.11.0(unenv@2.0.0-rc.24)(workerd@1.20260120.0)
@@ -23650,7 +23650,7 @@ snapshots:
       unenv: 2.0.0-rc.24
       workerd: 1.20260120.0
     optionalDependencies:
-      '@cloudflare/workers-types': 4.20260123.0
+      '@cloudflare/workers-types': 4.20260124.0
       fsevents: 2.3.3
     transitivePeerDependencies:
       - bufferutil
