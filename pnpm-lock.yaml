@@ -188,8 +188,8 @@ importers:
         specifier: 5.5.3
         version: 5.5.3
       fastify:
-        specifier: 5.7.1
-        version: 5.7.1
+        specifier: 5.7.2
+        version: 5.7.2
       graphql:
         specifier: 16.8.1
         version: 16.8.1
@@ -358,8 +358,8 @@ importers:
         specifier: 10.0.31
         version: 10.0.31(graphql@16.8.1)
       fastify:
-        specifier: 5.7.1
-        version: 5.7.1
+        specifier: 5.7.2
+        version: 5.7.2
       graphql:
         specifier: 16.8.1
         version: 16.8.1
@@ -389,8 +389,8 @@ importers:
         specifier: 10.0.31
         version: 10.0.31(graphql@16.8.1)
       fastify:
-        specifier: 5.7.1
-        version: 5.7.1
+        specifier: 5.7.2
+        version: 5.7.2
       graphql:
         specifier: 16.8.1
         version: 16.8.1
@@ -572,8 +572,8 @@ importers:
         specifier: workspace:^
         version: link:../../packages/core/dist
       fastify:
-        specifier: 5.7.1
-        version: 5.7.1
+        specifier: 5.7.2
+        version: 5.7.2
       graphql:
         specifier: 16.8.1
         version: 16.8.1
@@ -628,8 +628,8 @@ importers:
         specifier: 0.14.3
         version: 0.14.3
       fastify:
-        specifier: 5.7.1
-        version: 5.7.1
+        specifier: 5.7.2
+        version: 5.7.2
       graphql:
         specifier: 16.8.1
         version: 16.8.1
@@ -662,8 +662,8 @@ importers:
         specifier: 10.0.31
         version: 10.0.31(graphql@16.8.1)
       fastify:
-        specifier: 5.7.1
-        version: 5.7.1
+        specifier: 5.7.2
+        version: 5.7.2
       graphql:
         specifier: 16.8.1
         version: 16.8.1
@@ -7188,8 +7188,8 @@ packages:
     resolution: {integrity: sha512-pfX9uG9Ki0yekDHx2SiuRIyFdyAr1kMIMitPvb0YBo8SUfKvia7w7FIyd/l6av85pFYRhZscS75MwMnbvY+hcQ==}
     hasBin: true
 
-  fastify@5.7.1:
-    resolution: {integrity: sha512-ZW7S4fxlZhE+tYWVokFzjh+i56R+buYKNGhrVl6DtN8sxkyMEzpJnzvO8A/ZZrsg5w6X37u6I4EOQikYS5DXpA==}
+  fastify@5.7.2:
+    resolution: {integrity: sha512-dBJolW+hm6N/yJVf6J5E1BxOBNkuXNl405nrfeR8SpvGWG3aCC2XDHyiFBdow8Win1kj7sjawQc257JlYY6M/A==}
 
   fastq@1.20.1:
     resolution: {integrity: sha512-GGToxJ/w1x32s/D2EKND7kTil4n8OVk/9mycTc4VDza13lOvpUZTGX3mFSCtV9ksdGBVzvsyAVLM6mHFThxXxw==}
@@ -18221,7 +18221,7 @@ snapshots:
     dependencies:
       strnum: 2.1.2
 
-  fastify@5.7.1:
+  fastify@5.7.2:
     dependencies:
       '@fastify/ajv-compiler': 4.0.5
       '@fastify/error': 4.2.0
