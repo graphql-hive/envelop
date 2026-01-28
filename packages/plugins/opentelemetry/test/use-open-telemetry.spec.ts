@@ -30,6 +30,7 @@ describe('useOpenTelemetry', () => {
         ping: String
         echo(message: String): String
         error: String
+        child: String
         context: String
         obj: Obj
       }
@@ -52,6 +53,12 @@ describe('useOpenTelemetry', () => {
         },
         error: () => {
           throw new GraphQLError('boom');
+        },
+        child: () => {
+          return opentelemetry.trace.getTracer('test').startActiveSpan('child-span', span => {
+            span.end();
+            return 'child';
+          });
         },
         obj: () => ({
           field1: 'field1',
@@ -136,6 +143,28 @@ describe('useOpenTelemetry', () => {
     expect(actual.length).toBe(2);
     expect(actual[0].name).toBe('Query.ping');
     expect(actual[1].name).toBe('query.anonymous');
+  });
+
+  it('resolver spans should be active for nested spans', async () => {
+    const exporter = new InMemorySpanExporter();
+    const testInstance = createTestkit(
+      [useTestOpenTelemetry(exporter, { resolvers: true })],
+      schema,
+    );
+
+    await testInstance.execute(/* GraphQL */ `
+      query {
+        child
+      }
+    `);
+
+    const actual = exporter.getFinishedSpans();
+    const resolverSpan = actual.find(span => span.name === 'Query.child');
+    const childSpan = actual.find(span => span.name === 'child-span');
+
+    expect(resolverSpan).toBeTruthy();
+    expect(childSpan).toBeTruthy();
+    expect(childSpan?.parentSpanId).toBe(resolverSpan?.spanContext().spanId);
   });
 
   it('Should add default resolver spans if enabled / unspecified', async () => {
