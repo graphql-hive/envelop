@@ -162,7 +162,7 @@ importers:
         version: 9.0.3
       wrangler:
         specifier: 4.61.0
-        version: 4.61.0(@cloudflare/workers-types@4.20260127.0)
+        version: 4.61.0(@cloudflare/workers-types@4.20260129.0)
 
   benchmark:
     dependencies:
@@ -272,8 +272,8 @@ importers:
         version: 0.7.3
     devDependencies:
       '@cloudflare/workers-types':
-        specifier: 4.20260127.0
-        version: 4.20260127.0
+        specifier: 4.20260129.0
+        version: 4.20260129.0
       '@types/node':
         specifier: 24.10.9
         version: 24.10.9
@@ -327,8 +327,8 @@ importers:
         specifier: 13.6.0
         version: 13.6.0(encoding@0.1.13)
       firebase-functions:
-        specifier: 7.0.3
-        version: 7.0.3(firebase-admin@13.6.0(encoding@0.1.13))
+        specifier: 7.0.5
+        version: 7.0.5(firebase-admin@13.6.0(encoding@0.1.13))(graphql@16.8.1)
       graphql:
         specifier: 16.8.1
         version: 16.8.1
@@ -2827,8 +2827,8 @@ packages:
   '@cloudflare/workers-types@4.20260124.0':
     resolution: {integrity: sha512-h6TJlew6AtGuEXFc+k5ifalk+tg3fkg0lla6XbMAb2AKKfJGwlFNTwW2xyT/Ha92KY631CIJ+Ace08DPdFohdA==}
 
-  '@cloudflare/workers-types@4.20260127.0':
-    resolution: {integrity: sha512-4M1HLcWViSdT/pAeDGEB5x5P3sqW7UIi34QrBRnxXbqjAY9if8vBU/lWRWnM+UqKzxWGB2LYjEVOzZrp0jZL+w==}
+  '@cloudflare/workers-types@4.20260129.0':
+    resolution: {integrity: sha512-ytqtGV7L60HI/BL/p6tY1A5DIIlNl0NX+wiNeGTyB6e65x1HEeZrceVzL5RsVws7xMsBpF+2VAlm/3ga3c7Txg==}
 
   '@colors/colors@1.6.0':
     resolution: {integrity: sha512-Ir+AOibqzrIsL6ajt3Rz3LskB7OiMVHqltZmspbW/TJuTVuyOMirVqAkjfY6JISiLHgyNqicAC8AyHHGzNd/dA==}
@@ -7322,18 +7322,21 @@ packages:
     resolution: {integrity: sha512-GdPA/t0+Cq8p1JnjFRBmxRxAGvF/kl2yfdhALl38PrRp325YxyQ5aNaHui0XmaKcKiGRFIJ/EgBNWFoDP0onjw==}
     engines: {node: '>=18'}
 
-  firebase-functions@7.0.3:
-    resolution: {integrity: sha512-DiIjIUv0OS4KEAA3jqyIc7ymZKdcmMcaXy7FCCkrDQo/1CVMbDDWMdZIslmsgSjldA2nhau1dTE/6JQI8Urjjw==}
+  firebase-functions@7.0.5:
+    resolution: {integrity: sha512-uG2dR5AObLuUrWWjj/de5XxNHCVi+Ehths0DSRcLjHJdgw1TSejwoZZ5na6gVrl3znNjRdBRy5Br5UlhaIU3Ww==}
     engines: {node: '>=18.0.0'}
     hasBin: true
     peerDependencies:
       '@apollo/server': ^5.2.0
       '@as-integrations/express4': ^1.1.2
       firebase-admin: ^11.10.0 || ^12.0.0 || ^13.0.0
+      graphql: 16.8.1
     peerDependenciesMeta:
       '@apollo/server':
         optional: true
       '@as-integrations/express4':
+        optional: true
+      graphql:
         optional: true
 
   fix-dts-default-cjs-exports@1.0.1:
@@ -13196,7 +13199,7 @@ snapshots:
 
   '@cloudflare/workers-types@4.20260124.0': {}
 
-  '@cloudflare/workers-types@4.20260127.0': {}
+  '@cloudflare/workers-types@4.20260129.0': {}
 
   '@colors/colors@1.6.0': {}
 
@@ -14213,7 +14216,7 @@ snapshots:
 
   '@miniflare/shared-test-environment@2.14.4':
     dependencies:
-      '@cloudflare/workers-types': 4.20260127.0
+      '@cloudflare/workers-types': 4.20260129.0
       '@miniflare/cache': 2.14.4
       '@miniflare/core': 2.14.4
       '@miniflare/d1': 2.14.4
@@ -18407,7 +18410,7 @@ snapshots:
       - encoding
       - supports-color
 
-  firebase-functions@7.0.3(firebase-admin@13.6.0(encoding@0.1.13)):
+  firebase-functions@7.0.5(firebase-admin@13.6.0(encoding@0.1.13))(graphql@16.8.1):
     dependencies:
       '@types/cors': 2.8.19
       '@types/express': 4.17.25
@@ -18415,6 +18418,8 @@ snapshots:
       express: 4.22.1
       firebase-admin: 13.6.0(encoding@0.1.13)
       protobufjs: 7.5.4
+    optionalDependencies:
+      graphql: 16.8.1
     transitivePeerDependencies:
       - supports-color
 
@@ -23727,7 +23732,7 @@ snapshots:
     dependencies:
       regexparam: 2.0.2
 
-  wrangler@4.61.0(@cloudflare/workers-types@4.20260127.0):
+  wrangler@4.61.0(@cloudflare/workers-types@4.20260129.0):
     dependencies:
       '@cloudflare/kv-asset-handler': 0.4.2
       '@cloudflare/unenv-preset': 2.11.0(unenv@2.0.0-rc.24)(workerd@1.20260124.0)
@@ -23738,7 +23743,7 @@ snapshots:
       unenv: 2.0.0-rc.24
       workerd: 1.20260124.0
     optionalDependencies:
-      '@cloudflare/workers-types': 4.20260127.0
+      '@cloudflare/workers-types': 4.20260129.0
       fsevents: 2.3.3
     transitivePeerDependencies:
       - bufferutil
