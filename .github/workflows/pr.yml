@@ -31,7 +31,7 @@ jobs:
       buildScript: build
     secrets:
       githubToken: ${{ secrets.GITHUB_TOKEN }}
-      npmToken: ${{ secrets.NODE_AUTH_TOKEN }}
+      npmToken: ${{ secrets.NPM_TOKEN }}
 
   release-candidate:
     uses: the-guild-org/shared-config/.github/workflows/release-snapshot.yml@v1
@@ -42,4 +42,4 @@ jobs:
       buildScript: build
     secrets:
       githubToken: ${{ secrets.GITHUB_TOKEN }}
-      npmToken: ${{ secrets.NODE_AUTH_TOKEN }}
+      npmToken: ${{ secrets.NPM_TOKEN }}
