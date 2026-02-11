@@ -63,8 +63,8 @@ export const useErrorHandler = <ContextType extends Record<string, any>>(
         }
       };
     },
-    onPluginInit(context) {
-      context.registerContextErrorHandler(({ error, context }) => {
+    onPluginInit({ registerContextErrorHandler }) {
+      registerContextErrorHandler(({ error, context }) => {
         if (isGraphQLError(error)) {
           errorHandler({ errors: [error], context, phase: 'context' });
         } else {
