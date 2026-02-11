@@ -174,4 +174,100 @@ describe('useErrorHandler', () => {
 
     expect(mockHandler).toHaveBeenCalledWith(expect.objectContaining({ phase: 'execution' }));
   });
+
+  it('should invoke error handler with the latest merged context when error originates from a context extension (sync)', async () => {
+    const schema = makeExecutableSchema({
+      typeDefs: /* GraphQL */ `
+        type Query {
+          _: Boolean
+        }
+      `,
+      resolvers: {
+        Query: {
+          _: () => true,
+        },
+      },
+    });
+
+    const mockHandler = jest.fn();
+    const testInstance = createTestkit(
+      [
+        useEngine({ ...GraphQLJS, execute: normalizedExecutor, subscribe: normalizedExecutor }),
+        useErrorHandler(mockHandler),
+        useExtendContext(() => ({ extension1: 'extension1' })),
+        // @ts-expect-error
+        useExtendContext(() => {
+          throw new Error('Stop');
+        }),
+      ],
+      schema,
+    );
+
+    try {
+      testInstance.execute(/* GraphQL */ `
+        query {
+          _
+        }
+      `);
+    } catch (err) {
+      if (err instanceof Error === false || err.message !== 'Stop') {
+        throw err;
+      }
+    }
+
+    expect(mockHandler).toHaveBeenCalledWith(
+      expect.objectContaining({
+        phase: 'context',
+        context: expect.objectContaining({ extension1: 'extension1' }),
+      }),
+    );
+  });
+});
+
+it('should invoke error handler with the latest merged context when error originates from a context extension (async)', async () => {
+  const schema = makeExecutableSchema({
+    typeDefs: /* GraphQL */ `
+      type Query {
+        _: Boolean
+      }
+    `,
+    resolvers: {
+      Query: {
+        _: () => true,
+      },
+    },
+  });
+
+  const mockHandler = jest.fn();
+  const testInstance = createTestkit(
+    [
+      useEngine({ ...GraphQLJS, execute: normalizedExecutor, subscribe: normalizedExecutor }),
+      useErrorHandler(mockHandler),
+      useExtendContext(() => ({ extension1: 'extension1' })),
+      // @ts-expect-error
+      useExtendContext(async () => {
+        throw new Error('Stop');
+      }),
+    ],
+    schema,
+  );
+
+  try {
+    await testInstance.execute(/* GraphQL */ `
+      query {
+        _
+      }
+    `);
+  } catch (err) {
+    if (err instanceof Error === false || err.message !== 'Stop') {
+      throw err;
+    }
+  }
+
+  expect(mockHandler).toHaveBeenCalledWith(
+    expect.objectContaining({
+      phase: 'context',
+      context: expect.objectContaining({ extension1: 'extension1' }),
+    }),
+  );
 });
