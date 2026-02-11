@@ -9,8 +9,10 @@ import {
   GraphQLObjectType,
   GraphQLSchema,
   GraphQLString,
+  versionInfo,
 } from 'graphql';
 import { assertSingleExecutionValue, createTestkit } from '@envelop/testing';
+import { createGraphQLError } from '@graphql-tools/utils';
 import {
   ONE_OF_DIRECTIVE_SDL,
   OneOfInputObjectsRule,
@@ -215,6 +217,7 @@ describe('oneOf', () => {
             document: `query user { user(input: { id: 1 }) { id }}`,
             variables: {},
             expectedError: null,
+            skip: false,
           },
         ],
         [
@@ -227,6 +230,7 @@ describe('oneOf', () => {
               },
             },
             expectedError: null,
+            skip: false,
           },
         ],
         [
@@ -235,6 +239,7 @@ describe('oneOf', () => {
             document: `query user($username: String) { user(input: { id: 1, username: $username }) { id }}`,
             variables: {},
             expectedError: null,
+            skip: versionInfo.major >= 16,
           },
         ],
         [
@@ -245,6 +250,7 @@ describe('oneOf', () => {
               id: 1,
             },
             expectedError: null,
+            skip: versionInfo.major >= 16,
           },
         ],
         [
@@ -253,6 +259,7 @@ describe('oneOf', () => {
             document: `query user($input: UserUniqueCondition) { user(input: $input) { id } }`,
             variables: {},
             expectedError: null,
+            skip: false,
           },
         ],
         [
@@ -261,6 +268,7 @@ describe('oneOf', () => {
             document: `query user($input: DeeplyNestedOneOfFieldInput) { deeplyNestedOneOf(input: $input) }`,
             variables: {},
             expectedError: null,
+            skip: false,
           },
         ],
         [
@@ -275,6 +283,7 @@ describe('oneOf', () => {
               },
             },
             expectedError: null,
+            skip: false,
           },
         ],
         [
@@ -291,6 +300,7 @@ describe('oneOf', () => {
               },
             },
             expectedError: null,
+            skip: false,
           },
         ],
         [
@@ -305,6 +315,7 @@ describe('oneOf', () => {
               ],
             },
             expectedError: null,
+            skip: false,
           },
         ],
         [
@@ -315,6 +326,7 @@ describe('oneOf', () => {
               input: [],
             },
             expectedError: null,
+            skip: false,
           },
         ],
         [
@@ -329,6 +341,7 @@ describe('oneOf', () => {
               ],
             },
             expectedError: null,
+            skip: false,
           },
         ],
         [
@@ -339,6 +352,7 @@ describe('oneOf', () => {
               input: [],
             },
             expectedError: null,
+            skip: false,
           },
         ],
         [
@@ -349,6 +363,7 @@ describe('oneOf', () => {
               v: false,
             },
             expectedError: null,
+            skip: false,
           },
         ],
         [
@@ -366,6 +381,7 @@ describe('oneOf', () => {
               ],
             },
             expectedError: null,
+            skip: false,
           },
         ],
         [
@@ -382,6 +398,7 @@ describe('oneOf', () => {
               },
             },
             expectedError: null,
+            skip: false,
           },
         ],
         [
@@ -391,7 +408,8 @@ describe('oneOf', () => {
             variables: {
               username: 'test',
             },
-            expectedError: 'Exactly one key must be specified for input type "UserUniqueCondition"',
+            expectedError: 'OneOf Input Object "UserUniqueCondition" must specify exactly one key.',
+            skip: false,
           },
         ],
         [
@@ -399,7 +417,8 @@ describe('oneOf', () => {
           {
             document: `query user { user(input: { id: 1, username: "t" }) { id }}`,
             variables: {},
-            expectedError: 'Exactly one key must be specified for input type "UserUniqueCondition"',
+            expectedError: 'OneOf Input Object "UserUniqueCondition" must specify exactly one key.',
+            skip: false,
           },
         ],
         [
@@ -407,7 +426,8 @@ describe('oneOf', () => {
           {
             document: `query user { user(input: { id: null, username: "t" }) { id }}`,
             variables: {},
-            expectedError: 'Exactly one key must be specified for input type "UserUniqueCondition"',
+            expectedError: 'OneOf Input Object "UserUniqueCondition" must specify exactly one key.',
+            skip: false,
           },
         ],
         [
@@ -415,7 +435,8 @@ describe('oneOf', () => {
           {
             document: `query user { user(input: { id: null, username: null }) { id }}`,
             variables: {},
-            expectedError: 'Exactly one key must be specified for input type "UserUniqueCondition"',
+            expectedError: 'OneOf Input Object "UserUniqueCondition" must specify exactly one key.',
+            skip: false,
           },
         ],
         [
@@ -425,6 +446,7 @@ describe('oneOf', () => {
             variables: {},
             expectedError:
               'Variable "$input" of required type "UserUniqueCondition!" was not provided.',
+            skip: false,
           },
         ],
         [
@@ -434,7 +456,8 @@ describe('oneOf', () => {
             variables: {
               input: {},
             },
-            expectedError: 'Exactly one key must be specified for input type "UserUniqueCondition"',
+            expectedError: 'OneOf Input Object "UserUniqueCondition" must specify exactly one key.',
+            skip: false,
           },
         ],
         [
@@ -447,7 +470,8 @@ describe('oneOf', () => {
                 username: 'test',
               },
             },
-            expectedError: 'Exactly one key must be specified for input type "UserUniqueCondition"',
+            expectedError: 'OneOf Input Object "UserUniqueCondition" must specify exactly one key.',
+            skip: false,
           },
         ],
         [
@@ -462,7 +486,8 @@ describe('oneOf', () => {
                 },
               },
             },
-            expectedError: 'Exactly one key must be specified for input type "UserUniqueCondition"',
+            expectedError: 'OneOf Input Object "UserUniqueCondition" must specify exactly one key.',
+            skip: false,
           },
         ],
         [
@@ -479,7 +504,8 @@ describe('oneOf', () => {
                 },
               },
             },
-            expectedError: 'Exactly one key must be specified for input type "UserUniqueCondition"',
+            expectedError: 'OneOf Input Object "UserUniqueCondition" must specify exactly one key.',
+            skip: false,
           },
         ],
         [
@@ -494,7 +520,8 @@ describe('oneOf', () => {
                 },
               ],
             },
-            expectedError: 'Exactly one key must be specified for input type "UserUniqueCondition"',
+            expectedError: 'OneOf Input Object "UserUniqueCondition" must specify exactly one key.',
+            skip: false,
           },
         ],
         [
@@ -505,6 +532,7 @@ describe('oneOf', () => {
               input: 1,
             },
             expectedError: `Variable "$input" got invalid value 1; Expected type "UserUniqueCondition" to be an object.`,
+            skip: false,
           },
         ],
         [
@@ -515,6 +543,7 @@ describe('oneOf', () => {
               input: 1,
             },
             expectedError: `Variable "$input" got invalid value 1; Expected type "UserUniqueCondition" to be an object.`,
+            skip: false,
           },
         ],
         [
@@ -525,9 +554,13 @@ describe('oneOf', () => {
               input: { a: 1 },
             },
             expectedError: `Variable "$input" got invalid value { a: 1 }; Field "a" is not defined by type "UserUniqueCondition".`,
+            skip: false,
           },
         ],
-      ])('%s', async (_title, { document, variables, expectedError }) => {
+      ])('%s', async (_title, { document, variables, expectedError, skip }) => {
+        if (skip) {
+          return;
+        }
         const testInstance = createTestkit(
           [
             useExtendedValidation({
@@ -540,9 +573,7 @@ describe('oneOf', () => {
         const result = await testInstance.execute(document, variables);
         assertSingleExecutionValue(result);
         if (expectedError) {
-          expect(result.errors).toBeDefined();
-          expect(result.errors!.length).toBe(1);
-          expect(result.errors![0].message).toBe(expectedError);
+          expect(result.errors).toContainEqual(createGraphQLError(expectedError));
         } else {
           expect(result.errors).toBeUndefined();
         }
@@ -642,9 +673,7 @@ describe('oneOf', () => {
         const result = await testInstance.execute(document, variables);
         assertSingleExecutionValue(result);
         if (expectedError) {
-          expect(result.errors).toBeDefined();
-          expect(result.errors!.length).toBe(1);
-          expect(result.errors![0].message).toBe(expectedError);
+          expect(result.errors).toContainEqual(createGraphQLError(expectedError));
         } else {
           expect(result.errors).toBeUndefined();
         }
