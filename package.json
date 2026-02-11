@@ -3,7 +3,7 @@
   "author": "Dotan Simha <dotansimha@gmail.com>",
   "license": "MIT",
   "private": true,
-  "packageManager": "pnpm@10.29.2",
+  "packageManager": "pnpm@10.29.3+sha512.498e1fb4cca5aa06c1dcf2611e6fafc50972ffe7189998c409e90de74566444298ffe43e6cd2acdc775ba1aa7cc5e092a8b7054c811ba8c5770f84693d33d2dc",
   "engines": {
     "node": ">=18.0.0",
     "pnpm": ">=10.2.1"
@@ -62,6 +62,7 @@
     "ts-jest": "29.4.6",
     "ts-node": "10.9.2",
     "typescript": "5.9.3",
+    "undici": "7.21.0",
     "wait-on": "9.0.3",
     "wrangler": "4.64.0"
   },
@@ -101,15 +102,19 @@
     "patchedDependencies": {
       "@ianvs/prettier-plugin-sort-imports": "patches/@ianvs__prettier-plugin-sort-imports.patch",
       "@changesets/assemble-release-plan@5.2.3": "patches/@changesets__assemble-release-plan@5.2.3.patch",
-      "@eslint/eslintrc": "patches/@eslint__eslintrc.patch"
+      "@eslint/eslintrc": "patches/@eslint__eslintrc.patch",
+      "@miniflare/core": "patches/@miniflare__core.patch"
     },
     "onlyBuiltDependencies": [
       "@contrast/fn-inspect",
       "@newrelic/native-metrics",
+      "aws-sdk",
       "esbuild",
       "protobufjs",
       "sharp",
-      "type-graphql"
+      "type-graphql",
+      "unix-dgram",
+      "workerd"
     ]
   }
 }

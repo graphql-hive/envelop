@@ -38,6 +38,9 @@ patchedDependencies:
   '@ianvs/prettier-plugin-sort-imports':
     hash: db9ab7a110c54b5d60464680286f2c0d90ea2331a1142bc3fc068b09696655ce
     path: patches/@ianvs__prettier-plugin-sort-imports.patch
+  '@miniflare/core':
+    hash: 4cfa1b4e390dce8caf76bb09372d77b00f2f57aba9098bb64c4abced3ed7d100
+    path: patches/@miniflare__core.patch
 
 importers:
 
@@ -157,6 +160,9 @@ importers:
       typescript:
         specifier: 5.9.3
         version: 5.9.3
+      undici:
+        specifier: 6.23.0
+        version: 6.23.0
       wait-on:
         specifier: 9.0.3
         version: 9.0.3
@@ -14159,12 +14165,12 @@ snapshots:
 
   '@miniflare/cache@2.14.4':
     dependencies:
-      '@miniflare/core': 2.14.4
+      '@miniflare/core': 2.14.4(patch_hash=4cfa1b4e390dce8caf76bb09372d77b00f2f57aba9098bb64c4abced3ed7d100)
       '@miniflare/shared': 2.14.4
       http-cache-semantics: 4.2.0
       undici: 6.23.0
 
-  '@miniflare/core@2.14.4':
+  '@miniflare/core@2.14.4(patch_hash=4cfa1b4e390dce8caf76bb09372d77b00f2f57aba9098bb64c4abced3ed7d100)':
     dependencies:
       '@iarna/toml': 2.2.5
       '@miniflare/queues': 2.14.4
@@ -14179,19 +14185,19 @@ snapshots:
 
   '@miniflare/d1@2.14.4':
     dependencies:
-      '@miniflare/core': 2.14.4
+      '@miniflare/core': 2.14.4(patch_hash=4cfa1b4e390dce8caf76bb09372d77b00f2f57aba9098bb64c4abced3ed7d100)
       '@miniflare/shared': 2.14.4
 
   '@miniflare/durable-objects@2.14.4':
     dependencies:
-      '@miniflare/core': 2.14.4
+      '@miniflare/core': 2.14.4(patch_hash=4cfa1b4e390dce8caf76bb09372d77b00f2f57aba9098bb64c4abced3ed7d100)
       '@miniflare/shared': 2.14.4
       '@miniflare/storage-memory': 2.14.4
       undici: 6.23.0
 
   '@miniflare/html-rewriter@2.14.4':
     dependencies:
-      '@miniflare/core': 2.14.4
+      '@miniflare/core': 2.14.4(patch_hash=4cfa1b4e390dce8caf76bb09372d77b00f2f57aba9098bb64c4abced3ed7d100)
       '@miniflare/shared': 2.14.4
       html-rewriter-wasm: 0.4.1
       undici: 6.23.0
@@ -14206,7 +14212,7 @@ snapshots:
 
   '@miniflare/r2@2.14.4':
     dependencies:
-      '@miniflare/core': 2.14.4
+      '@miniflare/core': 2.14.4(patch_hash=4cfa1b4e390dce8caf76bb09372d77b00f2f57aba9098bb64c4abced3ed7d100)
       '@miniflare/shared': 2.14.4
       undici: 6.23.0
 
@@ -14218,7 +14224,7 @@ snapshots:
     dependencies:
       '@cloudflare/workers-types': 4.20260210.0
       '@miniflare/cache': 2.14.4
-      '@miniflare/core': 2.14.4
+      '@miniflare/core': 2.14.4(patch_hash=4cfa1b4e390dce8caf76bb09372d77b00f2f57aba9098bb64c4abced3ed7d100)
       '@miniflare/d1': 2.14.4
       '@miniflare/durable-objects': 2.14.4
       '@miniflare/html-rewriter': 2.14.4
@@ -14261,7 +14267,7 @@ snapshots:
 
   '@miniflare/web-sockets@2.14.4':
     dependencies:
-      '@miniflare/core': 2.14.4
+      '@miniflare/core': 2.14.4(patch_hash=4cfa1b4e390dce8caf76bb09372d77b00f2f57aba9098bb64c4abced3ed7d100)
       '@miniflare/shared': 2.14.4
       undici: 6.23.0
       ws: 8.19.0
