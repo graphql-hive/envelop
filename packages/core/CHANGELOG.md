@@ -1,5 +1,14 @@
 # @envelop/core
 
+## 5.5.1
+
+### Patch Changes
+
+- [#2868](https://github.com/graphql-hive/envelop/pull/2868)
+  [`0bfde27`](https://github.com/graphql-hive/envelop/commit/0bfde27f55ca7ad082c80425211afbd85a1f3e51)
+  Thanks [@n1ru4l](https://github.com/n1ru4l)! - Pass latest mergable context to `useErrorHandler`
+  hook when the error originates from a context extension.
+
 ## 5.5.0
 
 ### Minor Changes

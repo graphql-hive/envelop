@@ -1,5 +1,13 @@
 # @envelop/parser-cache
 
+## 10.1.1
+
+### Patch Changes
+
+- Updated dependencies
+  [[`0bfde27`](https://github.com/graphql-hive/envelop/commit/0bfde27f55ca7ad082c80425211afbd85a1f3e51)]:
+  - @envelop/core@5.5.1
+
 ## 10.1.0
 
 ### Patch Changes
