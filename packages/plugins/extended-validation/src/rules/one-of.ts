@@ -114,7 +114,7 @@ function traverseVariables(
 
   if (isOneOfInputType && Object.keys(currentValue).length !== 1) {
     validationContext.reportError(
-      createGraphQLError(`Exactly one key must be specified for input type "${inputType.name}"`, {
+      createGraphQLError(`OneOf Input Object "${inputType.name}" must specify exactly one key.`, {
         nodes: [arg],
       }),
     );
