@@ -63,8 +63,8 @@
     "ts-node": "10.9.2",
     "typescript": "5.9.3",
     "undici": "7.21.0",
-    "wait-on": "9.0.3",
-    "wrangler": "4.64.0"
+    "wait-on": "9.0.4",
+    "wrangler": "4.65.0"
   },
   "lint-staged": {
     "packages/**/src/**/*.{ts,tsx}": [
@@ -77,13 +77,13 @@
   "pnpm": {
     "overrides": {
       "@isaacs/brace-expansion": "5.0.1",
-      "fast-xml-parser": "5.3.4",
+      "fast-xml-parser": "5.3.5",
       "lodash-es": "4.17.23",
       "@changesets/assemble-release-plan": "5.2.3",
       "body-parser": "2.2.2",
       "esbuild": "^0.27.0",
       "graphql": "16.12.0",
-      "glob": "13.0.2",
+      "glob": "13.0.3",
       "estree-util-value-to-estree": "3.5.0",
       "estree-util-build-jsx": "3.0.1",
       "braces": "3.0.3",
@@ -93,14 +93,14 @@
       "dompurify": "3.3.1",
       "jws": "4.0.1",
       "mdast-util-to-hast": "13.2.1",
-      "webpack": "5.105.1",
+      "webpack": "5.105.2",
       "axios": "1.13.5",
       "undici": "6.23.0",
       "cookie": "1.1.1",
       "@eslint/plugin-kit": "0.6.0",
       "tmp": "0.2.5",
       "validator": "13.15.26",
-      "qs": "6.14.1"
+      "qs": "6.14.2"
     },
     "patchedDependencies": {
       "@ianvs/prettier-plugin-sort-imports": "patches/@ianvs__prettier-plugin-sort-imports.patch",
