@@ -70,7 +70,7 @@ export const createRedisCache = (params: RedisCacheParameter): Cache => {
         pipeline.set(responseId, JSON.stringify(result));
       } else {
         // set the ttl in milliseconds
-        pipeline.set(responseId, JSON.stringify(result), 'PX', ttl);
+        pipeline.set(responseId, JSON.stringify(result), 'EX', ttl);
       }
 
       const responseKey = buildRedisOperationResultCacheKey(responseId);
