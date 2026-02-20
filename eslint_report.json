@@ -1,0 +1,440 @@
+[
+  {
+    "filePath": "/home/ardatan/Guild/envelop/examples/apollo-server/index.ts",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": [
+      { "ruleId": "lines-between-class-members", "replacedBy": [] },
+      { "ruleId": "no-new-object", "replacedBy": [] },
+      { "ruleId": "spaced-comment", "replacedBy": [] }
+    ]
+  },
+  {
+    "filePath": "/home/ardatan/Guild/envelop/examples/azure-functions/index.ts",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": [
+      { "ruleId": "lines-between-class-members", "replacedBy": [] },
+      { "ruleId": "no-new-object", "replacedBy": [] },
+      { "ruleId": "spaced-comment", "replacedBy": [] }
+    ]
+  },
+  {
+    "filePath": "/home/ardatan/Guild/envelop/examples/cloudflare-workers/index.ts",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": [
+      { "ruleId": "lines-between-class-members", "replacedBy": [] },
+      { "ruleId": "no-new-object", "replacedBy": [] },
+      { "ruleId": "spaced-comment", "replacedBy": [] }
+    ]
+  },
+  {
+    "filePath": "/home/ardatan/Guild/envelop/examples/express-graphql/index.ts",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": [
+      { "ruleId": "lines-between-class-members", "replacedBy": [] },
+      { "ruleId": "no-new-object", "replacedBy": [] },
+      { "ruleId": "spaced-comment", "replacedBy": [] }
+    ]
+  },
+  {
+    "filePath": "/home/ardatan/Guild/envelop/examples/google-cloud-functions/index.ts",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": [
+      { "ruleId": "lines-between-class-members", "replacedBy": [] },
+      { "ruleId": "no-new-object", "replacedBy": [] },
+      { "ruleId": "spaced-comment", "replacedBy": [] }
+    ]
+  },
+  {
+    "filePath": "/home/ardatan/Guild/envelop/examples/graphql-helix-auth0/index.ts",
+    "messages": [],
+    "suppressedMessages": [
+      {
+        "ruleId": "no-console",
+        "severity": 2,
+        "message": "Unexpected console statement.",
+        "line": 135,
+        "column": 3,
+        "nodeType": "MemberExpression",
+        "messageId": "unexpected",
+        "endLine": 135,
+        "endColumn": 14,
+        "suggestions": [
+          {
+            "fix": { "range": [3088, 3130], "text": "" },
+            "messageId": "removeConsole",
+            "data": { "propertyName": "log" },
+            "desc": "Remove the console.log()."
+          }
+        ],
+        "suppressions": [{ "kind": "directive", "justification": "" }]
+      }
+    ],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": [
+      { "ruleId": "lines-between-class-members", "replacedBy": [] },
+      { "ruleId": "no-new-object", "replacedBy": [] },
+      { "ruleId": "spaced-comment", "replacedBy": [] }
+    ]
+  },
+  {
+    "filePath": "/home/ardatan/Guild/envelop/examples/graphql-helix-defer-stream/index.ts",
+    "messages": [],
+    "suppressedMessages": [
+      {
+        "ruleId": "no-console",
+        "severity": 2,
+        "message": "Unexpected console statement.",
+        "line": 212,
+        "column": 3,
+        "nodeType": "MemberExpression",
+        "messageId": "unexpected",
+        "endLine": 212,
+        "endColumn": 14,
+        "suggestions": [
+          {
+            "fix": { "range": [5434, 5508], "text": "" },
+            "messageId": "removeConsole",
+            "data": { "propertyName": "log" },
+            "desc": "Remove the console.log()."
+          }
+        ],
+        "suppressions": [{ "kind": "directive", "justification": "" }]
+      }
+    ],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": [
+      { "ruleId": "lines-between-class-members", "replacedBy": [] },
+      { "ruleId": "no-new-object", "replacedBy": [] },
+      { "ruleId": "spaced-comment", "replacedBy": [] }
+    ]
+  },
+  {
+    "filePath": "/home/ardatan/Guild/envelop/examples/graphql-helix/index.ts",
+    "messages": [],
+    "suppressedMessages": [
+      {
+        "ruleId": "no-console",
+        "severity": 2,
+        "message": "Unexpected console statement.",
+        "line": 76,
+        "column": 3,
+        "nodeType": "MemberExpression",
+        "messageId": "unexpected",
+        "endLine": 76,
+        "endColumn": 14,
+        "suggestions": [
+          {
+            "fix": { "range": [1598, 1640], "text": "" },
+            "messageId": "removeConsole",
+            "data": { "propertyName": "log" },
+            "desc": "Remove the console.log()."
+          }
+        ],
+        "suppressions": [{ "kind": "directive", "justification": "" }]
+      }
+    ],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": [
+      { "ruleId": "lines-between-class-members", "replacedBy": [] },
+      { "ruleId": "no-new-object", "replacedBy": [] },
+      { "ruleId": "spaced-comment", "replacedBy": [] }
+    ]
+  },
+  {
+    "filePath": "/home/ardatan/Guild/envelop/examples/graphql-http/index.ts",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": [
+      { "ruleId": "lines-between-class-members", "replacedBy": [] },
+      { "ruleId": "no-new-object", "replacedBy": [] },
+      { "ruleId": "spaced-comment", "replacedBy": [] }
+    ]
+  },
+  {
+    "filePath": "/home/ardatan/Guild/envelop/examples/graphql-socket.io/index.ts",
+    "messages": [],
+    "suppressedMessages": [
+      {
+        "ruleId": "no-console",
+        "severity": 2,
+        "message": "Unexpected console statement.",
+        "line": 54,
+        "column": 3,
+        "nodeType": "MemberExpression",
+        "messageId": "unexpected",
+        "endLine": 54,
+        "endColumn": 14,
+        "suggestions": [
+          {
+            "fix": { "range": [1248, 1298], "text": "" },
+            "messageId": "removeConsole",
+            "data": { "propertyName": "log" },
+            "desc": "Remove the console.log()."
+          }
+        ],
+        "suppressions": [{ "kind": "directive", "justification": "" }]
+      }
+    ],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": [
+      { "ruleId": "lines-between-class-members", "replacedBy": [] },
+      { "ruleId": "no-new-object", "replacedBy": [] },
+      { "ruleId": "spaced-comment", "replacedBy": [] }
+    ]
+  },
+  {
+    "filePath": "/home/ardatan/Guild/envelop/examples/graphql-socket.io/test-client.ts",
+    "messages": [],
+    "suppressedMessages": [
+      {
+        "ruleId": "no-console",
+        "severity": 2,
+        "message": "Unexpected console statement.",
+        "line": 18,
+        "column": 5,
+        "nodeType": "MemberExpression",
+        "messageId": "unexpected",
+        "endLine": 18,
+        "endColumn": 16,
+        "suggestions": [
+          {
+            "fix": { "range": [459, 495], "text": "" },
+            "messageId": "removeConsole",
+            "data": { "propertyName": "log" },
+            "desc": "Remove the console.log()."
+          }
+        ],
+        "suppressions": [{ "kind": "directive", "justification": "" }]
+      }
+    ],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": [
+      { "ruleId": "lines-between-class-members", "replacedBy": [] },
+      { "ruleId": "no-new-object", "replacedBy": [] },
+      { "ruleId": "spaced-comment", "replacedBy": [] }
+    ]
+  },
+  {
+    "filePath": "/home/ardatan/Guild/envelop/examples/graphql-sse/index.ts",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": [
+      { "ruleId": "lines-between-class-members", "replacedBy": [] },
+      { "ruleId": "no-new-object", "replacedBy": [] },
+      { "ruleId": "spaced-comment", "replacedBy": [] }
+    ]
+  },
+  {
+    "filePath": "/home/ardatan/Guild/envelop/examples/graphql-ws/index.ts",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": [
+      { "ruleId": "lines-between-class-members", "replacedBy": [] },
+      { "ruleId": "no-new-object", "replacedBy": [] },
+      { "ruleId": "spaced-comment", "replacedBy": [] }
+    ]
+  },
+  {
+    "filePath": "/home/ardatan/Guild/envelop/examples/lambda-aws/index.ts",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": [
+      { "ruleId": "lines-between-class-members", "replacedBy": [] },
+      { "ruleId": "no-new-object", "replacedBy": [] },
+      { "ruleId": "spaced-comment", "replacedBy": [] }
+    ]
+  },
+  {
+    "filePath": "/home/ardatan/Guild/envelop/examples/nexus/index.ts",
+    "messages": [],
+    "suppressedMessages": [
+      {
+        "ruleId": "no-console",
+        "severity": 2,
+        "message": "Unexpected console statement.",
+        "line": 120,
+        "column": 3,
+        "nodeType": "MemberExpression",
+        "messageId": "unexpected",
+        "endLine": 120,
+        "endColumn": 14,
+        "suggestions": [
+          {
+            "fix": { "range": [2556, 2598], "text": "" },
+            "messageId": "removeConsole",
+            "data": { "propertyName": "log" },
+            "desc": "Remove the console.log()."
+          }
+        ],
+        "suppressions": [{ "kind": "directive", "justification": "" }]
+      }
+    ],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": [
+      { "ruleId": "lines-between-class-members", "replacedBy": [] },
+      { "ruleId": "no-new-object", "replacedBy": [] },
+      { "ruleId": "spaced-comment", "replacedBy": [] }
+    ]
+  },
+  {
+    "filePath": "/home/ardatan/Guild/envelop/examples/simple-http/index.ts",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": [
+      { "ruleId": "lines-between-class-members", "replacedBy": [] },
+      { "ruleId": "no-new-object", "replacedBy": [] },
+      { "ruleId": "spaced-comment", "replacedBy": [] }
+    ]
+  },
+  {
+    "filePath": "/home/ardatan/Guild/envelop/examples/typegraphql/index.ts",
+    "messages": [],
+    "suppressedMessages": [
+      {
+        "ruleId": "no-console",
+        "severity": 2,
+        "message": "Unexpected console statement.",
+        "line": 107,
+        "column": 3,
+        "nodeType": "MemberExpression",
+        "messageId": "unexpected",
+        "endLine": 107,
+        "endColumn": 14,
+        "suggestions": [
+          {
+            "fix": { "range": [2004, 2046], "text": "" },
+            "messageId": "removeConsole",
+            "data": { "propertyName": "log" },
+            "desc": "Remove the console.log()."
+          }
+        ],
+        "suppressions": [{ "kind": "directive", "justification": "" }]
+      }
+    ],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": [
+      { "ruleId": "lines-between-class-members", "replacedBy": [] },
+      { "ruleId": "no-new-object", "replacedBy": [] },
+      { "ruleId": "spaced-comment", "replacedBy": [] }
+    ]
+  },
+  {
+    "filePath": "/home/ardatan/Guild/envelop/examples/with-esm/src/index.ts",
+    "messages": [],
+    "suppressedMessages": [
+      {
+        "ruleId": "no-console",
+        "severity": 2,
+        "message": "Unexpected console statement.",
+        "line": 80,
+        "column": 5,
+        "nodeType": "MemberExpression",
+        "messageId": "unexpected",
+        "endLine": 80,
+        "endColumn": 16,
+        "suggestions": [
+          {
+            "fix": { "range": [1622, 1697], "text": "" },
+            "messageId": "removeConsole",
+            "data": { "propertyName": "log" },
+            "desc": "Remove the console.log()."
+          }
+        ],
+        "suppressions": [{ "kind": "directive", "justification": "" }]
+      }
+    ],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": [
+      { "ruleId": "lines-between-class-members", "replacedBy": [] },
+      { "ruleId": "no-new-object", "replacedBy": [] },
+      { "ruleId": "spaced-comment", "replacedBy": [] }
+    ]
+  }
+]
