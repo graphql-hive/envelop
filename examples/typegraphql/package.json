@@ -9,7 +9,7 @@
     "start": "ts-node index.ts"
   },
   "dependencies": {
-    "@envelop/core": "workspace:^",
+    "@envelop/core": "*",
     "class-validator": "0.14.3",
     "fastify": "5.7.4",
     "graphql": "16.12.0",

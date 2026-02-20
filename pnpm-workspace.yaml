@@ -1,7 +1,5 @@
 packages:
   - 'website'
-  - 'packages/*'
-  - 'packages/plugins/*'
   - 'examples/apollo-server'
   - 'examples/graphql-http'
   - 'examples/graphql-ws'
@@ -18,4 +16,3 @@ packages:
   - 'examples/typegraphql'
   - 'examples/nexus'
   - 'examples/express-graphql'
-  - 'benchmark'

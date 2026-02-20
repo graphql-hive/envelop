@@ -9,37 +9,21 @@
     "pnpm": ">=10.2.1"
   },
   "scripts": {
-    "build": "bob build",
     "ci:lint": "cross-env \"ESLINT_USE_FLAT_CONFIG=false\" eslint --config .eslintrc.json --ext .ts . --max-warnings 0 --output-file eslint_report.json --format json",
     "lint": "cross-env \"ESLINT_USE_FLAT_CONFIG=false\" eslint --config .eslintrc.json --ext .ts . --max-warnings 0",
     "lint:prettier": "prettier --ignore-path .prettierignore --check .",
-    "loadtest:run": "pnpm run --filter @envelop/benchmark loadtest:run",
-    "loadtest:start-server": "pnpm run --filter @envelop/benchmark loadtest:start-server",
-    "prebuild": "rimraf packages/*/dist packages/plugins/*/dist",
     "prepare": "husky",
     "prettier": "prettier --ignore-path .prettierignore --write --list-different .",
-    "release": "pnpm build && changeset publish",
-    "test": "NODE_OPTIONS=--experimental-vm-modules jest",
     "test:ci": "jest --coverage",
     "ts:check": "tsc --noEmit"
   },
   "devDependencies": {
-    "@babel/core": "7.29.0",
-    "@babel/plugin-proposal-decorators": "7.29.0",
-    "@babel/plugin-transform-class-properties": "7.28.6",
-    "@babel/preset-env": "7.29.0",
-    "@babel/preset-typescript": "7.28.5",
-    "@changesets/changelog-github": "0.5.2",
-    "@changesets/cli": "2.29.8",
     "@ianvs/prettier-plugin-sort-imports": "4.7.1",
     "@theguild/prettier-config": "3.0.1",
     "@types/benchmark": "2.1.5",
-    "@types/jest": "30.0.0",
-    "@types/k6": "1.6.0",
     "@types/node": "24.10.13",
     "@typescript-eslint/eslint-plugin": "8.55.0",
     "@typescript-eslint/parser": "8.55.0",
-    "bob-the-bundler": "7.0.1",
     "caniuse-lite": "^1.0.30001692",
     "chalk": "5.6.2",
     "cross-env": "10.1.0",
@@ -53,7 +37,6 @@
     "eslint-plugin-unicorn": "63.0.0",
     "globby": "16.1.0",
     "husky": "9.1.7",
-    "jest": "30.2.0",
     "lint-staged": "16.2.7",
     "prettier": "3.8.1",
     "prettier-plugin-pkg": "0.21.2",
@@ -63,7 +46,6 @@
     "ts-node": "10.9.2",
     "typescript": "5.9.3",
     "undici": "7.21.0",
-    "wait-on": "9.0.3",
     "wrangler": "4.64.0"
   },
   "lint-staged": {
@@ -106,9 +88,7 @@
     },
     "patchedDependencies": {
       "@ianvs/prettier-plugin-sort-imports": "patches/@ianvs__prettier-plugin-sort-imports.patch",
-      "@changesets/assemble-release-plan@5.2.3": "patches/@changesets__assemble-release-plan@5.2.3.patch",
       "@eslint/eslintrc": "patches/@eslint__eslintrc.patch",
-      "@miniflare/core": "patches/@miniflare__core.patch",
       "eslint-plugin-import": "patches/eslint-plugin-import.patch"
     },
     "onlyBuiltDependencies": [
