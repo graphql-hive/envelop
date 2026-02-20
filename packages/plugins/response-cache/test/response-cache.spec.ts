@@ -3285,7 +3285,7 @@ describe('useResponseCache', () => {
       expect(spy).toHaveBeenCalledTimes(2);
     });
 
-    it('should not cache response with a type with a PRIVATE scope for request without session using @cachControl directive', async () => {
+    it('should not cache response with a type with a PRIVATE scope for request without session using @cacheControl directive', async () => {
       jest.useFakeTimers();
       const spy = jest.fn(() => [
         {
@@ -3445,7 +3445,7 @@ describe('useResponseCache', () => {
       expect(spy).toHaveBeenCalledTimes(2);
     });
 
-    it('should not cache response with a field with PRIVATE scope for request without session using @cachControl directive', async () => {
+    it('should not cache response with a field with PRIVATE scope for request without session using @cacheControl directive', async () => {
       jest.useFakeTimers();
       const spy = jest.fn(() => [
         {
@@ -3520,6 +3520,196 @@ describe('useResponseCache', () => {
       `;
 
       await testInstance.execute(query);
+      await testInstance.execute(query);
+      expect(spy).toHaveBeenCalledTimes(2);
+    });
+
+    ['query', 'field', 'subfield'].forEach(type => {
+      it(`should return PRIVATE scope in buildResponseCacheKey when putting @cacheControl scope on ${type}`, async () => {
+        jest.useFakeTimers();
+        const spy = jest.fn(() => [
+          {
+            id: 1,
+            name: 'User 1',
+            comments: [
+              {
+                id: 1,
+                text: 'Comment 1 of User 1',
+              },
+            ],
+          },
+          {
+            id: 2,
+            name: 'User 2',
+            comments: [
+              {
+                id: 2,
+                text: 'Comment 2 of User 2',
+              },
+            ],
+          },
+        ]);
+
+        const schema = makeExecutableSchema({
+          typeDefs: /* GraphQL */ `
+            ${cacheControlDirective}
+            type Query {
+              users: [User!]! ${type === 'query' ? '@cacheControl(scope: PRIVATE)' : ''}
+            }
+
+            type User ${type === 'field' ? '@cacheControl(scope: PRIVATE)' : ''} {
+              id: ID!
+              name: String! ${type === 'subfield' ? '@cacheControl(scope: PRIVATE)' : ''}
+              comments: [Comment!]!
+              recentComment: Comment
+            }
+
+            type Comment {
+              id: ID!
+              text: String!
+            }
+          `,
+          resolvers: {
+            Query: {
+              users: spy,
+            },
+          },
+        });
+
+        function getPrivateProperty() {
+          if (type === 'query') return 'Query.users';
+          if (type === 'field') return 'User';
+          return 'User.name';
+        }
+
+        const testInstance = createTestkit(
+          [
+            useResponseCache({
+              session: () => null,
+              includeExtensionMetadata: true,
+              buildResponseCacheKey: ({ extras, ...rest }) => {
+                const { scope, metadata } = extras(schema);
+                expect(scope).toEqual('PRIVATE');
+                expect(metadata?.privateProperty).toEqual(getPrivateProperty());
+                return defaultBuildResponseCacheKey(rest);
+              },
+              ttl: 200,
+            }),
+          ],
+          schema,
+        );
+
+        const query = /* GraphQL */ `
+          query test {
+            users {
+              id
+              name
+              comments {
+                id
+                text
+              }
+            }
+          }
+        `;
+
+        await testInstance.execute(query);
+
+        expect(spy).toHaveBeenCalledTimes(1);
+      });
+    });
+
+    it('should return PRIVATE scope in buildResponseCacheKey even when requesting property from a fragment', async () => {
+      jest.useFakeTimers();
+      const spy = jest.fn(() => [
+        {
+          id: 1,
+          name: 'User 1',
+          comments: [
+            {
+              id: 1,
+              text: 'Comment 1 of User 1',
+            },
+          ],
+        },
+        {
+          id: 2,
+          name: 'User 2',
+          comments: [
+            {
+              id: 2,
+              text: 'Comment 2 of User 2',
+            },
+          ],
+        },
+      ]);
+
+      const schema = makeExecutableSchema({
+        typeDefs: /* GraphQL */ `
+          ${cacheControlDirective}
+          type Query {
+            users: [User!]!
+          }
+
+          type User {
+            id: ID!
+            name: String! @cacheControl(scope: PRIVATE)
+            comments: [Comment!]!
+            recentComment: Comment
+          }
+
+          type Comment {
+            id: ID!
+            text: String!
+          }
+        `,
+        resolvers: {
+          Query: {
+            users: spy,
+          },
+        },
+      });
+
+      let multipleCalls = false;
+
+      const testInstance = createTestkit(
+        [
+          useResponseCache({
+            session: () => null,
+            includeExtensionMetadata: true,
+            buildResponseCacheKey: ({ extras, ...rest }) => {
+              const { scope, metadata } = extras(schema);
+              expect(scope).toEqual('PRIVATE');
+              expect(metadata?.privateProperty).toEqual('User.name');
+              expect(metadata?.hitCache).toEqual(multipleCalls ? true : undefined);
+              return defaultBuildResponseCacheKey(rest);
+            },
+            ttl: 200,
+          }),
+        ],
+        schema,
+      );
+
+      const query = /* GraphQL */ `
+        query test {
+          users {
+            ...user
+          }
+        }
+
+        fragment user on User {
+          id
+          name
+          comments {
+            id
+            text
+          }
+        }
+      `;
+
+      await testInstance.execute(query);
+      expect(spy).toHaveBeenCalledTimes(1);
+
+      multipleCalls = true;
       await testInstance.execute(query);
       expect(spy).toHaveBeenCalledTimes(2);
     });
