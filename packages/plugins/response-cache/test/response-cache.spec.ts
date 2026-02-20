@@ -3285,7 +3285,7 @@ describe('useResponseCache', () => {
       expect(spy).toHaveBeenCalledTimes(2);
     });
 
-    it('should not cache response with a type with a PRIVATE scope for request without session using @cachControl directive', async () => {
+    it('should not cache response with a type with a PRIVATE scope for request without session using @cacheControl directive', async () => {
       jest.useFakeTimers();
       const spy = jest.fn(() => [
         {
@@ -3445,7 +3445,7 @@ describe('useResponseCache', () => {
       expect(spy).toHaveBeenCalledTimes(2);
     });
 
-    it('should not cache response with a field with PRIVATE scope for request without session using @cachControl directive', async () => {
+    it('should not cache response with a field with PRIVATE scope for request without session using @cacheControl directive', async () => {
       jest.useFakeTimers();
       const spy = jest.fn(() => [
         {
@@ -3522,6 +3522,86 @@ describe('useResponseCache', () => {
       await testInstance.execute(query);
       await testInstance.execute(query);
       expect(spy).toHaveBeenCalledTimes(2);
+    });
+
+    it.only('should ignore session id for responses with public key', async () => {
+      jest.useFakeTimers();
+      const spy = jest.fn(() => [
+        {
+          id: 1,
+          name: 'User 1',
+          comments: [
+            {
+              id: 1,
+              text: 'Comment 1 of User 1',
+            },
+          ],
+        },
+        {
+          id: 2,
+          name: 'User 2',
+          comments: [
+            {
+              id: 2,
+              text: 'Comment 2 of User 2',
+            },
+          ],
+        },
+      ]);
+
+      const schema = makeExecutableSchema({
+        typeDefs: /* GraphQL */ `
+          ${cacheControlDirective}
+          type Query {
+            users: [User!]!
+          }
+
+          type User {
+            id: ID!
+            name: String!
+            comments: [Comment!]!
+            recentComment: Comment
+          }
+
+          type Comment {
+            id: ID!
+            text: String!
+          }
+        `,
+        resolvers: {
+          Query: {
+            users: spy,
+          },
+        },
+      });
+
+      let i = 0;
+      const testInstance = createTestkit(
+        [
+          useResponseCache({
+            ignoreSessionIdForPublicScope: true,
+            session: () => 'session id' + i++,
+          }),
+        ],
+        schema,
+      );
+
+      const query = /* GraphQL */ `
+        query test {
+          users {
+            id
+            name
+            comments {
+              id
+              text
+            }
+          }
+        }
+      `;
+
+      await testInstance.execute(query);
+      await testInstance.execute(query);
+      expect(spy).toHaveBeenCalledTimes(1);
     });
 
     it('should cache correctly for session with ttl being a valid number', async () => {
