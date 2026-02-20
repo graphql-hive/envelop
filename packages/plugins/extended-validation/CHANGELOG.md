@@ -1,5 +1,14 @@
 # @envelop/extended-validation
 
+## 7.1.2
+
+### Patch Changes
+
+- [#2421](https://github.com/graphql-hive/envelop/pull/2421)
+  [`cb69bde`](https://github.com/graphql-hive/envelop/commit/cb69bde754b66abbb647079e90b152ce1af55e46)
+  Thanks [@renovate](https://github.com/apps/renovate)! - Align oneOf error messages with the
+  original implementation
+
 ## 7.1.1
 
 ### Patch Changes
