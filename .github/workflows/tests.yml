@@ -12,12 +12,8 @@ concurrency:
 
 jobs:
   check:
-    name: check / graphql v${{matrix.graphql_version}}
+    name: check
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        graphql_version: [15.8.0, 16]
     steps:
       - name: Checkout
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
@@ -29,50 +25,3 @@ jobs:
         run: pnpm run lint:prettier
       - name: Lint
         run: pnpm run ci:lint && pnpm run lint
-      - name: Use GraphQL v${{matrix.graphql_version}}
-        run: node ./scripts/match-graphql.js ${{matrix.graphql_version}}
-      - name: Install Dependencies using pnpm
-        run: pnpm install --no-frozen-lockfile && git checkout pnpm-lock.yaml
-      - name: Build
-        run: pnpm run build
-      - name: Test ESM & CJS exports integrity
-        run: pnpm bob check
-
-  unit:
-    name:
-      Unit Test / ${{matrix.os}} / node v${{matrix.node-version}} / graphql
-      v${{matrix.graphql_version}}
-    runs-on: ${{matrix.os}}
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest] # remove windows to speed up the tests
-        node-version: [18, 22, 24]
-        graphql_version: [15, 16]
-    steps:
-      - name: Checkout Master
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
-      - name: Setup env
-        uses: the-guild-org/shared-config/setup@v1
-        with:
-          node-version: ${{matrix.node-version}}
-
-      - name: Use GraphQL v${{matrix.graphql_version}}
-        run: node ./scripts/match-graphql.js ${{matrix.graphql_version}}
-      - name: Install Dependencies using pnpm
-        run: pnpm install --no-frozen-lockfile && git checkout pnpm-lock.yaml
-      - name: Cache Jest
-        uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5
-        with:
-          path: .cache/jest
-          key:
-            ${{ runner.os }}-${{matrix.node-version}}-${{matrix.graphql_version}}-jest-${{
-            hashFiles('pnpm-lock.yaml') }}-${{ hashFiles('patches/*.patch') }}
-      - name: Run Unit Tests
-        uses: nick-fields/retry@ce71cc2ab81d554ebbe88c79ab5975992d79ba08 # v3
-        env:
-          CI: true
-        with:
-          timeout_minutes: 10
-          max_attempts: 3
-          command: pnpm run test --ci

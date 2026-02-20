@@ -11,7 +11,7 @@
   "dependencies": {
     "@apollo/server": "^4.3.2",
     "@apollo/server-gateway-interface": "^1.1.1",
-    "@envelop/core": "workspace:^",
+    "@envelop/core": "*",
     "@graphql-tools/schema": "10.0.31",
     "graphql": "16.12.0"
   },
