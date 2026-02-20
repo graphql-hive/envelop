@@ -1,5 +1,13 @@
 # @envelop/resource-limitations
 
+## 8.1.2
+
+### Patch Changes
+
+- Updated dependencies
+  [[`cb69bde`](https://github.com/graphql-hive/envelop/commit/cb69bde754b66abbb647079e90b152ce1af55e46)]:
+  - @envelop/extended-validation@7.1.2
+
 ## 8.1.1
 
 ### Patch Changes
