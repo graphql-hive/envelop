@@ -50,7 +50,7 @@
       "@isaacs/brace-expansion": "5.0.1",
       "fast-xml-parser": "5.3.7",
       "lodash-es": "4.17.23",
-      "@changesets/assemble-release-plan": "5.2.3",
+      "@changesets/assemble-release-plan": "5.2.4",
       "body-parser": "2.2.2",
       "esbuild": "^0.27.0",
       "graphql": "16.12.0",
