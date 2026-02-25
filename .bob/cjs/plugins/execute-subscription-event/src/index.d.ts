@@ -1,0 +1,14 @@
+import { SubscriptionArgs } from 'graphql';
+import { DefaultContext, Plugin, PromiseOrValue } from '@envelop/core';
+export type ContextFactoryOptions = {
+    /** The arguments with which the subscription was set up. */
+    args: SubscriptionArgs;
+};
+export type ContextFactoryHook<TContextValue> = {
+    /** Context that will be used for the "ExecuteSubscriptionEvent" phase. */
+    contextPartial: Partial<TContextValue>;
+    /** Optional callback that is invoked once the "ExecuteSubscriptionEvent" phase has ended. Useful for cleanup, such as tearing down database connections. */
+    onEnd?: () => void;
+};
+export type ContextFactoryType<TContextValue = DefaultContext> = (options: ContextFactoryOptions) => PromiseOrValue<ContextFactoryHook<TContextValue> | void>;
+export declare const useExtendContextValuePerExecuteSubscriptionEvent: <TContextValue extends Record<any, any>>(createContext: ContextFactoryType<TContextValue>) => Plugin<TContextValue>;

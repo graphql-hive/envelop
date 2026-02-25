@@ -1,0 +1,83 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.useApolloTracing = void 0;
+const graphql_1 = require("graphql");
+const core_1 = require("@envelop/core");
+const on_resolve_1 = require("@envelop/on-resolve");
+const HR_TO_NS = 1e9;
+const NS_TO_MS = 1e6;
+function durationHrTimeToNanos(hrtime) {
+    return hrtime[0] * HR_TO_NS + hrtime[1];
+}
+const deltaFrom = (hrtime) => {
+    const delta = process.hrtime(hrtime);
+    const ns = delta[0] * HR_TO_NS + delta[1];
+    return {
+        ns,
+        get ms() {
+            return ns / NS_TO_MS;
+        },
+    };
+};
+const apolloTracingSymbol = Symbol('apolloTracing');
+const useApolloTracing = () => {
+    return {
+        onPluginInit({ addPlugin }) {
+            addPlugin((0, on_resolve_1.useOnResolve)(({ info, context }) => {
+                const ctx = context[apolloTracingSymbol];
+                // Taken from https://github.com/apollographql/apollo-server/blob/main/packages/apollo-tracing/src/index.ts
+                const resolverCall = {
+                    path: info.path,
+                    fieldName: info.fieldName,
+                    parentType: info.parentType,
+                    returnType: info.returnType,
+                    startOffset: process.hrtime(ctx.hrtime),
+                };
+                return () => {
+                    resolverCall.endOffset = process.hrtime(ctx.hrtime);
+                    ctx.resolversTiming.push(resolverCall);
+                };
+            }));
+        },
+        onExecute(onExecuteContext) {
+            const ctx = {
+                startTime: new Date(),
+                resolversTiming: [],
+                hrtime: process.hrtime(),
+            };
+            onExecuteContext.extendContext({ [apolloTracingSymbol]: ctx });
+            return {
+                onExecuteDone(payload) {
+                    const endTime = new Date();
+                    const tracing = {
+                        version: 1,
+                        startTime: ctx.startTime.toISOString(),
+                        endTime: endTime.toISOString(),
+                        duration: deltaFrom(ctx.hrtime).ns,
+                        execution: {
+                            resolvers: ctx.resolversTiming.map(resolverCall => {
+                                const startOffset = durationHrTimeToNanos(resolverCall.startOffset);
+                                const duration = resolverCall.endOffset
+                                    ? durationHrTimeToNanos(resolverCall.endOffset) - startOffset
+                                    : 0;
+                                return {
+                                    path: [...(0, graphql_1.responsePathAsArray)(resolverCall.path)],
+                                    parentType: resolverCall.parentType.toString(),
+                                    fieldName: resolverCall.fieldName,
+                                    returnType: resolverCall.returnType.toString(),
+                                    startOffset,
+                                    duration,
+                                };
+                            }),
+                        },
+                    };
+                    return (0, core_1.handleStreamOrSingleExecutionResult)(payload, ({ result }) => {
+                        result.extensions = result.extensions || {};
+                        result.extensions.tracing = tracing;
+                    });
+                },
+            };
+        },
+    };
+};
+exports.useApolloTracing = useApolloTracing;
