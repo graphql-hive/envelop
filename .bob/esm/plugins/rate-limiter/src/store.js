@@ -1,3 +1,0 @@
-class Store {
-}
-export { Store };
